@@ -15,7 +15,7 @@ const Login = ({ setToken }) => {
     try {
       event.preventDefault();
       const response = await axios.post(
-        "https://site--plissime-backend--bpdg6k2n6jyf.code.run/user/login",
+        import.meta.env.VITE_API_URL + "/user/login",
         {
           email: email,
           password: password,
