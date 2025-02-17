@@ -1,0 +1,26 @@
+body {
+  background-color: #a8c6cc;
+  height: 100%;
+  font-family: "Montserrat";
+}
+
+#root {
+  display: flex;
+  width: 100%;
+}
+
+.crawler {
+  width: 1250px;
+  margin: 0 auto;
+}
+
+.logo-big {
+  text-align: center;
+  width: 400px;
+}
+
+.content {
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+}
