@@ -1,2 +1,23 @@
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
+.dashboard-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  border: 1px rgb(129, 129, 129) solid;
+  border-radius: 10px;
+  width: 500px;
+  height: 300px;
+}
 
+.dashboard-item h2 {
+  margin-top: 20px;
+}

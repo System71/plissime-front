@@ -10,7 +10,7 @@ body {
 }
 
 .crawler {
-  width: 1250px;
+  width: 1400px;
   margin: 0 auto;
 }
 
@@ -20,7 +20,22 @@ body {
 }
 
 .content {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  background-color: rgb(241, 240, 240);
   height: 100vh;
   width: 100%;
+  padding: 64px 20px 40px 20px;
+}
+
+h1 {
+  font-size: larger;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: medium;
+  font-weight: bold;
 }

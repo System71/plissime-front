@@ -1,4 +1,5 @@
 .signup {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +20,7 @@
 }
 
 .signup button {
+  width: 400px;
   text-align: center;
   padding: 10px;
   border: 0px;

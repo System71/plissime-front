@@ -32,6 +32,7 @@ const Login = ({ setToken }) => {
     <div className="login">
       <img src={logo} alt="Logo PLISSIME" className="logo-big" />
       <form onSubmit={login}>
+        <h1>Connectez-vous à votre espace personnel</h1>
         <div>
           {/* <label htmlFor="email">Email : </label> */}
           <input
