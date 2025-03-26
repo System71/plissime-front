@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
+import Cookies from "js-cookie";
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ const Login = ({ setToken }) => {
         }
       );
       setToken(response.data.token);
+      Cookies.set("plissimeToken", response.data.token);
       navigate("/");
     } catch (error) {
       console.log("error=", error.response.data);

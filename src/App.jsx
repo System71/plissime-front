@@ -1,4 +1,5 @@
 import "./App.css";
+import Cookies from "js-cookie";
 import {
   BrowserRouter as Router,
   Routes,
@@ -34,7 +35,7 @@ library.add(
 );
 
 function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(Cookies.get("plissimeToken") || "");
 
   return (
     <Router>

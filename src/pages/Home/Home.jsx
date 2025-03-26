@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
+import DaySessions from "../../components/DaySessions/daySessions";
 import "./home.css";
 
-const Home = () => {
+const Home = ({ token }) => {
   return (
     <div className="content">
       <h1>Tableau de bord</h1>
@@ -12,7 +14,7 @@ const Home = () => {
           <h2>CA à venir</h2>
         </div>
         <div className="dashboard-item">
-          <h2>Séances à venir</h2>
+          <DaySessions token={token} />
         </div>
         <div className="dashboard-item">
           <h2>Evolution du CA</h2>
