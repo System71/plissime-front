@@ -11,6 +11,7 @@ const Customers = ({ token, addCustomerDisplay, setAddCustomerDisplay }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("fetchData");
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/mycustomers`,
