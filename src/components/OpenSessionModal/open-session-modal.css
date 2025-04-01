@@ -1,4 +1,4 @@
-.addSessionModalContainer {
+.openSessionModalContainer {
   position: absolute;
   height: 50vh;
   width: 80vw;
@@ -14,7 +14,7 @@
   border-radius: 20px;
 }
 
-.addSessionModalContainer form {
+.openSessionModalContainer form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,13 +23,13 @@
   width: 85%;
 }
 
-.addSessionModalContainer form div {
+.openSessionModalContainer form div {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.addSessionModalContainer form input,
+.openSessionModalContainer form input,
 textarea {
   font-size: 22px;
   border: 1px grey solid;
@@ -38,6 +38,6 @@ textarea {
   max-width: 400px;
 }
 
-.addSessionModalContainer form input {
+.openSessionModalContainer form input {
   height: 40px;
 }

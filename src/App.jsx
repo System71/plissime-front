@@ -19,6 +19,7 @@ import Settings from "./pages/Settings/Settings";
 import Help from "./pages/Help/help";
 import AddSessionModal from "./components/AddSessionModal/AddSessionModal";
 import AddCustomerModal from "./components/AddCustomerModal/AddCustomerModal";
+import OpenSessionModal from "./components/OpenSessionModal/OpenSessionModal";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUser,
@@ -45,7 +46,9 @@ library.add(
 
 function App() {
   const [token, setToken] = useState(Cookies.get("plissimeToken") || "");
+  const [sessionID, setSessionID] = useState("");
   const [addSessionDisplay, setAddSessionDisplay] = useState(false);
+  const [openSessionDisplay, setOpenSessionDisplay] = useState(false);
   const [addCustomerDisplay, setAddCustomerDisplay] = useState(false);
 
   return (
@@ -76,6 +79,8 @@ function App() {
               token={token}
               addSessionDisplay={addSessionDisplay}
               setAddSessionDisplay={setAddSessionDisplay}
+              setOpenSessionDisplay={setOpenSessionDisplay}
+              setSessionID={setSessionID}
             />
           }
         ></Route>
@@ -93,6 +98,13 @@ function App() {
         <AddCustomerModal
           token={token}
           setAddCustomerDisplay={setAddCustomerDisplay}
+        />
+      )}
+      {openSessionDisplay && (
+        <OpenSessionModal
+          token={token}
+          setOpenSessionDisplay={setOpenSessionDisplay}
+          id={sessionID}
         />
       )}
     </Router>

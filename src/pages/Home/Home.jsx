@@ -8,19 +8,19 @@ const Home = ({ token }) => {
       <h1>Tableau de bord</h1>
       <div className="dashboard">
         <div className="dashboard-item">
-          <h2>CA du mois</h2>
+          <h2>CA DU MOIS</h2>
         </div>
         <div className="dashboard-item">
-          <h2>CA à venir</h2>
+          <h2>CA A VENIR</h2>
         </div>
         <div className="dashboard-item">
           <DaySessions token={token} />
         </div>
         <div className="dashboard-item">
-          <h2>Evolution du CA</h2>
+          <h2>EVOLUTION DU CA</h2>
         </div>
         <div className="dashboard-item">
-          <h2>Mes séances</h2>
+          <h2>SEANCES A VENIR</h2>
         </div>
         <div className="dashboard-item"></div>
       </div>

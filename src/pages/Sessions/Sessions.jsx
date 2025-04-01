@@ -7,7 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
 
-const Sessions = ({ token, addSessionDisplay, setAddSessionDisplay }) => {
+const Sessions = ({
+  token,
+  addSessionDisplay,
+  setAddSessionDisplay,
+  openSessionDisplay,
+  setOpenSessionDisplay,
+  setSessionID,
+}) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -58,6 +65,10 @@ const Sessions = ({ token, addSessionDisplay, setAddSessionDisplay }) => {
         {data.map((session, index) => {
           return (
             <SessionItem
+              openSessionDisplay={openSessionDisplay}
+              setOpenSessionDisplay={setOpenSessionDisplay}
+              setSessionID={setSessionID}
+              id={session._id}
               title={session.title}
               name={session.customer.name}
               firstName={session.customer.firstName}

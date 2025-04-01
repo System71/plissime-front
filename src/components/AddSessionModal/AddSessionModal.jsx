@@ -77,7 +77,6 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
             }}
           />
         </div>
-
         <div>
           <input
             type="text"

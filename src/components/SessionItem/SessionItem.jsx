@@ -2,7 +2,17 @@ import "./session-item.css";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SessionItem = ({ title, name, firstName, date, index }) => {
+const SessionItem = ({
+  setSessionID,
+  openSessionDisplay,
+  setOpenSessionDisplay,
+  id,
+  title,
+  name,
+  firstName,
+  date,
+  index,
+}) => {
   const heure = format(date, "HH:mm");
   const formatedDate = format(date, "dd/LL/yyyy");
 
@@ -19,7 +29,13 @@ const SessionItem = ({ title, name, firstName, date, index }) => {
       </div>
       <p>{formatedDate}</p>
       <p>{heure}</p>
-      <div className="session-icon">
+      <div
+        className="session-icon"
+        onClick={() => {
+          setOpenSessionDisplay(!openSessionDisplay);
+          setSessionID(id);
+        }}
+      >
         <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
       </div>
     </div>
