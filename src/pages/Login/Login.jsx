@@ -36,7 +36,6 @@ const Login = ({ setToken }) => {
       <form onSubmit={login}>
         <h1>Connectez-vous à votre espace personnel</h1>
         <div>
-          {/* <label htmlFor="email">Email : </label> */}
           <input
             type="email"
             placeholder="Votre email"
@@ -49,7 +48,6 @@ const Login = ({ setToken }) => {
           />
         </div>
         <div>
-          {/* <label htmlFor="password">Mot de passe : </label> */}
           <input
             type="password"
             name="password"

@@ -24,6 +24,11 @@ const NavMenu = () => {
           <Link to="/planning">Agenda</Link>
         </div>
         <div className="nav-item">
+          <FontAwesomeIcon icon="calendar-days" color="#E67E22" />
+          <Link to="/sessions">Sessions</Link>
+        </div>
+
+        <div className="nav-item">
           <FontAwesomeIcon icon="euro-sign" color="#E67E22" />
           <Link to="/payments">Paiements</Link>
         </div>

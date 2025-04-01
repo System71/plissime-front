@@ -1,0 +1,19 @@
+.day-session-item-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr auto;
+  padding: 10px 5px;
+  flex: 1;
+}
+
+.day-session-item-container p:nth-child(3) {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.grey {
+  background-color: lightgrey;
+}
+
+.white {
+  background-color: white;
+}

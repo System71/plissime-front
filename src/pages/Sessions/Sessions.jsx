@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
-import "./day-sessions.css";
-import { useEffect } from "react";
+import "./sessions.css";
 import axios from "axios";
-import { useState } from "react";
-import DaySessionItem from "../DaySessionItem/DaySessionItem";
+import { useState, useEffect } from "react";
+import SessionItem from "../../components/SessionItem/SessionItem";
 
-const DaySessions = ({ token }) => {
+const Sessions = ({ token, addSessionDisplay, setAddSessionDisplay }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/daysessions`,
+          `${import.meta.env.VITE_API_URL}/sessions`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -30,14 +29,24 @@ const DaySessions = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="day-sessions-container">
-      <h2>SESSIONS DU JOUR</h2>
-      <div className="day-sessions-list">
+    <div className="content">
+      <h1>Sessions</h1>
+      <div className="addSessions">
+        <button
+          onClick={() => {
+            setAddSessionDisplay(!addSessionDisplay);
+          }}
+        >
+          Ajouter une session
+        </button>
+      </div>
+      <div className="session-list">
         {data.map((session, index) => {
           return (
-            <DaySessionItem
+            <SessionItem
               title={session.title}
               name={session.customer.name}
+              firstName={session.customer.firstName}
               date={session.start}
               key={String(session._id)}
               index={index}
@@ -49,4 +58,4 @@ const DaySessions = ({ token }) => {
   );
 };
 
-export default DaySessions;
+export default Sessions;

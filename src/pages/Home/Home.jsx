@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import DaySessions from "../../components/DaySessions/daySessions";
+import DaySessions from "../../components/DaySessions/DaySessions";
 import "./home.css";
 
 const Home = ({ token }) => {

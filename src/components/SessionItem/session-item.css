@@ -1,5 +1,27 @@
-.session-item-container {
+.session-item {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 80%;
+  height: 40px;
+  padding: 20px 5px;
+  border: 1px grey solid;
+  border-radius: 10px;
+}
+
+.customer-name {
+  flex: 0.8;
+}
+
+.session-item-container p:nth-child(6) {
+  text-align: right;
+  padding-right: 50px;
+}
+
+.customer-icon {
+  margin-left: auto;
+}
+
+.session-title {
   flex: 1;
-  background-color: aqua;
 }

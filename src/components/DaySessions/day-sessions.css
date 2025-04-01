@@ -1,5 +1,4 @@
 .day-sessions-container {
-  background-color: chocolate;
   display: flex;
   width: 90%;
   flex-direction: column;
@@ -14,5 +13,5 @@
 .day-sessions-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  border: 1px solid grey;
 }
