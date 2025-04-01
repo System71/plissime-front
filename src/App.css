@@ -39,3 +39,8 @@ h2 {
   font-size: medium;
   font-weight: bold;
 }
+
+input,
+textarea {
+  font-family: inherit;
+}

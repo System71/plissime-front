@@ -2,6 +2,7 @@
 import "./add-session-modal.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "../button/button";
 
 const AddSessionModal = ({ token, setAddSessionDisplay }) => {
   const [searchCustomer, setSearchCustomer] = useState("");
@@ -113,17 +114,18 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
             }}
           />
         </div>
+
         <div>
-          <input
-            type="text"
-            placeholder="Contenu de la session"
+          <textarea
+            rows="10"
             name="content"
             id="content"
+            placeholder="Contenu de la session"
             value={content}
             onChange={(event) => {
               setContent(event.target.value);
             }}
-          />
+          ></textarea>
         </div>
         <div>
           <input
@@ -150,17 +152,15 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
           />
         </div>
 
-        <div>
-          <button>Ajouter ma session!</button>
+        <div className="modal-buttons">
+          <Button type="submit" text="Ajouter ma session!" />
+          <Button
+            type="button"
+            action={() => setAddSessionDisplay(false)}
+            text="Annuler"
+          />
         </div>
       </form>
-      <button
-        onClick={() => {
-          setAddSessionDisplay(false);
-        }}
-      >
-        Annuler
-      </button>
     </div>
   );
 };

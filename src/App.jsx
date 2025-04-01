@@ -18,6 +18,7 @@ import Payments from "./pages/Payments/Payments";
 import Settings from "./pages/Settings/Settings";
 import Help from "./pages/Help/help";
 import AddSessionModal from "./components/AddSessionModal/AddSessionModal";
+import AddCustomerModal from "./components/AddCustomerModal/AddCustomerModal";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUser,
@@ -28,6 +29,7 @@ import {
   faChartLine,
   faMagnifyingGlass,
   faCircle,
+  faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faUser,
@@ -37,12 +39,14 @@ library.add(
   faCalendarDays,
   faChartLine,
   faMagnifyingGlass,
-  faCircle
+  faCircle,
+  faPlusCircle
 );
 
 function App() {
   const [token, setToken] = useState(Cookies.get("plissimeToken") || "");
   const [addSessionDisplay, setAddSessionDisplay] = useState(false);
+  const [addCustomerDisplay, setAddCustomerDisplay] = useState(false);
 
   return (
     <Router>
@@ -54,7 +58,16 @@ function App() {
         ></Route>
         <Route path="/login" element={<Login setToken={setToken} />}></Route>
         <Route path="/signup" element={<Signup setToken={setToken} />}></Route>
-        <Route path="/customers" element={<Customers token={token} />}></Route>
+        <Route
+          path="/customers"
+          element={
+            <Customers
+              token={token}
+              addCustomerDisplay={addCustomerDisplay}
+              setAddCustomerDisplay={setAddCustomerDisplay}
+            />
+          }
+        ></Route>
         <Route path="/planning" element={<Planning token={token} />}></Route>
         <Route
           path="/sessions"
@@ -74,6 +87,12 @@ function App() {
         <AddSessionModal
           token={token}
           setAddSessionDisplay={setAddSessionDisplay}
+        />
+      )}
+      {addCustomerDisplay && (
+        <AddCustomerModal
+          token={token}
+          setAddCustomerDisplay={setAddCustomerDisplay}
         />
       )}
     </Router>

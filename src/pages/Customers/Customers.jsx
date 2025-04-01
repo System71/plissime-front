@@ -3,8 +3,10 @@ import "./customers.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import arrow from "../../assets/arrow_button.png";
+import circle from "../../assets/circle.png";
 
-const Customers = ({ token }) => {
+const Customers = ({ token, addCustomerDisplay, setAddCustomerDisplay }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -30,7 +32,27 @@ const Customers = ({ token }) => {
 
   return (
     <div className="content">
-      <h1>Customers</h1>
+      <h1>VOS CLIENTS</h1>
+      <div
+        className="addCustomer"
+        onClick={() => {
+          setAddCustomerDisplay(!addCustomerDisplay);
+        }}
+      >
+        <p>Ajouter un client</p>
+        <div className="arrow-circle">
+          <img className="arrow" src={arrow} alt="arrow" />
+          <div className="plus-container">
+            <img className="circle" src={circle} alt="circle" />
+            <FontAwesomeIcon
+              className="plus-circle"
+              icon="plus-circle"
+              color="#E67E22"
+              size="4x"
+            />
+          </div>
+        </div>
+      </div>
       <div className="customer-list">
         {data.map((customer) => {
           return (
