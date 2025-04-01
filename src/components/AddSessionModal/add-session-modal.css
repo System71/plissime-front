@@ -41,3 +41,10 @@ textarea {
 .addSessionModalContainer form input {
   height: 40px;
 }
+
+.add-session-customer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

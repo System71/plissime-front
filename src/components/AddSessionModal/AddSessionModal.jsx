@@ -27,11 +27,13 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
               headers: { Authorization: `Bearer ${token}` },
             }
           );
+          console.log("response=", response.data);
           setCustomerList(response.data);
         } catch (error) {
           console.error("Erreur lors de la recherche de clients :", error);
         }
       };
+      fetchCustomers();
     }
   }, [searchCustomer, token]);
 
@@ -65,7 +67,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
     <div className="addSessionModalContainer">
       <form onSubmit={addSession}>
         <h1>Ajouter une session</h1>
-        <div>
+        <div className="add-session-customer">
           <input
             type="text"
             placeholder="Client"
@@ -76,6 +78,9 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
               setSearchCustomer(event.target.value);
             }}
           />
+          <div>
+            <p>liste client</p>
+          </div>
         </div>
         <div>
           <input
