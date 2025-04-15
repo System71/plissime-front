@@ -44,3 +44,9 @@ input,
 textarea {
   font-family: inherit;
 }
+
+@media (max-width: 1399px) {
+  .crawler {
+    width: 100%;
+  }
+}
