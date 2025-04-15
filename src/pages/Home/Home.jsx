@@ -4,8 +4,8 @@ import "./home.css";
 
 const Home = ({ token }) => {
   return (
-    <div className="content">
-      <h1>Tableau de bord</h1>
+    <>
+      <h1>TABLEAU DE BORD</h1>
       <div className="dashboard">
         <div className="dashboard-item">
           <h2>CA DU MOIS</h2>
@@ -24,7 +24,7 @@ const Home = ({ token }) => {
         </div>
         <div className="dashboard-item"></div>
       </div>
-    </div>
+    </>
   );
 };
 

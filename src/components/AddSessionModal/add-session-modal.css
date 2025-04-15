@@ -1,17 +1,24 @@
 .addSessionModalContainer {
-  padding-top: 30px;
-  position: fixed;
-  min-height: 50%;
-  width: 60vw;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  align-items: center;
+}
+
+.addSessionModalContent {
+  padding: 40px;
+  width: 60%;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(223, 229, 229);
+  margin-top: 50px;
+  background-color: lightgrey;
   border: 3px solid grey;
   border-radius: 20px;
 }
@@ -42,8 +49,31 @@
 }
 
 .add-session-customer {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+}
+
+.customers-list {
+  display: flex;
+  width: 80%;
+  max-width: 400px;
+  position: absolute;
+  top: 50px;
+  background-color: blueviolet;
+}
+
+.customers-list ul {
+  align-self: flex-start;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(182, 7, 7);
+}
+
+.customers-list li {
+  align-self: flex-start;
+  padding: 0;
+  margin: -100;
+  background-color: aqua;
 }

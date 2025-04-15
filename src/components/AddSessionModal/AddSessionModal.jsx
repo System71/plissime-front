@@ -6,7 +6,7 @@ import Button from "../button/button";
 
 const AddSessionModal = ({ token, setAddSessionDisplay }) => {
   const [searchCustomer, setSearchCustomer] = useState("");
-  const [customersList, setCustomerList] = useState("");
+  const [customersList, setCustomersList] = useState([]);
   const [customer, setCustomer] = useState("");
   const [title, setTitle] = useState("");
   const [start, setStart] = useState("");
@@ -28,7 +28,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
             }
           );
           console.log("response=", response.data);
-          setCustomerList(response.data);
+          setCustomersList(response.data);
         } catch (error) {
           console.error("Erreur lors de la recherche de clients :", error);
         }
@@ -65,106 +65,111 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
 
   return (
     <div className="addSessionModalContainer">
-      <form onSubmit={addSession}>
-        <h1>Ajouter une session</h1>
-        <div className="add-session-customer">
-          <input
-            type="text"
-            placeholder="Client"
-            name="customer"
-            id="customer"
-            value={searchCustomer}
-            onChange={(event) => {
-              setSearchCustomer(event.target.value);
-            }}
-          />
-          <div>
-            <p>liste client</p>
+      <div className="addSessionModalContent">
+        <form onSubmit={addSession}>
+          <h1>Ajouter une session</h1>
+          <div className="add-session-customer">
+            <input
+              type="text"
+              placeholder="Client"
+              name="customer"
+              id="customer"
+              value={searchCustomer}
+              onChange={(event) => {
+                setSearchCustomer(event.target.value);
+              }}
+            />
+            <div className="customers-list">
+              <ul>
+                {customersList.map((customer, index) => {
+                  return <li key={index}>{customer.name}</li>;
+                })}
+              </ul>
+            </div>
           </div>
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Intitulé de la session"
-            name="title"
-            id="title"
-            value={title}
-            onChange={(event) => {
-              setTitle(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <input
-            type="datetime-local"
-            name="start"
-            id="start"
-            placeholder="Date et heure début"
-            value={start}
-            onChange={(event) => {
-              setStart(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <input
-            type="datetime-local"
-            name="end"
-            id="end"
-            placeholder="Date et heure fin"
-            value={end}
-            onChange={(event) => {
-              setEnd(event.target.value);
-            }}
-          />
-        </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Intitulé de la session"
+              name="title"
+              id="title"
+              value={title}
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <input
+              type="datetime-local"
+              name="start"
+              id="start"
+              placeholder="Date et heure début"
+              value={start}
+              onChange={(event) => {
+                setStart(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <input
+              type="datetime-local"
+              name="end"
+              id="end"
+              placeholder="Date et heure fin"
+              value={end}
+              onChange={(event) => {
+                setEnd(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <textarea
+              rows="10"
+              name="content"
+              id="content"
+              placeholder="Contenu de la session"
+              value={content}
+              onChange={(event) => {
+                setContent(event.target.value);
+              }}
+            ></textarea>
+          </div>
+          <div>
+            <input
+              type="number"
+              name="price"
+              id="price"
+              placeholder="Prix de la session"
+              value={price}
+              onChange={(event) => {
+                setPrice(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Nom du programme"
+              name="project"
+              id="project"
+              value={project}
+              onChange={(event) => {
+                setProject(event.target.value);
+              }}
+            />
+          </div>
 
-        <div>
-          <textarea
-            rows="10"
-            name="content"
-            id="content"
-            placeholder="Contenu de la session"
-            value={content}
-            onChange={(event) => {
-              setContent(event.target.value);
-            }}
-          ></textarea>
-        </div>
-        <div>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            placeholder="Prix de la session"
-            value={price}
-            onChange={(event) => {
-              setPrice(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Nom du programme"
-            name="project"
-            id="project"
-            value={project}
-            onChange={(event) => {
-              setProject(event.target.value);
-            }}
-          />
-        </div>
-
-        <div className="modal-buttons">
-          <Button type="submit" text="Ajouter ma session!" />
-          <Button
-            type="button"
-            action={() => setAddSessionDisplay(false)}
-            text="Annuler"
-          />
-        </div>
-      </form>
+          <div className="modal-buttons">
+            <Button type="submit" text="Ajouter ma session!" />
+            <Button
+              type="button"
+              action={() => setAddSessionDisplay(false)}
+              text="Annuler"
+            />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

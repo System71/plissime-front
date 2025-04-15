@@ -32,7 +32,7 @@ const Customers = ({ token, addCustomerDisplay, setAddCustomerDisplay }) => {
   }, [token]);
 
   return (
-    <div className="content">
+    <>
       <h1>VOS CLIENTS</h1>
       <div
         className="addCustomer"
@@ -76,7 +76,7 @@ const Customers = ({ token, addCustomerDisplay, setAddCustomerDisplay }) => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 

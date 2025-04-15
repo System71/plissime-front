@@ -39,7 +39,7 @@ const Sessions = ({
   }, [token]);
 
   return (
-    <div className="content">
+    <>
       <h1>VOS SESSIONS</h1>
       <div
         className="addSessions"
@@ -79,7 +79,7 @@ const Sessions = ({
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
