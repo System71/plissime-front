@@ -82,7 +82,14 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
             <div className="customers-list">
               <ul>
                 {customersList.map((customer, index) => {
-                  return <li key={index}>{customer.name}</li>;
+                  return (
+                    <li
+                      key={index}
+                      onClick={() => setSearchCustomer(customer.name)}
+                    >
+                      {customer.name} {customer.firstName}
+                    </li>
+                  );
                 })}
               </ul>
             </div>
