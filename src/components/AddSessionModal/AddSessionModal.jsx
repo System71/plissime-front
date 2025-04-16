@@ -5,13 +5,14 @@ import axios from "axios";
 import Button from "../button/button";
 
 const AddSessionModal = ({ token, setAddSessionDisplay }) => {
+  const [listIsVisible, setListIsVisible] = useState(true);
   const [searchCustomer, setSearchCustomer] = useState("");
   const [customersList, setCustomersList] = useState([]);
   const [customer, setCustomer] = useState("");
   const [title, setTitle] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
-  const [state, setState] = useState("scheduled");
+  const [state, setState] = useState("Confirmée");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
   const [project, setProject] = useState("");
@@ -35,6 +36,9 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
       };
       fetchCustomers();
     }
+    if (searchCustomer.length <= 1) {
+      setListIsVisible(true);
+    }
   }, [searchCustomer, token]);
 
   const addSession = async (event) => {
@@ -50,6 +54,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
           content: content,
           price: price,
           project: project,
+          customer: customer,
         },
         {
           headers: {
@@ -58,9 +63,14 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
           },
         }
       );
+      setAddSessionDisplay(false);
     } catch (error) {
       console.log("error=", error.response.data);
     }
+  };
+
+  const handleChange = (event) => {
+    setState(event.target.value);
   };
 
   return (
@@ -79,20 +89,26 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
                 setSearchCustomer(event.target.value);
               }}
             />
-            <div className="customers-list">
-              <ul>
-                {customersList.map((customer, index) => {
-                  return (
-                    <li
-                      key={index}
-                      onClick={() => setSearchCustomer(customer.name)}
-                    >
-                      {customer.name} {customer.firstName}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            {listIsVisible && (
+              <div className="customers-list">
+                <ul>
+                  {customersList.map((customer, index) => {
+                    return (
+                      <li
+                        key={index}
+                        onClick={() => {
+                          setSearchCustomer(customer.name);
+                          setListIsVisible(false);
+                          setCustomer(customer._id);
+                        }}
+                      >
+                        {customer.name} {customer.firstName}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
           </div>
           <div>
             <input
@@ -165,6 +181,14 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
                 setProject(event.target.value);
               }}
             />
+          </div>
+          <div>
+            <select name="state" id="state" onChange={handleChange}>
+              <option value="Confirmée">Confirmée</option>
+              <option value="Annulée">Annulée</option>
+              <option value="A payer">A payer</option>
+              <option value="Payée">Payée</option>
+            </select>
           </div>
 
           <div className="modal-buttons">

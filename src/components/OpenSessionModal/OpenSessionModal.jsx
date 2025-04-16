@@ -3,11 +3,12 @@ import "./open-session-modal.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../button/button";
+import
 
 const OpenSessionModal = ({ token, setOpenSessionDisplay, id }) => {
   const [isLoading, setIsLoading] = useState(true);
-  // const [name, setName] = useState("");
-  // const [firstName, setFirstName] = useState("");
+  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [title, setTitle] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -27,8 +28,8 @@ const OpenSessionModal = ({ token, setOpenSessionDisplay, id }) => {
           }
         );
         console.log("response=", response.data);
-        // setName(response.data.customer.name);
-        // setFirstName(response.data.customer.firstName);
+        setName(response.data.customer.name);
+        setFirstName(response.data.customer.firstName);
         setTitle(response.data.title);
         setStart(response.data.start);
         setEnd(response.data.end);
@@ -74,118 +75,113 @@ const OpenSessionModal = ({ token, setOpenSessionDisplay, id }) => {
 
   return (
     <div className="addSessionModalContainer">
-      <h1>Détail de la session</h1>
-      {isLoading ? (
-        <p>EN CHARGEMENT</p>
-      ) : (
-        <form onSubmit={addSession}>
-          {/* <div>
-            <input
-              type="text"
-              placeholder={name}
-              name="name"
-              id="name"
-              value={name}
-              onChange={(event) => {
-                setName(event.target.value);
-              }}
-            />
-            <input
-              type="text"
-              placeholder={firstName}
-              name="firstName"
-              id="firstName"
-              value={firstName}
-              onChange={(event) => {
-                setFirstName(event.target.value);
-              }}
-            />
-          </div> */}
-
-          <div>
-            <input
-              type="text"
-              placeholder={title}
-              name="title"
-              id="title"
-              value={title}
-              onChange={(event) => {
-                setTitle(event.target.value);
-              }}
-            />
-          </div>
-          <div>
-            <input
-              type="datetime-local"
-              name="start"
-              id="start"
-              placeholder={start}
-              value={start}
-              onChange={(event) => {
-                setStart(event.target.value);
-              }}
-            />
-          </div>
-          <div>
-            <input
-              type="datetime-local"
-              name="end"
-              id="end"
-              placeholder={end}
-              value={end}
-              onChange={(event) => {
-                setEnd(event.target.value);
-              }}
-            />
-          </div>
-
-          <div>
-            <textarea
-              rows="10"
-              name="content"
-              id="content"
-              placeholder={content}
-              value={content}
-              onChange={(event) => {
-                setContent(event.target.value);
-              }}
-            ></textarea>
-          </div>
-          <div>
-            <input
-              type="number"
-              name="price"
-              id="price"
-              placeholder={price}
-              value={price}
-              onChange={(event) => {
-                setPrice(event.target.value);
-              }}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder={project}
-              name="project"
-              id="project"
-              value={project}
-              onChange={(event) => {
-                setProject(event.target.value);
-              }}
-            />
-          </div>
-
-          <div className="modal-buttons">
-            <Button type="submit" text="Modifier ma session!" />
-            <Button
-              type="button"
-              action={() => setOpenSessionDisplay(false)}
-              text="Fermer"
-            />
-          </div>
-        </form>
-      )}
+      <div className="addSessionModalContent">
+        <h1>Détail de la session</h1>
+        {isLoading ? (
+          <p>EN CHARGEMENT</p>
+        ) : (
+          <form onSubmit={addSession}>
+            <div>
+              <input
+                type="text"
+                placeholder={name}
+                name="name"
+                id="name"
+                value={name}
+                readOnly
+              />
+              <input
+                type="text"
+                placeholder={firstName}
+                name="firstName"
+                id="firstName"
+                value={firstName}
+                readOnly
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder={title}
+                name="title"
+                id="title"
+                value={title}
+                onChange={(event) => {
+                  setTitle(event.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <input
+                type="datetime-local"
+                name="start"
+                id="start"
+                placeholder={start}
+                value={start}
+                onChange={(event) => {
+                  setStart(event.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <input
+                type="datetime-local"
+                name="end"
+                id="end"
+                placeholder={end}
+                value={end}
+                onChange={(event) => {
+                  setEnd(event.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <textarea
+                rows="10"
+                name="content"
+                id="content"
+                placeholder={content}
+                value={content}
+                onChange={(event) => {
+                  setContent(event.target.value);
+                }}
+              ></textarea>
+            </div>
+            <div>
+              <input
+                type="number"
+                name="price"
+                id="price"
+                placeholder={price}
+                value={price}
+                onChange={(event) => {
+                  setPrice(event.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder={project}
+                name="project"
+                id="project"
+                value={project}
+                onChange={(event) => {
+                  setProject(event.target.value);
+                }}
+              />
+            </div>
+            <div className="modal-buttons">
+              <Button type="submit" text="Modifier ma session!" />
+              <Button
+                type="button"
+                action={() => setOpenSessionDisplay(false)}
+                text="Fermer"
+              />
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 };
