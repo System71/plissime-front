@@ -1,34 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import "./customers.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
+import { updateCustomersList } from "../../../utils/updateData";
 
-const Customers = ({ token, addCustomerDisplay, setAddCustomerDisplay }) => {
-  const [data, setData] = useState([]);
-
+const Customers = ({
+  token,
+  addCustomerDisplay,
+  setAddCustomerDisplay,
+  customersList,
+  setCustomersList,
+}) => {
   useEffect(() => {
-    const fetchData = async () => {
-      console.log("fetchData");
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/mycustomers`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        console.log(response.data);
-        setData(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    fetchData();
+    if (token) {
+      updateCustomersList(setCustomersList, token);
+    }
   }, [token]);
 
   return (
@@ -55,7 +44,7 @@ const Customers = ({ token, addCustomerDisplay, setAddCustomerDisplay }) => {
         </div>
       </div>
       <div className="customer-list">
-        {data.map((customer) => {
+        {customersList.map((customer) => {
           return (
             <div className="customer-item" key={String(customer._id)}>
               <FontAwesomeIcon icon="circle" color="#E67E22" size="xs" />

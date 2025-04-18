@@ -2,10 +2,17 @@
 import "./open-session-modal.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../button/button";
-import
+import Button from "../../button/button";
+import { toZonedTime } from "date-fns-tz";
+import { format } from "date-fns";
+import { updateSessionsList } from "../../../../utils/updateData";
 
-const OpenSessionModal = ({ token, setOpenSessionDisplay, id }) => {
+const OpenSessionModal = ({
+  token,
+  setOpenSessionDisplay,
+  id,
+  setSessionsList,
+}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -28,18 +35,21 @@ const OpenSessionModal = ({ token, setOpenSessionDisplay, id }) => {
           }
         );
         console.log("response=", response.data);
+        const startTZ = toZonedTime(response.data.start, "Europe/Paris");
+        const startFormatted = format(startTZ, "yyy-MM-dd'T'HH:mm");
+        const endTZ = toZonedTime(response.data.end, "Europe/Paris");
+        const endFormatted = format(endTZ, "yyy-MM-dd'T'HH:mm");
+
         setName(response.data.customer.name);
         setFirstName(response.data.customer.firstName);
         setTitle(response.data.title);
-        setStart(response.data.start);
-        setEnd(response.data.end);
+        setStart(startFormatted);
+        setEnd(endFormatted);
         setState(response.data.state);
         setContent(response.data.content);
         setPrice(response.data.price);
         setProject(response.data.project);
         setIsLoading(false);
-        console.log("fetchdata fini");
-        console.log("title=", title);
       } catch (error) {
         console.error("Erreur lors de la recherche de clients :", error);
       }
@@ -47,11 +57,11 @@ const OpenSessionModal = ({ token, setOpenSessionDisplay, id }) => {
     fetchData();
   }, [id, token]);
 
-  const addSession = async (event) => {
+  const modifySession = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL + "/session/add",
+      const response = await axios.put(
+        import.meta.env.VITE_API_URL + `/session/modify/${id}`,
         {
           title: title,
           start: start,
@@ -68,19 +78,25 @@ const OpenSessionModal = ({ token, setOpenSessionDisplay, id }) => {
           },
         }
       );
+      updateSessionsList(setSessionsList, token);
+      setOpenSessionDisplay(false);
     } catch (error) {
       console.log("error=", error.response.data);
     }
   };
 
+  const handleChange = (event) => {
+    setState(event.target.value);
+  };
+
   return (
-    <div className="addSessionModalContainer">
-      <div className="addSessionModalContent">
+    <div className="openSessionModalContainer">
+      <div className="openSessionModalContent">
         <h1>Détail de la session</h1>
         {isLoading ? (
           <p>EN CHARGEMENT</p>
         ) : (
-          <form onSubmit={addSession}>
+          <form onSubmit={modifySession}>
             <div>
               <input
                 type="text"
@@ -170,6 +186,14 @@ const OpenSessionModal = ({ token, setOpenSessionDisplay, id }) => {
                   setProject(event.target.value);
                 }}
               />
+            </div>
+            <div>
+              <select name="state" id="state" onChange={handleChange}>
+                <option value="Confirmée">Confirmée</option>
+                <option value="Annulée">Annulée</option>
+                <option value="A payer">A payer</option>
+                <option value="Payée">Payée</option>
+              </select>
             </div>
             <div className="modal-buttons">
               <Button type="submit" text="Modifier ma session!" />

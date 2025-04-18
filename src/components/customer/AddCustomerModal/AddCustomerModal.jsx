@@ -3,9 +3,14 @@
 import "./add-customer-modal.css";
 import { useState } from "react";
 import axios from "axios";
-import Button from "../button/button";
+import Button from "../../button/button";
+import { updateCustomersList } from "../../../../utils/updateData";
 
-const AddCustomerModal = ({ token, setAddCustomerDisplay }) => {
+const AddCustomerModal = ({
+  token,
+  setAddCustomerDisplay,
+  setCustomersList,
+}) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -29,6 +34,7 @@ const AddCustomerModal = ({ token, setAddCustomerDisplay }) => {
           },
         }
       );
+      updateCustomersList(setCustomersList, token);
       setAddCustomerDisplay(false);
     } catch (error) {
       console.log("error=", error.response.data);

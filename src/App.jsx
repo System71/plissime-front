@@ -16,9 +16,10 @@ import Sessions from "./pages/Sessions/Sessions";
 import Payments from "./pages/Payments/Payments";
 import Settings from "./pages/Settings/Settings";
 import Help from "./pages/Help/help";
-import AddSessionModal from "./components/AddSessionModal/AddSessionModal";
-import AddCustomerModal from "./components/AddCustomerModal/AddCustomerModal";
-import OpenSessionModal from "./components/OpenSessionModal/OpenSessionModal";
+import AddCustomerModal from "./components/customer/AddCustomerModal/AddCustomerModal";
+import OpenCustomerModal from "./components/customer/OpenCustomerModal/OpenCustomerModal";
+import AddSessionModal from "./components/session/AddSessionModal/AddSessionModal";
+import OpenSessionModal from "./components/session/OpenSessionModal/OpenSessionModal";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUser,
@@ -47,9 +48,13 @@ library.add(
 function App() {
   const [token, setToken] = useState(Cookies.get("plissimeToken") || "");
   const [sessionID, setSessionID] = useState("");
+  const [customerID, setCustomersID] = useState("");
   const [addSessionDisplay, setAddSessionDisplay] = useState(false);
   const [openSessionDisplay, setOpenSessionDisplay] = useState(false);
   const [addCustomerDisplay, setAddCustomerDisplay] = useState(false);
+  const [openCustomerDisplay, setOpenCustomerDisplay] = useState(false);
+  const [sessionsList, setSessionsList] = useState([]);
+  const [customersList, setCustomersList] = useState([]);
 
   return (
     <div className="app">
@@ -77,6 +82,9 @@ function App() {
                   token={token}
                   addCustomerDisplay={addCustomerDisplay}
                   setAddCustomerDisplay={setAddCustomerDisplay}
+                  customersList={customersList}
+                  setCustomersList={setCustomersList}
+                  setCustomersID={setCustomersID}
                 />
               }
             ></Route>
@@ -93,6 +101,8 @@ function App() {
                   setAddSessionDisplay={setAddSessionDisplay}
                   setOpenSessionDisplay={setOpenSessionDisplay}
                   setSessionID={setSessionID}
+                  sessionsList={sessionsList}
+                  setSessionsList={setSessionsList}
                 />
               }
             ></Route>
@@ -111,12 +121,14 @@ function App() {
           <AddSessionModal
             token={token}
             setAddSessionDisplay={setAddSessionDisplay}
+            setSessionsList={setSessionsList}
           />
         )}
         {addCustomerDisplay && (
           <AddCustomerModal
             token={token}
             setAddCustomerDisplay={setAddCustomerDisplay}
+            setCustomersList={setCustomersList}
           />
         )}
         {openSessionDisplay && (
@@ -124,6 +136,15 @@ function App() {
             token={token}
             setOpenSessionDisplay={setOpenSessionDisplay}
             id={sessionID}
+            setSessionsList={setSessionsList}
+          />
+        )}
+        {openCustomerDisplay && (
+          <OpenCustomerModal
+            token={token}
+            setOpenCustomerDisplay={setOpenCustomerDisplay}
+            id={sessionID}
+            setCustomersList={setCustomersList}
           />
         )}
       </Router>

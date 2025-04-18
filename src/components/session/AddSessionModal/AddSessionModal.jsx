@@ -2,9 +2,10 @@
 import "./add-session-modal.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../button/button";
+import Button from "../../button/button";
+import { updateSessionsList } from "../../../../utils/updateData";
 
-const AddSessionModal = ({ token, setAddSessionDisplay }) => {
+const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [listIsVisible, setListIsVisible] = useState(true);
   const [searchCustomer, setSearchCustomer] = useState("");
   const [customersList, setCustomersList] = useState([]);
@@ -63,6 +64,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay }) => {
           },
         }
       );
+      updateSessionsList(setSessionsList, token);
       setAddSessionDisplay(false);
     } catch (error) {
       console.log("error=", error.response.data);

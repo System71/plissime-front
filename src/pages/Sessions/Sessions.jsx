@@ -1,11 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import "./sessions.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import SessionItem from "../../components/SessionItem/SessionItem";
+import { useEffect } from "react";
+import SessionItem from "../../components/session/SessionItem/SessionItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
+import { updateSessionsList } from "../../../utils/updateData";
 
 const Sessions = ({
   token,
@@ -14,28 +15,13 @@ const Sessions = ({
   openSessionDisplay,
   setOpenSessionDisplay,
   setSessionID,
+  sessionsList,
+  setSessionsList,
 }) => {
-  const [data, setData] = useState([]);
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/sessions`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        console.log(response.data);
-        setData(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    fetchData();
+    if (token) {
+      updateSessionsList(setSessionsList, token);
+    }
   }, [token]);
 
   return (
@@ -62,7 +48,7 @@ const Sessions = ({
         </div>
       </div>
       <div className="session-list">
-        {data.map((session, index) => {
+        {sessionsList.map((session, index) => {
           return (
             <SessionItem
               openSessionDisplay={openSessionDisplay}

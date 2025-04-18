@@ -41,13 +41,10 @@
 .openSessionModalContainer input,
 .openSessionModalContainer textarea,
 .openSessionModalContainer select {
-  font-size: 22px;
+  padding: 10px;
+  font-size: 18px;
   border: 1px grey solid;
   border-radius: 10px;
   width: 80%;
   max-width: 400px;
-}
-
-.openSessionModalContainer form input {
-  height: 40px;
 }
