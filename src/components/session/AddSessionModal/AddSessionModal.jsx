@@ -81,6 +81,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
         <form onSubmit={addSession}>
           <h1>Ajouter une session</h1>
           <div className="add-session-customer">
+            <label htmlFor="customer">Nom du client</label>
             <input
               type="text"
               placeholder="Client"
@@ -113,6 +114,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             )}
           </div>
           <div>
+            <label htmlFor="title">Nom de la session</label>
             <input
               type="text"
               placeholder="Intitulé de la session"
@@ -125,6 +127,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             />
           </div>
           <div>
+            <label htmlFor="start">Début de la session</label>
             <input
               type="datetime-local"
               name="start"
@@ -137,6 +140,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             />
           </div>
           <div>
+            <label htmlFor="end">Fin de la session</label>
             <input
               type="datetime-local"
               name="end"
@@ -149,6 +153,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             />
           </div>
           <div>
+            <label htmlFor="content">Contenu de la session</label>
             <textarea
               rows="10"
               name="content"
@@ -161,6 +166,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             ></textarea>
           </div>
           <div>
+            <label htmlFor="price">Prix</label>
             <input
               type="number"
               name="price"
@@ -173,6 +179,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             />
           </div>
           <div>
+            <label htmlFor="project">Nom du programme</label>
             <input
               type="text"
               placeholder="Nom du programme"
@@ -185,6 +192,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             />
           </div>
           <div>
+            <label htmlFor="state">Statut</label>
             <select name="state" id="state" onChange={handleChange}>
               <option value="Confirmée">Confirmée</option>
               <option value="Annulée">Annulée</option>
@@ -192,14 +200,13 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
               <option value="Payée">Payée</option>
             </select>
           </div>
-
-          <div className="modal-buttons">
-            <Button type="submit" text="Ajouter ma session!" />
+          <div className="add-session-modal-buttons">
             <Button
               type="button"
               action={() => setAddSessionDisplay(false)}
               text="Annuler"
             />
+            <Button type="submit" text="Ajouter ma session!" />
           </div>
         </form>
       </div>

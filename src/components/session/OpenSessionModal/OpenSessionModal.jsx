@@ -92,12 +92,13 @@ const OpenSessionModal = ({
   return (
     <div className="openSessionModalContainer">
       <div className="openSessionModalContent">
-        <h1>Détail de la session</h1>
         {isLoading ? (
           <p>EN CHARGEMENT</p>
         ) : (
           <form onSubmit={modifySession}>
+            <h1>Détail de la session</h1>
             <div>
+              <label htmlFor="name">Nom</label>
               <input
                 type="text"
                 placeholder={name}
@@ -106,6 +107,9 @@ const OpenSessionModal = ({
                 value={name}
                 readOnly
               />
+            </div>
+            <div>
+              <label htmlFor="firstName">Prénom</label>{" "}
               <input
                 type="text"
                 placeholder={firstName}
@@ -116,6 +120,7 @@ const OpenSessionModal = ({
               />
             </div>
             <div>
+              <label htmlFor="title">Intitulé de la session</label>
               <input
                 type="text"
                 placeholder={title}
@@ -128,6 +133,7 @@ const OpenSessionModal = ({
               />
             </div>
             <div>
+              <label htmlFor="start">Début de la session</label>
               <input
                 type="datetime-local"
                 name="start"
@@ -140,6 +146,7 @@ const OpenSessionModal = ({
               />
             </div>
             <div>
+              <label htmlFor="end">Fin de la session</label>
               <input
                 type="datetime-local"
                 name="end"
@@ -152,6 +159,7 @@ const OpenSessionModal = ({
               />
             </div>
             <div>
+              <label htmlFor="content">Contenu de la session</label>
               <textarea
                 rows="10"
                 name="content"
@@ -164,6 +172,7 @@ const OpenSessionModal = ({
               ></textarea>
             </div>
             <div>
+              <label htmlFor="price">Prix</label>
               <input
                 type="number"
                 name="price"
@@ -176,6 +185,7 @@ const OpenSessionModal = ({
               />
             </div>
             <div>
+              <label htmlFor="project">Nom du programme</label>
               <input
                 type="text"
                 placeholder={project}
@@ -188,6 +198,7 @@ const OpenSessionModal = ({
               />
             </div>
             <div>
+              <label htmlFor="state">Statut</label>
               <select name="state" id="state" onChange={handleChange}>
                 <option value="Confirmée">Confirmée</option>
                 <option value="Annulée">Annulée</option>
@@ -195,13 +206,13 @@ const OpenSessionModal = ({
                 <option value="Payée">Payée</option>
               </select>
             </div>
-            <div className="modal-buttons">
-              <Button type="submit" text="Modifier ma session!" />
+            <div className="open-session-modal-buttons">
               <Button
                 type="button"
                 action={() => setOpenSessionDisplay(false)}
                 text="Fermer"
               />
+              <Button type="submit" text="Modifier ma session!" />
             </div>
           </form>
         )}

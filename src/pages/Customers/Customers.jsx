@@ -6,11 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
 import { updateCustomersList } from "../../../utils/updateData";
+import CustomerItem from "../../components/customer/CustomerItem/CustomerItem";
 
 const Customers = ({
   token,
   addCustomerDisplay,
   setAddCustomerDisplay,
+  openCustomerDisplay,
+  setOpenCustomerDisplay,
+  setCustomerID,
   customersList,
   setCustomersList,
 }) => {
@@ -46,22 +50,18 @@ const Customers = ({
       <div className="customer-list">
         {customersList.map((customer) => {
           return (
-            <div className="customer-item" key={String(customer._id)}>
-              <FontAwesomeIcon icon="circle" color="#E67E22" size="xs" />
-              <div className="customer-name">
-                <p>
-                  {customer.name} {customer.firstName}
-                </p>
-              </div>
-              <div className="customer-address">
-                <p>
-                  {customer.address} {customer.zip} {customer.city}
-                </p>
-              </div>
-              <div className="customer-icon">
-                <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
-              </div>
-            </div>
+            <CustomerItem
+              openCustomerDisplay={openCustomerDisplay}
+              setOpenCustomerDisplay={setOpenCustomerDisplay}
+              setCustomerID={setCustomerID}
+              id={customer._id}
+              name={customer.name}
+              firstName={customer.firstName}
+              address={customer.address}
+              zip={customer.zip}
+              city={customer.city}
+              key={String(customer._id)}
+            />
           );
         })}
       </div>

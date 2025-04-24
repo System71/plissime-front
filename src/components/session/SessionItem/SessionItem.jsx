@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./session-item.css";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +12,6 @@ const SessionItem = ({
   name,
   firstName,
   date,
-  index,
 }) => {
   const heure = format(date, "HH:mm");
   const formatedDate = format(date, "dd/LL/yyyy");

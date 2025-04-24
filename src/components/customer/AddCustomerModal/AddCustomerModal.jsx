@@ -43,65 +43,67 @@ const AddCustomerModal = ({
 
   return (
     <div className="addCustomerModalContainer">
-      <form onSubmit={addCustomer}>
-        <h1>Ajouter un client</h1>
-        <div className="name">
-          <input
-            type="text"
-            placeholder="Nom du client"
-            name="name"
-            id="name"
-            value={name}
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Prénom du client"
-            name="firstName"
-            id="firstName"
-            value={firstName}
-            onChange={(event) => {
-              setFirstName(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email du client"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <input
-            type="number"
-            name="phone"
-            id="phone"
-            placeholder="Numéro de téléphone du client"
-            value={phone}
-            onChange={(event) => {
-              setPhone(event.target.value);
-            }}
-          />
-        </div>
-        <div className="modal-buttons">
-          <Button type="submit" text="Ajouter mon client!" />
-          <Button
-            type="button"
-            action={() => setAddCustomerDisplay(false)}
-            text="Annuler"
-          />
-        </div>
-      </form>
+      <div className="addCustomerModalContent">
+        <form onSubmit={addCustomer}>
+          <h1>Ajouter un client</h1>
+          <div className="name">
+            <input
+              type="text"
+              placeholder="Nom du client"
+              name="name"
+              id="name"
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Prénom du client"
+              name="firstName"
+              id="firstName"
+              value={firstName}
+              onChange={(event) => {
+                setFirstName(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email du client"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <input
+              type="number"
+              name="phone"
+              id="phone"
+              placeholder="Numéro de téléphone du client"
+              value={phone}
+              onChange={(event) => {
+                setPhone(event.target.value);
+              }}
+            />
+          </div>
+          <div className="add-customer-modal-buttons">
+            <Button
+              type="button"
+              action={() => setAddCustomerDisplay(false)}
+              text="Annuler"
+            />
+            <Button type="submit" text="Ajouter mon client!" />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

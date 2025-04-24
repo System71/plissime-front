@@ -9,21 +9,35 @@ import Cookies from "js-cookie";
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isCoach, setIsCoach] = useState(true);
+  const [isCustomer, setIsCustomer] = useState(false);
 
   const navigate = useNavigate();
 
   const login = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL + "/user/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
-      setToken(response.data.token);
-      Cookies.set("plissimeToken", response.data.token);
+      if (isCoach) {
+        const response = await axios.post(
+          import.meta.env.VITE_API_URL + `/user/login`,
+          {
+            email: email,
+            password: password,
+          }
+        );
+        setToken(response.data.token);
+        Cookies.set("plissimeToken", response.data.token);
+      } else {
+        const response = await axios.post(
+          import.meta.env.VITE_API_URL + `/customer/login`,
+          {
+            email: email,
+            password: password,
+          }
+        );
+        setToken(response.data.token);
+        Cookies.set("plissimeToken", response.data.token);
+      }
       navigate("/");
     } catch (error) {
       console.log("error=", error.response.data);
@@ -35,7 +49,32 @@ const Login = ({ setToken }) => {
       <img src={logo} alt="Logo PLISSIME" className="logo-big" />
       <form onSubmit={login}>
         <h1>Connectez-vous à votre espace personnel</h1>
+        <div className="button-choice">
+          <button
+            type="button"
+            className="coach-button"
+            onClick={() => {
+              setIsCoach(!isCoach);
+              setIsCustomer(!isCustomer);
+            }}
+            style={{ backgroundColor: isCoach && "#a8c6cc" }}
+          >
+            Coach
+          </button>
+          <button
+            type="button"
+            className="customer-button"
+            onClick={() => {
+              setIsCustomer(!isCustomer);
+              setIsCoach(!isCoach);
+            }}
+            style={{ backgroundColor: isCustomer && "#a8c6cc" }}
+          >
+            Client
+          </button>
+        </div>
         <div>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             placeholder="Votre email"
@@ -48,6 +87,7 @@ const Login = ({ setToken }) => {
           />
         </div>
         <div>
+          <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
             name="password"
@@ -62,8 +102,8 @@ const Login = ({ setToken }) => {
         <div>
           <button>Se connecter</button>
         </div>
+        <Link to="/signup">Créer mon compte</Link>
       </form>
-      <Link to="/signup">Créer mon compte</Link>
     </div>
   );
 };

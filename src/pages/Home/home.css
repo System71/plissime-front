@@ -9,6 +9,7 @@
 .dashboard-item {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   justify-content: flex-start;
   align-items: center;
   background-color: white;

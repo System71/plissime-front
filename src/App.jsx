@@ -48,7 +48,7 @@ library.add(
 function App() {
   const [token, setToken] = useState(Cookies.get("plissimeToken") || "");
   const [sessionID, setSessionID] = useState("");
-  const [customerID, setCustomersID] = useState("");
+  const [customerID, setCustomerID] = useState("");
   const [addSessionDisplay, setAddSessionDisplay] = useState(false);
   const [openSessionDisplay, setOpenSessionDisplay] = useState(false);
   const [addCustomerDisplay, setAddCustomerDisplay] = useState(false);
@@ -60,20 +60,27 @@ function App() {
     <div className="app">
       <Router>
         <Routes>
-          <Route path="/" element={<Layout token={token} />}>
+          <Route path="/login" element={<Login setToken={setToken} />}></Route>
+          <Route
+            path="/signup"
+            element={<Signup setToken={setToken} />}
+          ></Route>
+          <Route
+            path="/"
+            element={
+              <Layout
+                token={token}
+                setToken={setToken}
+                setSessionsList={setSessionsList}
+                setCustomersList={setCustomersList}
+              />
+            }
+          >
             <Route
               index
               element={
                 token ? <Home token={token} /> : <Navigate to="/login" />
               }
-            ></Route>
-            <Route
-              path="/login"
-              element={<Login setToken={setToken} />}
-            ></Route>
-            <Route
-              path="/signup"
-              element={<Signup setToken={setToken} />}
             ></Route>
             <Route
               path="/customers"
@@ -82,9 +89,11 @@ function App() {
                   token={token}
                   addCustomerDisplay={addCustomerDisplay}
                   setAddCustomerDisplay={setAddCustomerDisplay}
+                  openCustomerDisplay={openCustomerDisplay}
+                  setOpenCustomerDisplay={setOpenCustomerDisplay}
+                  setCustomerID={setCustomerID}
                   customersList={customersList}
                   setCustomersList={setCustomersList}
-                  setCustomersID={setCustomersID}
                 />
               }
             ></Route>
@@ -143,7 +152,7 @@ function App() {
           <OpenCustomerModal
             token={token}
             setOpenCustomerDisplay={setOpenCustomerDisplay}
-            id={sessionID}
+            id={customerID}
             setCustomersList={setCustomersList}
           />
         )}

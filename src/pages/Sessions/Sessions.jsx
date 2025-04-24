@@ -48,7 +48,7 @@ const Sessions = ({
         </div>
       </div>
       <div className="session-list">
-        {sessionsList.map((session, index) => {
+        {sessionsList.map((session) => {
           return (
             <SessionItem
               openSessionDisplay={openSessionDisplay}
@@ -60,7 +60,6 @@ const Sessions = ({
               firstName={session.customer.firstName}
               date={session.start}
               key={String(session._id)}
-              index={index}
             />
           );
         })}

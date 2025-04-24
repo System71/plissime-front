@@ -1,10 +1,13 @@
 import "./navmenu.css";
-import { Link } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../button/button";
+import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 
-const NavMenu = () => {
+const NavMenu = ({ setToken, setSessionsList, setCustomersList }) => {
+  const navigate = useNavigate();
+
   return (
     <nav>
       <Link to="/">
@@ -43,7 +46,16 @@ const NavMenu = () => {
         </div>
       </div>
       <div className="barre"></div>
-      <Button text="Déconnexion" />
+      <Button
+        text="Déconnexion"
+        action={() => {
+          Cookies.remove("plissimeToken");
+          setToken("");
+          setSessionsList([]);
+          setCustomersList([]);
+          navigate("/");
+        }}
+      />
     </nav>
   );
 };

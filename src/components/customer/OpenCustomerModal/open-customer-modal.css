@@ -1,0 +1,61 @@
+.openCustomerModalContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  align-items: center;
+  padding: 30px;
+}
+
+.openCustomerModalContainer label {
+  font-weight: 600;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+
+.openCustomerModalContent {
+  width: 60%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+  border: 3px solid grey;
+  border-radius: 20px;
+}
+
+.openCustomerModalContainer form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+  gap: 15px;
+  width: 85%;
+}
+
+.openCustomerModalContainer form > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.openCustomerModalContainer input,
+.openCustomerodalContainer textarea,
+.openCustomerModalContainer select {
+  padding: 10px;
+  border: 1px grey solid;
+  border-radius: 10px;
+  max-width: 400px;
+}
+
+.openCustomerModalContainer .open-session-modal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

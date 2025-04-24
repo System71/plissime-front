@@ -18,6 +18,8 @@ const Signup = ({ setToken }) => {
   const [siret, setSiret] = useState("");
   const [certification, setCertification] = useState("");
   const [subscription, setSubscription] = useState("");
+  const [isCoach, setIsCoach] = useState(true);
+  const [isCustomer, setIsCustomer] = useState(false);
 
   const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ const Signup = ({ setToken }) => {
     try {
       event.preventDefault();
       const response = await axios.post(
-        "https://site--plissime-backend--bpdg6k2n6jyf.code.run/user/signup",
+        import.meta.env.VITE_API_URL + `user/signup`,
         {
           email: email,
           password: password,
@@ -53,7 +55,32 @@ const Signup = ({ setToken }) => {
       <div className="signup">
         <img src={logo} alt="Logo PLISSIME" className="logo-big" />
         <form onSubmit={signup}>
+          <div className="button-choice">
+            <button
+              type="button"
+              className="coach-button"
+              onClick={() => {
+                setIsCoach(!isCoach);
+                setIsCustomer(!isCustomer);
+              }}
+              style={{ backgroundColor: isCoach && "#e67e22" }}
+            >
+              Coach
+            </button>
+            <button
+              type="button"
+              className="customer-button"
+              onClick={() => {
+                setIsCustomer(!isCustomer);
+                setIsCoach(!isCoach);
+              }}
+              style={{ backgroundColor: isCustomer && "#e67e22" }}
+            >
+              Client
+            </button>
+          </div>
           <div>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               placeholder="Votre email"
@@ -66,6 +93,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="password">Mot de passe</label>
             <input
               type="password"
               name="password"
@@ -78,6 +106,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="name">Nom</label>
             <input
               type="name"
               name="name"
@@ -90,6 +119,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="firstName">Prénom</label>
             <input
               type="firstName"
               name="firstName"
@@ -102,6 +132,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="address">Adresse</label>
             <input
               type="address"
               name="address"
@@ -114,6 +145,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="zip">Code postal</label>
             <input
               type="zip"
               name="zip"
@@ -126,6 +158,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="city">Ville</label>
             <input
               type="city"
               name="city"
@@ -138,6 +171,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="phone">Téléphone</label>
             <input
               type="phone"
               name="phone"
@@ -150,6 +184,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="activity">Activité</label>
             <input
               type="activity"
               name="activity"
@@ -162,6 +197,7 @@ const Signup = ({ setToken }) => {
             />
           </div>
           <div>
+            <label htmlFor="siret">SIRET</label>
             <input
               type="siret"
               name="siret"
@@ -197,9 +233,11 @@ const Signup = ({ setToken }) => {
               }}
             />
           </div>
-          <button>Créer mon compte</button>
+          <div>
+            <button>Créer mon compte</button>
+          </div>
+          <Link to="/login">J'ai déjà mon compte !</Link>
         </form>
-        <Link to="/login">Jai déjà mon compte !</Link>
       </div>
     </>
   );

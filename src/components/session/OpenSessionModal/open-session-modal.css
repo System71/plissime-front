@@ -7,17 +7,22 @@
   top: 0;
   left: 0;
   align-items: center;
+  padding: 30px;
+}
+
+.openSessionModalContainer label {
+  font-weight: 600;
+  align-self: flex-start;
+  margin-bottom: 10px;
 }
 
 .openSessionModalContent {
-  padding: 40px;
   width: 60%;
-  max-width: 1400px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
   background-color: lightgrey;
   border: 3px solid grey;
   border-radius: 20px;
@@ -28,12 +33,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: lightgrey;
   gap: 15px;
   width: 85%;
 }
 
 .openSessionModalContainer form > div {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
 }
@@ -42,9 +49,13 @@
 .openSessionModalContainer textarea,
 .openSessionModalContainer select {
   padding: 10px;
-  font-size: 18px;
   border: 1px grey solid;
   border-radius: 10px;
-  width: 80%;
   max-width: 400px;
+}
+
+.openSessionModalContainer .open-session-modal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
