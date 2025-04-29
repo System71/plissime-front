@@ -1,7 +1,7 @@
 import "./navmenu.css";
 import logo from "../../assets/logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "../button/button";
+import Button from "../Button/button";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 

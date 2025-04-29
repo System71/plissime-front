@@ -1,6 +1,6 @@
 .dashboard {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   gap: 20px;
   flex-wrap: wrap;
@@ -15,8 +15,26 @@
   background-color: white;
   border: 1px rgb(129, 129, 129) solid;
   border-radius: 10px;
-  width: 500px;
-  height: 300px;
+}
+
+.first-line {
+  min-height: 200px;
+}
+
+.second-line {
+  min-height: 300px;
+}
+
+.first-line,
+.second-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.first-line > div,
+.second-line > div {
+  flex: 1;
 }
 
 .dashboard-item h2 {

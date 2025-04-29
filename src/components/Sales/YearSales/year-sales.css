@@ -1,0 +1,17 @@
+.yearsales-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: 40px;
+}
+
+.yearsales-container > div {
+  display: flex;
+  justify-content: center;
+  font-size: medium;
+  font-weight: bold;
+  color: #e67e22;
+  margin-bottom: 20px;
+}

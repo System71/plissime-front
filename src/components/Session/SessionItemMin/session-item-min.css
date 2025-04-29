@@ -1,11 +1,12 @@
-.day-session-item-container {
+.session-item-container {
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr auto;
   padding: 10px 5px;
   flex: 1;
+  background-color: aqua;
 }
 
-.day-session-item-container p:nth-child(3) {
+.session-item-container p:nth-child(3) {
   text-align: right;
   padding-right: 10px;
 }

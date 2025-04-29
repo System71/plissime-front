@@ -1,0 +1,25 @@
+.day-sessions-container {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.day-sessions-container h2,
+.day-sessions-container > p {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.day-sessions-container > p {
+  font-size: medium;
+  font-weight: bold;
+  color: #e67e22;
+}
+
+.session-item-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+}

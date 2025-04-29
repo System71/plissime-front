@@ -16,10 +16,10 @@ import Sessions from "./pages/Sessions/Sessions";
 import Payments from "./pages/Payments/Payments";
 import Settings from "./pages/Settings/Settings";
 import Help from "./pages/Help/help";
-import AddCustomerModal from "./components/customer/AddCustomerModal/AddCustomerModal";
-import OpenCustomerModal from "./components/customer/OpenCustomerModal/OpenCustomerModal";
-import AddSessionModal from "./components/session/AddSessionModal/AddSessionModal";
-import OpenSessionModal from "./components/session/OpenSessionModal/OpenSessionModal";
+import AddCustomerModal from "./components/Customer/AddCustomerModal/AddCustomerModal";
+import OpenCustomerModal from "./components/Customer/OpenCustomerModal/OpenCustomerModal";
+import AddSessionModal from "./components/Session/AddSessionModal/AddSessionModal";
+import OpenSessionModal from "./components/Session/OpenSessionModal/OpenSessionModal";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUser,
@@ -79,7 +79,16 @@ function App() {
             <Route
               index
               element={
-                token ? <Home token={token} /> : <Navigate to="/login" />
+                token ? (
+                  <Home
+                    token={token}
+                    setSessionID={setSessionID}
+                    openSessionDisplay={openSessionDisplay}
+                    setOpenSessionDisplay={setOpenSessionDisplay}
+                  />
+                ) : (
+                  <Navigate to="/login" />
+                )
               }
             ></Route>
             <Route
@@ -108,6 +117,7 @@ function App() {
                   token={token}
                   addSessionDisplay={addSessionDisplay}
                   setAddSessionDisplay={setAddSessionDisplay}
+                  openSessionDisplay={openSessionDisplay}
                   setOpenSessionDisplay={setOpenSessionDisplay}
                   setSessionID={setSessionID}
                   sessionsList={sessionsList}

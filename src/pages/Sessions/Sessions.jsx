@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import "./sessions.css";
 import { useEffect } from "react";
-import SessionItem from "../../components/session/SessionItem/SessionItem";
+import SessionItem from "../../components/Session/SessionItem/SessionItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";

@@ -3,7 +3,7 @@
 import "./add-customer-modal.css";
 import { useState } from "react";
 import axios from "axios";
-import Button from "../../button/button";
+import Button from "../../Button/button";
 import { updateCustomersList } from "../../../../utils/updateData";
 
 const AddCustomerModal = ({
