@@ -45,8 +45,16 @@ const OpenCustomerModal = ({
   }, [id, token]);
 
   return (
-    <div className="openCustomerModalContainer">
-      <div className="openCustomerModalContent">
+    <div
+      className="openCustomerModalContainer"
+      onClick={() => setOpenCustomerDisplay(false)}
+    >
+      <div
+        className="openCustomerModalContent"
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
         {isLoading ? (
           <p>EN CHARGEMENT</p>
         ) : (

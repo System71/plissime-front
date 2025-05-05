@@ -42,8 +42,16 @@ const AddCustomerModal = ({
   };
 
   return (
-    <div className="addCustomerModalContainer">
-      <div className="addCustomerModalContent">
+    <div
+      className="addCustomerModalContainer"
+      onClick={() => setAddCustomerDisplay(false)}
+    >
+      <div
+        className="addCustomerModalContent"
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
         <form onSubmit={addCustomer}>
           <h1>Ajouter un client</h1>
           <div className="name">

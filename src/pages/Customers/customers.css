@@ -26,7 +26,6 @@
   position: relative;
   display: grid;
   place-items: center;
-  background-color: aqua;
 }
 
 .circle,
@@ -36,30 +35,15 @@
 
 .customer-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
-.customer-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 80%;
+.search-customer input {
+  width: 350px;
   height: 40px;
-  padding: 20px 5px;
-  border: 1px grey solid;
-  border-radius: 10px;
-}
-
-.customer-name {
-  flex: 0.8;
-}
-
-.customer-address {
-  flex: 1;
-}
-
-.customer-icon {
-  margin-left: auto;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  margin-right: 10px;
 }

@@ -8,6 +8,7 @@
   left: 0;
   align-items: center;
   padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .addSessionModalContainer label {

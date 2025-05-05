@@ -17,11 +17,11 @@ export const updateSessionsList = async (setSessionsList, token) => {
   }
 };
 
-export const updateCustomersList = async (setCustomersList, token) => {
+export const updateCustomersList = async (setCustomersList, token,searchCustomer) => {
   console.log("fetchData");
   try {
     const response = await axios.get(
-      `${import.meta.env.VITE_API_URL}/mycustomers`,
+      `${import.meta.env.VITE_API_URL}/mycustomers?name=${searchCustomer}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

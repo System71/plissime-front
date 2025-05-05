@@ -31,6 +31,10 @@ import {
   faMagnifyingGlass,
   faCircle,
   faPlusCircle,
+  faHouse,
+  faPhone,
+  faEnvelope,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
 library.add(
@@ -42,7 +46,11 @@ library.add(
   faChartLine,
   faMagnifyingGlass,
   faCircle,
-  faPlusCircle
+  faPlusCircle,
+  faHouse,
+  faPhone,
+  faEnvelope,
+  faArrowRight
 );
 
 function App() {

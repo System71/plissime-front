@@ -76,8 +76,14 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   };
 
   return (
-    <div className="addSessionModalContainer">
-      <div className="addSessionModalContent">
+    <div
+      className="addSessionModalContainer"
+      onClick={() => setAddSessionDisplay(false)}
+    >
+      <div
+        className="addSessionModalContent"
+        onClick={(event) => event.stopPropagation()}
+      >
         <form onSubmit={addSession}>
           <h1>Ajouter une session</h1>
           <div className="add-session-customer">

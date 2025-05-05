@@ -90,8 +90,14 @@ const OpenSessionModal = ({
   };
 
   return (
-    <div className="openSessionModalContainer">
-      <div className="openSessionModalContent">
+    <div
+      className="openSessionModalContainer"
+      onClick={() => setOpenSessionDisplay(false)}
+    >
+      <div
+        className="openSessionModalContent"
+        onClick={(event) => event.stopPropagation()}
+      >
         {isLoading ? (
           <p>EN CHARGEMENT</p>
         ) : (
