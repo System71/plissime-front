@@ -18,3 +18,7 @@
 .white {
   background-color: white;
 }
+
+.session-icon {
+  cursor: pointer;
+}
