@@ -14,6 +14,7 @@ const SessionItemMin = ({
   index,
 }) => {
   const heure = format(date, "HH:mm");
+  const formatedDate = format(date, "dd/LL/yyyy");
 
   return (
     <div
@@ -21,7 +22,9 @@ const SessionItemMin = ({
     >
       <p>{name}</p>
       <p>{title}</p>
-      <p>{heure}</p>
+      <p>
+        {formatedDate} {heure}
+      </p>
       <div
         className="session-icon"
         onClick={() => {
