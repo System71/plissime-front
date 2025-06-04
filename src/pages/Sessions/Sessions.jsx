@@ -59,6 +59,7 @@ const Sessions = ({
               name={session.customer.name}
               firstName={session.customer.firstName}
               date={session.start}
+              content={session.content}
               key={String(session._id)}
             />
           );

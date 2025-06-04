@@ -35,6 +35,8 @@ import {
   faPhone,
   faEnvelope,
   faArrowRight,
+  faClock,
+  faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
 library.add(
@@ -50,7 +52,9 @@ library.add(
   faHouse,
   faPhone,
   faEnvelope,
-  faArrowRight
+  faArrowRight,
+  faClock,
+  faPenToSquare
 );
 
 function App() {

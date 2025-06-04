@@ -2,6 +2,7 @@
 import "./session-item.css";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import avatar from "../../../assets/avatar.png";
 
 const SessionItem = ({
   setSessionID,
@@ -12,32 +13,71 @@ const SessionItem = ({
   name,
   firstName,
   date,
+  content,
 }) => {
   const heure = format(date, "HH:mm");
   const formatedDate = format(date, "dd/LL/yyyy");
 
   return (
-    <div className="session-item">
-      <FontAwesomeIcon icon="circle" color="#E67E22" size="xs" />
-      <div className="customer-name">
-        <p>
-          {name} {firstName}
-        </p>
+    <div
+      className="session-item"
+      onClick={() => {
+        setOpenSessionDisplay(!openSessionDisplay);
+        setSessionID(id);
+      }}
+    >
+      <div className="session_content">
+        <div className="customer-name">
+          <p>
+            {name} {firstName}
+          </p>
+        </div>
+        <div className="session-info">
+          <FontAwesomeIcon
+            className="info-picto"
+            icon="arrow-right"
+            color="#E67E22"
+            size="xs"
+          />
+          <div>
+            <p>{title}</p>
+          </div>
+        </div>
+        <div className="session-info">
+          <FontAwesomeIcon
+            className="info-picto"
+            icon="calendar-days"
+            color="#E67E22"
+            size="xs"
+          />
+          <div>
+            <p>{formatedDate}</p>
+          </div>
+        </div>
+        <div className="session-info">
+          <FontAwesomeIcon
+            className="info-picto"
+            icon="clock"
+            color="#E67E22"
+            size="xs"
+          />
+          <div>
+            <p>{heure}</p>
+          </div>
+        </div>
+        <div className="session-info">
+          <FontAwesomeIcon
+            className="info-picto"
+            icon="pen-to-square"
+            color="#E67E22"
+            size="xs"
+          />
+          <div>
+            <p>{content}</p>
+          </div>
+        </div>
       </div>
-      <div className="session-title">
-        <p>{title}</p>
-      </div>
-      <p>{formatedDate}</p>
-      <p>{heure}</p>
-      <div
-        className="session-icon"
-        onClick={() => {
-          setOpenSessionDisplay(!openSessionDisplay);
-          setSessionID(id);
-        }}
-      >
-        <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
-      </div>
+      <img src={avatar} alt="customer avatar" className="customer-picture" />
     </div>
   );
 };

@@ -2,6 +2,9 @@
 import "./customer-item.css";
 import avatar from "../../../assets/avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { parseISO, format } from "date-fns";
 
 const CustomerItem = ({
   openCustomerDisplay,
@@ -15,7 +18,33 @@ const CustomerItem = ({
   city,
   phone,
   email,
+  token,
 }) => {
+  const [nextSession, setNextSession] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("ID customer =", id);
+        const response = await axios.get(
+          import.meta.env.VITE_API_URL + `/sessions/next/${id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        console.log("response=", response.data);
+
+        const startDate = parseISO(response.data.start); // Convertit la chaîne ISO en objet Date
+        const formattedDate = format(startDate, "dd/MM/yyyy HH:mm"); // Formate la date
+
+        setNextSession(formattedDate);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [id, token]);
+
   return (
     <div
       className="customer-item"
@@ -69,7 +98,7 @@ const CustomerItem = ({
             color="#E67E22"
             size="xs"
           />
-          <p>Prochaine séance</p>
+          {nextSession ? <p>{nextSession}</p> : <p>Pas de session prévue</p>}
         </div>
       </div>
       <img src={avatar} alt="customer avatar" className="customer-picture" />

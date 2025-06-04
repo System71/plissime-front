@@ -78,6 +78,7 @@ const Customers = ({
               phone={customer.phone}
               email={customer.email}
               key={String(customer._id)}
+              token={token}
             />
           );
         })}
