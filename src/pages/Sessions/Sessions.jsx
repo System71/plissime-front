@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import "./sessions.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import SessionItem from "../../components/Session/SessionItem/SessionItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
@@ -18,11 +18,13 @@ const Sessions = ({
   sessionsList,
   setSessionsList,
 }) => {
+  const [searchCustomer, setSearchCustomer] = useState("");
+
   useEffect(() => {
     if (token) {
-      updateSessionsList(setSessionsList, token);
+      updateSessionsList(setSessionsList, token, searchCustomer);
     }
-  }, [token]);
+  }, [token, searchCustomer]);
 
   return (
     <>
@@ -46,6 +48,19 @@ const Sessions = ({
             />
           </div>
         </div>
+      </div>
+      <div className="session-filter">
+        <input
+          type="search"
+          placeholder="Rechercher par nom"
+          name="searchCustomer"
+          id="searchCustomer"
+          value={searchCustomer}
+          onChange={(event) => {
+            setSearchCustomer(event.target.value);
+          }}
+        />
+        <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
       </div>
       <div className="session-list">
         {sessionsList.map((session) => {
