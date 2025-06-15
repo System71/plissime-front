@@ -28,7 +28,6 @@ const Sessions = ({
 
   return (
     <>
-      <h1>VOS SESSIONS</h1>
       <div
         className="addSessions"
         onClick={() => {

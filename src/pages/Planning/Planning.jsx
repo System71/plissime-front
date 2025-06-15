@@ -18,7 +18,6 @@ const Planning = ({
 
   return (
     <div className="planning-sessions">
-      <h1>AGENDA</h1>
       <div className="button-choice">
         <button
           type="button"
