@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./navmenu.css";
 import logo from "../../assets/logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,8 +29,8 @@ const NavMenu = ({ setToken, setSessionsList, setCustomersList }) => {
           <Link to="/planning">Agenda</Link>
         </div>
         <div className="nav-item">
-          <FontAwesomeIcon icon="calendar-days" color="#E67E22" size="xl" />
-          <Link to="/sessions">Sessions</Link>
+          <FontAwesomeIcon icon="square-binary" color="#E67E22" size="xl" />
+          <Link to="/programmes">Programmes</Link>
         </div>
 
         <div className="nav-item">

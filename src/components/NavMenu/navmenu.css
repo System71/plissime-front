@@ -33,6 +33,7 @@ nav {
 .nav-item {
   margin-left: 25px;
   display: flex;
+  align-items: center;
   gap: 15px;
   flex-direction: row;
 }

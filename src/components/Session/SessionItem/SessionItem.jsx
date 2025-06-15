@@ -2,7 +2,7 @@
 import "./session-item.css";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import avatar from "../../../assets/avatar.png";
+import running from "../../../assets/running.png";
 
 const SessionItem = ({
   setSessionID,
@@ -77,7 +77,9 @@ const SessionItem = ({
           </div>
         </div>
       </div>
-      <img src={avatar} alt="customer avatar" className="customer-picture" />
+      <div className="picto">
+        <img src={running} alt="session picto" className="session-picture" />
+      </div>
     </div>
   );
 };

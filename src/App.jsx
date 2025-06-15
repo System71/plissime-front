@@ -11,8 +11,8 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import Customers from "./pages/Customers/Customers";
+import Programmes from "./pages/programmes/Programmes";
 import Planning from "./pages/Planning/Planning";
-import Sessions from "./pages/Sessions/Sessions";
 import Payments from "./pages/Payments/Payments";
 import Settings from "./pages/Settings/Settings";
 import Help from "./pages/Help/help";
@@ -37,6 +37,7 @@ import {
   faArrowRight,
   faClock,
   faPenToSquare,
+  faSquareBinary,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
 library.add(
@@ -54,7 +55,8 @@ library.add(
   faEnvelope,
   faArrowRight,
   faClock,
-  faPenToSquare
+  faPenToSquare,
+  faSquareBinary
 );
 
 function App() {
@@ -120,12 +122,8 @@ function App() {
             ></Route>
             <Route
               path="/planning"
-              element={<Planning token={token} />}
-            ></Route>
-            <Route
-              path="/sessions"
               element={
-                <Sessions
+                <Planning
                   token={token}
                   addSessionDisplay={addSessionDisplay}
                   setAddSessionDisplay={setAddSessionDisplay}
@@ -136,6 +134,10 @@ function App() {
                   setSessionsList={setSessionsList}
                 />
               }
+            ></Route>
+            <Route
+              path="/programmes"
+              element={<Programmes token={token} />}
             ></Route>
             <Route
               path="/payments"
