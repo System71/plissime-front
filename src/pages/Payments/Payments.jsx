@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import axios from "axios";
-import SessionPaid from "../../components/session/SessionPaid/SessionPaid";
+import SessionPaid from "../../components/Session/SessionPaid/SessionPaid";
 import "./payments.css";
 
 const Payments = ({ token }) => {
