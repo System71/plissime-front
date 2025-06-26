@@ -23,6 +23,7 @@ const OpenSessionModal = ({
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
   const [project, setProject] = useState("");
+  const [choice, setChoice] = useState("admin");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -98,120 +99,147 @@ const OpenSessionModal = ({
         className="openSessionModalContent"
         onClick={(event) => event.stopPropagation()}
       >
+        <div className="button-choice">
+          <button
+            type="button"
+            className="session-admin"
+            onClick={() => setChoice("admin")}
+            style={{ backgroundColor: choice == "admin" && "#a8c6cc" }}
+          >
+            Administratif
+          </button>
+          <button
+            type="button"
+            className="session-content"
+            onClick={() => setChoice("content")}
+            style={{ backgroundColor: choice == "content" && "#a8c6cc" }}
+          >
+            Contenu séance
+          </button>
+        </div>
+
         {isLoading ? (
           <p>EN CHARGEMENT</p>
         ) : (
           <form onSubmit={modifySession}>
             <h1>Détail de la session</h1>
-            <div>
-              <label htmlFor="name">Nom</label>
-              <input
-                type="text"
-                placeholder={name}
-                name="name"
-                id="name"
-                value={name}
-                readOnly
-              />
-            </div>
-            <div>
-              <label htmlFor="firstName">Prénom</label>{" "}
-              <input
-                type="text"
-                placeholder={firstName}
-                name="firstName"
-                id="firstName"
-                value={firstName}
-                readOnly
-              />
-            </div>
-            <div>
-              <label htmlFor="title">Intitulé de la session</label>
-              <input
-                type="text"
-                placeholder={title}
-                name="title"
-                id="title"
-                value={title}
-                onChange={(event) => {
-                  setTitle(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="start">Début de la session</label>
-              <input
-                type="datetime-local"
-                name="start"
-                id="start"
-                placeholder={start}
-                value={start}
-                onChange={(event) => {
-                  setStart(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="end">Fin de la session</label>
-              <input
-                type="datetime-local"
-                name="end"
-                id="end"
-                placeholder={end}
-                value={end}
-                onChange={(event) => {
-                  setEnd(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="content">Contenu de la session</label>
-              <textarea
-                rows="10"
-                name="content"
-                id="content"
-                placeholder={content}
-                value={content}
-                onChange={(event) => {
-                  setContent(event.target.value);
-                }}
-              ></textarea>
-            </div>
-            <div>
-              <label htmlFor="price">Prix</label>
-              <input
-                type="number"
-                name="price"
-                id="price"
-                placeholder={price}
-                value={price}
-                onChange={(event) => {
-                  setPrice(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="project">Nom du programme</label>
-              <input
-                type="text"
-                placeholder={project}
-                name="project"
-                id="project"
-                value={project}
-                onChange={(event) => {
-                  setProject(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="state">Statut</label>
-              <select name="state" id="state" onChange={handleChange}>
-                <option value="Confirmée">Confirmée</option>
-                <option value="Annulée">Annulée</option>
-                <option value="A payer">A payer</option>
-                <option value="Payée">Payée</option>
-              </select>
-            </div>
+            {choice == "admin" && (
+              <div className="session-admin">
+                <div>
+                  <label htmlFor="name">Nom</label>
+                  <input
+                    type="text"
+                    placeholder={name}
+                    name="name"
+                    id="name"
+                    value={name}
+                    readOnly
+                  />
+                </div>
+                <div>
+                  <label htmlFor="firstName">Prénom</label>{" "}
+                  <input
+                    type="text"
+                    placeholder={firstName}
+                    name="firstName"
+                    id="firstName"
+                    value={firstName}
+                    readOnly
+                  />
+                </div>
+                <div>
+                  <label htmlFor="title">Intitulé de la session</label>
+                  <input
+                    type="text"
+                    placeholder={title}
+                    name="title"
+                    id="title"
+                    value={title}
+                    onChange={(event) => {
+                      setTitle(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="start">Début de la session</label>
+                  <input
+                    type="datetime-local"
+                    name="start"
+                    id="start"
+                    placeholder={start}
+                    value={start}
+                    onChange={(event) => {
+                      setStart(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="end">Fin de la session</label>
+                  <input
+                    type="datetime-local"
+                    name="end"
+                    id="end"
+                    placeholder={end}
+                    value={end}
+                    onChange={(event) => {
+                      setEnd(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="price">Prix</label>
+                  <input
+                    type="number"
+                    name="price"
+                    id="price"
+                    placeholder={price}
+                    value={price}
+                    onChange={(event) => {
+                      setPrice(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="state">Statut</label>
+                  <select name="state" id="state" onChange={handleChange}>
+                    <option value="Confirmée">Confirmée</option>
+                    <option value="Annulée">Annulée</option>
+                    <option value="A payer">A payer</option>
+                    <option value="Payée">Payée</option>
+                  </select>
+                </div>
+              </div>
+            )}
+            {choice == "content" && (
+              <div className="session-content">
+                <div>
+                  <label htmlFor="project">Nom du programme</label>
+                  <input
+                    type="text"
+                    placeholder={project}
+                    name="project"
+                    id="project"
+                    value={project}
+                    onChange={(event) => {
+                      setProject(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="content">Contenu de la session</label>
+                  <textarea
+                    rows="20"
+                    name="content"
+                    id="content"
+                    placeholder={content}
+                    value={content}
+                    onChange={(event) => {
+                      setContent(event.target.value);
+                    }}
+                  ></textarea>
+                </div>
+              </div>
+            )}
             <div className="open-session-modal-buttons">
               <Button
                 type="button"

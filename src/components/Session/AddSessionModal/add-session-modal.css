@@ -39,7 +39,7 @@
   width: 85%;
 }
 
-.addSessionModalContainer form > div {
+.addSessionModalContainer form div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,7 +52,7 @@
   padding: 10px;
   border: 1px grey solid;
   border-radius: 10px;
-  max-width: 400px;
+  /* max-width: 400px; */
 }
 
 .add-session-customer {
@@ -88,4 +88,51 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.addSessionModalContent button {
+  height: 40px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  margin-bottom: 20px;
+}
+
+.addSessionModalContent .button-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 75%;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  margin-top: 40px;
+  margin-bottom: 0px;
+  align-self: center;
+}
+
+.button-choice button {
+  border: none;
+}
+.button-choice > button {
+  flex: 1;
+  margin: 0;
+  border-radius: 0;
+}
+
+button:hover {
+  background-color: #e67e22;
+}
+
+.session-admin,
+.session-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: inherit;
 }

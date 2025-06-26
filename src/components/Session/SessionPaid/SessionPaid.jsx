@@ -12,7 +12,7 @@ const SessionPaid = ({ title, name, firstName, date, price }) => {
         {name} {firstName}
       </div>
       <div className="session-paid-item-title">{title}</div>
-      <div className="session-paid-item-price">{price}Euros</div>
+      <div className="session-paid-item-price">{price} euros</div>
     </div>
   );
 };
