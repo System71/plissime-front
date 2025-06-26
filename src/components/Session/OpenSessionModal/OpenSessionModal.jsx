@@ -24,6 +24,7 @@ const OpenSessionModal = ({
   const [price, setPrice] = useState("");
   const [project, setProject] = useState("");
   const [choice, setChoice] = useState("admin");
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +88,22 @@ const OpenSessionModal = ({
   };
 
   const handleChange = (event) => {
-    setState(event.target.value);
+    const newValue = event.target.value;
+    if (newValue === "Payée") {
+      setShowConfirmModal(true);
+    } else {
+      setState(newValue);
+    }
+  };
+
+  const confirmPaymentState = () => {
+    setState("Payée");
+    setShowConfirmModal(false);
+  };
+
+  const cancelPaymentStateChange = () => {
+    setState("A payer");
+    setShowConfirmModal(false);
   };
 
   return (
@@ -201,7 +217,12 @@ const OpenSessionModal = ({
                 </div>
                 <div>
                   <label htmlFor="state">Statut</label>
-                  <select name="state" id="state" onChange={handleChange}>
+                  <select
+                    name="state"
+                    id="state"
+                    value={state}
+                    onChange={handleChange}
+                  >
                     <option value="Confirmée">Confirmée</option>
                     <option value="Annulée">Annulée</option>
                     <option value="A payer">A payer</option>
@@ -249,6 +270,30 @@ const OpenSessionModal = ({
               <Button type="submit" text="Modifier ma session!" />
             </div>
           </form>
+        )}
+        {showConfirmModal && (
+          <div className="modal-overlay" onClick={cancelPaymentStateChange}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h2>Confirmer le statut "Payée"</h2>
+              <p>
+                Vous êtes sur le point de marquer cette session comme{" "}
+                <strong>payée</strong>. Veuillez confirmer que le paiement a
+                bien été reçu.
+              </p>
+              <div className="modal-buttons">
+                <Button
+                  text="Annuler"
+                  type="button"
+                  action={cancelPaymentStateChange}
+                />
+                <Button
+                  text="Confirmer"
+                  type="button"
+                  action={confirmPaymentState}
+                />
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
