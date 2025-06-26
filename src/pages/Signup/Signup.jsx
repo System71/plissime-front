@@ -21,7 +21,7 @@ const Signup = ({ setToken }) => {
   const [isCoach, setIsCoach] = useState(true);
   const [isCustomer, setIsCustomer] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const signup = async (event) => {
     try {
@@ -44,7 +44,15 @@ const Signup = ({ setToken }) => {
         }
       );
       setToken(response.data.token);
-      navigate("/");
+
+      const onboardingRes = await axios.get(
+        import.meta.env.VITE_API_URL +
+          `user/stripe-onboarding/${response.data._id}`
+      );
+
+      window.location.href = onboardingRes.data.url;
+
+      // navigate("/");
     } catch (error) {
       console.log("error=", error.response.data);
     }
