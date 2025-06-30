@@ -6,11 +6,13 @@ import Button from "../Button/button";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 
-const NavMenu = ({ setToken, setSessionsList, setCustomersList }) => {
+const NavMenu = ({ setToken, setSessionsList, setCustomersList,role }) => {
   const navigate = useNavigate();
+  console.log("role=",role);
 
-  return (
-    <nav>
+  if (role === "coach") {
+    return (
+      <nav>
       <Link to="/">
         <img src={logo} alt="logo-plissime" className="logo-nav" />
       </Link>
@@ -58,7 +60,47 @@ const NavMenu = ({ setToken, setSessionsList, setCustomersList }) => {
         }}
       />
     </nav>
-  );
+    )
+  }
+  else if (role === "customer") {
+    return (
+    <nav>
+    <Link to="/">
+      <img src={logo} alt="logo-plissime" className="logo-nav" />
+    </Link>
+    <div className="barre"></div>
+    <div className="menu">
+      <div className="nav-item">
+        <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
+        <Link to="/">Accueil</Link>
+      </div>
+      <div className="nav-item">
+        <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
+        <Link to="/coach">Mon coach</Link>
+      </div>
+      <div className="nav-item">
+        <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
+        <Link to="/settings">Mes informations</Link>
+      </div>
+      <div className="nav-item">
+        <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
+        <Link to="/help">Aide</Link>
+      </div>
+    </div>
+    <div className="barre"></div>
+    <Button
+      text="Déconnexion"
+      action={() => {
+        Cookies.remove("plissimeToken");
+        setToken("");
+        setSessionsList([]);
+        setCustomersList([]);
+        navigate("/");
+      }}
+    />
+  </nav>
+  )
+  }
 };
 
 export default NavMenu;

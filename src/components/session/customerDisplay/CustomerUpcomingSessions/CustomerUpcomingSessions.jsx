@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import "./upcoming-sessions.css";
+import "./customer-upcoming-sessions.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import SessionItemMin from "../SessionItemMin/SessionItemMin";
+import CustomerSessionItem from "../CustomerSessionItem/CustomerSessionItem";
 
-const UpcomingSessions = ({
+const CustomerUpcomingSessions = ({
   token,
   setSessionID,
   openSessionDisplay,
@@ -17,7 +17,7 @@ const UpcomingSessions = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/sessions/upcoming`,
+          `${import.meta.env.VITE_API_URL}/sessions/customer/upcoming`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -35,24 +35,25 @@ const UpcomingSessions = ({
   }, [token]);
 
   return (
-    <div className="upcoming-sessions-container">
+    <div className="customer-upcoming-sessions-container">
       <h2>SESSIONS À VENIR</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (
-        <div className="session-item-list">
-          {data.map((session, index) => {
+        <div className="customer-session-item-list">
+          {data.map((session) => {
             return (
-              <SessionItemMin
-                setSessionID={setSessionID}
-                openSessionDisplay={openSessionDisplay}
-                setOpenSessionDisplay={setOpenSessionDisplay}
-                id={session._id}
-                title={session.title}
-                name={session.customer.name}
-                date={session.start}
-                key={String(session._id)}
-                index={index}
+              <CustomerSessionItem
+              setSessionID={setSessionID}
+              openSessionDisplay={openSessionDisplay}
+              setOpenSessionDisplay={setOpenSessionDisplay}
+              id={session._id}
+              title={session.title}
+              name={session.name}
+              firstName={session.firstName}
+              date={session.start}
+              content={session.content}
+              key={String(session._id)}
               />
             );
           })}
@@ -64,4 +65,4 @@ const UpcomingSessions = ({
   );
 };
 
-export default UpcomingSessions;
+export default CustomerUpcomingSessions;

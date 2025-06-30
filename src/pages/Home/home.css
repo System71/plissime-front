@@ -26,14 +26,14 @@
 }
 
 .first-line,
-.second-line {
+.second-line,.third-line {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
 .first-line > div,
-.second-line > div {
+.second-line > div,.third-line > div {
   flex: 1;
 }
 

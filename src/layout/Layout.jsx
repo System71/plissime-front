@@ -2,7 +2,7 @@
 import { Outlet } from "react-router-dom";
 import NavMenu from "../components/NavMenu/NavMenu";
 
-const Layout = ({ token, setToken, setSessionsList, setCustomersList }) => {
+const Layout = ({ token, setToken, setSessionsList, setCustomersList,role }) => {
   return (
     <div className="app-layout">
       {token && (
@@ -10,6 +10,7 @@ const Layout = ({ token, setToken, setSessionsList, setCustomersList }) => {
           setToken={setToken}
           setSessionsList={setSessionsList}
           setCustomersList={setCustomersList}
+          role={role}
         />
       )}
       <div className="content">

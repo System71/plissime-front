@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
 import { updateCustomersList } from "../../../utils/updateData";
-import CustomerItem from "../../components/Customer/CustomerItem/CustomerItem";
+import CustomerItem from "../../components/customer/CustomerItem/CustomerItem";
 
 const Customers = ({
   token,

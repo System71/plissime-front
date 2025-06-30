@@ -1,0 +1,27 @@
+.customer-upcoming-sessions-container {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.customer-upcoming-sessions-container h2,
+.customer-upcoming-sessions-container > p {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.customer-upcoming-sessions-container > p {
+  font-size: medium;
+  font-weight: bold;
+  color: #e67e22;
+}
+
+.customer-session-item-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}

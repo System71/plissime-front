@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import "./session-item.css";
+import "./user-session-item.css";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import running from "../../../assets/running.png";
+import running from "../../../../assets/running.png";
 
-const SessionItem = ({
+const UserSessionItem = ({
   setSessionID,
   openSessionDisplay,
   setOpenSessionDisplay,
@@ -20,19 +20,19 @@ const SessionItem = ({
 
   return (
     <div
-      className="session-item"
+      className="user-session-item"
       onClick={() => {
         setOpenSessionDisplay(!openSessionDisplay);
         setSessionID(id);
       }}
     >
-      <div className="session_content">
+      <div className="user-session_content">
         <div className="customer-name">
           <p>
             {name} {firstName}
           </p>
         </div>
-        <div className="session-info">
+        <div className="user-session-info">
           <FontAwesomeIcon
             className="info-picto"
             icon="arrow-right"
@@ -43,7 +43,7 @@ const SessionItem = ({
             <p>{title}</p>
           </div>
         </div>
-        <div className="session-info">
+        <div className="user-session-info">
           <FontAwesomeIcon
             className="info-picto"
             icon="calendar-days"
@@ -54,7 +54,7 @@ const SessionItem = ({
             <p>{formatedDate}</p>
           </div>
         </div>
-        <div className="session-info">
+        <div className="user-session-info">
           <FontAwesomeIcon
             className="info-picto"
             icon="clock"
@@ -65,7 +65,7 @@ const SessionItem = ({
             <p>{heure}</p>
           </div>
         </div>
-        <div className="session-info">
+        <div className="user-session-info">
           <FontAwesomeIcon
             className="info-picto"
             icon="pen-to-square"
@@ -78,10 +78,10 @@ const SessionItem = ({
         </div>
       </div>
       <div className="picto">
-        <img src={running} alt="session picto" className="session-picture" />
+        <img src={running} alt="session picto" className="user-session-picture" />
       </div>
     </div>
   );
 };
 
-export default SessionItem;
+export default UserSessionItem;

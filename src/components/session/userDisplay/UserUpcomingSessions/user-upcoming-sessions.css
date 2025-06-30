@@ -1,4 +1,4 @@
-.upcoming-sessions-container {
+.user-upcoming-sessions-container {
   display: flex;
   width: 90%;
   flex-direction: column;
@@ -6,19 +6,19 @@
   justify-content: center;
 }
 
-.upcoming-sessions-container h2,
-.upcoming-sessions-container > p {
+.user-upcoming-sessions-container h2,
+.user-upcoming-sessions-container > p {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.upcoming-sessions-container > p {
+.user-upcoming-sessions-container > p {
   font-size: medium;
   font-weight: bold;
   color: #e67e22;
 }
 
-.upcoming-sessions-list {
+.user-upcoming-sessions-list {
   display: flex;
   flex-direction: column;
   border: 1px solid grey;

@@ -1,21 +1,25 @@
 /* eslint-disable react/prop-types */
 import "./home.css";
-import DaySessions from "../../components/Session/DaySessions/DaySessions.jsx";
-import MonthSales from "../../components/Sales/MonthSales/MonthSales.jsx";
-import UpcomingSales from "../../components/Sales/UpcomingSales/UpcomingSales.jsx";
-import YearSales from "../../components/Sales/YearSales/YearSales.jsx";
-import UpcomingSessions from "../../components/Session/UpcomingSessions/UpcomingSessions.jsx";
+import CustomerUpcomingSessions from "../../components/session/customerDisplay/CustomerUpcomingSessions/CustomerUpcomingSessions.jsx";
+import MonthSales from "../../components/sales/MonthSales/MonthSales.jsx"
+import YearSales from "../../components/sales/YearSales/YearSales.jsx"
+import UpcomingSales from "../../components/sales/UpcomingSales/UpcomingSales.jsx"
+import DaySessions from "../../components/session/userDisplay/DaySessions/DaySessions.jsx"
+import UserUpcomingSessions from "../../components/session/userDisplay/UserUpcomingSessions/UserUpcomingSessions.jsx";
+import SessionsToPaid from "../../components/session/customerDisplay/SessionsToPaid/SessionsToPaid.jsx";
+import SessionsPaid from "../../components/session/customerDisplay/SessionsPaid/SessionsPaid.jsx";
 
 const Home = ({
   token,
   setSessionID,
   openSessionDisplay,
   setOpenSessionDisplay,
+  role
 }) => {
   return (
     <>
       <h1>TABLEAU DE BORD</h1>
-      <div className="dashboard">
+      {role==="coach" && (<div className="dashboard">
         <div className="first-line">
           <div className="dashboard-item">
             <MonthSales token={token} />
@@ -37,7 +41,7 @@ const Home = ({
             />
           </div>
           <div className="dashboard-item">
-            <UpcomingSessions
+            <UserUpcomingSessions
               token={token}
               setSessionID={setSessionID}
               openSessionDisplay={openSessionDisplay}
@@ -46,6 +50,27 @@ const Home = ({
           </div>
         </div>
       </div>
+    )} 
+      {role==="customer" && (<div className="dashboard">
+        <div className="first-line">
+          <div className="dashboard-item">
+            <CustomerUpcomingSessions token={token}/>
+          </div>
+        </div>
+        <div className="second-line">
+        <div className="dashboard-item">
+          <SessionsToPaid token={token}/>
+          </div>
+        </div>
+        <div className="third-line">
+        <div className="dashboard-item">
+          <SessionsPaid token={token}/>
+          </div>
+        </div>
+
+      </div>
+    )} 
+
     </>
   );
 };

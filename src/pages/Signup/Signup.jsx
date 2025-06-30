@@ -27,7 +27,7 @@ const Signup = ({ setToken }) => {
     try {
       event.preventDefault();
       const response = await axios.post(
-        import.meta.env.VITE_API_URL + `user/signup`,
+        import.meta.env.VITE_API_URL + `/customer/signup`,
         {
           email: email,
           password: password,
@@ -44,6 +44,8 @@ const Signup = ({ setToken }) => {
         }
       );
       setToken(response.data.token);
+
+      console.log("response=",response);
 
       const onboardingRes = await axios.get(
         import.meta.env.VITE_API_URL +

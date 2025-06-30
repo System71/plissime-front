@@ -2,10 +2,10 @@
 import "./open-session-modal.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../../Button/button";
+import Button from "../../../Button/button";
 import { toZonedTime } from "date-fns-tz";
 import { format } from "date-fns";
-import { updateSessionsList } from "../../../../utils/updateData";
+import { updateSessionsList } from "../../../../../utils/updateData";
 
 const OpenSessionModal = ({
   token,

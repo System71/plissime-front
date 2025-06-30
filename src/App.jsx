@@ -11,15 +11,15 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import Customers from "./pages/Customers/Customers";
-import Programmes from "./pages/programmes/Programmes";
+import Programmes from "./pages/Programmes/Programmes";
 import Planning from "./pages/Planning/Planning";
 import Payments from "./pages/Payments/Payments";
 import Settings from "./pages/Settings/Settings";
 import Help from "./pages/Help/help";
-import AddCustomerModal from "./components/Customer/AddCustomerModal/AddCustomerModal";
-import OpenCustomerModal from "./components/Customer/OpenCustomerModal/OpenCustomerModal";
-import AddSessionModal from "./components/Session/AddSessionModal/AddSessionModal";
-import OpenSessionModal from "./components/Session/OpenSessionModal/OpenSessionModal";
+import AddCustomerModal from "./components/customer/AddCustomerModal/AddCustomerModal";
+import OpenCustomerModal from "./components/customer/OpenCustomerModal/OpenCustomerModal";
+import AddSessionModal from "./components/session/userDisplay/AddSessionModal/AddSessionModal";
+import OpenSessionModal from "./components/session/userDisplay/OpenSessionModal/OpenSessionModal";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUser,
@@ -69,12 +69,15 @@ function App() {
   const [openCustomerDisplay, setOpenCustomerDisplay] = useState(false);
   const [sessionsList, setSessionsList] = useState([]);
   const [customersList, setCustomersList] = useState([]);
-
+  const [role, setRole] = useState(() => {
+    return localStorage.getItem("role") || null;
+  });
+  
   return (
     <div className="app">
       <Router>
         <Routes>
-          <Route path="/login" element={<Login setToken={setToken} />}></Route>
+          <Route path="/login" element={<Login setToken={setToken} setRole={setRole} />}></Route>
           <Route
             path="/signup"
             element={<Signup setToken={setToken} />}
@@ -87,6 +90,7 @@ function App() {
                 setToken={setToken}
                 setSessionsList={setSessionsList}
                 setCustomersList={setCustomersList}
+                role={role}
               />
             }
           >
@@ -99,6 +103,7 @@ function App() {
                     setSessionID={setSessionID}
                     openSessionDisplay={openSessionDisplay}
                     setOpenSessionDisplay={setOpenSessionDisplay}
+                    role={role}
                   />
                 ) : (
                   <Navigate to="/login" />

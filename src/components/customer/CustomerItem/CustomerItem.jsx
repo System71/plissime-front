@@ -34,10 +34,13 @@ const CustomerItem = ({
         );
         console.log("response=", response.data);
 
-        const startDate = parseISO(response.data.start); // Convertit la chaîne ISO en objet Date
-        const formattedDate = format(startDate, "dd/MM/yyyy HH:mm"); // Formate la date
+        if (response.data)
+        {
+          const startDate = parseISO(response.data.start); // Convertit la chaîne ISO en objet Date
+          const formattedDate = format(startDate, "dd/MM/yyyy HH:mm"); // Formate la date
+          setNextSession(formattedDate);
+        }
 
-        setNextSession(formattedDate);
       } catch (error) {
         console.error(error);
       }

@@ -2,8 +2,8 @@
 import "./add-session-modal.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../../Button/button";
-import { updateSessionsList } from "../../../../utils/updateData";
+import Button from "../../../Button/button";
+import { updateSessionsList } from "../../../../../utils/updateData";
 
 const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [listIsVisible, setListIsVisible] = useState(true);
