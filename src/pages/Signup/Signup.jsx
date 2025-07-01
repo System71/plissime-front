@@ -45,8 +45,6 @@ const Signup = ({ setToken }) => {
       );
       setToken(response.data.token);
 
-      console.log("response=",response);
-
       const onboardingRes = await axios.get(
         import.meta.env.VITE_API_URL +
           `user/stripe-onboarding/${response.data._id}`

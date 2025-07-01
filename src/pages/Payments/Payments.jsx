@@ -21,7 +21,6 @@ const Payments = ({ token }) => {
             }
           );
           setSessionsPaid(response.data);
-          console.log("reponse.data=", response.data);
         } catch (error) {
           console.log(error.response);
         }

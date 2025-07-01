@@ -21,9 +21,8 @@ const OpenCustomerModal = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("ID customer =", id);
         const response = await axios.get(
-          import.meta.env.VITE_API_URL + `/customer/${id}`,
+          import.meta.env.VITE_API_URL + `/find/customer/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

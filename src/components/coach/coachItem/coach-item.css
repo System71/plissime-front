@@ -1,4 +1,8 @@
-.customer-session-item {
+.coach-icon {
+  cursor: pointer;
+}
+
+.coach-item {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -8,10 +12,9 @@
   padding: 20px 10px;
   border: 1px grey solid;
   border-radius: 5px;
-  margin-bottom: 20px;
 }
 
-.customer-name {
+.coach-name {
   width: 250px;
   font-size: 18px;
   font-weight: bold;
@@ -21,7 +24,7 @@
   text-overflow: ellipsis;
 }
 
-.customer-session-info {
+.coach-info {
   display: flex;
   margin-left: 15px;
   margin-bottom: 10px;
@@ -31,17 +34,8 @@
   margin-right: 5px;
 }
 
-.picto {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.coach-picture {
   width: 80px;
   height: 80px;
-  overflow: hidden;
-}
-
-.customer-session-picture {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }

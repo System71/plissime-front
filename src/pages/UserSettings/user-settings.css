@@ -1,0 +1,80 @@
+.user-settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgb(241, 240, 240);
+  padding: 30px;
+}
+
+.user-settings div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-settings button {
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  margin-bottom: 20px;
+}
+
+.user-settings label {
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.user-settings .button-choice button {
+  border: none;
+}
+
+.user-settings .button-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 400px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+}
+
+.button-choice > button {
+  flex: 1;
+  margin: 0;
+  border-radius: 0;
+}
+
+.user-settings button:hover {
+  background-color: #e67e22;
+}
+
+.user-settings input {
+  width: 400px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  height: 40px;
+}
+
+.user-settings input:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
+}

@@ -6,100 +6,98 @@ import Button from "../Button/button";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 
-const NavMenu = ({ setToken, setSessionsList, setCustomersList,role }) => {
+const NavMenu = ({ setToken, setSessionsList, setCustomersList, role }) => {
   const navigate = useNavigate();
-  console.log("role=",role);
 
   if (role === "coach") {
     return (
       <nav>
-      <Link to="/">
-        <img src={logo} alt="logo-plissime" className="logo-nav" />
-      </Link>
-      <div className="barre"></div>
-      <div className="menu">
-        <div className="nav-item">
-          <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
-          <Link to="/">Pilotage</Link>
-        </div>
-        <div className="nav-item">
-          <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
-          <Link to="/customers">Clients</Link>
-        </div>
-        <div className="nav-item">
-          <FontAwesomeIcon icon="calendar-days" color="#E67E22" size="xl" />
-          <Link to="/planning">Agenda</Link>
-        </div>
-        <div className="nav-item">
-          <FontAwesomeIcon icon="square-binary" color="#E67E22" size="xl" />
-          <Link to="/programmes">Programmes</Link>
-        </div>
+        <Link to="/">
+          <img src={logo} alt="logo-plissime" className="logo-nav" />
+        </Link>
+        <div className="barre"></div>
+        <div className="menu">
+          <div className="nav-item">
+            <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
+            <Link to="/">Pilotage</Link>
+          </div>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
+            <Link to="/customers">Clients</Link>
+          </div>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="calendar-days" color="#E67E22" size="xl" />
+            <Link to="/planning">Agenda</Link>
+          </div>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="square-binary" color="#E67E22" size="xl" />
+            <Link to="/programmes">Programmes</Link>
+          </div>
 
-        <div className="nav-item">
-          <FontAwesomeIcon icon="euro-sign" color="#E67E22" size="xl" />
-          <Link to="/payments">Paiements</Link>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="euro-sign" color="#E67E22" size="xl" />
+            <Link to="/payments">Paiements</Link>
+          </div>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
+            <Link to="/user/settings">Paramètres</Link>
+          </div>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
+            <Link to="/help">Aide</Link>
+          </div>
         </div>
-        <div className="nav-item">
-          <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
-          <Link to="/settings">Paramètres</Link>
-        </div>
-        <div className="nav-item">
-          <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
-          <Link to="/help">Aide</Link>
-        </div>
-      </div>
-      <div className="barre"></div>
-      <Button
-        text="Déconnexion"
-        action={() => {
-          Cookies.remove("plissimeToken");
-          setToken("");
-          setSessionsList([]);
-          setCustomersList([]);
-          navigate("/");
-        }}
-      />
-    </nav>
-    )
-  }
-  else if (role === "customer") {
+        <div className="barre"></div>
+        <Button
+          text="Déconnexion"
+          action={() => {
+            Cookies.remove("plissimeToken");
+            setToken("");
+            setSessionsList([]);
+            setCustomersList([]);
+            navigate("/");
+          }}
+        />
+      </nav>
+    );
+  } else if (role === "customer") {
     return (
-    <nav>
-    <Link to="/">
-      <img src={logo} alt="logo-plissime" className="logo-nav" />
-    </Link>
-    <div className="barre"></div>
-    <div className="menu">
-      <div className="nav-item">
-        <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
-        <Link to="/">Accueil</Link>
-      </div>
-      <div className="nav-item">
-        <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
-        <Link to="/coach">Mon coach</Link>
-      </div>
-      <div className="nav-item">
-        <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
-        <Link to="/settings">Mes informations</Link>
-      </div>
-      <div className="nav-item">
-        <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
-        <Link to="/help">Aide</Link>
-      </div>
-    </div>
-    <div className="barre"></div>
-    <Button
-      text="Déconnexion"
-      action={() => {
-        Cookies.remove("plissimeToken");
-        setToken("");
-        setSessionsList([]);
-        setCustomersList([]);
-        navigate("/");
-      }}
-    />
-  </nav>
-  )
+      <nav>
+        <Link to="/">
+          <img src={logo} alt="logo-plissime" className="logo-nav" />
+        </Link>
+        <div className="barre"></div>
+        <div className="menu">
+          <div className="nav-item">
+            <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
+            <Link to="/">Accueil</Link>
+          </div>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
+            <Link to="/mycoachs">Mes coachs</Link>
+          </div>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
+            <Link to="/customer/settings">Mes informations</Link>
+          </div>
+          <div className="nav-item">
+            <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
+            <Link to="/help">Aide</Link>
+          </div>
+        </div>
+        <div className="barre"></div>
+        <Button
+          text="Déconnexion"
+          action={() => {
+            Cookies.remove("plissimeToken");
+            setToken("");
+            setSessionsList([]);
+            setCustomersList([]);
+            navigate("/");
+          }}
+        />
+      </nav>
+    );
   }
 };
 

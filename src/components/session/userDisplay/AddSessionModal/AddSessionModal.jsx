@@ -30,7 +30,6 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
               headers: { Authorization: `Bearer ${token}` },
             }
           );
-          console.log("response=", response.data);
           setCustomersList(response.data);
         } catch (error) {
           console.error("Erreur lors de la recherche de clients :", error);

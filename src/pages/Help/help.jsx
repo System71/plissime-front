@@ -1,10 +1,12 @@
 import "./help.css";
 import { useState } from "react";
 import Button from "../../components/Button/button";
+import axios from "axios";
 
 const Help = ({ token }) => {
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
@@ -16,6 +18,7 @@ const Help = ({ token }) => {
         {
           name: name,
           firstName: firstName,
+          email: email,
           subject: subject,
           message: message,
         },
@@ -58,6 +61,19 @@ const Help = ({ token }) => {
             value={firstName}
             onChange={(event) => {
               setFirstName(event.target.value);
+            }}
+          />
+        </div>
+        <div className="form-item">
+          <label htmlFor="customer">Email</label>
+          <input
+            type="email"
+            placeholder="Votre email"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
             }}
           />
         </div>

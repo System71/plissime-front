@@ -4,28 +4,12 @@ import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import running from "../../../../assets/running.png";
 
-const CustomerSessionItem = ({
-  setSessionID,
-  openSessionDisplay,
-  setOpenSessionDisplay,
-  id,
-  title,
-  name,
-  firstName,
-  date,
-  content,
-}) => {
+const CustomerSessionItem = ({ title, name, firstName, date, content }) => {
   const heure = format(date, "HH:mm");
   const formatedDate = format(date, "dd/LL/yyyy");
 
   return (
-    <div
-      className="customer-session-item"
-      onClick={() => {
-        setOpenSessionDisplay(!openSessionDisplay);
-        setSessionID(id);
-      }}
-    >
+    <div className="customer-session-item">
       <div className="customer-session_content">
         <div className="customer-name">
           <p>
@@ -78,7 +62,11 @@ const CustomerSessionItem = ({
         </div>
       </div>
       <div className="picto">
-        <img src={running} alt="session picto" className="customer-session-picture" />
+        <img
+          src={running}
+          alt="session picto"
+          className="customer-session-picture"
+        />
       </div>
     </div>
   );

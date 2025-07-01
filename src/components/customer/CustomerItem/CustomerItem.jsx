@@ -25,22 +25,17 @@ const CustomerItem = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("ID customer =", id);
         const response = await axios.get(
           import.meta.env.VITE_API_URL + `/sessions/next/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log("response=", response.data);
-
-        if (response.data)
-        {
+        if (response.data) {
           const startDate = parseISO(response.data.start); // Convertit la chaîne ISO en objet Date
           const formattedDate = format(startDate, "dd/MM/yyyy HH:mm"); // Formate la date
           setNextSession(formattedDate);
         }
-
       } catch (error) {
         console.error(error);
       }

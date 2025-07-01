@@ -14,8 +14,10 @@ import Customers from "./pages/Customers/Customers";
 import Programmes from "./pages/Programmes/Programmes";
 import Planning from "./pages/Planning/Planning";
 import Payments from "./pages/Payments/Payments";
-import Settings from "./pages/Settings/Settings";
+import UserSettings from "./pages/UserSettings/UserSettings";
+import CustomerSettings from "./pages/CustomerSettings/CustomerSettings";
 import Help from "./pages/Help/help";
+import Coachs from "./pages/Coachs/Coachs";
 import AddCustomerModal from "./components/customer/AddCustomerModal/AddCustomerModal";
 import OpenCustomerModal from "./components/customer/OpenCustomerModal/OpenCustomerModal";
 import AddSessionModal from "./components/session/userDisplay/AddSessionModal/AddSessionModal";
@@ -72,12 +74,15 @@ function App() {
   const [role, setRole] = useState(() => {
     return localStorage.getItem("role") || null;
   });
-  
+
   return (
     <div className="app">
       <Router>
         <Routes>
-          <Route path="/login" element={<Login setToken={setToken} setRole={setRole} />}></Route>
+          <Route
+            path="/login"
+            element={<Login setToken={setToken} setRole={setRole} />}
+          ></Route>
           <Route
             path="/signup"
             element={<Signup setToken={setToken} />}
@@ -149,9 +154,14 @@ function App() {
               element={<Payments token={token} />}
             ></Route>
             <Route
-              path="/settings"
-              element={<Settings token={token} />}
+              path="/user/settings"
+              element={<UserSettings token={token} />}
             ></Route>
+            <Route
+              path="/customer/settings"
+              element={<CustomerSettings token={token} />}
+            ></Route>
+            <Route path="/mycoachs" element={<Coachs token={token} />}></Route>
             <Route path="/help" element={<Help token={token} />}></Route>
           </Route>
         </Routes>

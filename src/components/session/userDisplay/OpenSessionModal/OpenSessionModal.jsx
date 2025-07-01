@@ -29,14 +29,12 @@ const OpenSessionModal = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("ID session =", id);
         const response = await axios.get(
           import.meta.env.VITE_API_URL + `/session/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log("response=", response.data);
         const startTZ = toZonedTime(response.data.start, "Europe/Paris");
         const startFormatted = format(startTZ, "yyy-MM-dd'T'HH:mm");
         const endTZ = toZonedTime(response.data.end, "Europe/Paris");

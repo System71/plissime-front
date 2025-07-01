@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import Cookies from "js-cookie";
 
-const Login = ({ setToken}) => {
+const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isCoach, setIsCoach] = useState(true);
@@ -25,8 +25,7 @@ const Login = ({ setToken}) => {
             password: password,
           }
         );
-        localStorage.setItem("role", "coach"); 
-        console.log("token=",response.data.token);
+        localStorage.setItem("role", "coach");
         setToken(response.data.token);
         Cookies.set("plissimeToken", response.data.token);
       } else {
@@ -37,8 +36,7 @@ const Login = ({ setToken}) => {
             password: password,
           }
         );
-        localStorage.setItem("role", "customer"); 
-        console.log("token=",response.data.token);
+        localStorage.setItem("role", "customer");
         setToken(response.data.token);
         Cookies.set("plissimeToken", response.data.token);
       }
