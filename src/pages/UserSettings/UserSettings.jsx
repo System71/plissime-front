@@ -71,7 +71,6 @@ const UserSettings = ({ token }) => {
           },
         }
       );
-      modifyUser();
     } catch (error) {
       console.log("error=", error.response.data);
     }

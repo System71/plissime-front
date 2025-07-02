@@ -1,0 +1,119 @@
+.program-creation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.program-creation h2 {
+  margin-bottom: 20px;
+}
+
+.program-creation-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgb(241, 240, 240);
+  padding: 30px;
+  min-width: 400px;
+}
+
+.program-infos div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.program-creation .button-choice button {
+  border: none;
+}
+
+.program-creation .button-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 400px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+}
+
+.button-choice > button {
+  flex: 1;
+  margin: 0;
+  border-radius: 0;
+}
+
+.program-creation button:hover {
+  background-color: #e67e22;
+}
+
+.program-creation label {
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.program-creation input {
+  width: 400px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  height: 40px;
+}
+
+.program-creation textarea {
+  width: 400px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+}
+
+.program-creation input:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
+}
+
+.button-step {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.program-creation button {
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  margin-bottom: 20px;
+}
+
+.program-sessions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sessions-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px red solid;
+}

@@ -1,0 +1,34 @@
+.addProgram {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addProgram p {
+  margin-bottom: -50px;
+  border: none;
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+}
+
+.arrow-circle {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  margin-left: 200px;
+  gap: 70px;
+}
+
+.plus-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.circle,
+.plus-circle {
+  position: absolute;
+}
