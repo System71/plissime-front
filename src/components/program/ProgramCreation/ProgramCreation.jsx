@@ -13,11 +13,13 @@ const ProgramCreation = ({ token }) => {
   const [sessions, setSessions] = useState([]);
   const [selectedSessionId, setSelectedSessionId] = useState("");
   const [choice, setChoice] = useState("infos");
+  const [sessionId, setSessionId] = useState("");
 
-  const createProgram = async (event) => {
+  const createProgram = async () => {
+    console.log("CREATE PROGRAM");
     try {
-      event.preventDefault();
-      const response = await axios.put(
+      // event.preventDefault();
+      const response = await axios.post(
         import.meta.env.VITE_API_URL + `/program/add`,
         {
           title: title,
@@ -34,6 +36,8 @@ const ProgramCreation = ({ token }) => {
           },
         }
       );
+      console.log("response=", response.data);
+      setSessionId(response.data.id);
     } catch (error) {
       console.log("error=", error.response.data);
     }
@@ -75,7 +79,16 @@ const ProgramCreation = ({ token }) => {
         </button>
       </div>
       <div className="program-creation-content">
-        <form onSubmit={createProgram}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (sessionId) {
+              // afficher popup erreur
+            } else {
+              createProgram();
+            }
+          }}
+        >
           {choice === "infos" && (
             <div className="program-infos">
               <div>
@@ -153,8 +166,12 @@ const ProgramCreation = ({ token }) => {
             </div>
           )}
           <div className="button-step">
-            <button type="button" onClick={() => {}}>
-              Enregistrer
+            <button
+              onClick={() => {
+                setChoice("content");
+              }}
+            >
+              Créer mon programme
             </button>
           </div>
         </form>

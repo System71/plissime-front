@@ -5,7 +5,7 @@ import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
 import ProgramCreation from "../../components/program/ProgramCreation/ProgramCreation";
 
-const Programmes = () => {
+const Programmes = ({ token }) => {
   const [creation, SetCreation] = useState(false);
 
   return (
@@ -27,7 +27,7 @@ const Programmes = () => {
         </div>
       </div>
       {creation ? (
-        <ProgramCreation />
+        <ProgramCreation token={token} />
       ) : (
         <div className="programList">Liste des programmes</div>
       )}
