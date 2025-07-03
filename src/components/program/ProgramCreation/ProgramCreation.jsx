@@ -3,22 +3,22 @@
 import "./program-creation.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ProgramSessionItem from "../ProgramSessionItem/ProgramSessionItem";
 
 const ProgramCreation = ({ token }) => {
-  const [step, setStep] = useState(1);
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [notes, setNotes] = useState("");
   const [sessions, setSessions] = useState([]);
-  const [selectedSessionId, setSelectedSessionId] = useState("");
   const [choice, setChoice] = useState("infos");
-  const [sessionId, setSessionId] = useState("");
+  const [programId, setProgramId] = useState();
+  const [selectedSessionId, setSelectedSessionId] = useState();
+  const [numberSessions, setNumberSessions] = useState(0);
 
-  const createProgram = async () => {
-    console.log("CREATE PROGRAM");
+  const createProgram = async (event) => {
+    event.preventDefault();
     try {
-      // event.preventDefault();
       const response = await axios.post(
         import.meta.env.VITE_API_URL + `/program/add`,
         {
@@ -37,25 +37,43 @@ const ProgramCreation = ({ token }) => {
         }
       );
       console.log("response=", response.data);
-      setSessionId(response.data.id);
+      setProgramId(response.data._id);
     } catch (error) {
       console.log("error=", error.response.data);
     }
   };
 
-  const handleAddSession = () => {
-    const newSession = {
-      id: sessions.length + 1,
-      name: `Session ${sessions.length + 1}`,
-      date: "",
-      exercices: [],
-    };
-
-    setSelectedSessionId(newSession.id);
-    setSessions([...sessions, newSession]);
+  const createSession = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + `/program/${programId}/session/add`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setSelectedSessionId(response.data.sessions.length);
+      setNumberSessions(response.data.sessions.length);
+      console.log("response=", response.data);
+    } catch (error) {
+      console.log("error=", error.response.data);
+    }
   };
 
-  useEffect(() => {}, [startDate, endDate]);
+  const options = [];
+  for (let i = 0; i < numberSessions; i++) {
+    options.push(
+      <option key={i} value={i + 1}>
+        Session {i + 1}
+      </option>
+    );
+  }
+
+  useEffect(() => {}, []);
 
   return (
     <div className="program-creation">
@@ -79,16 +97,7 @@ const ProgramCreation = ({ token }) => {
         </button>
       </div>
       <div className="program-creation-content">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (sessionId) {
-              // afficher popup erreur
-            } else {
-              createProgram();
-            }
-          }}
-        >
+        <form>
           {choice === "infos" && (
             <div className="program-infos">
               <div>
@@ -141,11 +150,26 @@ const ProgramCreation = ({ token }) => {
                   rows={"5"}
                 ></textarea>
               </div>
+              <div className="button-step">
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    if (programId) {
+                      // afficher popup erreur
+                    } else {
+                      createProgram(event);
+                      setChoice("content");
+                    }
+                  }}
+                >
+                  Créer mon programme
+                </button>
+              </div>
             </div>
           )}
           {choice === "content" && (
             <div className="program-sessions">
-              <button type="button" onClick={() => handleAddSession()}>
+              <button type="button" onClick={(event) => createSession(event)}>
                 Ajouter une session
               </button>
 
@@ -154,26 +178,18 @@ const ProgramCreation = ({ token }) => {
                   value={selectedSessionId}
                   onChange={(e) => setSelectedSessionId(e.target.value)}
                 >
-                  <option value="">-- Choisir une session --</option>
-                  {sessions.map((session) => (
-                    <option key={session.id} value={session.id}>
-                      {session.name}
-                    </option>
-                  ))}
+                  {options}
                 </select>
-                <div className="session-content"></div>
+                {selectedSessionId && (
+                  <ProgramSessionItem
+                    token={token}
+                    programId={programId}
+                    sessionId={selectedSessionId}
+                  />
+                )}
               </div>
             </div>
           )}
-          <div className="button-step">
-            <button
-              onClick={() => {
-                setChoice("content");
-              }}
-            >
-              Créer mon programme
-            </button>
-          </div>
         </form>
       </div>
     </div>
@@ -181,11 +197,3 @@ const ProgramCreation = ({ token }) => {
 };
 
 export default ProgramCreation;
-
-// title: title,
-//       coach: coach,
-//       customer: customer,
-//       startDate: startDate,
-//       endDate: endDate,
-//       notes: notes,
-//       sessions: sessions,
