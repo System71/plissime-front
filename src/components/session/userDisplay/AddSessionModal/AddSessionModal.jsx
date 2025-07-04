@@ -16,7 +16,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [state, setState] = useState("Confirmée");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
-  const [project, setProject] = useState("");
+  const [program, setProgram] = useState("");
   const [choice, setChoice] = useState("admin");
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
           state: state,
           content: content,
           price: price,
-          project: project,
+          program: program,
           customer: customer,
         },
         {
@@ -205,15 +205,15 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
           {choice == "content" && (
             <div className="session-content">
               <div>
-                <label htmlFor="project">Nom du programme</label>
+                <label htmlFor="program">Nom du programme</label>
                 <input
                   type="text"
                   placeholder="Nom du programme"
-                  name="project"
-                  id="project"
-                  value={project}
+                  name="program"
+                  id="program"
+                  value={program}
                   onChange={(event) => {
-                    setProject(event.target.value);
+                    setProgram(event.target.value);
                   }}
                 />
               </div>

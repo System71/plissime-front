@@ -22,7 +22,7 @@ const OpenSessionModal = ({
   const [state, setState] = useState("scheduled");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
-  const [project, setProject] = useState("");
+  const [program, setProgram] = useState("");
   const [choice, setChoice] = useState("admin");
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -48,7 +48,7 @@ const OpenSessionModal = ({
         setState(response.data.state);
         setContent(response.data.content);
         setPrice(response.data.price);
-        setProject(response.data.project);
+        setProgram(response.data.program);
         setIsLoading(false);
       } catch (error) {
         console.error("Erreur lors de la recherche de clients :", error);
@@ -69,7 +69,7 @@ const OpenSessionModal = ({
           state: state,
           content: content,
           price: price,
-          project: project,
+          program: program,
         },
         {
           headers: {
@@ -232,15 +232,15 @@ const OpenSessionModal = ({
             {choice == "content" && (
               <div className="session-content">
                 <div>
-                  <label htmlFor="project">Nom du programme</label>
+                  <label htmlFor="">Nom du programme</label>
                   <input
                     type="text"
-                    placeholder={project}
-                    name="project"
-                    id="project"
-                    value={project}
+                    placeholder={program}
+                    name="program"
+                    id="program"
+                    value={program}
                     onChange={(event) => {
-                      setProject(event.target.value);
+                      setProgram(event.target.value);
                     }}
                   />
                 </div>

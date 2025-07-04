@@ -2,10 +2,11 @@
 import "./program-session-item.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ExerciseItem from "../ExerciseItem/ExerciseItem";
 
 const ProgramSessionItem = ({ token, programId, sessionId }) => {
-  const [date, setDate] = useState();
   const [selectedExerciseId, setSelectedExerciseId] = useState();
+  const [exercises, setExercices] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +22,8 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
             },
           }
         );
-        setDate(response.data.date);
+        console.log(response.data);
+        setExercices(response.data.exercises);
       } catch (error) {
         console.log(error.response);
       }
@@ -44,6 +46,7 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
         }
       );
       setSelectedExerciseId(response.data.sessions[sessionId].exercises.length);
+      setExercices(response.data.exercises);
       console.log("response=", response.data);
     } catch (error) {
       console.log("error=", error.response.data);
@@ -52,21 +55,12 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
 
   return (
     <div className="program-session-item">
-      <div>
-        <label htmlFor="date">Date</label>
-        <input
-          type="date"
-          name="date"
-          id="date"
-          value={date}
-          onChange={(event) => {
-            setDate(event.target.value);
-          }}
-        />
-      </div>
       <button type="button" onClick={(event) => createExercise(event)}>
         Ajouter un exercice
       </button>
+      {exercises.map((exercise) => {
+        <ExerciseItem exerciseId={exercise._id} />;
+      })}
     </div>
   );
 };

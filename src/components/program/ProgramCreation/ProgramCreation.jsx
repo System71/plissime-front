@@ -7,8 +7,7 @@ import ProgramSessionItem from "../ProgramSessionItem/ProgramSessionItem";
 
 const ProgramCreation = ({ token }) => {
   const [title, setTitle] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [duration, setDuration] = useState();
   const [notes, setNotes] = useState("");
   const [sessions, setSessions] = useState([]);
   const [choice, setChoice] = useState("infos");
@@ -23,9 +22,7 @@ const ProgramCreation = ({ token }) => {
         import.meta.env.VITE_API_URL + `/program/add`,
         {
           title: title,
-          // customer: customer,
-          startDate: startDate,
-          endDate: endDate,
+          duration: duration,
           notes: notes,
           sessions: sessions,
         },
@@ -114,26 +111,14 @@ const ProgramCreation = ({ token }) => {
                 />
               </div>
               <div>
-                <label htmlFor="startDate">Date de début</label>
+                <label htmlFor="duration">Durée (Nombre de séances)</label>
                 <input
-                  type="date"
-                  name="startDate"
-                  id="startDate"
-                  value={startDate}
+                  type="Number"
+                  name="duration"
+                  id="duration"
+                  value={duration}
                   onChange={(event) => {
-                    setStartDate(event.target.value);
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor="endDate">Date de fin</label>
-                <input
-                  type="date"
-                  name="endDate"
-                  id="endDate"
-                  value={endDate}
-                  onChange={(event) => {
-                    setEndDate(event.target.value);
+                    setDuration(event.target.value);
                   }}
                 />
               </div>
