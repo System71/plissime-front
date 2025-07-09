@@ -7,7 +7,7 @@ import ProgramSessionItem from "../ProgramSessionItem/ProgramSessionItem";
 
 const ProgramCreation = ({ token }) => {
   const [title, setTitle] = useState("");
-  const [duration, setDuration] = useState();
+  const [duration, setDuration] = useState(0);
   const [notes, setNotes] = useState("");
   const [sessions, setSessions] = useState([]);
   const [choice, setChoice] = useState("infos");

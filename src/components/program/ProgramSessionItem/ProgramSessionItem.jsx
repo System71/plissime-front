@@ -6,7 +6,7 @@ import ExerciseItem from "../ExerciseItem/ExerciseItem";
 
 const ProgramSessionItem = ({ token, programId, sessionId }) => {
   const [selectedExerciseId, setSelectedExerciseId] = useState();
-  const [exercises, setExercices] = useState([]);
+  const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +23,7 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
           }
         );
         console.log(response.data);
-        setExercices(response.data.exercises);
+        setExercises(response.data.exercises);
       } catch (error) {
         console.log(error.response);
       }
@@ -45,9 +45,11 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
           },
         }
       );
-      setSelectedExerciseId(response.data.sessions[sessionId].exercises.length);
-      setExercices(response.data.exercises);
-      console.log("response=", response.data);
+      setSelectedExerciseId(
+        response.data.sessions[sessionId - 1].exercises.length
+      );
+      setExercises(response.data.sessions[sessionId - 1].exercises);
+      console.log("response=", response.data.sessions[sessionId - 1].exercises);
     } catch (error) {
       console.log("error=", error.response.data);
     }
@@ -58,9 +60,15 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
       <button type="button" onClick={(event) => createExercise(event)}>
         Ajouter un exercice
       </button>
-      {exercises.map((exercise) => {
-        <ExerciseItem exerciseId={exercise._id} />;
-      })}
+      {exercises.map((exercise) => (
+        <ExerciseItem
+          token={token}
+          programId={programId}
+          sessionId={sessionId}
+          exerciseId={exercise._id}
+          key={exercises._id}
+        />
+      ))}
     </div>
   );
 };
