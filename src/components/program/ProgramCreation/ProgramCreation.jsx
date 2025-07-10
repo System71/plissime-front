@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ProgramSessionItem from "../ProgramSessionItem/ProgramSessionItem";
 
-const ProgramCreation = ({ token }) => {
+const ProgramCreation = ({ token, setCreation }) => {
   const [title, setTitle] = useState("");
   const [duration, setDuration] = useState(0);
   const [notes, setNotes] = useState("");
@@ -74,7 +74,6 @@ const ProgramCreation = ({ token }) => {
 
   return (
     <div className="program-creation">
-      <h2>Création de programme</h2>
       <div className="button-choice">
         <button
           type="button"
@@ -96,61 +95,71 @@ const ProgramCreation = ({ token }) => {
       <div className="program-creation-content">
         <form>
           {choice === "infos" && (
-            <div className="program-infos">
-              <div>
-                <label htmlFor="title">Nom du programme</label>
-                <input
-                  type="text"
-                  placeholder="Mon programme"
-                  name="title"
-                  id="title"
-                  value={title}
-                  onChange={(event) => {
-                    setTitle(event.target.value);
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor="duration">Durée (Nombre de séances)</label>
-                <input
-                  type="Number"
-                  name="duration"
-                  id="duration"
-                  value={duration}
-                  onChange={(event) => {
-                    setDuration(event.target.value);
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor="notes">Notes personnelles</label>
-                <textarea
-                  name="notes"
-                  id="notes"
-                  placeholder="Renseignements spécifiques au programme"
-                  value={notes}
-                  onChange={(event) => {
-                    setNotes(event.target.value);
-                  }}
-                  rows={"5"}
-                ></textarea>
+            <>
+              {" "}
+              <div className="program-infos">
+                <div>
+                  <label htmlFor="title">Nom du programme</label>
+                  <input
+                    type="text"
+                    placeholder="Mon programme"
+                    name="title"
+                    id="title"
+                    value={title}
+                    onChange={(event) => {
+                      setTitle(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="duration">Durée (Nombre de séances)</label>
+                  <input
+                    type="Number"
+                    name="duration"
+                    id="duration"
+                    value={duration}
+                    onChange={(event) => {
+                      setDuration(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="notes">Notes personnelles</label>
+                  <textarea
+                    name="notes"
+                    id="notes"
+                    placeholder="Renseignements spécifiques au programme"
+                    value={notes}
+                    onChange={(event) => {
+                      setNotes(event.target.value);
+                    }}
+                    rows={"5"}
+                  ></textarea>
+                </div>
               </div>
               <div className="button-step">
-                <button
-                  type="button"
-                  onClick={(event) => {
-                    if (programId) {
-                      // afficher popup erreur
-                    } else {
-                      createProgram(event);
-                      setChoice("content");
-                    }
-                  }}
-                >
-                  Créer mon programme
-                </button>
+                <div>
+                  <button type="button" onClick={() => setCreation(false)}>
+                    Retour à mes programmes
+                  </button>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      if (programId) {
+                        // afficher popup erreur
+                      } else {
+                        createProgram(event);
+                        setChoice("content");
+                      }
+                    }}
+                  >
+                    Créer mon programme
+                  </button>
+                </div>
               </div>
-            </div>
+            </>
           )}
           {choice === "content" && (
             <div className="program-sessions">

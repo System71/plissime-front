@@ -1,0 +1,55 @@
+.customer-icon {
+  cursor: pointer;
+}
+
+.program-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  width: 350px;
+  height: 200px;
+  padding: 20px 10px;
+  border: 1px grey solid;
+  border-radius: 5px;
+}
+
+.program-item:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.program-title {
+  width: 250px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.program-info {
+  display: flex;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+.info-picto {
+  margin-right: 5px;
+}
+
+.picto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.program-picture {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}

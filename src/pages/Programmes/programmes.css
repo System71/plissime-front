@@ -32,3 +32,10 @@
 .plus-circle {
   position: absolute;
 }
+
+.programList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+}
