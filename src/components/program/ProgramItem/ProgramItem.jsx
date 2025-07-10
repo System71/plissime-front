@@ -6,7 +6,9 @@ const ProgramItem = ({ token, title, duration, notes }) => {
   return (
     <div className="program-item">
       <div className="program-content">
-        <div className="program-title">{title}</div>
+        <div className="program-title">
+          <p>{title}</p>
+        </div>
         <div className="program-info">
           <FontAwesomeIcon
             className="info-picto"
@@ -15,7 +17,7 @@ const ProgramItem = ({ token, title, duration, notes }) => {
             size="xs"
           />
           <div>
-            <p>Durée : {duration} sessions</p>
+            <p>{duration} sessions</p>
           </div>
         </div>
         <div className="program-info">
