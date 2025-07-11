@@ -118,7 +118,6 @@ const ProgramCreation = ({ token, setCreation, id }) => {
         <form>
           {choice === "infos" && (
             <>
-              {" "}
               <div className="program-infos">
                 <div>
                   <label htmlFor="title">Nom du programme</label>

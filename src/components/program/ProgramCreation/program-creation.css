@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px blue solid;
 }
 
 .program-creation h2 {
@@ -14,17 +13,16 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  border: 1px solid orange;
 }
 
-form {
+.program-creation-content form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   min-width: 400px;
-  width: 90%;
+  width: 100%;
   padding: 0px;
 }
 
@@ -63,7 +61,6 @@ form {
 
 .program-creation-content {
   display: flex;
-  border: 1px violet solid;
 }
 
 .program-creation label {
@@ -117,7 +114,6 @@ form {
   justify-content: center;
   align-items: center;
   width: 100%;
-  border: 1px yellow solid;
 }
 
 .sessions-list {

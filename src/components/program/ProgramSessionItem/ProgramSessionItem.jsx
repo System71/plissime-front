@@ -32,44 +32,24 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
     fetchData();
   }, [token, programId, sessionId]);
 
-  const createExercise = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL +
-          `/program/${programId}/session/${sessionId}/exercise/add`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      setSelectedExerciseId(
-        response.data.sessions[sessionId - 1].exercises.length
-      );
-      setExercises(response.data.sessions[sessionId - 1].exercises);
-      console.log("response=", response.data.sessions[sessionId - 1].exercises);
-    } catch (error) {
-      console.log("error=", error.response.data);
-    }
-  };
-
   return (
     <div className="program-session-item">
-      <button type="button" onClick={(event) => createExercise(event)}>
-        Ajouter un exercice
-      </button>
-      <ExerciseCreationItem token={token} exercises={exercises} />
-      {exercises.map((exercise) => (
+      <button type="button">Ajouter un exercice</button>
+      <ExerciseCreationItem
+        token={token}
+        setExercises={setExercises}
+        programId={programId}
+        sessionId={sessionId}
+      />
+      {/* {exercises.map((exercise) => (
         <ExerciseItem
           token={token}
           programId={programId}
           sessionId={sessionId}
           exerciseId={exercise._id}
+          key={exercise._id}
         />
-      ))}
+      ))} */}
     </div>
   );
 };
