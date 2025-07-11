@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ProgramSessionItem from "../ProgramSessionItem/ProgramSessionItem";
 
-const ProgramCreation = ({ token, setCreation }) => {
+const ProgramCreation = ({ token, setCreation, id }) => {
   const [title, setTitle] = useState("");
   const [duration, setDuration] = useState(0);
   const [notes, setNotes] = useState("");
@@ -14,6 +14,28 @@ const ProgramCreation = ({ token, setCreation }) => {
   const [programId, setProgramId] = useState();
   const [selectedSessionId, setSelectedSessionId] = useState();
   const [numberSessions, setNumberSessions] = useState(0);
+
+  useEffect(() => {
+    if (id) {
+      const fetchProgram = async () => {
+        try {
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_URL}/programs`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              "Content-Type": "multipart/form-data",
+            }
+          );
+          console.log("programs=", response.data);
+          setPrograms(response.data);
+        } catch (error) {
+          console.log(error.response);
+        }
+      };
+    }
+  }, [token]);
 
   const createProgram = async (event) => {
     event.preventDefault();

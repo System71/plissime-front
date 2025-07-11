@@ -57,10 +57,10 @@ const Programmes = ({ token }) => {
           {programs.map((program) => (
             <ProgramItem
               key={program._id}
-              token={token}
               title={program.title}
               duration={program.duration}
               notes={program.notes}
+              setCreation={setCreation}
             />
           ))}
         </div>

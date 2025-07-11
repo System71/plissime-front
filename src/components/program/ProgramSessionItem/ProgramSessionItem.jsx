@@ -3,6 +3,7 @@ import "./program-session-item.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ExerciseItem from "../ExerciseItem/ExerciseItem";
+import ExerciseCreationItem from "../ExerciseCreationItem/ExerciseCreationItem";
 
 const ProgramSessionItem = ({ token, programId, sessionId }) => {
   const [selectedExerciseId, setSelectedExerciseId] = useState();
@@ -60,13 +61,13 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
       <button type="button" onClick={(event) => createExercise(event)}>
         Ajouter un exercice
       </button>
+      <ExerciseCreationItem token={token} exercises={exercises} />
       {exercises.map((exercise) => (
         <ExerciseItem
           token={token}
           programId={programId}
           sessionId={sessionId}
           exerciseId={exercise._id}
-          key={exercises._id}
         />
       ))}
     </div>

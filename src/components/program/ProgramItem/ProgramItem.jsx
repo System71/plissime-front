@@ -2,9 +2,9 @@ import "./program-item.css";
 import running from "../../../assets/running.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ProgramItem = ({ token, title, duration, notes }) => {
+const ProgramItem = ({ title, duration, notes, setCreation }) => {
   return (
-    <div className="program-item">
+    <div className="program-item" onClick={() => setCreation(true)}>
       <div className="program-content">
         <div className="program-title">
           <p>{title}</p>
