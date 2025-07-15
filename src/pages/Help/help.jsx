@@ -1,6 +1,6 @@
 import "./help.css";
 import { useState } from "react";
-import Button from "../../components/Button/button";
+import Button from "../../components/Button/Button";
 import axios from "axios";
 
 const Help = ({ token }) => {
