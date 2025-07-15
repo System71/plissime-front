@@ -2,7 +2,7 @@
 import "./add-session-modal.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../../../Button/button";
+import Button from "../../../Button/Button";
 import { updateSessionsList } from "../../../../../utils/updateData";
 
 const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
