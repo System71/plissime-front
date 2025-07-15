@@ -15,8 +15,13 @@
   align-items: center;
   width: 150px;
   height: 150px;
-  background-color: red;
   flex-shrink: 0;
+}
+
+.exercise-picture img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
 }
 
 .exercise-creation-item-movement {

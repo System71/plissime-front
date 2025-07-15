@@ -1,4 +1,4 @@
-import "./exercise-creation-item.css";
+import styles from "./exercise-creation-item.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../Button/Button";
@@ -22,6 +22,7 @@ const ExerciseCreationItem = ({
   const [duration, setDuration] = useState(0);
   const [restTime, setRestTime] = useState(0);
   const [notes, setNotes] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   //Import all movements
   useEffect(() => {
@@ -130,6 +131,7 @@ const ExerciseCreationItem = ({
               },
             }
           );
+          setImageUrl(response.data.movement.imageUrl);
           setSelectedCategory(response.data.movement.category);
           setMovement(response.data.movement._id);
           setSeries(response.data.series);
@@ -147,11 +149,13 @@ const ExerciseCreationItem = ({
   }, [token, exerciseId]);
 
   return (
-    <div className="exercise-creation-item">
-      <div className="exercise-picture"></div>
-      <div className="exercise-creation-item-movement">
-        <div className="exercise-infos">
-          <div className="exercise-infos-left">
+    <div className={styles["exercise-creation-item"]}>
+      <div className={styles["exercise-picture"]}>
+        <img alt={movement.title} src={movement.imageUrl} />
+      </div>
+      <div className={styles["exercise-creation-item-movement"]}>
+        <div className={styles["exercise-infos"]}>
+          <div className={styles["exercise-infos-left"]}>
             <select
               onChange={(e) => setSelectedCategory(e.target.value)}
               value={selectedCategory}
@@ -200,12 +204,16 @@ const ExerciseCreationItem = ({
               />
             </div>
           </div>
-          <div className="exercise-infos-right">
+          <div className={styles["exercise-infos-right"]}>
             <select
               disabled={!selectedCategory}
-              value={movement}
+              value={movement?._id || ""}
               onChange={(event) => {
-                setMovement(event.target.value);
+                const selected = filteredMovements.find(
+                  (mvt) => mvt._id === event.target.value
+                );
+                setMovement(selected); // on stocke l'objet complet
+                setImageUrl(selected?.imageUrl || "");
               }}
             >
               <option value="">-- Choisir un type --</option>
@@ -242,7 +250,7 @@ const ExerciseCreationItem = ({
             </div>
           </div>
         </div>
-        <div className="exercise-notes">
+        <div className={styles["exercise-notes"]}>
           <label htmlFor="notes">Notes : </label>
           <textarea
             name="notes"
