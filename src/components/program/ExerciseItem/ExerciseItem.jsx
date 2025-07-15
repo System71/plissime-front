@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styles from "./exercise-item.module.css";
-import Button from "../../Button/Button";
+import Button from "../../Button/Button.jsx";
 
 const ExerciseItem = ({
   category,
