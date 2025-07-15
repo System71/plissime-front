@@ -1,7 +1,7 @@
 import "./exercise-creation-item.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../../button/button";
+import Button from "../../Button/Button";
 
 const ExerciseCreationItem = ({
   token,
