@@ -7,12 +7,15 @@ const ExerciseCreationItem = ({
   token,
   programId,
   sessionId,
-  setExercises,
+  setCreation,
+  exerciseId,
+  setRefreshData,
+  setSelectedExercise,
 }) => {
   const [movementsList, setMovementsList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filteredMovements, setFilteredMovements] = useState([]);
-  const [movement, setMovement] = useState();
+  const [movement, setMovement] = useState({});
   const [series, setSeries] = useState(0);
   const [repetitions, setRepetitions] = useState(0);
   const [weight, setWeight] = useState(0);
@@ -33,7 +36,6 @@ const ExerciseCreationItem = ({
             },
           }
         );
-        console.log("movement list=", response.data);
         setMovementsList(response.data);
       } catch (error) {
         console.log(error.response);
@@ -57,32 +59,92 @@ const ExerciseCreationItem = ({
 
   const saveExercise = async () => {
     try {
-      const response = await axios.post(
-        `${
-          import.meta.env.VITE_API_URL
-        }/program/${programId}/session/${sessionId}/exercise/add`,
-        {
-          movement: movement,
-          series: series,
-          repetitions: repetitions,
-          weight: weight,
-          duration: duration,
-          restTime: restTime,
-          notes: notes,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
+      if (!exerciseId) {
+        const response = await axios.post(
+          `${
+            import.meta.env.VITE_API_URL
+          }/program/${programId}/session/${sessionId}/exercise/add`,
+          {
+            movement: movement,
+            series: series,
+            repetitions: repetitions,
+            weight: weight,
+            duration: duration,
+            restTime: restTime,
+            notes: notes,
           },
-        }
-      );
-      console.log("program modify=", response.data);
-      setExercises(response.data);
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      } else {
+        const response = await axios.put(
+          `${
+            import.meta.env.VITE_API_URL
+          }/program/${programId}/session/${sessionId}/exercise/modify/${exerciseId}`,
+          {
+            movement: movement,
+            series: series,
+            repetitions: repetitions,
+            weight: weight,
+            duration: duration,
+            restTime: restTime,
+            notes: notes,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setSelectedExercise(null);
+      }
+      setMovement(null);
+      setSeries(0);
+      setRepetitions(0);
+      setWeight(0);
+      setDuration(0);
+      setRestTime(0);
+      setNotes(0);
+      setRefreshData((prev) => !prev);
+      setCreation(false);
     } catch (error) {
       console.log(error.response);
     }
   };
+
+  //load selected exercise
+  useEffect(() => {
+    if (exerciseId) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `${
+              import.meta.env.VITE_API_URL
+            }/program/${programId}/session/${sessionId}/exercise/${exerciseId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setSelectedCategory(response.data.movement.category);
+          setMovement(response.data.movement._id);
+          setSeries(response.data.series);
+          setRepetitions(response.data.repetitions);
+          setWeight(response.data.weight);
+          setDuration(response.data.duration);
+          setRestTime(response.data.restTime);
+          setNotes(response.data.notes);
+        } catch (error) {
+          console.log(error.response);
+        }
+      };
+      fetchData();
+    }
+  }, [token, exerciseId]);
 
   return (
     <div className="exercise-creation-item">
@@ -139,7 +201,13 @@ const ExerciseCreationItem = ({
             </div>
           </div>
           <div className="exercise-infos-right">
-            <select disabled={!selectedCategory}>
+            <select
+              disabled={!selectedCategory}
+              value={movement}
+              onChange={(event) => {
+                setMovement(event.target.value);
+              }}
+            >
               <option value="">-- Choisir un type --</option>
               {filteredMovements.map((mvt) => (
                 <option key={mvt._id} value={mvt._id}>

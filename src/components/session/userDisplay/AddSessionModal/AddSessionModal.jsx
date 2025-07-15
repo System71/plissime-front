@@ -16,7 +16,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [state, setState] = useState("Confirmée");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
-  const [program, setProgram] = useState("");
+  const [program, setProgram] = useState(null);
   const [choice, setChoice] = useState("admin");
 
   useEffect(() => {

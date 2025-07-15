@@ -21,38 +21,61 @@ const Signup = ({ setToken }) => {
   const [isCoach, setIsCoach] = useState(true);
   const [isCustomer, setIsCustomer] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const signup = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL + `/customer/signup`,
-        {
-          email: email,
-          password: password,
-          name: name,
-          firstName: firstName,
-          address: address,
-          zip: zip,
-          city: city,
-          phone: phone,
-          activity: activity,
-          siret: siret,
-          certification: certification,
-          subscription: subscription,
-        }
-      );
-      setToken(response.data.token);
+      if (isCoach) {
+        const response = await axios.post(
+          import.meta.env.VITE_API_URL + `/user/signup`,
+          {
+            email: email,
+            password: password,
+            name: name,
+            firstName: firstName,
+            address: address,
+            zip: zip,
+            city: city,
+            phone: phone,
+            activity: activity,
+            siret: siret,
+            certification: certification,
+            subscription: subscription,
+          }
+        );
+        setToken(response.data.token);
 
-      const onboardingRes = await axios.get(
-        import.meta.env.VITE_API_URL +
-          `user/stripe-onboarding/${response.data._id}`
-      );
+        // const onboardingRes = await axios.get(
+        //   import.meta.env.VITE_API_URL +
+        //     `user/stripe-onboarding/${response.data._id}`
+        // );
 
-      window.location.href = onboardingRes.data.url;
+        // window.location.href = onboardingRes.data.url;
 
-      // navigate("/");
+        navigate("/");
+      } else {
+        const response = await axios.post(
+          import.meta.env.VITE_API_URL + `/customer/signup`,
+          {
+            email: email,
+            password: password,
+            name: name,
+            firstName: firstName,
+            address: address,
+            zip: zip,
+            city: city,
+            phone: phone,
+            activity: activity,
+            siret: siret,
+            certification: certification,
+            subscription: subscription,
+          }
+        );
+        setToken(response.data.token);
+
+        navigate("/");
+      }
     } catch (error) {
       console.log("error=", error.response.data);
     }

@@ -5,58 +5,68 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ProgramSessionItem from "../ProgramSessionItem/ProgramSessionItem";
 
-const ProgramCreation = ({ token, setCreation, id }) => {
+const ProgramCreation = ({ token, setCreation, program }) => {
   const [title, setTitle] = useState("");
   const [duration, setDuration] = useState(0);
   const [notes, setNotes] = useState("");
   const [sessions, setSessions] = useState([]);
   const [choice, setChoice] = useState("infos");
-  const [programId, setProgramId] = useState();
+  const [programId, setProgramId] = useState("");
   const [selectedSessionId, setSelectedSessionId] = useState();
   const [numberSessions, setNumberSessions] = useState(0);
 
+  //Load selected program
   useEffect(() => {
-    if (id) {
-      const fetchProgram = async () => {
-        try {
-          const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/programs`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-              "Content-Type": "multipart/form-data",
-            }
-          );
-          console.log("programs=", response.data);
-          setPrograms(response.data);
-        } catch (error) {
-          console.log(error.response);
-        }
-      };
+    if (program) {
+      setTitle(program.title);
+      setDuration(program.duration);
+      setNotes(program.notes);
+      setSessions(program.sessions);
+      setProgramId(program._id);
+      setNumberSessions(program.sessions.length);
+      if (program.sessions.length) {
+        setSelectedSessionId(1);
+      }
     }
   }, [token]);
 
-  const createProgram = async (event) => {
+  const saveProgram = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL + `/program/add`,
-        {
-          title: title,
-          duration: duration,
-          notes: notes,
-          sessions: sessions,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+      if (!program) {
+        const response = await axios.post(
+          import.meta.env.VITE_API_URL + `/program/add`,
+          {
+            title: title,
+            duration: duration,
+            notes: notes,
+            sessions: sessions,
           },
-        }
-      );
-      console.log("response=", response.data);
-      setProgramId(response.data._id);
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setProgramId(response.data._id);
+      } else {
+        const response = await axios.put(
+          import.meta.env.VITE_API_URL + `/program/modify/${programId}`,
+          {
+            title: title,
+            duration: duration,
+            notes: notes,
+            sessions: sessions,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
     } catch (error) {
       console.log("error=", error.response.data);
     }
@@ -77,12 +87,12 @@ const ProgramCreation = ({ token, setCreation, id }) => {
       );
       setSelectedSessionId(response.data.sessions.length);
       setNumberSessions(response.data.sessions.length);
-      console.log("response=", response.data);
     } catch (error) {
       console.log("error=", error.response.data);
     }
   };
 
+  //add select fields for sessions
   const options = [];
   for (let i = 0; i < numberSessions; i++) {
     options.push(
@@ -113,6 +123,31 @@ const ProgramCreation = ({ token, setCreation, id }) => {
         >
           Contenu
         </button>
+      </div>
+      <div className="button-step">
+        <div>
+          <button type="button" onClick={() => setCreation(false)}>
+            Retour à mes programmes
+          </button>
+        </div>
+        <div>
+          <div>
+            <button type="button" onClick={() => setCreation(false)}>
+              Supprimer ce programme
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              onClick={(event) => {
+                saveProgram(event);
+                setChoice("content");
+              }}
+            >
+              Enregistrer
+            </button>
+          </div>
+        </div>
       </div>
       <div className="program-creation-content">
         <form>
@@ -158,28 +193,6 @@ const ProgramCreation = ({ token, setCreation, id }) => {
                   ></textarea>
                 </div>
               </div>
-              <div className="button-step">
-                <div>
-                  <button type="button" onClick={() => setCreation(false)}>
-                    Retour à mes programmes
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    onClick={(event) => {
-                      if (programId) {
-                        // afficher popup erreur
-                      } else {
-                        createProgram(event);
-                        setChoice("content");
-                      }
-                    }}
-                  >
-                    Créer mon programme
-                  </button>
-                </div>
-              </div>
             </>
           )}
           {choice === "content" && (
@@ -187,7 +200,6 @@ const ProgramCreation = ({ token, setCreation, id }) => {
               <button type="button" onClick={(event) => createSession(event)}>
                 Ajouter une session
               </button>
-
               <div className="sessions-list">
                 <select
                   value={selectedSessionId}

@@ -77,6 +77,16 @@
   height: 40px;
 }
 
+.program-creation select {
+  width: 400px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  height: 40px;
+  margin-bottom: 30px;
+}
+
 .program-creation textarea {
   width: 400px;
   margin-top: 10px;
@@ -95,6 +105,11 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+.button-step > div:last-child {
+  display: flex;
+  gap: 15px;
 }
 
 .program-creation button {

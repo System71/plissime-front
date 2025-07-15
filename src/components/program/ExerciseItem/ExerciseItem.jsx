@@ -1,20 +1,80 @@
 /* eslint-disable react/prop-types */
-import "./exercise-item.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import styles from "./exercise-item.module.css";
+import Button from "../../button/button";
 
-const ExerciseItem = ({ token, programId, sessionId, exerciseId }) => {
-  const [movement, setMovement] = useState("");
-  const [series, setSeries] = useState(0);
-  const [repetitions, setRepetitions] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [restTime, setRestTime] = useState(0);
-  const [notes, setNotes] = useState("");
-
+const ExerciseItem = ({
+  category,
+  movement,
+  imageUrl,
+  series,
+  repetitions,
+  weight,
+  duration,
+  restTime,
+  notes,
+  id,
+  modifyExercise,
+  deleteExercise,
+}) => {
   return (
-    <div className="exercise-item" key={exerciseId}>
-      EXERCISE ITEM
+    <div className={styles["exercise-item"]}>
+      <div className={styles["exercise-picture"]}>
+        <img alt={movement.title} src={imageUrl} />
+      </div>
+      <div className={styles["exercise-item-movement"]}>
+        <div className={styles["exercise-infos"]}>
+          <div className={styles["exercise-infos-left"]}>
+            <div>
+              <p>
+                <span className={styles.bold}>Catégorie :</span> {category}
+              </p>
+            </div>
+            <div>
+              <p>
+                <span className={styles.bold}>Exercice :</span> {movement}
+              </p>
+            </div>
+            <div>
+              <p>
+                <span className={styles.bold}>Séries :</span> {series}
+              </p>
+            </div>
+            <div>
+              <p>
+                <span className={styles.bold}>Répétitions :</span> {repetitions}
+              </p>
+            </div>
+          </div>
+          <div className={styles["exercise-infos-right"]}>
+            <div>
+              <p>
+                <span className={styles.bold}>Poids :</span> {weight}
+              </p>
+            </div>
+            <div>
+              <p>
+                <span className={styles.bold}>Durée :</span> {duration}
+              </p>
+            </div>
+            <div>
+              <p>
+                <span className={styles.bold}>Temps de récupération :</span>{" "}
+                {restTime}
+              </p>
+            </div>
+            <div className={styles["exercise-notes"]}>
+              <p>
+                <span className={styles.bold}>Notes :</span>
+              </p>
+              <div>{notes}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <Button type="button" text="Modifier" action={modifyExercise} />
+        <Button type="button" text="Supprimer" action={deleteExercise} />
+      </div>
     </div>
   );
 };

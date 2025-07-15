@@ -10,7 +10,9 @@ import ProgramItem from "../../components/program/ProgramItem/ProgramItem";
 const Programmes = ({ token }) => {
   const [creation, setCreation] = useState(false);
   const [programs, setPrograms] = useState([]);
+  const [selectedProgram, setSelectedProgram] = useState(null);
 
+  //Fetch all coachs programs
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
@@ -23,7 +25,6 @@ const Programmes = ({ token }) => {
             "Content-Type": "multipart/form-data",
           }
         );
-        console.log("programs=", response.data);
         setPrograms(response.data);
       } catch (error) {
         console.log(error.response);
@@ -35,23 +36,35 @@ const Programmes = ({ token }) => {
   return (
     <>
       <h1>Programmes</h1>
-      <div className="addProgram">
-        <p>Créer un nouveau programme</p>
-        <div className="arrow-circle">
-          <img className="arrow" src={arrow} alt="arrow" />
-          <div className="plus-container" onClick={() => setCreation(true)}>
-            <img className="circle" src={circle} alt="circle" />
-            <FontAwesomeIcon
-              className="plus-circle"
-              icon="plus-circle"
-              color="#E67E22"
-              size="4x"
-            />
+      {!creation && (
+        <div className="addProgram">
+          <p>Créer un nouveau programme</p>
+          <div className="arrow-circle">
+            <img className="arrow" src={arrow} alt="arrow" />
+            <div
+              className="plus-container"
+              onClick={() => {
+                setSelectedProgram(null);
+                setCreation(true);
+              }}
+            >
+              <img className="circle" src={circle} alt="circle" />
+              <FontAwesomeIcon
+                className="plus-circle"
+                icon="plus-circle"
+                color="#E67E22"
+                size="4x"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
       {creation ? (
-        <ProgramCreation token={token} setCreation={setCreation} />
+        <ProgramCreation
+          token={token}
+          setCreation={setCreation}
+          program={selectedProgram}
+        />
       ) : (
         <div className="programList">
           {programs.map((program) => (
@@ -60,7 +73,11 @@ const Programmes = ({ token }) => {
               title={program.title}
               duration={program.duration}
               notes={program.notes}
-              setCreation={setCreation}
+              onClick={() => {
+                console.log("program cliqué=", program);
+                setSelectedProgram(program);
+                setCreation(true);
+              }}
             />
           ))}
         </div>
