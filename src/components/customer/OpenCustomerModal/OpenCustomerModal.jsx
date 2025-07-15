@@ -2,7 +2,7 @@
 import "./open-customer-modal.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../../Button/button";
+import Button from "../../Button/Button";
 
 const OpenCustomerModal = ({
   token,
