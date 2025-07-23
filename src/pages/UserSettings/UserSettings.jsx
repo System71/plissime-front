@@ -71,6 +71,8 @@ const UserSettings = ({ token }) => {
 
     if (!zip) {
       newErrors.zip = "Le code postal est requis.";
+    } else if (zip.length != 5) {
+      newErrors.zip = "Le code postal doit comporter 5 chiffres.";
     }
 
     if (!city) {
