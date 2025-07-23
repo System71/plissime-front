@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import styles from "./signup-user.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "../../Button/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -16,11 +17,75 @@ const SignupUser = ({ setToken }) => {
   const [activity, setActivity] = useState("");
   const [siret, setSiret] = useState("");
   const [certification, setCertification] = useState("");
-  const [subscription, setSubscription] = useState("");
+  const [errors, setErrors] = useState({});
+  const [errorBack, setErrorBack] = useState("");
 
   const navigate = useNavigate();
 
+  const validateUserForm = () => {
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = "L'email est requis.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Format d'email invalide.";
+    }
+
+    if (!password || password.length < 6) {
+      newErrors.password =
+        "Le mot de passe doit contenir au moins 6 caractères.";
+    }
+
+    if (!name) {
+      newErrors.name = "Le nom est requis.";
+    }
+
+    if (!firstName) {
+      newErrors.firstName = "Le prénom est requis.";
+    }
+
+    if (!address) {
+      newErrors.address = "L'adresse est requise.";
+    }
+
+    if (!zip) {
+      newErrors.zip = "Le code postal est requis.";
+    }
+
+    if (!city) {
+      newErrors.city = "La ville est requise.";
+    }
+
+    if (!phone) {
+      newErrors.phone = "Le numéro de téléphone est requis.";
+    } else if (!/^\d+$/.test(phone)) {
+      newErrors.phone =
+        "Le numéro de téléphone ne doit comporter que des chiffres.";
+    }
+
+    if (!activity) {
+      newErrors.activity = "L'activité est requise.";
+    }
+
+    if (!siret) {
+      newErrors.siret = "Le numéro de SIRET est requis.";
+    } else if (!/^\d+$/.test(siret)) {
+      newErrors.siret =
+        "Le numéro de SIRET ne doit comporter que des chiffres.";
+    } else if (siret.length != 14) {
+      newErrors.siret = "Le numéro de SIRET doit comporter 14 caractères.";
+    }
+
+    return newErrors;
+  };
+
   const signupUser = async () => {
+    const validationErrors = validateUserForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
       const response = await axios.post(
         import.meta.env.VITE_API_URL + `/user/signup`,
@@ -36,7 +101,6 @@ const SignupUser = ({ setToken }) => {
           activity: activity,
           siret: siret,
           certification: certification,
-          subscription: subscription,
         }
       );
       setToken(response.data.token);
@@ -50,12 +114,12 @@ const SignupUser = ({ setToken }) => {
 
       navigate("/");
     } catch (error) {
-      console.log("error=", error);
+      setErrorBack(error.response.data.message);
     }
   };
 
   return (
-    <div className="signup-user">
+    <div className={styles["signup-user"]}>
       <div>
         <label htmlFor="email">Email</label>
         <input
@@ -68,6 +132,7 @@ const SignupUser = ({ setToken }) => {
             setEmail(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.email}</p>
       </div>
       <div>
         <label htmlFor="password">Mot de passe</label>
@@ -81,11 +146,12 @@ const SignupUser = ({ setToken }) => {
             setPassword(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.password}</p>
       </div>
       <div>
         <label htmlFor="name">Nom</label>
         <input
-          type="name"
+          type="text"
           name="name"
           id="name"
           placeholder="Votre nom"
@@ -94,11 +160,12 @@ const SignupUser = ({ setToken }) => {
             setName(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.name}</p>
       </div>
       <div>
         <label htmlFor="firstName">Prénom</label>
         <input
-          type="firstName"
+          type="text"
           name="firstName"
           id="firstName"
           placeholder="Votre prénom"
@@ -107,11 +174,12 @@ const SignupUser = ({ setToken }) => {
             setFirstName(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.firstName}</p>
       </div>
       <div>
         <label htmlFor="address">Adresse</label>
         <input
-          type="address"
+          type="text"
           name="address"
           id="address"
           placeholder="Votre adresse"
@@ -120,11 +188,12 @@ const SignupUser = ({ setToken }) => {
             setAddress(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.address}</p>
       </div>
       <div>
         <label htmlFor="zip">Code postal</label>
         <input
-          type="zip"
+          type="number"
           name="zip"
           id="zip"
           placeholder="Votre code postal"
@@ -133,11 +202,12 @@ const SignupUser = ({ setToken }) => {
             setZip(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.zip}</p>
       </div>
       <div>
         <label htmlFor="city">Ville</label>
         <input
-          type="city"
+          type="text"
           name="city"
           id="city"
           placeholder="Votre ville"
@@ -146,11 +216,12 @@ const SignupUser = ({ setToken }) => {
             setCity(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.city}</p>
       </div>
       <div>
         <label htmlFor="phone">Téléphone</label>
         <input
-          type="phone"
+          type="tel"
           name="phone"
           id="phone"
           placeholder="Votre numéro de téléphone"
@@ -159,11 +230,12 @@ const SignupUser = ({ setToken }) => {
             setPhone(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.phone}</p>
       </div>
       <div>
         <label htmlFor="activity">Activité</label>
         <input
-          type="activity"
+          type="text"
           name="activity"
           id="activity"
           placeholder="Votre activité"
@@ -172,11 +244,12 @@ const SignupUser = ({ setToken }) => {
             setActivity(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.activity}</p>
       </div>
       <div>
         <label htmlFor="siret">SIRET</label>
         <input
-          type="siret"
+          type="number"
           name="siret"
           id="siret"
           placeholder="Votre SIRET"
@@ -185,22 +258,11 @@ const SignupUser = ({ setToken }) => {
             setSiret(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.siret}</p>
       </div>
       <div>
         <input
-          type="subscription"
-          name="subscription"
-          id="subscription"
-          placeholder="Abonnement choisi"
-          value={subscription}
-          onChange={(event) => {
-            setSubscription(event.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <input
-          type="certification"
+          type="text"
           name="certification"
           id="certification"
           placeholder="Votre numéro de certification"
@@ -209,9 +271,11 @@ const SignupUser = ({ setToken }) => {
             setCertification(event.target.value);
           }}
         />
+        <p className={styles["error-message"]}>{errors.certification}</p>
       </div>
       <div>
         <Button type="button" text="Créer mon compte" action={signupUser} />
+        <p className={styles["error-message-back"]}>{errorBack}</p>
       </div>
     </div>
   );

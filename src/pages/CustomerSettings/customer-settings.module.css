@@ -1,4 +1,4 @@
-.user-settings {
+.customer-settings {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +16,7 @@ form {
   padding: 30px;
 }
 
-.user-settings div {
+.customer-settings div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +24,7 @@ form {
   margin-bottom: 20px;
 }
 
-.user-settings button {
+.customer-settings button {
   height: 40px;
   font-weight: bold;
   text-align: center;
@@ -35,16 +35,16 @@ form {
   margin-bottom: 20px;
 }
 
-.user-settings label {
+.customer-settings label {
   font-weight: 600;
   align-self: flex-start;
 }
 
-.user-settings .button-choice button {
+.customer-settings .button-choice button {
   border: none;
 }
 
-.user-settings .button-choice {
+.customer-settings .button-choice {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -61,11 +61,11 @@ form {
   border-radius: 0;
 }
 
-.user-settings button:hover {
+.customer-settings button:hover {
   background-color: #e67e22;
 }
 
-.user-settings input {
+.customer-settings input {
   width: 400px;
   margin-top: 10px;
   border: 0;
@@ -74,7 +74,49 @@ form {
   height: 40px;
 }
 
-.user-settings input:focus {
+.customer-settings textarea {
+  width: 400px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+}
+
+.customer-settings input:focus {
   outline: none;
   border: 2px solid #a8c6cc;
+}
+
+.customer-settings .button-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.button-choice button {
+  border: none;
+}
+.button-choice > button {
+  flex: 1;
+  margin: 0;
+  border-radius: 0;
+}
+
+.error-message {
+  color: red;
+  font-size: small;
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+.error-message-back {
+  color: red;
+  font-size: small;
 }

@@ -34,11 +34,6 @@
   margin-bottom: 20px;
 }
 
-.signup label {
-  font-weight: 600;
-  align-self: flex-start;
-}
-
 .signup .button-choice button {
   border: none;
 }
@@ -62,18 +57,4 @@
 
 .signup button:hover {
   background-color: #e67e22;
-}
-
-.signup input {
-  width: 400px;
-  margin-top: 10px;
-  border: 0;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-  height: 40px;
-}
-
-.signup input:focus {
-  outline: none;
-  border: 2px solid #a8c6cc;
 }

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./customer-settings.css";
+import styles from "./customer-settings.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -22,6 +22,8 @@ const CustomerSettings = ({ token }) => {
   const [goals, setGoals] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [choice, setChoice] = useState("admin");
+  const [errors, setErrors] = useState({});
+  const [errorBack, setErrorBack] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +61,57 @@ const CustomerSettings = ({ token }) => {
     fetchData();
   }, [token]);
 
+  const validateCustomerForm = () => {
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = "L'email est requis.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Format d'email invalide.";
+    }
+
+    if (!name) {
+      newErrors.name = "Le nom est requis.";
+    }
+
+    if (!firstName) {
+      newErrors.firstName = "Le prénom est requis.";
+    }
+
+    if (!address) {
+      newErrors.address = "L'adresse est requise.";
+    }
+
+    if (!zip) {
+      newErrors.zip = "Le code postal est requis.";
+    }
+
+    if (!city) {
+      newErrors.city = "La ville est requise.";
+    }
+
+    if (!phone) {
+      newErrors.phone = "Le numéro de téléphone est requis.";
+    } else if (!/^\d+$/.test(phone)) {
+      newErrors.phone =
+        "Le numéro de téléphone ne doit comporter que des chiffres.";
+    }
+
+    if (!activity) {
+      newErrors.activity = "L'activité est requise.";
+    }
+
+    return newErrors;
+  };
+
   const modifyCustomer = async (event) => {
+    event.preventDefault();
+    const validationErrors = validateCustomerForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
       event.preventDefault();
       const response = await axios.put(
@@ -90,19 +142,19 @@ const CustomerSettings = ({ token }) => {
         }
       );
     } catch (error) {
-      console.log("error=", error.response.data);
+      setErrorBack(error.response.data.message);
     }
   };
 
   return (
     <>
       <h1>SETTINGS</h1>
-      <div className="customer-settings">
+      <div className={styles["customer-settings"]}>
         {isLoading ? (
           <p>En chargement</p>
         ) : (
           <form onSubmit={modifyCustomer}>
-            <div className="button-choice">
+            <div className={styles["button-choice"]}>
               <button
                 type="button"
                 className="admin-button"
@@ -121,7 +173,7 @@ const CustomerSettings = ({ token }) => {
               </button>
             </div>
             {choice === "admin" && (
-              <div className="admin-settings">
+              <div className={styles["admin-settings"]}>
                 <div>
                   <label htmlFor="name">Nom</label>
                   <input
@@ -132,6 +184,7 @@ const CustomerSettings = ({ token }) => {
                     value={name}
                     readOnly
                   />
+                  <p className={styles["error-message"]}>{errors.name}</p>
                 </div>
                 <div>
                   <label htmlFor="firstName">Prénom</label>
@@ -143,6 +196,7 @@ const CustomerSettings = ({ token }) => {
                     value={firstName}
                     readOnly
                   />
+                  <p className={styles["error-message"]}>{errors.firstName}</p>
                 </div>
                 <div>
                   <label htmlFor="email">Email</label>
@@ -156,6 +210,7 @@ const CustomerSettings = ({ token }) => {
                       setEmail(event.target.value);
                     }}
                   />
+                  <p className={styles["error-message"]}>{errors.email}</p>
                 </div>
                 <div>
                   <label htmlFor="address">Adresse</label>
@@ -169,6 +224,7 @@ const CustomerSettings = ({ token }) => {
                       setAddress(event.target.value);
                     }}
                   />
+                  <p className={styles["error-message"]}>{errors.address}</p>
                 </div>
                 <div>
                   <label htmlFor="zip">Code postal</label>
@@ -182,6 +238,7 @@ const CustomerSettings = ({ token }) => {
                       setZip(event.target.value);
                     }}
                   />
+                  <p className={styles["error-message"]}>{errors.zip}</p>
                 </div>
                 <div>
                   <label htmlFor="city">Ville</label>
@@ -195,6 +252,7 @@ const CustomerSettings = ({ token }) => {
                       setCity(event.target.value);
                     }}
                   />
+                  <p className={styles["error-message"]}>{errors.city}</p>
                 </div>
                 <div>
                   <label htmlFor="phone">Téléphone</label>
@@ -208,6 +266,7 @@ const CustomerSettings = ({ token }) => {
                       setPhone(event.target.value);
                     }}
                   />
+                  <p className={styles["error-message"]}>{errors.phone}</p>
                 </div>
                 <div>
                   <label htmlFor="activity">Profession</label>
@@ -221,11 +280,12 @@ const CustomerSettings = ({ token }) => {
                       setActivity(event.target.value);
                     }}
                   />
+                  <p className={styles["error-message"]}>{errors.activity}</p>
                 </div>
               </div>
             )}
             {choice === "sport" && (
-              <div className="sport-settings">
+              <div className={styles["sport-settings"]}>
                 <div>
                   <label htmlFor="birthday">Date de naissance</label>
                   <input

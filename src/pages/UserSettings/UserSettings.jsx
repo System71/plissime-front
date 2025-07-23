@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./user-settings.css";
+import styles from "./user-settings.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -14,8 +14,9 @@ const UserSettings = ({ token }) => {
   const [activity, setActivity] = useState("");
   const [siret, setSiret] = useState("");
   const [certification, setCertification] = useState("");
-  const [subscription, setSubscription] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [errors, setErrors] = useState({});
+  const [errorBack, setErrorBack] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,9 +48,67 @@ const UserSettings = ({ token }) => {
     fetchData();
   }, [token]);
 
+  const validateUserForm = () => {
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = "L'email est requis.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Format d'email invalide.";
+    }
+
+    if (!name) {
+      newErrors.name = "Le nom est requis.";
+    }
+
+    if (!firstName) {
+      newErrors.firstName = "Le prénom est requis.";
+    }
+
+    if (!address) {
+      newErrors.address = "L'adresse est requise.";
+    }
+
+    if (!zip) {
+      newErrors.zip = "Le code postal est requis.";
+    }
+
+    if (!city) {
+      newErrors.city = "La ville est requise.";
+    }
+
+    if (!phone) {
+      newErrors.phone = "Le numéro de téléphone est requis.";
+    } else if (!/^\d+$/.test(phone)) {
+      newErrors.phone =
+        "Le numéro de téléphone ne doit comporter que des chiffres.";
+    }
+
+    if (!activity) {
+      newErrors.activity = "L'activité est requise.";
+    }
+
+    if (!siret) {
+      newErrors.siret = "Le numéro de SIRET est requis.";
+    } else if (!/^\d+$/.test(siret)) {
+      newErrors.siret =
+        "Le numéro de SIRET ne doit comporter que des chiffres.";
+    } else if (siret.length != 14) {
+      newErrors.siret = "Le numéro de SIRET doit comporter 14 caractères.";
+    }
+
+    return newErrors;
+  };
+
   const modifyUser = async (event) => {
+    event.preventDefault();
+    const validationErrors = validateUserForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
-      event.preventDefault();
       const response = await axios.put(
         import.meta.env.VITE_API_URL + `/user/informations`,
         {
@@ -67,19 +126,18 @@ const UserSettings = ({ token }) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
           },
         }
       );
     } catch (error) {
-      console.log("error=", error.response.data);
+      setErrorBack(error.response.data.message);
     }
   };
 
   return (
     <>
       <h1>SETTINGS</h1>
-      <div className="user-settings">
+      <div className={styles["user-settings"]}>
         {isLoading ? (
           <p>En chargement</p>
         ) : (
@@ -96,11 +154,12 @@ const UserSettings = ({ token }) => {
                   setEmail(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.email}</p>
             </div>
             <div>
               <label htmlFor="name">Nom</label>
               <input
-                type="name"
+                type="text"
                 name="name"
                 id="name"
                 placeholder="Votre nom"
@@ -110,11 +169,12 @@ const UserSettings = ({ token }) => {
                   setName(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.name}</p>
             </div>
             <div>
               <label htmlFor="firstName">Prénom</label>
               <input
-                type="firstName"
+                type="text"
                 name="firstName"
                 id="firstName"
                 placeholder="Votre prénom"
@@ -124,11 +184,12 @@ const UserSettings = ({ token }) => {
                   setFirstName(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.firstName}</p>
             </div>
             <div>
               <label htmlFor="address">Adresse</label>
               <input
-                type="address"
+                type="text"
                 name="address"
                 id="address"
                 placeholder="Votre adresse"
@@ -137,11 +198,12 @@ const UserSettings = ({ token }) => {
                   setAddress(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.address}</p>
             </div>
             <div>
               <label htmlFor="zip">Code postal</label>
               <input
-                type="zip"
+                type="number"
                 name="zip"
                 id="zip"
                 placeholder="Votre code postal"
@@ -150,11 +212,12 @@ const UserSettings = ({ token }) => {
                   setZip(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.zip}</p>
             </div>
             <div>
               <label htmlFor="city">Ville</label>
               <input
-                type="city"
+                type="text"
                 name="city"
                 id="city"
                 placeholder="Votre ville"
@@ -163,11 +226,12 @@ const UserSettings = ({ token }) => {
                   setCity(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.city}</p>
             </div>
             <div>
               <label htmlFor="phone">Téléphone</label>
               <input
-                type="phone"
+                type="tel"
                 name="phone"
                 id="phone"
                 placeholder="Votre numéro de téléphone"
@@ -176,11 +240,12 @@ const UserSettings = ({ token }) => {
                   setPhone(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.phone}</p>
             </div>
             <div>
               <label htmlFor="activity">Activité</label>
               <input
-                type="activity"
+                type="text"
                 name="activity"
                 id="activity"
                 placeholder="Votre activité"
@@ -189,11 +254,12 @@ const UserSettings = ({ token }) => {
                   setActivity(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.activity}</p>
             </div>
             <div>
               <label htmlFor="siret">SIRET</label>
               <input
-                type="siret"
+                type="number"
                 name="siret"
                 id="siret"
                 placeholder="Votre SIRET"
@@ -202,22 +268,12 @@ const UserSettings = ({ token }) => {
                   setSiret(event.target.value);
                 }}
               />
+              <p className={styles["error-message"]}>{errors.siret}</p>
             </div>
             <div>
+              <label htmlFor="certification">Certification</label>
               <input
-                type="subscription"
-                name="subscription"
-                id="subscription"
-                placeholder="Abonnement choisi"
-                value={subscription}
-                onChange={(event) => {
-                  setSubscription(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <input
-                type="certification"
+                type="text"
                 name="certification"
                 id="certification"
                 placeholder="Votre numéro de certification"
@@ -229,6 +285,7 @@ const UserSettings = ({ token }) => {
             </div>
             <div>
               <button>Modifier mes informations</button>
+              <p className={styles["error-message-back"]}>{errorBack}</p>
             </div>
           </form>
         )}
