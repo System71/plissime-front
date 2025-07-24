@@ -150,7 +150,7 @@ const AddCustomerModal = ({
               }}
             />
             {customerExist === null && (
-              <div>
+              <div className={styles["add-customer-modal-buttons"]}>
                 <Button
                   type="button"
                   action={() => {
