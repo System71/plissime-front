@@ -153,6 +153,13 @@ const AddCustomerModal = ({
               <div>
                 <Button
                   type="button"
+                  action={() => {
+                    setAddCustomerDisplay(false);
+                  }}
+                  text="Annuler"
+                />
+                <Button
+                  type="button"
                   action={checkExistingCustomer}
                   text="Valider"
                 />
