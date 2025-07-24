@@ -24,7 +24,7 @@ const Sessions = ({
     if (token) {
       updateSessionsList(setSessionsList, token, searchCustomer);
     }
-  }, [token, searchCustomer]);
+  }, [token, searchCustomer, addSessionDisplay]);
 
   return (
     <>

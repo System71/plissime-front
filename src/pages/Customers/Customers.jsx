@@ -24,7 +24,7 @@ const Customers = ({
     if (token) {
       updateCustomersList(setCustomersList, token, searchCustomer);
     }
-  }, [token, searchCustomer]);
+  }, [token, searchCustomer, addCustomerDisplay]);
 
   return (
     <>

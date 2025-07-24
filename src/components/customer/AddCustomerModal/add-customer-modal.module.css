@@ -27,19 +27,11 @@
   background-color: lightgrey;
   border: 3px solid grey;
   border-radius: 20px;
-}
-
-.addCustomerModalContainer form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: lightgrey;
   gap: 15px;
-  width: 85%;
+  padding: 45px;
 }
 
-.addCustomerModalContainer form > div {
+.addCustomerModalContent > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,13 +40,43 @@
 
 .addCustomerModalContainer input {
   padding: 10px;
-  border: 1px grey solid;
-  border-radius: 10px;
-  max-width: 400px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  width: 100%;
+}
+
+.addCustomerModalContainer input:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
 }
 
 .addCustomerModalContainer .add-customer-modal-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.error-message {
+  color: red;
+  font-size: small;
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+.error-message-back {
+  color: red;
+  font-size: small;
+}
+
+.email-check {
+  display: flex;
+  flex-direction: column;
+}
+
+.email-check div {
+  align-self: flex-end;
+}
+
+.customer-infos > p {
+  margin-bottom: 10px;
 }

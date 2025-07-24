@@ -50,9 +50,15 @@
 .addSessionModalContainer textarea,
 .addSessionModalContainer select {
   padding: 10px;
-  border: 1px grey solid;
-  border-radius: 10px;
-  /* max-width: 400px; */
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+}
+
+.addSessionModalContainer input:focus,
+.addSessionModalContainer textarea:focus,
+.addSessionModalContainer select:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
 }
 
 .add-session-customer {
@@ -135,4 +141,16 @@ button:hover {
   justify-content: center;
   align-items: center;
   gap: inherit;
+}
+
+.error-message {
+  color: red;
+  font-size: small;
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+.error-message-back {
+  color: red;
+  font-size: small;
 }

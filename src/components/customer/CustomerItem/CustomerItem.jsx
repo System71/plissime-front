@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./customer-item.css";
+import styles from "./customer-item.module.css";
 import avatar from "../../../assets/avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
@@ -45,19 +45,19 @@ const CustomerItem = ({
 
   return (
     <div
-      className="customer-item"
+      className={styles["customer-item"]}
       onClick={() => {
         setOpenCustomerDisplay(!openCustomerDisplay);
         setCustomerID(id);
       }}
     >
-      <div className="customer-content">
-        <div className="customer-name">
+      <div className={styles["customer-content"]}>
+        <div className={styles["customer-name"]}>
           <p>
             {name} {firstName}
           </p>
         </div>
-        <div className="customer-info">
+        <div className={styles["customer-info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="house"
@@ -71,7 +71,7 @@ const CustomerItem = ({
             </p>
           </div>
         </div>
-        <div className="customer-info">
+        <div className={styles["customer-info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="phone"
@@ -80,7 +80,7 @@ const CustomerItem = ({
           />
           <p>0{phone}</p>
         </div>
-        <div className="customer-info">
+        <div className={styles["customer-info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="envelope"
@@ -89,7 +89,7 @@ const CustomerItem = ({
           />
           <p>{email}</p>
         </div>
-        <div className="customer-info">
+        <div className={styles["customer-info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="arrow-right"
@@ -99,7 +99,11 @@ const CustomerItem = ({
           {nextSession ? <p>{nextSession}</p> : <p>Pas de session prévue</p>}
         </div>
       </div>
-      <img src={avatar} alt="customer avatar" className="customer-picture" />
+      <img
+        src={avatar}
+        alt="customer avatar"
+        className={styles["customer-picture"]}
+      />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./add-session-modal.css";
+import styles from "./add-session-modal.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../../Button/Button";
@@ -18,6 +18,41 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [price, setPrice] = useState("");
   const [program, setProgram] = useState(null);
   const [choice, setChoice] = useState("admin");
+  const [errors, setErrors] = useState({});
+  const [errorBack, setErrorBack] = useState("");
+
+  const validateSessionForm = () => {
+    const newErrors = {};
+
+    if (!customer) {
+      newErrors.customer = "Le nom est requis.";
+    }
+
+    if (!title) {
+      newErrors.title = "Le nom de la session est requis.";
+    }
+
+    if (!start) {
+      newErrors.start = "La date et l'horaire de démarrage sont requis.";
+    }
+
+    if (!end) {
+      newErrors.end = "La date et l'horaire de démarrage sont requis.";
+    }
+
+    if (start > end) {
+      newErrors.start =
+        "La date de démarrage doit etre antérieure à celle de fin.";
+      newErrors.end =
+        "La date de démarrage doit etre postérieure à celle de démarrage.";
+    }
+
+    if (!price) {
+      newErrors.price = "Le prix de la session est requis.";
+    }
+
+    return newErrors;
+  };
 
   useEffect(() => {
     if (searchCustomer.length > 1) {
@@ -43,8 +78,14 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   }, [searchCustomer, token]);
 
   const addSession = async (event) => {
+    event.preventDefault();
+    const validationErrors = validateSessionForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
-      event.preventDefault();
       const response = await axios.post(
         import.meta.env.VITE_API_URL + "/session/add",
         {
@@ -67,7 +108,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
       updateSessionsList(setSessionsList, token);
       setAddSessionDisplay(false);
     } catch (error) {
-      console.log("error=", error.response.data);
+      setErrorBack(error.response.data.message);
     }
   };
 
@@ -77,14 +118,14 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
 
   return (
     <div
-      className="addSessionModalContainer"
+      className={styles["addSessionModalContainer"]}
       onClick={() => setAddSessionDisplay(false)}
     >
       <div
-        className="addSessionModalContent"
+        className={styles["addSessionModalContent"]}
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="button-choice">
+        <div className={styles["button-choice"]}>
           <button
             type="button"
             className="session-admin"
@@ -105,8 +146,8 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
         <form onSubmit={addSession}>
           <h1>Ajouter une session</h1>
           {choice == "admin" && (
-            <div className="session-admin">
-              <div className="add-session-customer">
+            <div className={styles["session-admin"]}>
+              <div className={styles["add-session-customer"]}>
                 <label htmlFor="customer">Nom du client</label>
                 <input
                   type="text"
@@ -118,8 +159,9 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                     setSearchCustomer(event.target.value);
                   }}
                 />
+                <p className={styles["error-message"]}>{errors.customer}</p>
                 {listIsVisible && (
-                  <div className="customers-list">
+                  <div className={styles["customers-list"]}>
                     <ul>
                       {customersList.map((customer, index) => {
                         return (
@@ -151,6 +193,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                     setTitle(event.target.value);
                   }}
                 />
+                <p className={styles["error-message"]}>{errors.title}</p>
               </div>
               <div>
                 <label htmlFor="start">Début de la session</label>
@@ -164,6 +207,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                     setStart(event.target.value);
                   }}
                 />
+                <p className={styles["error-message"]}>{errors.start}</p>
               </div>
               <div>
                 <label htmlFor="end">Fin de la session</label>
@@ -177,6 +221,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                     setEnd(event.target.value);
                   }}
                 />
+                <p className={styles["error-message"]}>{errors.end}</p>
               </div>
               <div>
                 <label htmlFor="price">Prix</label>
@@ -190,6 +235,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                     setPrice(event.target.value);
                   }}
                 />
+                <p className={styles["error-message"]}>{errors.price}</p>
               </div>
               <div>
                 <label htmlFor="state">Statut</label>
@@ -203,7 +249,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             </div>
           )}
           {choice == "content" && (
-            <div className="session-content">
+            <div className={styles["session-content"]}>
               <div>
                 <label htmlFor="program">Nom du programme</label>
                 <input
@@ -232,7 +278,8 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
               </div>
             </div>
           )}
-          <div className="add-session-modal-buttons">
+          <p className={styles["error-message-back"]}>{errorBack}</p>
+          <div className={styles["add-session-modal-buttons"]}>
             <Button
               type="button"
               action={() => setAddSessionDisplay(false)}
