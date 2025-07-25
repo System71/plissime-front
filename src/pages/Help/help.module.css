@@ -3,12 +3,6 @@
   flex-direction: column;
 }
 
-.helpme-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
 .helpme-container .form-item {
   display: flex;
   flex-direction: column;
@@ -21,10 +15,16 @@
   border: 1px grey solid;
   border-radius: 10px;
   min-width: 400px;
+  margin-bottom: 15px;
 }
 
 .helpme-container label {
   font-weight: 600;
   align-self: flex-start;
   margin-bottom: 10px;
+}
+
+.content {
+  max-width: 400px;
+  align-self: center;
 }

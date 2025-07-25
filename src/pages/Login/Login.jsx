@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import "./login.css";
+import styles from "./login.module.css";
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import Cookies from "js-cookie";
+import Button from "../../components/Button/Button";
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
@@ -14,9 +15,8 @@ const Login = ({ setToken }) => {
 
   const navigate = useNavigate();
 
-  const login = async (event) => {
+  const login = async () => {
     try {
-      event.preventDefault();
       if (isCoach) {
         const response = await axios.post(
           import.meta.env.VITE_API_URL + `/user/login`,
@@ -47,11 +47,11 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    <div className="login">
+    <div className={styles["login"]}>
       <img src={logo} alt="Logo PLISSIME" className="logo-big" />
-      <form onSubmit={login}>
+      <div className={styles["content"]}>
         <h1>Connectez-vous à votre espace personnel</h1>
-        <div className="button-choice">
+        <div className={styles["button-choice"]}>
           <button
             type="button"
             className="coach-button"
@@ -102,10 +102,10 @@ const Login = ({ setToken }) => {
           />
         </div>
         <div>
-          <button>Se connecter</button>
+          <Button type="button" action={login} text="Se connecter" />
         </div>
         <Link to="/signup">Créer mon compte</Link>
-      </form>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./day-sessions.css";
+import styles from "./day-sessions.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import SessionItemMin from "../SessionItemMin/SessionItemMin";
@@ -35,12 +35,12 @@ const DaySessions = ({
   }, [token]);
 
   return (
-    <div className="day-sessions-container">
+    <div className={styles["container"]}>
       <h2>SESSIONS DU JOUR</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (
-        <div className="session-item-list">
+        <div className={styles["session-item-list"]}>
           {data.map((session, index) => {
             return (
               <SessionItemMin

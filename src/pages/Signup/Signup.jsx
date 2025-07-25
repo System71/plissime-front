@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./signup.css";
+import styles from "./signup.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
@@ -12,10 +12,10 @@ const Signup = ({ setToken }) => {
 
   return (
     <>
-      <div className="signup">
+      <div className={styles["signup"]}>
         <img src={logo} alt="Logo PLISSIME" className="logo-big" />
-        <div className="signup-content">
-          <div className="button-choice">
+        <div className={styles["signup-content"]}>
+          <div className={styles["button-choice"]}>
             <button
               type="button"
               className="coach-button"

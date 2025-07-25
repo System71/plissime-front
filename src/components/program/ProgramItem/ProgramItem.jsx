@@ -1,15 +1,16 @@
-import "./program-item.css";
+/* eslint-disable react/prop-types */
+import styles from "./program-item.module.css";
 import running from "../../../assets/running.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProgramItem = ({ title, duration, notes, onClick }) => {
   return (
-    <div className="program-item" onClick={onClick}>
-      <div className="program-content">
-        <div className="program-title">
+    <div className={styles["program-item"]} onClick={onClick}>
+      <div className={styles["program-content"]}>
+        <div className={styles["title"]}>
           <p>{title}</p>
         </div>
-        <div className="program-info">
+        <div className={styles["info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="calendar-days"
@@ -20,7 +21,7 @@ const ProgramItem = ({ title, duration, notes, onClick }) => {
             <p>{duration} sessions</p>
           </div>
         </div>
-        <div className="program-info">
+        <div className={styles["info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="pen-to-square"
@@ -30,7 +31,7 @@ const ProgramItem = ({ title, duration, notes, onClick }) => {
           <div>{notes}</div>
         </div>
       </div>
-      <div className="picto">
+      <div className={styles["picto"]}>
         <img
           src={running}
           alt="session picto"

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./open-customer-modal.css";
+import styles from "./open-customer-modal.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../Button/Button";
@@ -45,96 +45,94 @@ const OpenCustomerModal = ({
 
   return (
     <div
-      className="openCustomerModalContainer"
+      className={styles["container"]}
       onClick={() => setOpenCustomerDisplay(false)}
     >
-      <div
-        className="openCustomerModalContent"
-        onClick={(event) => {
-          event.stopPropagation();
-        }}
-      >
-        {isLoading ? (
-          <p>EN CHARGEMENT</p>
-        ) : (
-          <form>
-            <h1>Détail du client</h1>
-            <div>
-              <label htmlFor="name">Nom</label>
-              <input
-                type="text"
-                placeholder={name}
-                name="name"
-                id="name"
-                value={name}
-                readOnly
-              />
-            </div>
-            <div>
-              <label htmlFor="firstName">Prénom</label>
-              <input
-                type="text"
-                placeholder={firstName}
-                name="firstName"
-                id="firstName"
-                value={firstName}
-                readOnly
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                placeholder={email}
-                name="email"
-                id="email"
-                value={email}
-                readOnly
-              />
-            </div>
-            <div>
-              <label htmlFor="address">Adresse</label>
-              <input
-                type="text"
-                placeholder={address}
-                name="address"
-                id="address"
-                value={address}
-                readOnly
-              />
-            </div>
-            <div>
-              <label htmlFor="zip">Code postal</label>
-              <input
-                type="text"
-                placeholder={zip}
-                name="zip"
-                id="zip"
-                value={zip}
-                readOnly
-              />
-            </div>
-            <div>
-              <label htmlFor="city">Ville</label>
-              <input
-                type="text"
-                placeholder={city}
-                name="city"
-                id="city"
-                value={city}
-                readOnly
-              />
-            </div>
-            <div className="open-session-modal-buttons">
-              <Button
-                type="button"
-                action={() => setOpenCustomerDisplay(false)}
-                text="Fermer"
-              />
-            </div>
-          </form>
-        )}
-      </div>
+      {isLoading ? (
+        <p>EN CHARGEMENT</p>
+      ) : (
+        <div
+          className={styles["content"]}
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+        >
+          <h1>Détail du client</h1>
+          <div>
+            <label htmlFor="name">Nom</label>
+            <input
+              type="text"
+              placeholder={name}
+              name="name"
+              id="name"
+              value={name}
+              readOnly
+            />
+          </div>
+          <div>
+            <label htmlFor="firstName">Prénom</label>
+            <input
+              type="text"
+              placeholder={firstName}
+              name="firstName"
+              id="firstName"
+              value={firstName}
+              readOnly
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              placeholder={email}
+              name="email"
+              id="email"
+              value={email}
+              readOnly
+            />
+          </div>
+          <div>
+            <label htmlFor="address">Adresse</label>
+            <input
+              type="text"
+              placeholder={address}
+              name="address"
+              id="address"
+              value={address}
+              readOnly
+            />
+          </div>
+          <div>
+            <label htmlFor="zip">Code postal</label>
+            <input
+              type="text"
+              placeholder={zip}
+              name="zip"
+              id="zip"
+              value={zip}
+              readOnly
+            />
+          </div>
+          <div>
+            <label htmlFor="city">Ville</label>
+            <input
+              type="text"
+              placeholder={city}
+              name="city"
+              id="city"
+              value={city}
+              readOnly
+            />
+          </div>
+          <div className={styles["open-session-modal-buttons"]}>
+            <Button
+              type="button"
+              action={() => setOpenCustomerDisplay(false)}
+              text="Fermer"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

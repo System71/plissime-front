@@ -19,7 +19,7 @@
   cursor: pointer;
 }
 
-.program-title {
+.title {
   width: 250px;
   font-size: 18px;
   font-weight: bold;
@@ -29,7 +29,7 @@
   text-overflow: ellipsis;
 }
 
-.program-info {
+.info {
   display: flex;
   margin-left: 15px;
   margin-bottom: 10px;

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./month-sales.css";
+import styles from "./month-sales.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -27,7 +27,7 @@ const MonthSales = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="monthsales-container">
+    <div className={styles["container"]}>
       <h2>CA MOIS EN COURS</h2>
       <div>
         <p>{monthSales} €</p>

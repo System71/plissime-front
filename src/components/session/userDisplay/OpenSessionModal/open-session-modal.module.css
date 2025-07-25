@@ -1,4 +1,4 @@
-.openSessionModalContainer {
+.container {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -11,13 +11,13 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.openSessionModalContainer label {
+.container label {
   font-weight: 600;
   align-self: flex-start;
   margin-bottom: 10px;
 }
 
-.openSessionModalContent {
+.content {
   width: 60%;
   max-width: 600px;
   display: flex;
@@ -29,7 +29,7 @@
   border-radius: 20px;
 }
 
-.openSessionModalContainer form {
+.container form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,29 +39,29 @@
   width: 85%;
 }
 
-.openSessionModalContainer form div {
+.container form div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
 }
 
-.openSessionModalContainer input,
-.openSessionModalContainer textarea,
-.openSessionModalContainer select {
+.container input,
+.container textarea,
+.container select {
   padding: 10px;
   border: 1px grey solid;
   border-radius: 10px;
-  /* max-width: 400px; */
+  width: 100%;
 }
 
-.openSessionModalContainer .open-session-modal-buttons {
+.container .open-session-modal-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.openSessionModalContent button {
+.content button {
   height: 40px;
   font-weight: 600;
   text-align: center;
@@ -72,7 +72,7 @@
   margin-bottom: 20px;
 }
 
-.openSessionModalContent .button-choice {
+.content .button-choice {
   display: flex;
   flex-direction: row;
   justify-content: center;

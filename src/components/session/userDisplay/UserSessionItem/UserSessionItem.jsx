@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./user-session-item.css";
+import styles from "./user-session-item.module.css";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import running from "../../../../assets/running.png";
@@ -20,19 +20,19 @@ const UserSessionItem = ({
 
   return (
     <div
-      className="user-session-item"
+      className={styles["user-session-item"]}
       onClick={() => {
         setOpenSessionDisplay(!openSessionDisplay);
         setSessionID(id);
       }}
     >
-      <div className="user-session_content">
-        <div className="customer-name">
+      <div className={styles["user-session_content"]}>
+        <div className={styles["customer-name"]}>
           <p>
             {name} {firstName}
           </p>
         </div>
-        <div className="user-session-info">
+        <div className={styles["user-session-info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="arrow-right"
@@ -43,7 +43,7 @@ const UserSessionItem = ({
             <p>{title}</p>
           </div>
         </div>
-        <div className="user-session-info">
+        <div className={styles["user-session-info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="calendar-days"
@@ -54,7 +54,7 @@ const UserSessionItem = ({
             <p>{formatedDate}</p>
           </div>
         </div>
-        <div className="user-session-info">
+        <div className={styles["user-session-info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="clock"
@@ -65,7 +65,7 @@ const UserSessionItem = ({
             <p>{heure}</p>
           </div>
         </div>
-        <div className="user-session-info">
+        <div className={styles["user-session-info"]}>
           <FontAwesomeIcon
             className="info-picto"
             icon="pen-to-square"
@@ -77,8 +77,12 @@ const UserSessionItem = ({
           </div>
         </div>
       </div>
-      <div className="picto">
-        <img src={running} alt="session picto" className="user-session-picture" />
+      <div className={styles["picto"]}>
+        <img
+          src={running}
+          alt="session picto"
+          className={styles["user-session-picture"]}
+        />
       </div>
     </div>
   );

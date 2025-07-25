@@ -1,4 +1,5 @@
-import "./programmes.css";
+/* eslint-disable react/prop-types */
+import styles from "./programmes.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import arrow from "../../assets/arrow_button.png";
@@ -22,7 +23,6 @@ const Programmes = ({ token }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-            "Content-Type": "multipart/form-data",
           }
         );
         setPrograms(response.data);
@@ -37,12 +37,12 @@ const Programmes = ({ token }) => {
     <>
       <h1>Programmes</h1>
       {!creation && (
-        <div className="addProgram">
+        <div className={styles["addProgram"]}>
           <p>Créer un nouveau programme</p>
-          <div className="arrow-circle">
+          <div className={styles["arrow-circle"]}>
             <img className="arrow" src={arrow} alt="arrow" />
             <div
-              className="plus-container"
+              className={styles["plus-container"]}
               onClick={() => {
                 setSelectedProgram(null);
                 setCreation(true);
@@ -66,7 +66,7 @@ const Programmes = ({ token }) => {
           program={selectedProgram}
         />
       ) : (
-        <div className="programList">
+        <div className={styles["programList"]}>
           {programs.map((program) => (
             <ProgramItem
               key={program._id}
@@ -74,7 +74,6 @@ const Programmes = ({ token }) => {
               duration={program.duration}
               notes={program.notes}
               onClick={() => {
-                console.log("program cliqué=", program);
                 setSelectedProgram(program);
                 setCreation(true);
               }}

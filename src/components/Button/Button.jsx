@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import "./button.css";
+import styles from "./button.module.css";
 
 const Button = ({ type, action, text }) => {
   return (
-    <button type={type} onClick={action} className="standard-button">
+    <button type={type} onClick={action} className={styles["standard-button"]}>
       {text}
     </button>
   );

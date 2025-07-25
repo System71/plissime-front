@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./session-item-min.css";
+import styles from "./session-item-min.module.css";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -18,7 +18,9 @@ const SessionItemMin = ({
 
   return (
     <div
-      className={"session-item-container" + (index % 2 ? " white" : " grey")}
+      className={`${styles["container"]} ${
+        index % 2 ? styles.white : styles.grey
+      }`}
     >
       <p>{name}</p>
       <p>{title}</p>
@@ -26,7 +28,7 @@ const SessionItemMin = ({
         {formatedDate} {heure}
       </p>
       <div
-        className="session-icon"
+        className={styles["session-icon"]}
         onClick={() => {
           setOpenSessionDisplay(!openSessionDisplay);
           setSessionID(id);

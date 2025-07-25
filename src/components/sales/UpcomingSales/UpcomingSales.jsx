@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./upcoming-sales.css";
+import styles from "./upcoming-sales.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -27,7 +27,7 @@ const UpcomingSales = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="upcomingsales-container">
+    <div className={styles["container"]}>
       <h2>CA A VENIR</h2>
       <div>
         <p>{upcomingSales} €</p>

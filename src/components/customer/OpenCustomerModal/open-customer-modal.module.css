@@ -1,4 +1,4 @@
-.openCustomerModalContainer {
+.container {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -11,13 +11,13 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.openCustomerModalContainer label {
+.container label {
   font-weight: 600;
   align-self: flex-start;
   margin-bottom: 10px;
 }
 
-.openCustomerModalContent {
+.content {
   width: 60%;
   max-width: 600px;
   display: flex;
@@ -27,35 +27,34 @@
   background-color: lightgrey;
   border: 3px solid grey;
   border-radius: 20px;
-}
-
-.openCustomerModalContainer form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: lightgrey;
   gap: 15px;
-  width: 85%;
+  padding: 45px;
 }
 
-.openCustomerModalContainer form > div {
+.container div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
 }
 
-.openCustomerModalContainer input,
-.openCustomerodalContainer textarea,
-.openCustomerModalContainer select {
+.container input,
+.container textarea,
+.container select {
   padding: 10px;
-  border: 1px grey solid;
-  border-radius: 10px;
-  max-width: 400px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  width: 100%;
 }
 
-.openCustomerModalContainer .open-session-modal-buttons {
+.container input:focus,
+.container textarea:focus,
+.container select:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
+}
+
+.container .open-session-modal-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

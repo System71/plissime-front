@@ -1,12 +1,11 @@
-.session-item-container {
+.container {
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr auto;
   padding: 10px 5px;
   flex: 1;
-  background-color: aqua;
 }
 
-.session-item-container p:nth-child(3) {
+.container p:nth-child(3) {
   text-align: right;
   padding-right: 10px;
 }

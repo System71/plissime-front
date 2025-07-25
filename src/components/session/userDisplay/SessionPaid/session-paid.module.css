@@ -1,0 +1,24 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  padding: 10px;
+  height: 30px;
+  align-items: center;
+}
+
+.date {
+  flex: 1;
+}
+
+.name {
+  flex: 4;
+}
+
+.title {
+  flex: 4;
+}
+
+.price {
+  flex: 1;
+}

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import "./program-creation.css";
+import styles from "./program-creation.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ProgramSessionItem from "../ProgramSessionItem/ProgramSessionItem";
@@ -28,7 +28,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
         setSelectedSessionId(1);
       }
     }
-  }, [token]);
+  }, [token, program]);
 
   const saveProgram = async (event) => {
     event.preventDefault();
@@ -102,14 +102,12 @@ const ProgramCreation = ({ token, setCreation, program }) => {
     );
   }
 
-  useEffect(() => {}, []);
-
   return (
-    <div className="program-creation">
-      <div className="button-choice">
+    <div className={styles["program-creation"]}>
+      <div className={styles["button-choice"]}>
         <button
           type="button"
-          className="infos-button"
+          className={styles["infos-button"]}
           onClick={() => setChoice("infos")}
           style={{ backgroundColor: choice == "infos" && "#a8c6cc" }}
         >
@@ -117,14 +115,14 @@ const ProgramCreation = ({ token, setCreation, program }) => {
         </button>
         <button
           type="button"
-          className="content-button"
+          className={styles["content-button"]}
           onClick={() => setChoice("content")}
           style={{ backgroundColor: choice == "content" && "#a8c6cc" }}
         >
           Contenu
         </button>
       </div>
-      <div className="button-step">
+      <div className={styles["button-step"]}>
         <div>
           <button type="button" onClick={() => setCreation(false)}>
             Retour à mes programmes
@@ -149,75 +147,73 @@ const ProgramCreation = ({ token, setCreation, program }) => {
           </div>
         </div>
       </div>
-      <div className="program-creation-content">
-        <form>
-          {choice === "infos" && (
-            <>
-              <div className="program-infos">
-                <div>
-                  <label htmlFor="title">Nom du programme</label>
-                  <input
-                    type="text"
-                    placeholder="Mon programme"
-                    name="title"
-                    id="title"
-                    value={title}
-                    onChange={(event) => {
-                      setTitle(event.target.value);
-                    }}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="duration">Durée (Nombre de séances)</label>
-                  <input
-                    type="Number"
-                    name="duration"
-                    id="duration"
-                    value={duration}
-                    onChange={(event) => {
-                      setDuration(event.target.value);
-                    }}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="notes">Notes personnelles</label>
-                  <textarea
-                    name="notes"
-                    id="notes"
-                    placeholder="Renseignements spécifiques au programme"
-                    value={notes}
-                    onChange={(event) => {
-                      setNotes(event.target.value);
-                    }}
-                    rows={"5"}
-                  ></textarea>
-                </div>
+      <div className={styles["program-creation-content"]}>
+        {choice === "infos" && (
+          <>
+            <div className={styles["program-infos"]}>
+              <div>
+                <label htmlFor="title">Nom du programme</label>
+                <input
+                  type="text"
+                  placeholder="Mon programme"
+                  name="title"
+                  id="title"
+                  value={title}
+                  onChange={(event) => {
+                    setTitle(event.target.value);
+                  }}
+                />
               </div>
-            </>
-          )}
-          {choice === "content" && (
-            <div className="program-sessions">
-              <button type="button" onClick={(event) => createSession(event)}>
-                Ajouter une session
-              </button>
-              <div className="sessions-list">
-                <select
-                  value={selectedSessionId}
-                  onChange={(e) => setSelectedSessionId(e.target.value)}
-                >
-                  {options}
-                </select>
-                {selectedSessionId && (
-                  <ProgramSessionItem
-                    token={token}
-                    programId={programId}
-                    sessionId={selectedSessionId}
-                  />
-                )}
+              <div>
+                <label htmlFor="duration">Durée (Nombre de séances)</label>
+                <input
+                  type="Number"
+                  name="duration"
+                  id="duration"
+                  value={duration}
+                  onChange={(event) => {
+                    setDuration(event.target.value);
+                  }}
+                />
+              </div>
+              <div>
+                <label htmlFor="notes">Notes personnelles</label>
+                <textarea
+                  name="notes"
+                  id="notes"
+                  placeholder="Renseignements spécifiques au programme"
+                  value={notes}
+                  onChange={(event) => {
+                    setNotes(event.target.value);
+                  }}
+                  rows={"5"}
+                ></textarea>
               </div>
             </div>
-          )}
-        </form>
+          </>
+        )}
+        {choice === "content" && (
+          <div className={styles["program-sessions"]}>
+            <button type="button" onClick={(event) => createSession(event)}>
+              Ajouter une session
+            </button>
+            <div className={styles["sessions-list"]}>
+              <select
+                value={selectedSessionId}
+                onChange={(e) => setSelectedSessionId(e.target.value)}
+              >
+                {options}
+              </select>
+              {selectedSessionId && (
+                <ProgramSessionItem
+                  token={token}
+                  programId={programId}
+                  sessionId={selectedSessionId}
+                />
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

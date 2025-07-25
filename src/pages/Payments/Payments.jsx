@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
+import styles from "./payments.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SessionPaid from "../../components/session/userDisplay/SessionPaid/SessionPaid";
-import "./payments.css";
 
 const Payments = ({ token }) => {
   const [sessionsPaid, setSessionsPaid] = useState([]);
@@ -32,7 +32,7 @@ const Payments = ({ token }) => {
   return (
     <>
       <h1>PAIEMENTS RECUS</h1>
-      <div className="session-paid-list">
+      <div className={styles["session-paid-list"]}>
         {sessionsPaid.map((session) => {
           return (
             <SessionPaid

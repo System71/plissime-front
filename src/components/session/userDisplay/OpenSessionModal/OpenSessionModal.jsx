@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./open-session-modal.css";
+import styles from "./open-session-modal.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../../Button/Button";
@@ -106,14 +106,14 @@ const OpenSessionModal = ({
 
   return (
     <div
-      className="openSessionModalContainer"
+      className={styles["container"]}
       onClick={() => setOpenSessionDisplay(false)}
     >
       <div
-        className="openSessionModalContent"
+        className={styles["content"]}
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="button-choice">
+        <div className={styles["button-choice"]}>
           <button
             type="button"
             className="session-admin"
@@ -138,7 +138,7 @@ const OpenSessionModal = ({
           <form onSubmit={modifySession}>
             <h1>Détail de la session</h1>
             {choice == "admin" && (
-              <div className="session-admin">
+              <div className={styles["session-admin"]}>
                 <div>
                   <label htmlFor="name">Nom</label>
                   <input
@@ -230,7 +230,7 @@ const OpenSessionModal = ({
               </div>
             )}
             {choice == "content" && (
-              <div className="session-content">
+              <div className={styles["session-content"]}>
                 <div>
                   <label htmlFor="">Nom du programme</label>
                   <input
@@ -259,7 +259,7 @@ const OpenSessionModal = ({
                 </div>
               </div>
             )}
-            <div className="open-session-modal-buttons">
+            <div className={styles["open-session-modal-buttons"]}>
               <Button
                 type="button"
                 action={() => setOpenSessionDisplay(false)}
@@ -270,15 +270,21 @@ const OpenSessionModal = ({
           </form>
         )}
         {showConfirmModal && (
-          <div className="modal-overlay" onClick={cancelPaymentStateChange}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div
+            className={styles["modal-overlay"]}
+            onClick={cancelPaymentStateChange}
+          >
+            <div
+              className={styles["modal-content"]}
+              onClick={(e) => e.stopPropagation()}
+            >
               <h2>Confirmer le statut "Payée"</h2>
               <p>
                 Vous êtes sur le point de marquer cette session comme{" "}
                 <strong>payée</strong>. Veuillez confirmer que le paiement a
                 bien été reçu.
               </p>
-              <div className="modal-buttons">
+              <div className={styles["modal-buttons"]}>
                 <Button
                   text="Annuler"
                   type="button"

@@ -1,4 +1,4 @@
-import "./help.css";
+import styles from "./help.module.css";
 import { useState } from "react";
 import Button from "../../components/Button/Button";
 import axios from "axios";
@@ -10,9 +10,8 @@ const Help = ({ token }) => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const helpme = async (event) => {
+  const helpme = async () => {
     try {
-      event.preventDefault();
       const response = await axios.post(
         import.meta.env.VITE_API_URL + "/helpme",
         {
@@ -35,10 +34,10 @@ const Help = ({ token }) => {
   };
 
   return (
-    <div className="helpme-container">
+    <div className={styles["helpme-container"]}>
       <h1>HELP</h1>
-      <form onSubmit={helpme}>
-        <div className="form-item">
+      <div className={styles["content"]}>
+        <div className={styles["form-item"]}>
           <label htmlFor="customer">Nom</label>
           <input
             type="text"
@@ -51,7 +50,7 @@ const Help = ({ token }) => {
             }}
           />
         </div>
-        <div className="form-item">
+        <div className={styles["form-item"]}>
           <label htmlFor="firstName">Prénom</label>
           <input
             type="text"
@@ -64,7 +63,7 @@ const Help = ({ token }) => {
             }}
           />
         </div>
-        <div className="form-item">
+        <div className={styles["form-item"]}>
           <label htmlFor="customer">Email</label>
           <input
             type="email"
@@ -77,7 +76,7 @@ const Help = ({ token }) => {
             }}
           />
         </div>
-        <div className="form-item">
+        <div className={styles["form-item"]}>
           <label htmlFor="subject">Sujet</label>
           <input
             type="text"
@@ -90,7 +89,7 @@ const Help = ({ token }) => {
             }}
           />
         </div>
-        <div className="form-item">
+        <div className={styles["form-item"]}>
           <label htmlFor="message">Message</label>
           <textarea
             rows="10"
@@ -103,10 +102,10 @@ const Help = ({ token }) => {
             }}
           ></textarea>
         </div>
-        <div className="helpme-button">
-          <Button type="submit" text="Envoyer" />
+        <div className={styles["helpme-button"]}>
+          <Button type="button" action={helpme} text="Envoyer" />
         </div>
-      </form>
+      </div>
     </div>
   );
 };

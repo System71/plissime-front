@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./program-session-item.css";
+import styles from "./program-session-item.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ExerciseItem from "../ExerciseItem/ExerciseItem";
@@ -59,7 +59,7 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
   };
 
   return (
-    <div className="program-session-item">
+    <div className={styles["program-session-item"]}>
       {creation ? (
         <button type="button" onClick={() => setCreation(false)}>
           Retour

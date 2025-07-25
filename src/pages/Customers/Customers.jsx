@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import "./customers.css";
+import styles from "./customers.module.css";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
@@ -30,15 +30,15 @@ const Customers = ({
     <>
       <h1>VOS CLIENTS</h1>
       <div
-        className="addCustomer"
+        className={styles["addCustomer"]}
         onClick={() => {
           setAddCustomerDisplay(!addCustomerDisplay);
         }}
       >
         <p>Ajouter un client</p>
-        <div className="arrow-circle">
+        <div className={styles["arrow-circle"]}>
           <img className="arrow" src={arrow} alt="arrow" />
-          <div className="plus-container">
+          <div className={styles["plus-container"]}>
             <img className="circle" src={circle} alt="circle" />
             <FontAwesomeIcon
               className="plus-circle"
@@ -49,7 +49,7 @@ const Customers = ({
           </div>
         </div>
       </div>
-      <div className="search-customer">
+      <div className={styles["search-customer"]}>
         <input
           type="search"
           placeholder="Rechercher par nom"
@@ -62,7 +62,7 @@ const Customers = ({
         />
         <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
       </div>
-      <div className="customer-list">
+      <div className={styles["customer-list"]}>
         {customersList.map((customer) => {
           return (
             <CustomerItem

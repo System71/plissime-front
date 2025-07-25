@@ -5,13 +5,13 @@
   align-items: center;
 }
 
-form {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background-color: lightgrey;
+  background-color: #f1f0f0;
   padding: 30px;
 }
 
@@ -40,11 +40,11 @@ form {
   margin-bottom: 10px;
 }
 
-.login .button-choice button {
+.button-choice button {
   border: none;
 }
 
-.login .button-choice {
+.button-choice {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -61,22 +61,18 @@ form {
   border-radius: 0;
 }
 
-.login button:hover {
+button:hover {
   background-color: #e67e22;
 }
 
-.login input {
+input {
   width: 400px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
   height: 40px;
 }
 
-.login input:focus {
+input:focus {
   outline: none;
   border: 2px solid #a8c6cc;
-}
-
-form h1 {
-  text-align: center;
 }
