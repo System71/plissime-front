@@ -26,7 +26,6 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
             },
           }
         );
-        console.log("exo seances=", response.data.exercises);
         setExercises(response.data.exercises);
       } catch (error) {
         console.log(error.response);

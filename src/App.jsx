@@ -40,8 +40,11 @@ import {
   faClock,
   faPenToSquare,
   faSquareBinary,
+  faArrowTrendUp,
+  faArrowsRotate,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
+import MyPrograms from "./pages/MyPrograms/MyPrograms";
 library.add(
   faUser,
   faQuestion,
@@ -58,7 +61,9 @@ library.add(
   faArrowRight,
   faClock,
   faPenToSquare,
-  faSquareBinary
+  faSquareBinary,
+  faArrowTrendUp,
+  faArrowsRotate
 );
 
 function App() {
@@ -162,6 +167,10 @@ function App() {
               element={<CustomerSettings token={token} />}
             ></Route>
             <Route path="/mycoachs" element={<Coachs token={token} />}></Route>
+            <Route
+              path="/myprograms"
+              element={<MyPrograms token={token} />}
+            ></Route>
             <Route path="/help" element={<Help token={token} />}></Route>
           </Route>
         </Routes>

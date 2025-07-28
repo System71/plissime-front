@@ -4,6 +4,9 @@ import styles from "./program-creation.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ProgramSessionItem from "../ProgramSessionItem/ProgramSessionItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SearchCustomerModal from "../../session/userDisplay/SearchCustomerModal/SearchCustomerModal";
+import { format } from "date-fns";
 
 const ProgramCreation = ({ token, setCreation, program }) => {
   const [title, setTitle] = useState("");
@@ -14,6 +17,14 @@ const ProgramCreation = ({ token, setCreation, program }) => {
   const [programId, setProgramId] = useState("");
   const [selectedSessionId, setSelectedSessionId] = useState();
   const [numberSessions, setNumberSessions] = useState(0);
+  const [customers, setCustomers] = useState([]);
+  const [searchCustomerModalDisplay, setSearchCustomerModalDisplay] =
+    useState(false);
+  const [selectedCustomerId, setSelectedCustomerId] = useState("");
+  const [selectedCustomer, setSelectedCustomer] = useState();
+  const [progress, setProgress] = useState();
+  const [start, setStart] = useState();
+  const [lastUpdate, setLastUpdate] = useState();
 
   //Load selected program
   useEffect(() => {
@@ -27,6 +38,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
       if (program.sessions.length) {
         setSelectedSessionId(1);
       }
+      setCustomers(program.customers);
     }
   }, [token, program]);
 
@@ -101,6 +113,21 @@ const ProgramCreation = ({ token, setCreation, program }) => {
       </option>
     );
   }
+
+  const handleChange = (event) => {
+    setSelectedCustomerId(event.target.value);
+    if (event.target.value) {
+      const customer = customers.find(
+        (customer) => customer.informations._id === event.target.value
+      );
+      setSelectedCustomer(customer);
+      setProgress(customer.progress);
+      const formatedStartDate = format(customer.start, "dd/LL/yyyy");
+      setStart(formatedStartDate);
+      const formatedLastUpdateDate = format(customer.lastUpdate, "dd/LL/yyyy");
+      setLastUpdate(formatedLastUpdateDate);
+    }
+  };
 
   return (
     <div className={styles["program-creation"]}>
@@ -189,6 +216,55 @@ const ProgramCreation = ({ token, setCreation, program }) => {
                   rows={"5"}
                 ></textarea>
               </div>
+              <div>
+                <label htmlFor="customer">
+                  Clients effectuant ce programme
+                </label>
+                <div className={styles["customers"]}>
+                  <select
+                    name="customers"
+                    id="customers"
+                    onChange={handleChange}
+                  >
+                    <option value="">
+                      Cliquer sur l'élève pour afficher suivi
+                    </option>
+                    {customers.map((customer, index) => (
+                      <option value={customer.informations._id} key={index}>
+                        {customer.informations.name}
+                      </option>
+                    ))}
+                  </select>
+                  <div onClick={() => setSearchCustomerModalDisplay(true)}>
+                    <FontAwesomeIcon
+                      className={styles["plus-circle"]}
+                      icon="plus-circle"
+                      color="#E67E22"
+                      size="2x"
+                    />
+                  </div>
+                </div>
+                {selectedCustomer && (
+                  <div className={styles["customer-infos"]}>
+                    <div>
+                      <FontAwesomeIcon icon="calendar-days" color="#E67E22" />
+                      <p>Démarrage du programme : {start}</p>
+                    </div>
+                    <div>
+                      <FontAwesomeIcon icon="arrow-trend-up" color="#E67E22" />
+                      {progress ? (
+                        <p>Avancement : Session {progress} </p>
+                      ) : (
+                        <p>Aucune session terminée pour le moment</p>
+                      )}
+                    </div>
+                    <div>
+                      <FontAwesomeIcon icon="arrows-rotate" color="#E67E22" />
+                      <p>Dernière mise à jour : {lastUpdate}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </>
         )}
@@ -215,6 +291,14 @@ const ProgramCreation = ({ token, setCreation, program }) => {
           </div>
         )}
       </div>
+      {searchCustomerModalDisplay && (
+        <SearchCustomerModal
+          token={token}
+          programId={programId}
+          setSearchCustomerModalDisplay={setSearchCustomerModalDisplay}
+          setCustomers={setCustomers}
+        />
+      )}
     </div>
   );
 };

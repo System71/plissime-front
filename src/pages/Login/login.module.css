@@ -44,7 +44,7 @@
   border: none;
 }
 
-.button-choice {
+.login .button-choice {
   display: flex;
   flex-direction: row;
   justify-content: center;

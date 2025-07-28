@@ -76,6 +76,10 @@ const NavMenu = ({ setToken, setSessionsList, setCustomersList, role }) => {
             <Link to="/mycoachs">Mes coachs</Link>
           </div>
           <div className={styles["nav-item"]}>
+            <FontAwesomeIcon icon="square-binary" color="#E67E22" size="xl" />
+            <Link to="/myprograms">Mes programmes</Link>
+          </div>
+          <div className={styles["nav-item"]}>
             <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
             <Link to="/customer/settings">Mes informations</Link>
           </div>

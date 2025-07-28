@@ -50,11 +50,10 @@ const Login = ({ setToken }) => {
     <div className={styles["login"]}>
       <img src={logo} alt="Logo PLISSIME" className="logo-big" />
       <div className={styles["content"]}>
-        <h1>Connectez-vous à votre espace personnel</h1>
         <div className={styles["button-choice"]}>
           <button
             type="button"
-            className="coach-button"
+            className={styles["coach-button"]}
             onClick={() => {
               setIsCoach(!isCoach);
               setIsCustomer(!isCustomer);
@@ -65,7 +64,7 @@ const Login = ({ setToken }) => {
           </button>
           <button
             type="button"
-            className="customer-button"
+            className={styles["customer-button"]}
             onClick={() => {
               setIsCustomer(!isCustomer);
               setIsCoach(!isCoach);
@@ -75,6 +74,7 @@ const Login = ({ setToken }) => {
             Client
           </button>
         </div>
+        <h1>Connectez-vous à votre espace personnel</h1>
         <div>
           <label htmlFor="email">Email</label>
           <input

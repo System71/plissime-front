@@ -35,7 +35,7 @@ const ProgramItem = ({ title, duration, notes, onClick }) => {
         <img
           src={running}
           alt="session picto"
-          className="user-session-picture"
+          className={styles["program-picture"]}
         />
       </div>
     </div>

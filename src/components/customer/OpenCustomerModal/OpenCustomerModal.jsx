@@ -27,7 +27,6 @@ const OpenCustomerModal = ({
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log("response=", response.data);
 
         setName(response.data.name);
         setFirstName(response.data.firstName);

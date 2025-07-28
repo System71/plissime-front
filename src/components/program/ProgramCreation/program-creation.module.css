@@ -131,3 +131,23 @@
   align-items: center;
   width: 100%;
 }
+
+.program-creation-content .customers {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.program-creation .customer-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.customer-infos > div {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}

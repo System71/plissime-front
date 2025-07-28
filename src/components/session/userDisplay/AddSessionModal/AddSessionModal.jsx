@@ -66,6 +66,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             }
           );
           setCustomersList(response.data);
+          setListIsVisible(true);
         } catch (error) {
           console.error("Erreur lors de la recherche de clients :", error);
         }
@@ -73,7 +74,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
       fetchCustomers();
     }
     if (searchCustomer.length <= 1) {
-      setListIsVisible(true);
+      setListIsVisible(false);
     }
   }, [searchCustomer, token]);
 
