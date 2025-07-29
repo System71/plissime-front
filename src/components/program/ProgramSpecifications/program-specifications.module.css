@@ -1,0 +1,167 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+}
+
+.program-creation-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.program-infos div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.container button {
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+}
+
+.container .button-done {
+  background-color: #e67e22;
+}
+
+.button-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 400px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  margin-bottom: 20px;
+}
+
+.button-choice button {
+  border: none;
+}
+
+.button-choice > button {
+  flex: 1;
+  margin: 0;
+  border-radius: 0;
+}
+
+.button-step {
+  margin-bottom: 20px;
+}
+
+.container button:hover {
+  background-color: #e67e22;
+}
+
+.container-content {
+  display: flex;
+}
+
+.container label {
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.container input {
+  width: 400px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  height: 40px;
+}
+
+.container select {
+  width: 400px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  height: 40px;
+}
+
+.container textarea {
+  width: 400px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+}
+
+.container input:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
+}
+
+.button-step {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.button-step > div:last-child {
+  display: flex;
+  gap: 15px;
+}
+
+.program-sessions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container-content .customers {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.container .customer-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.customer-infos {
+  margin-bottom: 20px;
+}
+
+.customer-infos > div {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.session-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}

@@ -90,7 +90,6 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
             duration={exercise.duration}
             restTime={exercise.restTime}
             notes={exercise.notes}
-            id={exercise._id}
             modifyExercise={() => modifyExercise(exercise._id)}
             deleteExercise={() =>
               deleteExercise(programId, sessionId, exercise._id, token)

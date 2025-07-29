@@ -104,6 +104,22 @@ const ProgramCreation = ({ token, setCreation, program }) => {
     }
   };
 
+  const deleteProgram = async () => {
+    try {
+      const response = await axios.delete(
+        import.meta.env.VITE_API_URL + `/program/${programId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCreation(false);
+    } catch (error) {
+      console.log("error=", error.response.data);
+    }
+  };
+
   //add select fields for sessions
   const options = [];
   for (let i = 0; i < numberSessions; i++) {
@@ -157,7 +173,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
         </div>
         <div>
           <div>
-            <button type="button" onClick={() => setCreation(false)}>
+            <button type="button" onClick={() => deleteProgram()}>
               Supprimer ce programme
             </button>
           </div>

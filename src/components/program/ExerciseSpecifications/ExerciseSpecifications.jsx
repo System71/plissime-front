@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import styles from "./exercise-item.module.css";
-import Button from "../../Button/Button";
+import styles from "./exercise-specifications.module.css";
 
-const ExerciseItem = ({
+const ExerciseSpecifications = ({
   category,
   movement,
   imageUrl,
@@ -12,8 +11,6 @@ const ExerciseItem = ({
   duration,
   restTime,
   notes,
-  modifyExercise,
-  deleteExercise,
 }) => {
   return (
     <div className={styles["exercise-item"]}>
@@ -70,12 +67,8 @@ const ExerciseItem = ({
           </div>
         </div>
       </div>
-      <div>
-        <Button type="button" text="Modifier" action={modifyExercise} />
-        <Button type="button" text="Supprimer" action={deleteExercise} />
-      </div>
     </div>
   );
 };
 
-export default ExerciseItem;
+export default ExerciseSpecifications;
