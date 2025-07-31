@@ -45,6 +45,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
 import MyPrograms from "./pages/MyPrograms/MyPrograms";
+import Activation from "./pages/Activation/Activation";
 library.add(
   faUser,
   faQuestion,
@@ -91,6 +92,10 @@ function App() {
           <Route
             path="/signup"
             element={<Signup setToken={setToken} />}
+          ></Route>
+          <Route
+            path="/activation/:token"
+            element={<Activation setToken={setToken} />}
           ></Route>
           <Route
             path="/"

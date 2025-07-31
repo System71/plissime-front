@@ -215,12 +215,12 @@ const SignupCustomer = ({ setToken }) => {
         <p className={styles["error-message"]}>{errors.phone}</p>
       </div>
       <div>
-        <label htmlFor="activity">Activité</label>
+        <label htmlFor="activity">Profession</label>
         <input
           type="text"
           name="activity"
           id="activity"
-          placeholder="Votre activité"
+          placeholder="Votre profession"
           value={activity}
           onChange={(event) => {
             setActivity(event.target.value);

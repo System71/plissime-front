@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import "./sessions.css";
+import styles from "./sessions.module.css";
 import { useState, useEffect } from "react";
 import SessionItem from "../../components/session/userDisplay/UserSessionItem/UserSessionItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,20 +27,20 @@ const Sessions = ({
   }, [token, searchCustomer, addSessionDisplay]);
 
   return (
-    <>
+    <div className={styles["content"]}>
       <div
-        className="addSessions"
+        className={styles["addSessions"]}
         onClick={() => {
           setAddSessionDisplay(!addSessionDisplay);
         }}
       >
         <p>Ajouter une session</p>
-        <div className="arrow-circle">
-          <img className="arrow" src={arrow} alt="arrow" />
-          <div className="plus-container">
-            <img className="circle" src={circle} alt="circle" />
+        <div className={styles["arrow-circle"]}>
+          <img className={styles["arrow"]} src={arrow} alt="arrow" />
+          <div className={styles["plus-container"]}>
+            <img className={styles["circle"]} src={circle} alt="circle" />
             <FontAwesomeIcon
-              className="plus-circle"
+              className={styles["plus-circle"]}
               icon="plus-circle"
               color="#E67E22"
               size="4x"
@@ -48,7 +48,7 @@ const Sessions = ({
           </div>
         </div>
       </div>
-      <div className="session-filter">
+      <div className={styles["session-filter"]}>
         <input
           type="search"
           placeholder="Rechercher par nom"
@@ -61,7 +61,7 @@ const Sessions = ({
         />
         <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
       </div>
-      <div className="session-list">
+      <div className={styles["session-list"]}>
         {sessionsList.map((session) => {
           return (
             <SessionItem
@@ -79,7 +79,7 @@ const Sessions = ({
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

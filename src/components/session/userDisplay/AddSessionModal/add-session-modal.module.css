@@ -29,7 +29,7 @@
   border-radius: 20px;
 }
 
-.addSessionModalContainer form {
+.sessions-infos {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,9 +37,10 @@
   background-color: lightgrey;
   gap: 15px;
   width: 85%;
+  padding: 30px;
 }
 
-.addSessionModalContainer form div {
+.sessions-infos div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,14 +62,16 @@
   border: 2px solid #a8c6cc;
 }
 
-.add-session-customer {
+.customer,
+.program {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.customers-list {
+.customers-list,
+.programs-list {
   display: flex;
   width: 80%;
   max-width: 400px;
@@ -77,16 +80,19 @@
   background-color: beige;
 }
 
-.customers-list ul {
+.customers-list ul,
+.programs-list ul {
   width: 100%;
 }
 
-.customers-list li {
+.customers-list li,
+.programs-list li {
   padding: 15px;
   margin: -100;
 }
 
-.customers-list li:hover {
+.customers-list li:hover,
+.programs-list li:hover {
   background-color: #a8c6cc;
 }
 

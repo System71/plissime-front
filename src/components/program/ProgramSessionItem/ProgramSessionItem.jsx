@@ -60,7 +60,13 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
   return (
     <div className={styles["program-session-item"]}>
       {creation ? (
-        <button type="button" onClick={() => setCreation(false)}>
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedExercise(null);
+            setCreation(false);
+          }}
+        >
           Retour
         </button>
       ) : (

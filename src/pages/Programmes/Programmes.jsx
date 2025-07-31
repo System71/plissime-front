@@ -40,7 +40,7 @@ const Programmes = ({ token }) => {
         <div className={styles["addProgram"]}>
           <p>Créer un nouveau programme</p>
           <div className={styles["arrow-circle"]}>
-            <img className="arrow" src={arrow} alt="arrow" />
+            <img className={styles["arrow"]} src={arrow} alt="arrow" />
             <div
               className={styles["plus-container"]}
               onClick={() => {
@@ -48,9 +48,9 @@ const Programmes = ({ token }) => {
                 setCreation(true);
               }}
             >
-              <img className="circle" src={circle} alt="circle" />
+              <img className={styles["circle"]} src={circle} alt="circle" />
               <FontAwesomeIcon
-                className="plus-circle"
+                className={styles["plus-circle"]}
                 icon="plus-circle"
                 color="#E67E22"
                 size="4x"

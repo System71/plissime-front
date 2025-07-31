@@ -37,9 +37,9 @@ const Customers = ({
       >
         <p>Ajouter un client</p>
         <div className={styles["arrow-circle"]}>
-          <img className="arrow" src={arrow} alt="arrow" />
+          <img className={styles["arrow"]} src={arrow} alt="arrow" />
           <div className={styles["plus-container"]}>
-            <img className="circle" src={circle} alt="circle" />
+            <img className={styles["circle"]} src={circle} alt="circle" />
             <FontAwesomeIcon
               className="plus-circle"
               icon="plus-circle"

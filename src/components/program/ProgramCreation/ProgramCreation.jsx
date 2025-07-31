@@ -84,6 +84,22 @@ const ProgramCreation = ({ token, setCreation, program }) => {
     }
   };
 
+  const deleteProgram = async () => {
+    try {
+      const response = await axios.delete(
+        import.meta.env.VITE_API_URL + `/program/${programId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCreation(false);
+    } catch (error) {
+      console.log("error=", error.response.data);
+    }
+  };
+
   const createSession = async (event) => {
     event.preventDefault();
     try {
@@ -104,17 +120,23 @@ const ProgramCreation = ({ token, setCreation, program }) => {
     }
   };
 
-  const deleteProgram = async () => {
+  const deleteSession = async () => {
     try {
       const response = await axios.delete(
-        import.meta.env.VITE_API_URL + `/program/${programId}`,
+        import.meta.env.VITE_API_URL +
+          `/program/${programId}/session/${selectedSessionId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      setCreation(false);
+      setNumberSessions(response.data.sessions.length);
+      if (response.data.sessions.length) {
+        setSelectedSessionId(1);
+      } else {
+        setSelectedSessionId();
+      }
     } catch (error) {
       console.log("error=", error.response.data);
     }
@@ -142,6 +164,11 @@ const ProgramCreation = ({ token, setCreation, program }) => {
       setStart(formatedStartDate);
       const formatedLastUpdateDate = format(customer.lastUpdate, "dd/LL/yyyy");
       setLastUpdate(formatedLastUpdateDate);
+    } else {
+      setSelectedCustomer();
+      setProgress();
+      setStart;
+      setLastUpdate();
     }
   };
 
@@ -290,12 +317,18 @@ const ProgramCreation = ({ token, setCreation, program }) => {
               Ajouter une session
             </button>
             <div className={styles["sessions-list"]}>
-              <select
-                value={selectedSessionId}
-                onChange={(e) => setSelectedSessionId(e.target.value)}
-              >
-                {options}
-              </select>
+              <div className={styles["session-selector"]}>
+                <select
+                  value={selectedSessionId}
+                  onChange={(e) => setSelectedSessionId(e.target.value)}
+                >
+                  {options}
+                </select>
+                <button type="button" onClick={() => deleteSession()}>
+                  Supprimer cette session
+                </button>
+              </div>
+
               {selectedSessionId && (
                 <ProgramSessionItem
                   token={token}

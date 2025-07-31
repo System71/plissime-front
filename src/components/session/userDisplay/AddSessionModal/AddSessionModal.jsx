@@ -6,10 +6,14 @@ import Button from "../../../Button/Button";
 import { updateSessionsList } from "../../../../../utils/updateData";
 
 const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
-  const [listIsVisible, setListIsVisible] = useState(true);
+  const [customersListIsVisible, setCustomersListIsVisible] = useState(true);
+  const [programsListIsVisible, setProgramsListIsVisible] = useState(true);
   const [searchCustomer, setSearchCustomer] = useState("");
+  const [searchProgram, setSearchProgram] = useState("");
   const [customersList, setCustomersList] = useState([]);
-  const [customer, setCustomer] = useState("");
+  const [programsList, setProgramsList] = useState([]);
+  const [customerId, setCustomerId] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [title, setTitle] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -17,6 +21,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
   const [program, setProgram] = useState(null);
+  const [session, setSession] = useState(null);
   const [choice, setChoice] = useState("admin");
   const [errors, setErrors] = useState({});
   const [errorBack, setErrorBack] = useState("");
@@ -24,7 +29,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const validateSessionForm = () => {
     const newErrors = {};
 
-    if (!customer) {
+    if (!customerId) {
       newErrors.customer = "Le nom est requis.";
     }
 
@@ -54,8 +59,9 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
     return newErrors;
   };
 
+  //Loading customer list to search
   useEffect(() => {
-    if (searchCustomer.length > 1) {
+    if (!customerId && searchCustomer.length > 1) {
       const fetchCustomers = async () => {
         try {
           const response = await axios.get(
@@ -66,7 +72,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             }
           );
           setCustomersList(response.data);
-          setListIsVisible(true);
+          setCustomersListIsVisible(true);
         } catch (error) {
           console.error("Erreur lors de la recherche de clients :", error);
         }
@@ -74,12 +80,35 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
       fetchCustomers();
     }
     if (searchCustomer.length <= 1) {
-      setListIsVisible(false);
+      setCustomersListIsVisible(false);
     }
-  }, [searchCustomer, token]);
+  }, [token, searchCustomer, customerId]);
 
-  const addSession = async (event) => {
-    event.preventDefault();
+  //Loading programs list to search
+  useEffect(() => {
+    if (!program && searchProgram.length > 1) {
+      const fetchPrograms = async () => {
+        try {
+          const response = await axios.get(
+            import.meta.env.VITE_API_URL + `/programs`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          setProgramsList(response.data);
+          setProgramsListIsVisible(true);
+        } catch (error) {
+          console.error("Erreur lors de la recherche de clients :", error);
+        }
+      };
+      fetchPrograms();
+    }
+    if (searchProgram.length <= 1) {
+      setProgramsListIsVisible(false);
+    }
+  }, [token, searchProgram, program]);
+
+  const addSession = async () => {
     const validationErrors = validateSessionForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -87,25 +116,6 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
     }
 
     try {
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL + "/session/add",
-        {
-          title: title,
-          start: start,
-          end: end,
-          state: state,
-          content: content,
-          price: price,
-          program: program,
-          customer: customer,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
       updateSessionsList(setSessionsList, token);
       setAddSessionDisplay(false);
     } catch (error) {
@@ -113,8 +123,11 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChangeState = (event) => {
     setState(event.target.value);
+  };
+  const handleChangeSession = (event) => {
+    setSession(event.target.value);
   };
 
   return (
@@ -144,12 +157,12 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             Contenu séance
           </button>
         </div>
-        <form onSubmit={addSession}>
+        <div className={styles["sessions-infos"]} onSubmit={addSession}>
           <h1>Ajouter une session</h1>
           {choice == "admin" && (
             <div className={styles["session-admin"]}>
-              <div className={styles["add-session-customer"]}>
-                <label htmlFor="customer">Nom du client</label>
+              <div className={styles["customer"]}>
+                <label htmlFor="customer">Nom</label>
                 <input
                   type="text"
                   placeholder="Client"
@@ -158,10 +171,12 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                   value={searchCustomer}
                   onChange={(event) => {
                     setSearchCustomer(event.target.value);
+                    setCustomerId("");
+                    setFirstName("");
                   }}
                 />
                 <p className={styles["error-message"]}>{errors.customer}</p>
-                {listIsVisible && (
+                {customersListIsVisible && (
                   <div className={styles["customers-list"]}>
                     <ul>
                       {customersList.map((customer, index) => {
@@ -170,8 +185,9 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                             key={index}
                             onClick={() => {
                               setSearchCustomer(customer.name);
-                              setListIsVisible(false);
-                              setCustomer(customer._id);
+                              setFirstName(customer.firstName);
+                              setCustomersListIsVisible(false);
+                              setCustomerId(customer._id);
                             }}
                           >
                             {customer.name} {customer.firstName}
@@ -181,6 +197,17 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                     </ul>
                   </div>
                 )}
+              </div>
+              <div>
+                <label htmlFor="firstName">Prénom</label>
+                <input
+                  type="text"
+                  placeholder="Prénom du client"
+                  name="firstName"
+                  id="firstName"
+                  value={firstName}
+                  disabled
+                />
               </div>
               <div>
                 <label htmlFor="title">Nom de la session</label>
@@ -240,7 +267,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
               </div>
               <div>
                 <label htmlFor="state">Statut</label>
-                <select name="state" id="state" onChange={handleChange}>
+                <select name="state" id="state" onChange={handleChangeState}>
                   <option value="Confirmée">Confirmée</option>
                   <option value="Annulée">Annulée</option>
                   <option value="A payer">A payer</option>
@@ -251,18 +278,55 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
           )}
           {choice == "content" && (
             <div className={styles["session-content"]}>
-              <div>
+              <div className={styles["program"]}>
                 <label htmlFor="program">Nom du programme</label>
                 <input
                   type="text"
                   placeholder="Nom du programme"
                   name="program"
                   id="program"
-                  value={program}
+                  value={searchProgram}
                   onChange={(event) => {
-                    setProgram(event.target.value);
+                    setSearchProgram(event.target.value);
+                    setProgram(null);
                   }}
                 />
+                {programsListIsVisible && (
+                  <div className={styles["programs-list"]}>
+                    <ul>
+                      {programsList.map((program, index) => {
+                        return (
+                          <li
+                            key={index}
+                            onClick={() => {
+                              setSearchProgram(program.title);
+                              setProgramsListIsVisible(false);
+                              setProgram(program);
+                            }}
+                          >
+                            {program.title}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              <div>
+                <label htmlFor="session">Session</label>
+                <select
+                  name="session"
+                  id="session"
+                  onChange={handleChangeSession}
+                >
+                  <option value="">Choisir une session</option>
+                  {program &&
+                    program.sessions.map((session, index) => (
+                      <option value={index + 1} key={session._id}>
+                        Session {index + 1}
+                      </option>
+                    ))}
+                </select>
               </div>
               <div>
                 <label htmlFor="content">Contenu de la session</label>
@@ -288,7 +352,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             />
             <Button type="submit" text="Ajouter ma session!" />
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@
   margin-bottom: 30px;
 }
 
-form {
+.user-settings form {
   display: flex;
   flex-direction: column;
   justify-content: center;

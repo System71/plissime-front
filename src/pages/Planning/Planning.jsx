@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./planning.css";
+import styles from "./planning.module.css";
 import Calendar from "../../components/Calendar/Calendar";
 import { useState } from "react";
 import Sessions from "../Sessions/Sessions";
@@ -17,8 +17,8 @@ const Planning = ({
   const [choice, setChoice] = useState("planning");
 
   return (
-    <div className="planning-sessions">
-      <div className="button-choice">
+    <div className={styles["planning-sessions"]}>
+      <div className={styles["button-choice"]}>
         <button
           type="button"
           className="planning-button"

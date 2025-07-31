@@ -25,6 +25,7 @@ const CustomerSettings = ({ token }) => {
   const [errors, setErrors] = useState({});
   const [errorBack, setErrorBack] = useState("");
 
+  //Load customer informations
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,7 +34,6 @@ const CustomerSettings = ({ token }) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
             },
           }
         );
@@ -259,11 +259,11 @@ const CustomerSettings = ({ token }) => {
                 <div>
                   <label htmlFor="phone">Téléphone</label>
                   <input
-                    type="phone"
+                    type="tel"
                     placeholder={phone}
                     name="phone"
                     id="phone"
-                    value={phone}
+                    value={"0" + phone}
                     onChange={(event) => {
                       setPhone(event.target.value);
                     }}
