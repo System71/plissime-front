@@ -195,7 +195,7 @@ const SignupUser = ({ setToken }) => {
       <div>
         <label htmlFor="zip">Code postal</label>
         <input
-          type="number"
+          type="text"
           name="zip"
           id="zip"
           placeholder="Votre code postal"
@@ -251,7 +251,7 @@ const SignupUser = ({ setToken }) => {
       <div>
         <label htmlFor="siret">SIRET</label>
         <input
-          type="number"
+          type="text"
           name="siret"
           id="siret"
           placeholder="Votre SIRET"

@@ -19,12 +19,13 @@ const Sessions = ({
   setSessionsList,
 }) => {
   const [searchCustomer, setSearchCustomer] = useState("");
+  const [sessionFilter, setSessionFilter] = useState("");
 
-  useEffect(() => {
-    if (token) {
-      updateSessionsList(setSessionsList, token, searchCustomer);
-    }
-  }, [token, searchCustomer, addSessionDisplay]);
+  useEffect(() => {}, [token, searchCustomer, addSessionDisplay]);
+
+  const handleChange = (event) => {
+    setSessionFilter(event.target.value);
+  };
 
   return (
     <div className={styles["content"]}>
@@ -60,6 +61,11 @@ const Sessions = ({
           }}
         />
         <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
+        <select
+          name="sessionFilter"
+          id="sessionFilter"
+          onChange={handleChange}
+        ></select>
       </div>
       <div className={styles["session-list"]}>
         {sessionsList.map((session) => {

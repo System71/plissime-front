@@ -116,6 +116,26 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
     }
 
     try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/session/add",
+        {
+          title: title,
+          start: start,
+          end: end,
+          state: state,
+          content: content,
+          price: price,
+          program: program,
+          customer: customerId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       updateSessionsList(setSessionsList, token);
       setAddSessionDisplay(false);
     } catch (error) {
@@ -157,7 +177,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
             Contenu séance
           </button>
         </div>
-        <div className={styles["sessions-infos"]} onSubmit={addSession}>
+        <div className={styles["sessions-infos"]}>
           <h1>Ajouter une session</h1>
           {choice == "admin" && (
             <div className={styles["session-admin"]}>
@@ -350,7 +370,11 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
               action={() => setAddSessionDisplay(false)}
               text="Annuler"
             />
-            <Button type="submit" text="Ajouter ma session!" />
+            <Button
+              type="button"
+              action={() => addSession()}
+              text="Ajouter ma session!"
+            />
           </div>
         </div>
       </div>

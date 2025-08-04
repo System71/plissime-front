@@ -11,7 +11,6 @@ export const updateSessionsList = async (
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
         },
       }
     );
@@ -32,7 +31,6 @@ export const updateCustomersList = async (
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
         },
       }
     );
