@@ -94,8 +94,8 @@ function App() {
             element={<Signup setToken={setToken} />}
           ></Route>
           <Route
-            path="/activation/:token"
-            element={<Activation setToken={setToken} />}
+            path="/activation/:tokenparam"
+            element={<Activation token={token} setToken={setToken} />}
           ></Route>
           <Route
             path="/"
@@ -206,7 +206,6 @@ function App() {
             token={token}
             setOpenCustomerDisplay={setOpenCustomerDisplay}
             id={customerID}
-            setCustomersList={setCustomersList}
           />
         )}
       </Router>

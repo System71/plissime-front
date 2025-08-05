@@ -1,15 +1,14 @@
+/* eslint-disable react/prop-types */
 import styles from "./activation.module.css";
-import { useParams } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import Cookies from "js-cookie";
 
-const Activation = ({ setToken }) => {
-  const { token } = useParams();
-  setToken(token);
+const Activation = ({ token, setToken }) => {
+  const { tokenparam } = useParams();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
@@ -38,6 +37,9 @@ const Activation = ({ setToken }) => {
 
   //Load customer informations
   useEffect(() => {
+    localStorage.setItem("role", "customer");
+    Cookies.set("plissimeToken", tokenparam);
+    setToken(tokenparam);
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -48,14 +50,16 @@ const Activation = ({ setToken }) => {
             },
           }
         );
-        if (response.data.isActive === true) {
+        if (response.data.isActive) {
           setIsActive(response.data.isActive);
         } else {
-          const birthdayFormatted = format(
-            response.data.birthday,
-            "yyyy-MM-dd"
-          );
-          setBirthday(birthdayFormatted || "");
+          if (response.data.birthday) {
+            const birthdayFormatted = format(
+              response.data.birthday,
+              "yyyy-MM-dd"
+            );
+            setBirthday(birthdayFormatted || "");
+          }
           setEmail(response.data.email || "");
           setName(response.data.name || "");
           setFirstName(response.data.firstName || "");
@@ -78,7 +82,7 @@ const Activation = ({ setToken }) => {
       }
     };
     fetchData();
-  }, [token]);
+  }, [token, tokenparam, setToken]);
 
   const validateCustomerForm = () => {
     const newErrors = {};
@@ -181,8 +185,6 @@ const Activation = ({ setToken }) => {
           },
         }
       );
-      localStorage.setItem("role", "customer");
-      Cookies.set("plissimeToken", token);
       navigate("/");
     } catch (error) {
       console.log(error.response.data);
@@ -306,7 +308,7 @@ const Activation = ({ setToken }) => {
                   id="city"
                   value={city}
                   onChange={(event) => {
-                    setCity(eventemail.target.value);
+                    setCity(event.target.value);
                   }}
                 />
                 <p className={styles["error-message"]}>{errors.city}</p>
