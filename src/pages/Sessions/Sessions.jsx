@@ -6,7 +6,7 @@ import SessionItem from "../../components/session/userDisplay/UserSessionItem/Us
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
-import { updateSessionsList } from "../../../utils/updateData";
+import axios from "axios";
 
 const Sessions = ({
   token,
@@ -19,9 +19,49 @@ const Sessions = ({
   setSessionsList,
 }) => {
   const [searchCustomer, setSearchCustomer] = useState("");
-  const [sessionFilter, setSessionFilter] = useState("");
+  const [sessionFilter, setSessionFilter] = useState("upcoming");
 
-  useEffect(() => {}, [token, searchCustomer, addSessionDisplay]);
+  useEffect(() => {
+    if (sessionFilter === "upcoming") {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `${
+              import.meta.env.VITE_API_URL
+            }/sessions/upcoming?name=${searchCustomer}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setSessionsList(response.data);
+        } catch (error) {
+          console.log(error.response);
+        }
+      };
+      fetchData();
+    } else if (sessionFilter === "past") {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `${
+              import.meta.env.VITE_API_URL
+            }/sessions/past?name=${searchCustomer}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setSessionsList(response.data);
+        } catch (error) {
+          console.log(error.response);
+        }
+      };
+      fetchData();
+    }
+  }, [token, searchCustomer, addSessionDisplay, sessionFilter]);
 
   const handleChange = (event) => {
     setSessionFilter(event.target.value);
@@ -61,11 +101,10 @@ const Sessions = ({
           }}
         />
         <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
-        <select
-          name="sessionFilter"
-          id="sessionFilter"
-          onChange={handleChange}
-        ></select>
+        <select name="sessionFilter" id="sessionFilter" onChange={handleChange}>
+          <option value="upcoming">Sessions à venir</option>
+          <option value="past">Sessions passées</option>
+        </select>
       </div>
       <div className={styles["session-list"]}>
         {sessionsList.map((session) => {

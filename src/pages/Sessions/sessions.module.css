@@ -41,10 +41,30 @@
   position: absolute;
 }
 
+.session-filter {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
 .session-filter input {
   width: 350px;
   height: 40px;
-  margin-bottom: 15px;
+}
+
+.session-filter input,
+.session-filter textarea,
+.session-filter select {
+  padding: 10px;
   border-radius: 5px;
-  margin-right: 10px;
+  border: 1px solid #a8c6cc;
+  background-color: white;
+}
+
+.session-filter input:focus,
+.session-filter textarea:focus,
+.session-filter select:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
 }
