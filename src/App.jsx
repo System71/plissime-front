@@ -46,7 +46,7 @@ import {
 import Layout from "./layout/Layout";
 import MyPrograms from "./pages/MyPrograms/MyPrograms";
 import Activation from "./pages/Activation/Activation";
-import Stripe from "./pages/Stripe/stripe";
+import Stripe from "./pages/Stripe/Stripe";
 library.add(
   faUser,
   faQuestion,
