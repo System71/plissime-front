@@ -102,8 +102,7 @@ const UserSettings = ({ token }) => {
     return newErrors;
   };
 
-  const modifyUser = async (event) => {
-    event.preventDefault();
+  const modifyUser = async () => {
     const validationErrors = validateUserForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -136,6 +135,31 @@ const UserSettings = ({ token }) => {
     }
   };
 
+  const createStripeAccount = async () => {
+    try {
+      console.log("coucou1");
+      // 1. Appeler ton backend pour créer le compte connecté
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + `/create-connected-account`,
+        {}, // Pas de body nécessaire ici
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("coucou2");
+      // 2. Récupérer l'URL envoyée par ton backend
+      const { url } = response.data;
+      console.log("coucou3");
+      // 3. Rediriger vers Stripe pour l'onboarding
+      window.location.href = url;
+    } catch (error) {
+      console.error("Erreur création compte Stripe", error);
+      alert("Une erreur est survenue, veuillez réessayer.");
+    }
+  };
+
   return (
     <>
       <h1>SETTINGS</h1>
@@ -143,7 +167,7 @@ const UserSettings = ({ token }) => {
         {isLoading ? (
           <p>En chargement</p>
         ) : (
-          <form onSubmit={modifyUser}>
+          <div>
             <div>
               <label htmlFor="email">Email</label>
               <input
@@ -286,10 +310,30 @@ const UserSettings = ({ token }) => {
               />
             </div>
             <div>
-              <button>Modifier mes informations</button>
+              <label htmlFor="activity">Activité</label>
+              <input
+                type="text"
+                name="activity"
+                id="activity"
+                placeholder="Votre activité"
+                value={activity}
+                onChange={(event) => {
+                  setActivity(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.activity}</p>
+            </div>
+            <div>
+              <label>Connexion STRIPE</label>
+              <button type="button" onClick={createStripeAccount}>
+                CONNEXION STRIPE
+              </button>
+            </div>
+            <div>
+              <button onClick={modifyUser}>Modifier mes informations</button>
               <p className={styles["error-message-back"]}>{errorBack}</p>
             </div>
-          </form>
+          </div>
         )}
       </div>
     </>

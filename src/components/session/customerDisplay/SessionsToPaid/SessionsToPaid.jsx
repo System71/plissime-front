@@ -26,6 +26,7 @@ const SessionsToPaid = ({
           }
         );
         setData(response.data);
+        console.log(response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.response);
@@ -53,6 +54,8 @@ const SessionsToPaid = ({
                 firstName={session.firstName}
                 date={session.start}
                 content={session.content}
+                price={session.price}
+                stripeCoach={session.coach.stripe_id}
                 key={String(session._id)}
               />
             );

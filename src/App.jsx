@@ -46,6 +46,7 @@ import {
 import Layout from "./layout/Layout";
 import MyPrograms from "./pages/MyPrograms/MyPrograms";
 import Activation from "./pages/Activation/Activation";
+import Stripe from "./pages/Stripe/stripe";
 library.add(
   faUser,
   faQuestion,
@@ -177,6 +178,7 @@ function App() {
               element={<MyPrograms token={token} />}
             ></Route>
             <Route path="/help" element={<Help token={token} />}></Route>
+            <Route path="/stripe" element={<Stripe />}></Route>
           </Route>
         </Routes>
         {addSessionDisplay && (

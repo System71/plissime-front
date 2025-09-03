@@ -3,10 +3,31 @@ import "./customer-session-item.css";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import running from "../../../../assets/running.png";
+import { useNavigate } from "react-router-dom";
 
-const CustomerSessionItem = ({ title, name, firstName, date, content }) => {
+const CustomerSessionItem = ({
+  id,
+  title,
+  name,
+  firstName,
+  date,
+  content,
+  price,
+  stripeCoach,
+}) => {
   const heure = format(date, "HH:mm");
   const formatedDate = format(date, "dd/LL/yyyy");
+  const navigate = useNavigate();
+
+  const handlePay = () => {
+    navigate("/stripe", {
+      state: {
+        amount: price, // prix de la session en euros ou centimes
+        coachStripeId: stripeCoach, // stripe_id du coach
+        sessionId: id, // pour lier le paiement à la session
+      },
+    });
+  };
 
   return (
     <div className="customer-session-item">
@@ -60,6 +81,18 @@ const CustomerSessionItem = ({ title, name, firstName, date, content }) => {
             <p>{content}</p>
           </div>
         </div>
+        <div className="customer-session-info">
+          <FontAwesomeIcon
+            className="info-picto"
+            icon="pen-to-square"
+            color="#E67E22"
+            size="xs"
+          />
+          <div>
+            <p>{price}euros</p>
+          </div>
+        </div>
+        <button onClick={handlePay}>Payer via STRIPE</button>
       </div>
       <div className="picto">
         <img

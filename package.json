@@ -16,6 +16,8 @@
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
+    "@stripe/react-stripe-js": "^4.0.0",
+    "@stripe/stripe-js": "^7.9.0",
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
