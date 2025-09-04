@@ -13,7 +13,8 @@ const CustomerSessionItem = ({
   date,
   content,
   price,
-  stripeCoach,
+  coachId,
+  token,
 }) => {
   const heure = format(date, "HH:mm");
   const formatedDate = format(date, "dd/LL/yyyy");
@@ -23,8 +24,9 @@ const CustomerSessionItem = ({
     navigate("/stripe", {
       state: {
         amount: price, // prix de la session en euros ou centimes
-        coachStripeId: stripeCoach, // stripe_id du coach
+        coachId: coachId, // stripe_id du coach
         sessionId: id, // pour lier le paiement à la session
+        token: token,
       },
     });
   };

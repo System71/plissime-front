@@ -21,7 +21,6 @@ const SessionsToPaid = ({
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
             },
           }
         );
@@ -55,7 +54,8 @@ const SessionsToPaid = ({
                 date={session.start}
                 content={session.content}
                 price={session.price}
-                stripeCoach={session.coach.stripe_id}
+                coachId={session.coach._id}
+                token={token}
                 key={String(session._id)}
               />
             );
