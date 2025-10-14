@@ -37,7 +37,7 @@ const Planning = ({
         </button>
       </div>
       {choice == "planning" ? (
-        <Calendar />
+        <Calendar token={token} />
       ) : (
         <Sessions
           token={token}
