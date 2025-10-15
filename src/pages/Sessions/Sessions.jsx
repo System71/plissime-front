@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import styles from "./sessions.module.css";
 import { useState, useEffect } from "react";
-import SessionItem from "../../components/session/userDisplay/UserSessionItem/UserSessionItem";
+import UserSessionItem from "../../components/session/userDisplay/UserSessionItem/UserSessionItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
@@ -109,7 +109,7 @@ const Sessions = ({
       <div className={styles["session-list"]}>
         {sessionsList.map((session) => {
           return (
-            <SessionItem
+            <UserSessionItem
               openSessionDisplay={openSessionDisplay}
               setOpenSessionDisplay={setOpenSessionDisplay}
               setSessionID={setSessionID}

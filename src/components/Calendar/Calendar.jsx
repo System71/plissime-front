@@ -8,7 +8,12 @@ import frLocale from "@fullcalendar/core/locales/fr";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Calendar = ({ token }) => {
+const Calendar = ({
+  token,
+  openSessionDisplay,
+  setOpenSessionDisplay,
+  setSessionID,
+}) => {
   const [events, setEvents] = useState([]);
   const [googleLinked, setGoogleLinked] = useState(null);
 
@@ -81,7 +86,11 @@ const Calendar = ({ token }) => {
           events={events}
           selectable={true}
           eventClick={(info) => {
-            alert(`Événement: ${info.event.title}`);
+            console.log("info.event==>", info.event);
+            if (info.event.extendedProps.source == "local") {
+              setOpenSessionDisplay(!openSessionDisplay);
+              setSessionID(info.event.id);
+            }
           }}
           locales={[frLocale]}
           locale="fr"

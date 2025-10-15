@@ -37,7 +37,12 @@ const Planning = ({
         </button>
       </div>
       {choice == "planning" ? (
-        <Calendar token={token} />
+        <Calendar
+          token={token}
+          openSessionDisplay={openSessionDisplay}
+          setOpenSessionDisplay={setOpenSessionDisplay}
+          setSessionID={setSessionID}
+        />
       ) : (
         <Sessions
           token={token}
