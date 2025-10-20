@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
+import "react-datepicker/dist/react-datepicker.css";
 import styles from "./add-session-modal.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../../Button/Button";
 import { updateSessionsList } from "../../../../../utils/updateData";
+import DatePicker from "react-datepicker";
+import { fr } from "date-fns/locale";
 
 const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [customersListIsVisible, setCustomersListIsVisible] = useState(true);
@@ -15,8 +18,8 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [customerId, setCustomerId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [title, setTitle] = useState("");
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const [start, setStart] = useState(null);
+  const [end, setEnd] = useState(null);
   const [state, setState] = useState("Confirmée");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
@@ -245,29 +248,43 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
               </div>
               <div>
                 <label htmlFor="start">Début de la session</label>
-                <input
-                  type="datetime-local"
-                  name="start"
-                  id="start"
-                  placeholder="Date et heure début"
-                  value={start}
-                  onChange={(event) => {
-                    setStart(event.target.value);
+                <DatePicker
+                  selected={start}
+                  onChange={(date) => {
+                    setStart(date);
+                    setEnd(date);
                   }}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  dateFormat="dd/MM/yyyy HH:mm"
+                  placeholderText="Début de la session"
+                  shouldCloseOnSelect={true}
+                  timeCaption="Heure"
+                  locale={fr}
+                  className="custom_input"
+                  portalId="react-datepicker-portal"
                 />
                 <p className={styles["error-message"]}>{errors.start}</p>
               </div>
               <div>
                 <label htmlFor="end">Fin de la session</label>
-                <input
-                  type="datetime-local"
-                  name="end"
-                  id="end"
-                  placeholder="Date et heure fin"
-                  value={end}
-                  onChange={(event) => {
-                    setEnd(event.target.value);
+                <DatePicker
+                  selected={end}
+                  onChange={(date) => {
+                    setStart(date);
+                    setEnd(date);
                   }}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  dateFormat="dd/MM/yyyy HH:mm"
+                  placeholderText="Fin de la session"
+                  shouldCloseOnSelect={true}
+                  timeCaption="Heure"
+                  locale={fr}
+                  className="custom_input"
+                  portalId="react-datepicker-portal"
                 />
                 <p className={styles["error-message"]}>{errors.end}</p>
               </div>

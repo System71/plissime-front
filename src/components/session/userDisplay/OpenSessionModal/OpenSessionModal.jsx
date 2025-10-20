@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
+import "react-datepicker/dist/react-datepicker.css";
 import styles from "./open-session-modal.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../../Button/Button";
-import { toZonedTime } from "date-fns-tz";
-import { format } from "date-fns";
 import { updateSessionsList } from "../../../../../utils/updateData";
+import DatePicker from "react-datepicker";
+import { fr } from "date-fns/locale";
 
 const OpenSessionModal = ({
   token,
@@ -17,8 +18,8 @@ const OpenSessionModal = ({
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [title, setTitle] = useState("");
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const [start, setStart] = useState(null);
+  const [end, setEnd] = useState(null);
   const [state, setState] = useState("scheduled");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
@@ -35,16 +36,12 @@ const OpenSessionModal = ({
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        const startTZ = toZonedTime(response.data.start, "Europe/Paris");
-        const startFormatted = format(startTZ, "yyy-MM-dd'T'HH:mm");
-        const endTZ = toZonedTime(response.data.end, "Europe/Paris");
-        const endFormatted = format(endTZ, "yyy-MM-dd'T'HH:mm");
 
         setName(response.data.customer.name);
         setFirstName(response.data.customer.firstName);
         setTitle(response.data.title);
-        setStart(startFormatted);
-        setEnd(endFormatted);
+        setStart(new Date(response.data.start));
+        setEnd(new Date(response.data.end));
         setState(response.data.state);
         setContent(response.data.content);
         setPrice(response.data.price);
@@ -176,28 +173,42 @@ const OpenSessionModal = ({
                 </div>
                 <div>
                   <label htmlFor="start">Début de la session</label>
-                  <input
-                    type="datetime-local"
-                    name="start"
-                    id="start"
-                    placeholder={start}
-                    value={start}
-                    onChange={(event) => {
-                      setStart(event.target.value);
+                  <DatePicker
+                    selected={start}
+                    onChange={(date) => {
+                      setStart(date);
+                      setEnd(date);
                     }}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    dateFormat="dd/MM/yyyy HH:mm"
+                    placeholderText="Début de la session"
+                    shouldCloseOnSelect={true}
+                    timeCaption="Heure"
+                    locale={fr}
+                    className="custom_input"
+                    portalId="react-datepicker-portal"
                   />
                 </div>
                 <div>
                   <label htmlFor="end">Fin de la session</label>
-                  <input
-                    type="datetime-local"
-                    name="end"
-                    id="end"
-                    placeholder={end}
-                    value={end}
-                    onChange={(event) => {
-                      setEnd(event.target.value);
+                  <DatePicker
+                    selected={end}
+                    onChange={(date) => {
+                      setStart(date);
+                      setEnd(date);
                     }}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    dateFormat="dd/MM/yyyy HH:mm"
+                    placeholderText="Fin de la session"
+                    shouldCloseOnSelect={true}
+                    timeCaption="Heure"
+                    locale={fr}
+                    className="custom_input"
+                    portalId="react-datepicker-portal"
                   />
                 </div>
                 <div>

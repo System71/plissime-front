@@ -136,3 +136,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+#react-datepicker-portal {
+  position: relative;
+  z-index: 10000; /* supérieur à la modal */
+}
