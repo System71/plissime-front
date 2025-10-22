@@ -133,7 +133,7 @@ const ExerciseCreationItem = ({
           );
           setImageUrl(response.data.movement.imageUrl);
           setSelectedCategory(response.data.movement.category);
-          setMovement(response.data.movement._id);
+          setMovement(response.data.movement);
           setSeries(response.data.series);
           setRepetitions(response.data.repetitions);
           setWeight(response.data.weight);
