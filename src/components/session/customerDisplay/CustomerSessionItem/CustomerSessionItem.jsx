@@ -13,6 +13,7 @@ const CustomerSessionItem = ({
   date,
   content,
   price,
+  state,
   coachId,
   token,
 }) => {
@@ -94,7 +95,11 @@ const CustomerSessionItem = ({
             <p>{price}euros</p>
           </div>
         </div>
-        <button onClick={handlePay}>Payer via STRIPE</button>
+        {state != "Payée" && (
+          <div className="customer-session-info">
+            <button onClick={handlePay}>Payer en ligne</button>
+          </div>
+        )}
       </div>
       <div className="picto">
         <img

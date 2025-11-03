@@ -25,7 +25,6 @@ const SessionsToPaid = ({
           }
         );
         setData(response.data);
-        console.log(response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.response);
@@ -54,6 +53,7 @@ const SessionsToPaid = ({
                 date={session.start}
                 content={session.content}
                 price={session.price}
+                state={session.state}
                 coachId={session.coach._id}
                 token={token}
                 key={String(session._id)}

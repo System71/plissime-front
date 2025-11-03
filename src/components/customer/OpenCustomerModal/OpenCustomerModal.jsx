@@ -198,6 +198,19 @@ const OpenCustomerModal = ({ token, setOpenCustomerDisplay, id }) => {
                   }}
                 />
               </div>
+              <div>
+                <label htmlFor="comments">Profession</label>
+                <input
+                  type="text"
+                  placeholder={comments}
+                  name="comments"
+                  id="comments"
+                  value={comments}
+                  onChange={(event) => {
+                    setComments(event.target.value);
+                  }}
+                />
+              </div>
             </div>
           )}
           {choice === "sport" && (

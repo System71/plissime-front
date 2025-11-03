@@ -25,6 +25,7 @@ const SessionsPaid = ({
             },
           }
         );
+        console.log("session payée=", response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -52,6 +53,8 @@ const SessionsPaid = ({
                 name={session.name}
                 firstName={session.firstName}
                 date={session.start}
+                price={session.price}
+                state={session.state}
                 content={session.content}
                 key={String(session._id)}
               />

@@ -307,7 +307,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                 <select name="state" id="state" onChange={handleChangeState}>
                   <option value="Confirmée">Confirmée</option>
                   <option value="Annulée">Annulée</option>
-                  <option value="A payer">A payer</option>
+                  <option value="À payer">A payer</option>
                   <option value="Payée">Payée</option>
                 </select>
               </div>
