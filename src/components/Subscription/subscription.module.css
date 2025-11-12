@@ -1,11 +1,12 @@
-.user-settings {
+.subscription {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 }
 
-.user-settings button {
+.subscription button {
   height: 40px;
   font-weight: 600;
   text-align: center;

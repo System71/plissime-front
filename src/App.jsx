@@ -42,6 +42,7 @@ import {
   faSquareBinary,
   faArrowTrendUp,
   faArrowsRotate,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
 import MyPrograms from "./pages/MyPrograms/MyPrograms";
@@ -65,7 +66,8 @@ library.add(
   faPenToSquare,
   faSquareBinary,
   faArrowTrendUp,
-  faArrowsRotate
+  faArrowsRotate,
+  faCheck
 );
 
 function App() {

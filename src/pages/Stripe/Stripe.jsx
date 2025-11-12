@@ -26,7 +26,7 @@ const Stripe = () => {
       try {
         const response = await axios.post(
           import.meta.env.VITE_API_URL + `/create-payment-intent`,
-          { coachId, amount: amount * 100, sessionId }, // 20€ en centimes
+          { coachId, amount: amount * 100, sessionId }, // en centimes
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -14,19 +14,20 @@ const Payments = ({ token }) => {
       <div className={styles["button-choice"]}>
         <button
           type="button"
-          onClick
+          onClick={() => setChoice("payable")}
           style={{ backgroundColor: choice == "payable" && "#a8c6cc" }}
         >
           En attente
         </button>
         <button
           type="button"
+          onClick={() => setChoice("paid")}
           style={{ backgroundColor: choice == "paid" && "#a8c6cc" }}
         >
           Encaissés
         </button>
       </div>
-      {choice == "planning" ? <Paid /> : <ToPaid />}
+      {choice == "paid" ? <Paid token={token} /> : <ToPaid token={token} />}
     </div>
   );
 };

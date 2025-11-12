@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import styles from "./session-paid.module.css";
+import styles from "./session-item-payment.module.css";
 import { format } from "date-fns";
 
-const SessionPaid = ({ title, name, firstName, date, price }) => {
+const SessionItemPayment = ({ title, name, firstName, date, price }) => {
   const formatedDate = format(date, "dd/LL/yyyy");
 
   return (
@@ -13,8 +13,9 @@ const SessionPaid = ({ title, name, firstName, date, price }) => {
       </div>
       <div className={styles["title"]}>{title}</div>
       <div className={styles["price"]}>{price} euros</div>
+      <div className="view">Voir</div>
     </div>
   );
 };
 
-export default SessionPaid;
+export default SessionItemPayment;

@@ -234,7 +234,7 @@ const OpenSessionModal = ({
                   >
                     <option value="Confirmée">Confirmée</option>
                     <option value="Annulée">Annulée</option>
-                    <option value="A payer">A payer</option>
+                    <option value="À payer">À payer</option>
                     <option value="Payée">Payée</option>
                   </select>
                 </div>

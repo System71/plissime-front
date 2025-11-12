@@ -95,7 +95,7 @@ const CustomerSessionItem = ({
             <p>{price}euros</p>
           </div>
         </div>
-        {state != "Payée" && (
+        {state === "À payer" && (
           <div className="customer-session-info">
             <button onClick={handlePay}>Payer en ligne</button>
           </div>
