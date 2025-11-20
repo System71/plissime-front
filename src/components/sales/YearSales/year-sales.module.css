@@ -4,14 +4,23 @@
   justify-content: center;
   align-items: center;
   flex: 1;
-  gap: 40px;
+  gap: 20px;
 }
 
-.container > div {
+.title {
+  font-weight: bold;
+}
+
+.content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.value {
   font-size: medium;
   font-weight: bold;
   color: #e67e22;
-  margin-bottom: 20px;
 }

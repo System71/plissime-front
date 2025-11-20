@@ -29,7 +29,7 @@ const Calendar = ({
           }
         );
         setGoogleLinked(response.data.linked);
-
+        console.log("response.data.linked",response.data.linked);
         if (response.data.linked) {
           const response = await axios.get(
             `${import.meta.env.VITE_API_URL}/events`,

@@ -18,7 +18,7 @@
 }
 
 .first-line {
-  min-height: 200px;
+  min-height: 150px;
 }
 
 .second-line {
@@ -26,14 +26,16 @@
 }
 
 .first-line,
-.second-line,.third-line {
+.second-line,
+.third-line {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
 .first-line > div,
-.second-line > div,.third-line > div {
+.second-line > div,
+.third-line > div {
   flex: 1;
 }
 
