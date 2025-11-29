@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from "./subscription.module.css";
 import { useState } from "react";
 import AnnualSubscription from "./blocks/annualSubscription/AnnualSubscription";

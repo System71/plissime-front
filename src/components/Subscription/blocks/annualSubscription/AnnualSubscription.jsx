@@ -1,7 +1,27 @@
+/* eslint-disable react/prop-types */
 import styles from "./annual-subscription.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const AnnualSubscription = ({ token }) => {
+  const subscribe = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/subscription/checkout`,
+        { priceId: import.meta.env.VITE_ANNUAL_SUB },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("response=", response);
+      window.location.href = response.data.url;
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <div className={styles["annual-subscription"]}>
       <div className={styles["subscription-block"]}>
@@ -68,7 +88,9 @@ const AnnualSubscription = ({ token }) => {
             <p>Version mobile</p>
           </div>
         </div>
-        <div className={styles["payment"]}>Procéder au paiement</div>
+        <div className={styles["payment"]} onClick={() => subscribe()}>
+          Procéder au paiement
+        </div>
       </div>
     </div>
   );

@@ -34,7 +34,6 @@ const Stripe = () => {
           }
         );
         setClientSecret(response.data.clientSecret);
-        console.log("clientSecret recu = ", response.data.clientSecret);
       } catch (error) {
         console.error("Erreur création PaymentIntent:", error);
       }

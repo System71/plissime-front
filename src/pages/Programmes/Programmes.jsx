@@ -7,8 +7,9 @@ import circle from "../../assets/circle.png";
 import ProgramCreation from "../../components/program/ProgramCreation/ProgramCreation";
 import axios from "axios";
 import ProgramItem from "../../components/program/ProgramItem/ProgramItem";
+import Subscription from "../../components/Subscription/Subscription";
 
-const Programmes = ({ token }) => {
+const Programmes = ({ token, sub }) => {
   const [creation, setCreation] = useState(false);
   const [programs, setPrograms] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState(null);
@@ -33,56 +34,60 @@ const Programmes = ({ token }) => {
     fetchPrograms();
   }, [token, creation]);
 
-  return (
-    <>
-      <h1>Programmes</h1>
-      {!creation && (
-        <div className={styles["addProgram"]}>
-          <p>Créer un nouveau programme</p>
-          <div className={styles["arrow-circle"]}>
-            <img className={styles["arrow"]} src={arrow} alt="arrow" />
-            <div
-              className={styles["plus-container"]}
-              onClick={() => {
-                setSelectedProgram(null);
-                setCreation(true);
-              }}
-            >
-              <img className={styles["circle"]} src={circle} alt="circle" />
-              <FontAwesomeIcon
-                className={styles["plus-circle"]}
-                icon="plus-circle"
-                color="#E67E22"
-                size="4x"
-              />
+  if (!sub) {
+    return (
+      <>
+        <h1>Programmes</h1>
+        {!creation && (
+          <div className={styles["addProgram"]}>
+            <p>Créer un nouveau programme</p>
+            <div className={styles["arrow-circle"]}>
+              <img className={styles["arrow"]} src={arrow} alt="arrow" />
+              <div
+                className={styles["plus-container"]}
+                onClick={() => {
+                  setSelectedProgram(null);
+                  setCreation(true);
+                }}
+              >
+                <img className={styles["circle"]} src={circle} alt="circle" />
+                <FontAwesomeIcon
+                  className={styles["plus-circle"]}
+                  icon="plus-circle"
+                  color="#E67E22"
+                  size="4x"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      {creation ? (
-        <ProgramCreation
-          token={token}
-          setCreation={setCreation}
-          program={selectedProgram}
-        />
-      ) : (
-        <div className={styles["programList"]}>
-          {programs.map((program) => (
-            <ProgramItem
-              key={program._id}
-              title={program.title}
-              duration={program.duration}
-              notes={program.notes}
-              onClick={() => {
-                setSelectedProgram(program);
-                setCreation(true);
-              }}
-            />
-          ))}
-        </div>
-      )}
-    </>
-  );
+        )}
+        {creation ? (
+          <ProgramCreation
+            token={token}
+            setCreation={setCreation}
+            program={selectedProgram}
+          />
+        ) : (
+          <div className={styles["programList"]}>
+            {programs.map((program) => (
+              <ProgramItem
+                key={program._id}
+                title={program.title}
+                duration={program.duration}
+                notes={program.notes}
+                onClick={() => {
+                  setSelectedProgram(program);
+                  setCreation(true);
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </>
+    );
+  } else {
+    return <Subscription token={token} />;
+  }
 };
 
 export default Programmes;

@@ -83,6 +83,7 @@ function App() {
   const [role, setRole] = useState(() => {
     return localStorage.getItem("role") || null;
   });
+  const [sub, setSub] = useState(false);
 
   return (
     <div className="app">
@@ -90,7 +91,9 @@ function App() {
         <Routes>
           <Route
             path="/login"
-            element={<Login setToken={setToken} setRole={setRole} />}
+            element={
+              <Login setToken={setToken} setRole={setRole} setSub={setSub} />
+            }
           ></Route>
           <Route
             path="/signup"
@@ -155,12 +158,13 @@ function App() {
                   setSessionID={setSessionID}
                   sessionsList={sessionsList}
                   setSessionsList={setSessionsList}
+                  sub={sub}
                 />
               }
             ></Route>
             <Route
               path="/programmes"
-              element={<Programmes token={token} />}
+              element={<Programmes token={token} sub={sub} />}
             ></Route>
             <Route
               path="/payments"

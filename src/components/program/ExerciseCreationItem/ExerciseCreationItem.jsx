@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from "./exercise-creation-item.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
