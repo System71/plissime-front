@@ -28,9 +28,10 @@ const MonthSales = ({ token }) => {
 
   return (
     <div className={styles["container"]}>
-      <h2>CA MOIS EN COURS</h2>
-      <div>
-        <p>{monthSales} €</p>
+      <div className={styles["title"]}>CA MOIS EN COURS</div>
+      <div className={styles["content"]}>
+        <p className={styles["value"]}>{monthSales} €</p>
+        <p> +10% du mois dernier</p>
       </div>
     </div>
   );

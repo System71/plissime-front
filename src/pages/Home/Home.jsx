@@ -8,6 +8,7 @@ import DaySessions from "../../components/session/userDisplay/DaySessions/DaySes
 import UserUpcomingSessions from "../../components/session/userDisplay/UserUpcomingSessions/UserUpcomingSessions.jsx";
 import SessionsToPaid from "../../components/session/customerDisplay/SessionsToPaid/SessionsToPaid.jsx";
 import SessionsPaid from "../../components/session/customerDisplay/SessionsPaid/SessionsPaid.jsx";
+import NewCustomer from "../../components/customer/NewCustomer/NewCustomer.jsx";
 
 const Home = ({
   token,
@@ -30,6 +31,9 @@ const Home = ({
             </div>
             <div className={styles["dashboard-item"]}>
               <UpcomingSales token={token} />
+            </div>
+            <div className={styles["dashboard-item"]}>
+              <NewCustomer token={token} />
             </div>
           </div>
           <div className={styles["second-line"]}>

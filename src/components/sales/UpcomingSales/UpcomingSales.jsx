@@ -28,9 +28,10 @@ const UpcomingSales = ({ token }) => {
 
   return (
     <div className={styles["container"]}>
-      <h2>CA A VENIR</h2>
-      <div>
-        <p>{upcomingSales} €</p>
+      <div className={styles["title"]}>CA A VENIR</div>
+      <div className={styles["content"]}>
+        <p className={styles["value"]}>{upcomingSales} €</p>
+        <p>2 paiements en attentes</p>
       </div>
     </div>
   );

@@ -28,9 +28,10 @@ const YearSales = ({ token }) => {
 
   return (
     <div className={styles["container"]}>
-      <h2>CA ANNEE EN COURS</h2>
-      <div>
-        <p>{yearSales} €</p>
+      <div className={styles["title"]}>CA ANNEE EN COURS</div>
+      <div className={styles["content"]}>
+        <p className={styles["value"]}>{yearSales} €</p>
+        <p>+15% sur année précédente</p>
       </div>
     </div>
   );
