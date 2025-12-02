@@ -9,7 +9,10 @@ const UserSettings = ({ token }) => {
 
   return (
     <>
-      <h1>VOS PARAMÈTRES</h1>
+      <div className={styles["message"]}>
+        <p>Gérez vos paiements en 1 clic</p>
+      </div>
+
       <div className={styles["user-settings"]}>
         <div className={styles["button-choice"]}>
           <button

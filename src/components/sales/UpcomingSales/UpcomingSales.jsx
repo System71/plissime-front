@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 const UpcomingSales = ({ token }) => {
   const [upcomingSales, setUpcomingSales] = useState([]);
+  const [paymentsToCome, setPaymentsToCome] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +19,8 @@ const UpcomingSales = ({ token }) => {
             },
           }
         );
-        setUpcomingSales(response.data);
+        setUpcomingSales(response.data.upcomingSales);
+        setPaymentsToCome(response.data.paymentsToCome);
       } catch (error) {
         console.log(error.response);
       }
@@ -31,7 +33,10 @@ const UpcomingSales = ({ token }) => {
       <div className={styles["title"]}>CA A VENIR</div>
       <div className={styles["content"]}>
         <p className={styles["value"]}>{upcomingSales} €</p>
-        <p>2 paiements en attentes</p>
+        <p>
+          <span style={{ color: "green" }}>{paymentsToCome}</span> paiements en
+          attente
+        </p>
       </div>
     </div>
   );

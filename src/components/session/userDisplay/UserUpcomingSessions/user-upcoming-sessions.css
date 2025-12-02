@@ -1,6 +1,7 @@
 .user-upcoming-sessions-container {
   display: flex;
-  width: 90%;
+  width: 100%;
+  padding: 10px;
   flex-direction: column;
   overflow: hidden;
   justify-content: center;
@@ -21,5 +22,6 @@
 .user-upcoming-sessions-list {
   display: flex;
   flex-direction: column;
+  width: 100%;
   border: 1px solid grey;
 }

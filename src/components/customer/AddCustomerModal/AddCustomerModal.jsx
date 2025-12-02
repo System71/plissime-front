@@ -1,16 +1,17 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import styles from "./add-customer-modal.module.css";
 import { useState } from "react";
 import axios from "axios";
 import Button from "../../Button/Button";
-import { updateCustomersList } from "../../../../utils/updateData";
+import { updateActiveCustomersList } from "../../../../utils/updateData";
 // import CustomerItem from "../CustomerItem/CustomerItem";
 
 const AddCustomerModal = ({
   token,
   setAddCustomerDisplay,
-  setCustomersList,
+  setActiveCustomersList,
 }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -98,7 +99,7 @@ const AddCustomerModal = ({
           },
         }
       );
-      updateCustomersList(setCustomersList, token);
+      updateActiveCustomersList(setActiveCustomersList, token);
       setAddCustomerDisplay(false);
     } catch (error) {
       setErrorBack(error.response.data.message);
@@ -118,7 +119,7 @@ const AddCustomerModal = ({
           },
         }
       );
-      updateCustomersList(setCustomersList, token);
+      updateActiveCustomersList(setActiveCustomersList, token);
       setAddCustomerDisplay(false);
     } catch (error) {
       setErrorBack(error.response.data.message);

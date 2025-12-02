@@ -43,6 +43,8 @@ import {
   faArrowTrendUp,
   faArrowsRotate,
   faCheck,
+  faBars,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
 import MyPrograms from "./pages/MyPrograms/MyPrograms";
@@ -67,7 +69,9 @@ library.add(
   faSquareBinary,
   faArrowTrendUp,
   faArrowsRotate,
-  faCheck
+  faCheck,
+  faBars,
+  faXmark
 );
 
 function App() {
@@ -79,11 +83,13 @@ function App() {
   const [addCustomerDisplay, setAddCustomerDisplay] = useState(false);
   const [openCustomerDisplay, setOpenCustomerDisplay] = useState(false);
   const [sessionsList, setSessionsList] = useState([]);
-  const [customersList, setCustomersList] = useState([]);
+  const [activeCustomersList, setActiveCustomersList] = useState([]);
+  const [inactiveCustomersList, setInactiveCustomersList] = useState([]);
   const [role, setRole] = useState(() => {
     return localStorage.getItem("role") || null;
   });
   const [sub, setSub] = useState(false);
+  const [firstName, setFirstName] = useState("");
 
   return (
     <div className="app">
@@ -92,7 +98,12 @@ function App() {
           <Route
             path="/login"
             element={
-              <Login setToken={setToken} setRole={setRole} setSub={setSub} />
+              <Login
+                setToken={setToken}
+                setRole={setRole}
+                setSub={setSub}
+                setFirstName={setFirstName}
+              />
             }
           ></Route>
           <Route
@@ -110,7 +121,7 @@ function App() {
                 token={token}
                 setToken={setToken}
                 setSessionsList={setSessionsList}
-                setCustomersList={setCustomersList}
+                setCustomersList={setActiveCustomersList}
                 role={role}
               />
             }
@@ -125,6 +136,7 @@ function App() {
                     openSessionDisplay={openSessionDisplay}
                     setOpenSessionDisplay={setOpenSessionDisplay}
                     role={role}
+                    firstName={firstName}
                   />
                 ) : (
                   <Navigate to="/login" />
@@ -141,8 +153,10 @@ function App() {
                   openCustomerDisplay={openCustomerDisplay}
                   setOpenCustomerDisplay={setOpenCustomerDisplay}
                   setCustomerID={setCustomerID}
-                  customersList={customersList}
-                  setCustomersList={setCustomersList}
+                  activeCustomersList={activeCustomersList}
+                  setActiveCustomersList={setActiveCustomersList}
+                  inactiveCustomersList={inactiveCustomersList}
+                  setInactiveCustomersList={setInactiveCustomersList}
                 />
               }
             ></Route>
@@ -198,7 +212,7 @@ function App() {
           <AddCustomerModal
             token={token}
             setAddCustomerDisplay={setAddCustomerDisplay}
-            setCustomersList={setCustomersList}
+            setCustomersList={setActiveCustomersList}
           />
         )}
         {openSessionDisplay && (

@@ -37,7 +37,7 @@ const Programmes = ({ token, sub }) => {
   if (!sub) {
     return (
       <>
-        <h1>Programmes</h1>
+        <p className={styles["message"]}>Créez vos programmes simplement.</p>
         {!creation && (
           <div className={styles["addProgram"]}>
             <p>Créer un nouveau programme</p>
@@ -75,6 +75,7 @@ const Programmes = ({ token, sub }) => {
                 title={program.title}
                 duration={program.duration}
                 notes={program.notes}
+                nbCustomer={program.customers.length}
                 onClick={() => {
                   setSelectedProgram(program);
                   setCreation(true);

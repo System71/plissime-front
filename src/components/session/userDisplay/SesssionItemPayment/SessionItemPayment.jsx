@@ -9,11 +9,11 @@ const SessionItemPayment = ({ title, name, firstName, date, price }) => {
     <div className={styles["content"]}>
       <div className={styles["date"]}>{formatedDate}</div>
       <div className={styles["name"]}>
-        {name} {firstName}
+        {name} <span className={styles["first-name"]}>{firstName}</span>
       </div>
       <div className={styles["title"]}>{title}</div>
-      <div className={styles["price"]}>{price} euros</div>
-      <div className="view">Voir</div>
+      <div className={styles["price"]}>{price}€ </div>
+      <div className={styles["view"]}>Voir</div>
     </div>
   );
 };

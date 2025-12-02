@@ -48,6 +48,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: 10px;
 }
 
 label {
@@ -72,4 +73,28 @@ label {
 
 .exercise-notes textarea {
   width: 100%;
+}
+
+@media (max-width: 576px) {
+  .exercise-creation-item {
+    flex-direction: column;
+  }
+
+  .exercise-picture {
+    display: none;
+  }
+
+  .exercise-infos-left,
+  .exercise-infos-right {
+    width: 100%;
+  }
+
+  .exercise-infos select,
+  .exercise-infos input {
+    width: 100%;
+  }
+
+  .exercise-notes {
+    margin-top: 10px;
+  }
 }

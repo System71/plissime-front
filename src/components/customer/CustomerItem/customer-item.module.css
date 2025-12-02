@@ -44,3 +44,9 @@
   height: 80px;
   object-fit: contain;
 }
+
+@media (max-width: 576px) {
+  .customer-item {
+    width: 100%;
+  }
+}

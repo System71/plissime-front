@@ -161,7 +161,7 @@ const ExerciseCreationItem = ({
               onChange={(e) => setSelectedCategory(e.target.value)}
               value={selectedCategory}
             >
-              <option value="">-- Choisir une catégorie --</option>
+              <option value="">-- Catégorie --</option>
               {categories.map((cat, index) => (
                 <option key={index} value={cat}>
                   {cat}
@@ -169,7 +169,7 @@ const ExerciseCreationItem = ({
               ))}
             </select>
             <div>
-              <label htmlFor="series">Nombre séries : </label>
+              <label htmlFor="series">Séries : </label>
               <input
                 type="number"
                 name="series"
@@ -181,7 +181,7 @@ const ExerciseCreationItem = ({
               />
             </div>
             <div>
-              <label htmlFor="repetitions">Nombre répétitions : </label>
+              <label htmlFor="repetitions">Répétitions : </label>
               <input
                 type="number"
                 name="repetitions"
@@ -217,7 +217,7 @@ const ExerciseCreationItem = ({
                 setImageUrl(selected?.imageUrl || "");
               }}
             >
-              <option value="">-- Choisir un type --</option>
+              <option value="">-- Type --</option>
               {filteredMovements.map((mvt) => (
                 <option key={mvt._id} value={mvt._id}>
                   {mvt.title}

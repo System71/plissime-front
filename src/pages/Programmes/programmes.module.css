@@ -1,5 +1,5 @@
 .addProgram {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,5 +37,17 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 30px;
+}
+
+.message {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 576px) {
+  .arrow-circle {
+    margin-top: 70px;
+    margin-left: 0;
+    gap: 70px;
+  }
 }

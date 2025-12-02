@@ -29,3 +29,25 @@
 .view {
   flex: 1;
 }
+
+@media (max-width: 576px) {
+  .content {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .title,
+  .view {
+    display: none;
+  }
+
+  .date,
+  .name,
+  .price {
+    flex-grow: 0;
+  }
+
+  .first-name {
+    display: none;
+  }
+}

@@ -4,7 +4,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const MonthSales = ({ token }) => {
-  const [monthSales, setMonthSales] = useState([]);
+  const [monthSales, setMonthSales] = useState(0);
+  const [diffPrevMonth, setDiffPrevMonth] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +19,8 @@ const MonthSales = ({ token }) => {
             },
           }
         );
-        setMonthSales(response.data);
+        setMonthSales(response.data.monthSales);
+        setDiffPrevMonth(response.data.diffPrevMonth);
       } catch (error) {
         console.log(error.response);
       }
@@ -31,7 +33,13 @@ const MonthSales = ({ token }) => {
       <div className={styles["title"]}>CA MOIS EN COURS</div>
       <div className={styles["content"]}>
         <p className={styles["value"]}>{monthSales} €</p>
-        <p> +10% du mois dernier</p>
+        <p>
+          <span style={{ color: diffPrevMonth >= 0 ? "green" : "red" }}>
+            {diffPrevMonth >= 0 && "+"}
+            {diffPrevMonth}%
+          </span>{" "}
+          du mois dernier
+        </p>
       </div>
     </div>
   );

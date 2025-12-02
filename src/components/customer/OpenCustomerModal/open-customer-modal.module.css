@@ -11,18 +11,13 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.container label {
-  font-weight: 600;
-  align-self: flex-start;
-  margin-bottom: 10px;
-}
-
 .content {
+  height: 800px;
   width: 60%;
   max-width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: lightgrey;
   border: 3px solid grey;
@@ -31,17 +26,9 @@
   padding: 30px;
 }
 
-.container div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.container div:last-child {
+/* .container div:last-child {
   margin: 0;
-}
+} */
 
 .container input,
 .container textarea,
@@ -49,7 +36,8 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .container input:focus,
@@ -63,10 +51,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
 }
 
 .content button {
-  height: 40px;
+  height: 50px;
   font-weight: bold;
   text-align: center;
   padding: 10px;
@@ -88,10 +77,60 @@
   width: 400px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
+  margin-bottom: 15px;
 }
 
 .button-choice > button {
   flex: 1;
   margin: 0;
   border-radius: 0;
+}
+
+.container .item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.container label {
+  font-weight: 600;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.container .line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.container .comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.admin-settings,
+.sport-settings {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container input[readonly],
+.container textarea[readonly],
+.container select[readonly] {
+  background-color: #efefef;
+  border-color: #bfbfbf;
+  color: #555;
 }

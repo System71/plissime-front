@@ -9,6 +9,8 @@ import UserUpcomingSessions from "../../components/session/userDisplay/UserUpcom
 import SessionsToPaid from "../../components/session/customerDisplay/SessionsToPaid/SessionsToPaid.jsx";
 import SessionsPaid from "../../components/session/customerDisplay/SessionsPaid/SessionsPaid.jsx";
 import NewCustomer from "../../components/customer/NewCustomer/NewCustomer.jsx";
+import SalesGraph from "../../components/session/userDisplay/SalesGraph/SalesGraph.jsx";
+import Tasks from "../../components/session/userDisplay/Tasks/Tasks.jsx";
 
 const Home = ({
   token,
@@ -16,10 +18,14 @@ const Home = ({
   openSessionDisplay,
   setOpenSessionDisplay,
   role,
+  firstName,
 }) => {
   return (
     <>
-      <h1>TABLEAU DE BORD</h1>
+      <div className={styles["message"]}>
+        <h1>Bonjour {firstName}</h1>
+        <p>Voici votre tableau de bord</p>
+      </div>
       {role === "coach" && (
         <div className={styles["dashboard"]}>
           <div className={styles["first-line"]}>
@@ -52,6 +58,14 @@ const Home = ({
                 openSessionDisplay={openSessionDisplay}
                 setOpenSessionDisplay={setOpenSessionDisplay}
               />
+            </div>
+          </div>
+          <div className={styles["third-line"]}>
+            <div className={styles["dashboard-item"]}>
+              <Tasks token={token} />
+            </div>
+            <div className={styles["item-graph"]}>
+              <SalesGraph token={token} />
             </div>
           </div>
         </div>

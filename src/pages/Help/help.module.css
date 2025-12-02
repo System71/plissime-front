@@ -3,9 +3,17 @@
   flex-direction: column;
 }
 
-.helpme-container .form-item {
+.form-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.your-message {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .helpme-container input,
@@ -14,17 +22,63 @@
   padding: 10px;
   border: 1px grey solid;
   border-radius: 10px;
-  min-width: 400px;
-  margin-bottom: 15px;
+  min-width: 250px;
 }
 
-.helpme-container label {
+label {
   font-weight: 600;
-  align-self: flex-start;
-  margin-bottom: 10px;
+  vertical-align: middle;
 }
 
 .content {
-  max-width: 400px;
-  align-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 20px;
+  height: 100%;
+}
+
+.identity {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+
+.message {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 576px) {
+  .helpme-container {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .identity {
+    flex-direction: column;
+  }
+
+  .form-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  }
+
+  .message {
+    margin-bottom: 30px;
+  }
+
+  input {
+    flex-grow: 1;
+  }
+
+  .helpme-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

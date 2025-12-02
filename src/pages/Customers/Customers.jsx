@@ -5,7 +5,10 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from "../../assets/arrow_button.png";
 import circle from "../../assets/circle.png";
-import { updateCustomersList } from "../../../utils/updateData";
+import {
+  updateActiveCustomersList,
+  updateInactiveCustomersList,
+} from "../../../utils/updateData";
 import CustomerItem from "../../components/customer/CustomerItem/CustomerItem";
 
 const Customers = ({
@@ -15,20 +18,28 @@ const Customers = ({
   openCustomerDisplay,
   setOpenCustomerDisplay,
   setCustomerID,
-  customersList,
-  setCustomersList,
+  activeCustomersList,
+  setActiveCustomersList,
+  inactiveCustomersList,
+  setInactiveCustomersList,
 }) => {
   const [searchCustomer, setSearchCustomer] = useState("");
+  const [choice, setChoice] = useState("active");
 
   useEffect(() => {
     if (token) {
-      updateCustomersList(setCustomersList, token, searchCustomer);
+      updateActiveCustomersList(setActiveCustomersList, token, searchCustomer);
+      updateInactiveCustomersList(
+        setInactiveCustomersList,
+        token,
+        searchCustomer
+      );
     }
-  }, [token, searchCustomer, addCustomerDisplay]);
+  }, [token, searchCustomer, addCustomerDisplay, openCustomerDisplay]);
 
   return (
     <>
-      <h1>VOS CLIENTS</h1>
+      <p className={styles["message"]}>Voici votre base de données client.</p>
       <div
         className={styles["addCustomer"]}
         onClick={() => {
@@ -49,6 +60,25 @@ const Customers = ({
           </div>
         </div>
       </div>
+      <div className={styles["button-choice"]}>
+        <button
+          type="button"
+          className="customer-button"
+          onClick={() => setChoice("active")}
+          style={{ backgroundColor: choice == "active" && "#a8c6cc" }}
+        >
+          Clients actifs
+        </button>
+        <button
+          type="button"
+          className="customer-button"
+          onClick={() => setChoice("inactive")}
+          style={{ backgroundColor: choice == "inactive" && "#a8c6cc" }}
+        >
+          Clients inactifs
+        </button>
+      </div>
+
       <div className={styles["search-customer"]}>
         <input
           type="search"
@@ -63,25 +93,46 @@ const Customers = ({
         <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
       </div>
       <div className={styles["customer-list"]}>
-        {customersList.map((customer) => {
-          return (
-            <CustomerItem
-              openCustomerDisplay={openCustomerDisplay}
-              setOpenCustomerDisplay={setOpenCustomerDisplay}
-              setCustomerID={setCustomerID}
-              id={customer._id}
-              name={customer.name}
-              firstName={customer.firstName}
-              address={customer.address}
-              zip={customer.zip}
-              city={customer.city}
-              phone={customer.phone}
-              email={customer.email}
-              key={String(customer._id)}
-              token={token}
-            />
-          );
-        })}
+        {choice == "active" &&
+          activeCustomersList.map((customer) => {
+            return (
+              <CustomerItem
+                openCustomerDisplay={openCustomerDisplay}
+                setOpenCustomerDisplay={setOpenCustomerDisplay}
+                setCustomerID={setCustomerID}
+                id={customer._id}
+                name={customer.name}
+                firstName={customer.firstName}
+                address={customer.address}
+                zip={customer.zip}
+                city={customer.city}
+                phone={customer.phone}
+                email={customer.email}
+                key={String(customer._id)}
+                token={token}
+              />
+            );
+          })}
+        {choice == "inactive" &&
+          inactiveCustomersList.map((customer) => {
+            return (
+              <CustomerItem
+                openCustomerDisplay={openCustomerDisplay}
+                setOpenCustomerDisplay={setOpenCustomerDisplay}
+                setCustomerID={setCustomerID}
+                id={customer._id}
+                name={customer.name}
+                firstName={customer.firstName}
+                address={customer.address}
+                zip={customer.zip}
+                city={customer.city}
+                phone={customer.phone}
+                email={customer.email}
+                key={String(customer._id)}
+                token={token}
+              />
+            );
+          })}
       </div>
     </>
   );

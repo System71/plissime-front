@@ -1,4 +1,4 @@
-.container {
+.tasks-container {
   display: flex;
   width: 100%;
   padding: 10px;
@@ -7,21 +7,14 @@
   justify-content: center;
 }
 
-.container h2,
-.container > p {
+.tasks-container h2,
+.tasks-container > p {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.container > p {
+.tasks-container > p {
   font-size: medium;
   font-weight: bold;
   color: #e67e22;
-}
-
-.session-item-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
 }

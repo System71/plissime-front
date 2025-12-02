@@ -10,7 +10,7 @@ const Subscription = ({ token }) => {
   return (
     <>
       <h2>Simplifiez votre activité</h2>
-      <div className={styles["subscription"]}>
+      <div className={styles["subscriptionn"]}>
         <div className={styles["button-choice"]}>
           <button
             type="button"

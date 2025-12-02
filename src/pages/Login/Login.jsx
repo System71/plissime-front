@@ -7,7 +7,7 @@ import logo from "../../assets/logo.jpg";
 import Cookies from "js-cookie";
 import Button from "../../components/Button/Button";
 
-const Login = ({ setToken, setSub }) => {
+const Login = ({ setToken, setSub, setFirstName }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isCoach, setIsCoach] = useState(true);
@@ -27,8 +27,8 @@ const Login = ({ setToken, setSub }) => {
         );
         localStorage.setItem("role", "coach");
         setToken(response.data.token);
+        setFirstName(response.data.firstName);
         if (response.data.sub == "active") setSub(true);
-        console.log();
         Cookies.set("plissimeToken", response.data.token);
       } else {
         const response = await axios.post(

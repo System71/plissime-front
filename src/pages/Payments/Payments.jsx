@@ -9,7 +9,9 @@ const Payments = ({ token }) => {
 
   return (
     <div className={styles["payments"]}>
-      <h1>VOS PAIEMENTS</h1>
+      <div className={styles["message"]}>
+        <p>Gérez vos paiements en 1 clic</p>
+      </div>
 
       <div className={styles["button-choice"]}>
         <button

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from "./session-item-min.module.css";
 import { format } from "date-fns";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SessionItemMin = ({
   setSessionID,
@@ -17,15 +17,11 @@ const SessionItemMin = ({
   const formatedDate = format(date, "dd/LL/yyyy");
 
   return (
-    <div
-      className={`${styles["container"]} ${
-        index % 2 ? styles.white : styles.grey
-      }`}
-    >
+    <div className={styles["container"]} key={index}>
       <p>{name}</p>
       <p>{title}</p>
-      <p>
-        {formatedDate} {heure}
+      <p style={{ fontWeight: 600 }}>
+        {formatedDate} à {heure}
       </p>
       <div
         className={styles["session-icon"]}
@@ -34,7 +30,7 @@ const SessionItemMin = ({
           setSessionID(id);
         }}
       >
-        <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
+        {/* <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" /> */}
       </div>
     </div>
   );

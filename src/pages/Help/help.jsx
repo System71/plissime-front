@@ -35,62 +35,57 @@ const Help = ({ token }) => {
 
   return (
     <div className={styles["helpme-container"]}>
-      <h1>HELP</h1>
+      <div className={styles["message"]}>
+        <p>
+          Vous avec besoin d'aide ou vous avez une question à nous poser, c'est
+          par ici que ca se passse.
+        </p>
+      </div>
       <div className={styles["content"]}>
-        <div className={styles["form-item"]}>
-          <label htmlFor="customer">Nom</label>
-          <input
-            type="text"
-            placeholder="Votre nom"
-            name="name"
-            id="name"
-            value={name}
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          />
+        <p>Vos coordonnées :</p>
+        <div className={styles["identity"]}>
+          <div className={styles["form-item"]}>
+            <label htmlFor="customer">Nom :</label>
+            <input
+              type="text"
+              placeholder="Votre nom"
+              name="name"
+              id="name"
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+          </div>
+          <div className={styles["form-item"]}>
+            <label htmlFor="firstName">Prénom :</label>
+            <input
+              type="text"
+              placeholder="Votre prénom"
+              name="firstName"
+              id="firstName"
+              value={firstName}
+              onChange={(event) => {
+                setFirstName(event.target.value);
+              }}
+            />
+          </div>
+          <div className={styles["form-item"]}>
+            <label htmlFor="customer">Email :</label>
+            <input
+              type="email"
+              placeholder="Votre email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
+          </div>
         </div>
-        <div className={styles["form-item"]}>
-          <label htmlFor="firstName">Prénom</label>
-          <input
-            type="text"
-            placeholder="Votre prénom"
-            name="firstName"
-            id="firstName"
-            value={firstName}
-            onChange={(event) => {
-              setFirstName(event.target.value);
-            }}
-          />
-        </div>
-        <div className={styles["form-item"]}>
-          <label htmlFor="customer">Email</label>
-          <input
-            type="email"
-            placeholder="Votre email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </div>
-        <div className={styles["form-item"]}>
-          <label htmlFor="subject">Sujet</label>
-          <input
-            type="text"
-            placeholder="Sujet"
-            name="subject"
-            id="subject"
-            value={subject}
-            onChange={(event) => {
-              setSubject(event.target.value);
-            }}
-          />
-        </div>
-        <div className={styles["form-item"]}>
-          <label htmlFor="message">Message</label>
+        <div className={styles["your-message"]}>
+          <p>Votre message :</p>
           <textarea
             rows="10"
             name="message"

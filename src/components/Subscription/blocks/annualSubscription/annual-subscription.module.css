@@ -67,3 +67,9 @@
   border: 1px solid #e67e22;
   cursor: pointer;
 }
+
+@media (max-width: 576px) {
+  .annual-subscription {
+    flex-direction: column;
+  }
+}

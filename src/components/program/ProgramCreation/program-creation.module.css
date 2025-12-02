@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
 }
 
 .program-creation h2 {
@@ -20,7 +21,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
   width: 100%;
 }
 
@@ -34,32 +34,6 @@
   border: 1px solid #a8c6cc;
 }
 
-.button-choice {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 400px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-  margin-bottom: 20px;
-}
-
-.button-choice button {
-  border: none;
-}
-
-.button-choice > button {
-  flex: 1;
-  margin: 0;
-  border-radius: 0;
-}
-
-.button-step {
-  margin-bottom: 20px;
-}
-
 .program-creation button:hover {
   background-color: #e67e22;
 }
@@ -68,14 +42,8 @@
   display: flex;
 }
 
-.program-creation label {
-  font-weight: 600;
-  align-self: flex-start;
-}
-
 .program-creation input {
   width: 400px;
-  margin-top: 10px;
   border: 0;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
@@ -92,7 +60,6 @@
 
 .program-creation textarea {
   width: 400px;
-  margin-top: 10px;
   border: 0;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
@@ -124,6 +91,30 @@
   width: 100%;
 }
 
+.step0,
+.step1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+label {
+  font-weight: 600;
+  margin-right: 15px;
+}
+
+.item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr auto;
+  width: 600px;
+}
+
 .sessions-list {
   display: flex;
   flex-direction: column;
@@ -138,7 +129,6 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin-top: 10px;
   width: 100%;
 }
 
@@ -168,4 +158,42 @@
   gap: 15px;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+@media (max-width: 576px) {
+  .item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .customers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  .item input,
+  .item textarea {
+    width: 100%;
+  }
+
+  .session-selector select {
+    width: 100%;
+  }
+
+  .session-selector button {
+    font-size: 12px;
+    padding: 0;
+  }
+
+  .button-step button {
+    width: 100%;
+  }
 }

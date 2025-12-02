@@ -1,4 +1,4 @@
-.subscription {
+.subscriptionn {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,7 +6,7 @@
   margin-top: 30px;
 }
 
-.subscription button {
+.subscriptionn button {
   height: 40px;
   font-weight: 600;
   text-align: center;

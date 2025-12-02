@@ -20,21 +20,45 @@ export const updateSessionsList = async (
   }
 };
 
-export const updateCustomersList = async (
-  setCustomersList,
+export const updateActiveCustomersList = async (
+  setActiveCustomersList,
   token,
   searchCustomer
 ) => {
   try {
     const response = await axios.get(
-      `${import.meta.env.VITE_API_URL}/mycustomers?name=${searchCustomer}`,
+      `${
+        import.meta.env.VITE_API_URL
+      }/mycustomers/active?name=${searchCustomer}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    setCustomersList(response.data);
+    setActiveCustomersList(response.data);
+  } catch (error) {
+    console.log(error.response);
+  }
+};
+
+export const updateInactiveCustomersList = async (
+  setInactiveCustomersList,
+  token,
+  searchCustomer
+) => {
+  try {
+    const response = await axios.get(
+      `${
+        import.meta.env.VITE_API_URL
+      }/mycustomers/inactive?name=${searchCustomer}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    setInactiveCustomersList(response.data);
   } catch (error) {
     console.log(error.response);
   }

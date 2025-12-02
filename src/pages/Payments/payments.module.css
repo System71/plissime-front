@@ -46,3 +46,7 @@
 button:hover {
   background-color: #e67e22;
 }
+
+.message {
+  margin-bottom: 30px;
+}

@@ -1,0 +1,62 @@
+.burger-menu {
+  position: relative;
+  z-index: 9999; /* Facultatif, utile si ton burger est caché sous d'autres éléments */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px red solid;
+  width: 100%;
+}
+
+.toggle {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  top: 0;
+  background-color: whitesmoke;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: #a8c6ccc9;
+  backdrop-filter: blur(4px); /* optionnel : beau flou */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  gap: 30px;
+
+  z-index: 9998;
+}
+
+.nav-item {
+  margin-left: 25px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  flex-direction: row;
+  /* border: 1px red solid; */
+  width: 100%;
+  margin-left: 100px;
+}
+
+nav a {
+  font-size: 18px;
+}
+
+@media (min-width: 576px) {
+  .burger-menu {
+    display: none;
+  }
+}

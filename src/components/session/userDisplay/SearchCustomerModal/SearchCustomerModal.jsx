@@ -26,7 +26,7 @@ const SearchCustomerModal = ({
         try {
           const response = await axios.get(
             import.meta.env.VITE_API_URL +
-              `/mycustomers?name=${searchCustomer}`,
+              `/mycustomers/active?name=${searchCustomer}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }
