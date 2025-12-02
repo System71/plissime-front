@@ -47,8 +47,13 @@ textarea {
 
 @media (max-width: 1399px) {
   .app-layout {
-    flex-direction: column;
     width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .app-layout {
+    flex-direction: column;
   }
 
   .content {
