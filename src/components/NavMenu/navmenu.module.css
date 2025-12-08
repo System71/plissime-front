@@ -42,6 +42,10 @@ nav a {
   font-size: 18px;
 }
 
+.disconnect {
+  margin-top: 40px;
+}
+
 @media (max-width: 576px) {
   nav {
     display: none;

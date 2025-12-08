@@ -47,6 +47,7 @@ const NavMenu = ({ setToken, setSessionsList, setCustomersList, role }) => {
           </div>
         </div>
         <div className={styles["barre"]}></div>
+        <div className={styles["disconnect"]}></div>
         <Button
           text="Déconnexion"
           action={() => {

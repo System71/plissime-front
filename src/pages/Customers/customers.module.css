@@ -1,5 +1,14 @@
+.customers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
 .message {
   margin-bottom: 30px;
+  align-self: flex-start;
 }
 
 .addCustomer {
@@ -24,6 +33,7 @@
   margin-top: 30px;
   margin-left: 200px;
   gap: 70px;
+  cursor: pointer;
 }
 
 .plus-container {
@@ -46,6 +56,7 @@
 
 .search-customer {
   margin-bottom: 15px;
+  align-self: flex-start;
 }
 
 .search-customer input {
@@ -55,29 +66,29 @@
   margin-right: 10px;
 }
 
+.customers button {
+  height: 40px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+}
+
 .button-choice {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  height: 40px;
   width: 400px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  margin-top: 20px;
   margin-bottom: 40px;
   align-self: center;
 }
 
 .button-choice button {
-  height: 40px;
-  font-weight: 600;
-  text-align: center;
-  padding: 10px;
-  border: 0px;
-  border-radius: 5px;
   border: none;
-  margin-bottom: 20px;
 }
 
 .button-choice > button {

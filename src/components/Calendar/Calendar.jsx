@@ -29,7 +29,6 @@ const Calendar = ({
           }
         );
         setGoogleLinked(response.data.linked);
-        console.log("response.data.linked",response.data.linked);
         if (response.data.linked) {
           const response = await axios.get(
             `${import.meta.env.VITE_API_URL}/events`,
@@ -59,7 +58,6 @@ const Calendar = ({
         }
       );
       const { url } = await response.data;
-      console.log("url=", url);
       window.location.href = url; // redirection vers Google
     } catch (error) {
       console.log(error.response);
@@ -86,7 +84,6 @@ const Calendar = ({
           events={events}
           selectable={true}
           eventClick={(info) => {
-            console.log("info.event==>", info.event);
             if (info.event.extendedProps.source == "local") {
               setOpenSessionDisplay(!openSessionDisplay);
               setSessionID(info.event.id);

@@ -25,7 +25,6 @@ const SessionsPaid = ({
             },
           }
         );
-        console.log("session payée=", response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {

@@ -7,15 +7,14 @@ const MonthlySubscription = ({ token }) => {
   const subscribe = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/subscription/checkout`,
-        { priceId: import.meta.env.VITE_MENSUAL_SUB },
+        `${import.meta.env.VITE_API_URL}/subscription/checkout/mensual`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log("response=", response);
       window.location.href = response.data.url;
     } catch (error) {
       console.log(error.response);

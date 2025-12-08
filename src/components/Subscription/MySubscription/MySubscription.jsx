@@ -1,54 +1,20 @@
-/* eslint-disable react/prop-types */
-import styles from "./annual-subscription.module.css";
+import styles from "./my-subscription.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 
-const AnnualSubscription = ({ token }) => {
-  const subscribe = async () => {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/subscription/checkout/annual`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      window.location.href = response.data.url;
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
+const MySubscription = () => {
   return (
-    <div className={styles["annual-subscription"]}>
-      <div className={styles["subscription-block"]}>
-        <div className={styles["title"]}>Basic</div>
-        <div className={styles["price"]}>
-          <p>0€ HT/mois</p>
+    <div className={styles["my-subscription"]}>
+      <div className={styles["infos"]}>
+        <div className={styles["payment"]}>
+          <h2>Moyen de paiement</h2>
+          <p>CARTE</p>
         </div>
-        <div className={styles["item-list"]}>
-          <div className={styles["item"]}>
-            <FontAwesomeIcon icon="check" color="#E67E22" size="xl" />
-            <p>Pilotez votre activité</p>
-          </div>
-          <div className={styles["item"]}>
-            <FontAwesomeIcon icon="check" color="#E67E22" size="xl" />
-            <p>Dossier clients</p>
-          </div>
-          <div className={styles["item"]}>
-            <FontAwesomeIcon icon="check" color="#E67E22" size="xl" />
-            <p>Version mobile</p>
-          </div>
+        <div className={styles["bills"]}>
+          <p>liste factures</p>
         </div>
       </div>
       <div className={styles["subscription-block"]}>
         <div className={styles["title"]}>Premium</div>
-        <div className={styles["price"]}>
-          <p>32,50€ HT/mois au lieu de 39€ HT/mois</p>
-          <p className={styles["economy"]}>Facturé annuellement à 468€ TTC</p>
-        </div>
         <div className={styles["item-list"]}>
           <div className={styles["item"]}>
             <FontAwesomeIcon icon="check" color="#E67E22" size="xl" />
@@ -87,12 +53,9 @@ const AnnualSubscription = ({ token }) => {
             <p>Version mobile</p>
           </div>
         </div>
-        <div className={styles["payment"]} onClick={() => subscribe()}>
-          Procéder au paiement
-        </div>
       </div>
     </div>
   );
 };
 
-export default AnnualSubscription;
+export default MySubscription;

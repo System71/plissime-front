@@ -1,20 +1,17 @@
-.subscriptionn {
+.subscription {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+  width: 100%;
 }
 
-.subscriptionn button {
+.subscription button {
   height: 40px;
   font-weight: 600;
   text-align: center;
   padding: 10px;
-  border: 0px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-  margin-bottom: 20px;
 }
 
 .button-choice {
@@ -23,6 +20,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  height: 40px;
   width: 400px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
@@ -33,6 +31,7 @@
 .button-choice button {
   border: none;
 }
+
 .button-choice > button {
   flex: 1;
   margin: 0;

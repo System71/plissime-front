@@ -38,7 +38,7 @@ const Customers = ({
   }, [token, searchCustomer, addCustomerDisplay, openCustomerDisplay]);
 
   return (
-    <>
+    <div className={styles["customers"]}>
       <p className={styles["message"]}>Voici votre base de données client.</p>
       <div
         className={styles["addCustomer"]}
@@ -134,7 +134,7 @@ const Customers = ({
             );
           })}
       </div>
-    </>
+    </div>
   );
 };
 

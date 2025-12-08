@@ -34,7 +34,7 @@ const Programmes = ({ token, sub }) => {
     fetchPrograms();
   }, [token, creation]);
 
-  if (!sub) {
+  if (sub) {
     return (
       <>
         <p className={styles["message"]}>Créez vos programmes simplement.</p>

@@ -1,12 +1,13 @@
 import "./App.css";
 import Cookies from "js-cookie";
+import axios from "axios";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
@@ -88,8 +89,31 @@ function App() {
   const [role, setRole] = useState(() => {
     return localStorage.getItem("role") || null;
   });
-  const [sub, setSub] = useState(false);
+  const [sub, setSub] = useState("");
   const [firstName, setFirstName] = useState("");
+
+  useEffect(() => {
+    console.log("fetchdata");
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/informations`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("response.data", response.data);
+        console.log("response.data.sub", response.data.sub);
+        setSub(response.data.sub);
+        setFirstName(response.data.firstName);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    fetchData();
+  }, [token]);
 
   return (
     <div className="app">
@@ -186,7 +210,7 @@ function App() {
             ></Route>
             <Route
               path="/user/settings"
-              element={<UserSettings token={token} />}
+              element={<UserSettings token={token} sub={sub} />}
             ></Route>
             <Route
               path="/customer/settings"

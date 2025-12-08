@@ -20,7 +20,6 @@ const ToPaid = ({ token }) => {
               "Content-Type": "multipart/form-data",
             }
           );
-          console.log("session a payer=", response.data);
           setSessionsToPaid(response.data);
         } catch (error) {
           console.log(error.response);
