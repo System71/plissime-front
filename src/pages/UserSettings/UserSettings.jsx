@@ -4,7 +4,7 @@ import { useState } from "react";
 import Subscription from "../../components/Subscription/Subscription";
 import UserInfos from "../../components/UserInfos/UserInfos";
 
-const UserSettings = ({ token, sub }) => {
+const UserSettings = ({ token, sub, stripeId }) => {
   const [choice, setChoice] = useState("subscription");
 
   return (
@@ -31,7 +31,7 @@ const UserSettings = ({ token, sub }) => {
           </button>
         </div>
         {choice == "subscription" ? (
-          <Subscription token={token} sub={sub} />
+          <Subscription token={token} sub={sub} stripeId={stripeId} />
         ) : (
           <UserInfos token={token} />
         )}

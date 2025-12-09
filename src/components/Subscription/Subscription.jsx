@@ -5,17 +5,15 @@ import AnnualSubscription from "./blocks/annualSubscription/AnnualSubscription";
 import MonthlySubscription from "./blocks/monthlySubscription/MonthlySubscription";
 import MySubscription from "./MySubscription/MySubscription";
 
-const Subscription = ({ token, sub }) => {
+const Subscription = ({ token, sub, stripeId }) => {
   const [choice, setChoice] = useState("monthly");
-
-  console.log("sub=", sub);
 
   return (
     <>
       <h2>Simplifiez votre activité</h2>
       <div className={styles["subscription"]}>
         {sub == "active" ? (
-          <MySubscription />
+          <MySubscription token={token} stripeId={stripeId} />
         ) : (
           <>
             <div className={styles["button-choice"]}>

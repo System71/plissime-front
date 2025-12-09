@@ -46,6 +46,7 @@ import {
   faCheck,
   faBars,
   faXmark,
+  faFilePdf,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
 import MyPrograms from "./pages/MyPrograms/MyPrograms";
@@ -72,7 +73,8 @@ library.add(
   faArrowsRotate,
   faCheck,
   faBars,
-  faXmark
+  faXmark,
+  faFilePdf
 );
 
 function App() {
@@ -91,9 +93,9 @@ function App() {
   });
   const [sub, setSub] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [stripeId, setStripeId] = useState("");
 
   useEffect(() => {
-    console.log("fetchdata");
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -104,10 +106,9 @@ function App() {
             },
           }
         );
-        console.log("response.data", response.data);
-        console.log("response.data.sub", response.data.sub);
         setSub(response.data.sub);
         setFirstName(response.data.firstName);
+        setStripeId(response.data.stripeId);
       } catch (error) {
         console.log(error.response);
       }
@@ -210,7 +211,9 @@ function App() {
             ></Route>
             <Route
               path="/user/settings"
-              element={<UserSettings token={token} sub={sub} />}
+              element={
+                <UserSettings token={token} sub={sub} stripeId={stripeId} />
+              }
             ></Route>
             <Route
               path="/customer/settings"
