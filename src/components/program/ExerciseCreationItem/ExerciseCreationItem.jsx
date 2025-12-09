@@ -22,7 +22,9 @@ const ExerciseCreationItem = ({
   const [weight, setWeight] = useState(0);
   const [duration, setDuration] = useState(0);
   const [restTime, setRestTime] = useState(0);
+  const [intensity, setIntensity] = useState(0);
   const [notes, setNotes] = useState("");
+  const [isPause, setIsPause] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
 
   //Import all movements
@@ -73,6 +75,7 @@ const ExerciseCreationItem = ({
             weight: weight,
             duration: duration,
             restTime: restTime,
+            intensity: intensity,
             notes: notes,
           },
           {
@@ -93,6 +96,7 @@ const ExerciseCreationItem = ({
             weight: weight,
             duration: duration,
             restTime: restTime,
+            intensity: intensity,
             notes: notes,
           },
           {
@@ -109,7 +113,8 @@ const ExerciseCreationItem = ({
       setWeight(0);
       setDuration(0);
       setRestTime(0);
-      setNotes(0);
+      setIntensity(0);
+      setNotes("");
       setRefreshData((prev) => !prev);
       setCreation(false);
     } catch (error) {
@@ -140,6 +145,7 @@ const ExerciseCreationItem = ({
           setWeight(response.data.weight);
           setDuration(response.data.duration);
           setRestTime(response.data.restTime);
+          setIntensity(response.data.intensity);
           setNotes(response.data.notes);
         } catch (error) {
           console.log(error.response);
@@ -158,7 +164,14 @@ const ExerciseCreationItem = ({
         <div className={styles["exercise-infos"]}>
           <div className={styles["exercise-infos-left"]}>
             <select
-              onChange={(e) => setSelectedCategory(e.target.value)}
+              onChange={(e) => {
+                setSelectedCategory(e.target.value);
+                if (e.target.value === "Récupération") {
+                  setIsPause(true);
+                } else {
+                  setIsPause(false);
+                }
+              }}
               value={selectedCategory}
             >
               <option value="">-- Catégorie --</option>
@@ -168,42 +181,46 @@ const ExerciseCreationItem = ({
                 </option>
               ))}
             </select>
-            <div>
-              <label htmlFor="series">Séries : </label>
-              <input
-                type="number"
-                name="series"
-                id="series"
-                value={series}
-                onChange={(event) => {
-                  setSeries(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="repetitions">Répétitions : </label>
-              <input
-                type="number"
-                name="repetitions"
-                id="repetitions"
-                value={repetitions}
-                onChange={(event) => {
-                  setRepetitions(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="weight">Poids : </label>
-              <input
-                type="number"
-                name="weight"
-                id="weight"
-                value={weight}
-                onChange={(event) => {
-                  setWeight(event.target.value);
-                }}
-              />
-            </div>
+            {isPause === false ? (
+              <>
+                <div>
+                  <label htmlFor="series">Séries : </label>
+                  <input
+                    type="number"
+                    name="series"
+                    id="series"
+                    value={series}
+                    onChange={(event) => {
+                      setSeries(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="repetitions">Répétitions : </label>
+                  <input
+                    type="number"
+                    name="repetitions"
+                    id="repetitions"
+                    value={repetitions}
+                    onChange={(event) => {
+                      setRepetitions(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="weight">Poids : </label>
+                  <input
+                    type="number"
+                    name="weight"
+                    id="weight"
+                    value={weight}
+                    onChange={(event) => {
+                      setWeight(event.target.value);
+                    }}
+                  />
+                </div>
+              </>
+            ) : null}
           </div>
           <div className={styles["exercise-infos-right"]}>
             <select
@@ -237,18 +254,34 @@ const ExerciseCreationItem = ({
                 }}
               />
             </div>
-            <div>
-              <label htmlFor="restTime">Récupération : </label>
-              <input
-                type="number"
-                name="restTime"
-                id="restTime"
-                value={restTime}
-                onChange={(event) => {
-                  setRestTime(event.target.value);
-                }}
-              />
-            </div>
+            {isPause === false ? (
+              <>
+                <div>
+                  <label htmlFor="restTime">Récupération : </label>
+                  <input
+                    type="number"
+                    name="restTime"
+                    id="restTime"
+                    value={restTime}
+                    onChange={(event) => {
+                      setRestTime(event.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="intensity">Intensité : </label>
+                  <input
+                    type="number"
+                    name="intensity"
+                    id="intensity"
+                    value={intensity}
+                    onChange={(event) => {
+                      setIntensity(event.target.value);
+                    }}
+                  />
+                </div>
+              </>
+            ) : null}
           </div>
         </div>
         <div className={styles["exercise-notes"]}>

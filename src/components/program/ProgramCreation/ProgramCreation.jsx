@@ -46,19 +46,18 @@ const ProgramCreation = ({ token, setCreation, program }) => {
   const saveProgram = async (event) => {
     event.preventDefault();
     try {
-      if (!program) {
+      if (!programId) {
         const response = await axios.post(
           import.meta.env.VITE_API_URL + `/program/add`,
           {
             title: title,
-            duration: duration,
+            duration: 0,
             notes: notes,
             sessions: sessions,
           },
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
             },
           }
         );
@@ -75,7 +74,6 @@ const ProgramCreation = ({ token, setCreation, program }) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
             },
           }
         );
@@ -110,12 +108,12 @@ const ProgramCreation = ({ token, setCreation, program }) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
           },
         }
       );
       setSelectedSessionId(response.data.sessions.length);
       setNumberSessions(response.data.sessions.length);
+      setDuration(response.data.sessions.length);
     } catch (error) {
       console.log("error=", error.response.data);
     }
@@ -133,6 +131,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
         }
       );
       setNumberSessions(response.data.sessions.length);
+      setDuration(response.data.sessions.length);
       if (response.data.sessions.length) {
         setSelectedSessionId(1);
       } else {
@@ -196,7 +195,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
                 }}
               />
             </div>
-            <div className={styles["item"]}>
+            {/* <div className={styles["item"]}>
               <label htmlFor="duration">Nombre de séances :</label>
               <input
                 type="Number"
@@ -207,7 +206,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
                   setDuration(event.target.value);
                 }}
               />
-            </div>
+            </div> */}
             <div className={styles["item"]}>
               <label htmlFor="notes">Notes personnelles :</label>
               <textarea

@@ -1,0 +1,15 @@
+.unregistered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  border: 1px solid #e67e22;
+  padding: 50px;
+  border-radius: 20px;
+  margin-top: 150px;
+}
+
+.unregistered p {
+  font-weight: 600;
+}

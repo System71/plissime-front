@@ -7,7 +7,7 @@ import circle from "../../assets/circle.png";
 import ProgramCreation from "../../components/program/ProgramCreation/ProgramCreation";
 import axios from "axios";
 import ProgramItem from "../../components/program/ProgramItem/ProgramItem";
-import Subscription from "../../components/Subscription/Subscription";
+import Unregistered from "../../components/Unregistered/Unregistered";
 
 const Programmes = ({ token, sub }) => {
   const [creation, setCreation] = useState(false);
@@ -87,7 +87,7 @@ const Programmes = ({ token, sub }) => {
       </>
     );
   } else {
-    return <Subscription token={token} />;
+    return <Unregistered />;
   }
 };
 

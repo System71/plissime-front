@@ -70,9 +70,11 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
           Retour
         </button>
       ) : (
-        <button type="button" onClick={() => setCreation(true)}>
-          Ajouter un exercice
-        </button>
+        <div className={styles["buttons"]}>
+          <button type="button" onClick={() => setCreation(true)}>
+            Ajouter un exercice
+          </button>
+        </div>
       )}
       {creation ? (
         <ExerciseCreationItem

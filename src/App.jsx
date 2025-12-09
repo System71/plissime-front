@@ -206,7 +206,7 @@ function App() {
             ></Route>
             <Route
               path="/payments"
-              element={<Payments token={token} />}
+              element={<Payments token={token} sub={sub} />}
             ></Route>
             <Route
               path="/user/settings"

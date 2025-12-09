@@ -43,6 +43,12 @@ const ExerciseItem = ({
                 <span className={styles.bold}>Répétitions :</span> {repetitions}
               </p>
             </div>
+            <div className={styles["exercise-notes"]}>
+              <p>
+                <span className={styles.bold}>Notes :</span>
+              </p>
+              <div>{notes}</div>
+            </div>
           </div>
           <div className={styles["exercise-infos-right"]}>
             <div>
@@ -57,20 +63,19 @@ const ExerciseItem = ({
             </div>
             <div>
               <p>
-                <span className={styles.bold}>Temps de récupération :</span>{" "}
+                <span className={styles.bold}>Temps de récupération :</span>
                 {restTime}
               </p>
             </div>
-            <div className={styles["exercise-notes"]}>
+            <div>
               <p>
-                <span className={styles.bold}>Notes :</span>
+                <span className={styles.bold}>Intensité :</span> {restTime}
               </p>
-              <div>{notes}</div>
             </div>
           </div>
         </div>
       </div>
-      <div>
+      <div className={styles["buttons"]}>
         <Button type="button" text="Modifier" action={modifyExercise} />
         <Button type="button" text="Supprimer" action={deleteExercise} />
       </div>
