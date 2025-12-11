@@ -1,0 +1,17 @@
+.card-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr 80px;
+  align-items: center;
+  gap: 15px;
+  border: 1px lightgray solid;
+  border-radius: 20px;
+  padding: 10px;
+  min-height: 40px;
+}
+
+.card {
+  font-weight: 600;
+}
+
+.changeCard {
+}

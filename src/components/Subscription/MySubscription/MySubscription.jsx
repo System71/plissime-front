@@ -3,11 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import InvoiceItem from "../../InvoiceItem/InvoiceItem";
+import CardItem from "../../cardItem/CardItem";
 
 const MySubscription = ({ token, stripeId }) => {
   const [invoices, setInvoices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [paymentMethod, setPaymentMethod] = useState({});
 
+  //Fetch invoices
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,13 +31,33 @@ const MySubscription = ({ token, stripeId }) => {
     fetchData();
   }, [stripeId]);
 
+  //Fetch payment method
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/stripe/payment-method/${stripeId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setPaymentMethod(response.data);
+      } catch (error) {
+        console.log("error=", error);
+      }
+    };
+    fetchData();
+  }, [stripeId]);
+
   if (!isLoading) {
     return (
       <div className={styles["my-subscription"]}>
         <div className={styles["infos"]}>
           <div className={styles["payment"]}>
             <h2>Moyen de paiement</h2>
-            <p>CARTE</p>
+            <CardItem paymentMethod={paymentMethod} />
           </div>
           <div className={styles["invoices"]}>
             <h2>Factures</h2>
