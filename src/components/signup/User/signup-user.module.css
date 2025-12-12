@@ -36,3 +36,9 @@
   color: red;
   font-size: small;
 }
+
+.signup-user .buttons {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+}

@@ -19,6 +19,7 @@ const SignupUser = ({ setToken }) => {
   const [certification, setCertification] = useState("");
   const [errors, setErrors] = useState({});
   const [errorBack, setErrorBack] = useState("");
+  const [step, setStep] = useState(0);
 
   const navigate = useNavigate();
 
@@ -122,33 +123,35 @@ const SignupUser = ({ setToken }) => {
 
   return (
     <div className={styles["signup-user"]}>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          placeholder="Votre email"
-          name="email"
-          id="email"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-        <p className={styles["error-message"]}>{errors.email}</p>
-      </div>
-      <div>
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Votre mot de passe"
-          value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        />
-        <p className={styles["error-message"]}>{errors.password}</p>
+      <div className={styles["step0"]}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            placeholder="Votre email"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+          <p className={styles["error-message"]}>{errors.email}</p>
+        </div>
+        <div>
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Votre mot de passe"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+          <p className={styles["error-message"]}>{errors.password}</p>
+        </div>
       </div>
       <div>
         <label htmlFor="name">Nom</label>
@@ -275,8 +278,21 @@ const SignupUser = ({ setToken }) => {
         />
         <p className={styles["error-message"]}>{errors.certification}</p>
       </div>
-      <div>
-        <Button type="button" text="Créer mon compte" action={signupUser} />
+      <div className={styles["buttons"]}>
+        {step != 0 && (
+          <Button
+            type="button"
+            text="Précédent"
+            action={() => setStep(step - 1)}
+          />
+        )}
+        {step != 2 && (
+          <Button type="button" text="Suivant" action={signupUser} />
+        )}
+
+        {step === 2 && (
+          <Button type="button" text="Créer mon compte" action={signupUser} />
+        )}
         <p className={styles["error-message-back"]}>{errorBack}</p>
       </div>
     </div>

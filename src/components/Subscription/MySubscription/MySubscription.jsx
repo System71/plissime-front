@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from "./my-subscription.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
@@ -29,7 +30,7 @@ const MySubscription = ({ token, stripeId }) => {
       }
     };
     fetchData();
-  }, [stripeId]);
+  }, [token, stripeId]);
 
   //Fetch payment method
   useEffect(() => {
@@ -49,7 +50,7 @@ const MySubscription = ({ token, stripeId }) => {
       }
     };
     fetchData();
-  }, [stripeId]);
+  }, [token, stripeId]);
 
   if (!isLoading) {
     return (
@@ -57,7 +58,11 @@ const MySubscription = ({ token, stripeId }) => {
         <div className={styles["infos"]}>
           <div className={styles["payment"]}>
             <h2>Moyen de paiement</h2>
-            <CardItem paymentMethod={paymentMethod} />
+            <CardItem
+              paymentMethod={paymentMethod}
+              stripeId={stripeId}
+              token={token}
+            />
           </div>
           <div className={styles["invoices"]}>
             <h2>Factures</h2>
