@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .signup-content {
@@ -13,9 +14,10 @@
   border-radius: 5px;
   background-color: rgb(241, 240, 240);
   padding: 30px;
+  width: 600px;
 }
 
-.signup div {
+.signup-content > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +33,6 @@
   border: 0px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  margin-bottom: 20px;
 }
 
 .signup .button-choice button {
@@ -57,4 +58,22 @@
 
 .signup button:hover {
   background-color: #e67e22;
+}
+
+@media (max-width: 576px) {
+  h1 {
+    text-align: center;
+  }
+
+  .signup-content {
+    width: 100%;
+  }
+
+  .signup .button-choice {
+    width: 100%;
+  }
+
+  .signup-content > div {
+    width: 100%;
+  }
 }

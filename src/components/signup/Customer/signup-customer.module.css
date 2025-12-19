@@ -1,9 +1,25 @@
-.signup-customer div {
+.signup-customer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.step0,
+.step1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.step0 div,
+.step1 div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
 }
 
 .signup-customer label {
@@ -14,6 +30,7 @@
 .signup-customer input {
   width: 400px;
   margin-top: 10px;
+  border: 0;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
   height: 40px;
@@ -32,6 +49,38 @@
 }
 
 .error-message-back {
+  display: block;
+  max-width: 400px;
   color: red;
   font-size: small;
+}
+
+.resume-message {
+  display: flex;
+  color: red;
+  font-size: small;
+  white-space: pre-line;
+  text-align: left;
+  width: 100%;
+}
+
+.signup-customer .buttons {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+@media (max-width: 576px) {
+  .signup-customer div {
+    width: 100%;
+  }
+
+  .signup-customer .buttons {
+    width: auto;
+  }
+
+  .signup-customer input {
+    width: 100%;
+  }
 }

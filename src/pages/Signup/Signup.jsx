@@ -6,7 +6,7 @@ import logo from "../../assets/logo.jpg";
 import SignupCustomer from "../../components/signup/Customer/SignupCustomer";
 import SignupUser from "../../components/signup/User/SignupUser";
 
-const Signup = ({ setToken }) => {
+const Signup = ({ setToken, token }) => {
   const [isCoach, setIsCoach] = useState(true);
   const [isCustomer, setIsCustomer] = useState(false);
 
@@ -40,9 +40,9 @@ const Signup = ({ setToken }) => {
             </button>
           </div>
           {isCoach ? (
-            <SignupUser setToken={setToken} />
+            <SignupUser setToken={setToken} token={token} />
           ) : (
-            <SignupCustomer setToken={setToken} />
+            <SignupCustomer setToken={setToken} token={token} />
           )}
           <Link to="/login">J'ai déjà mon compte !</Link>
         </div>

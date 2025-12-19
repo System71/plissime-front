@@ -12,6 +12,7 @@ const Login = ({ setToken, setSub, setFirstName }) => {
   const [password, setPassword] = useState("");
   const [isCoach, setIsCoach] = useState(true);
   const [isCustomer, setIsCustomer] = useState(false);
+  const [errorBack, setErrorBack] = useState("");
 
   const navigate = useNavigate();
 
@@ -44,7 +45,12 @@ const Login = ({ setToken, setSub, setFirstName }) => {
       }
       navigate("/");
     } catch (error) {
-      console.log("error=", error.response.data);
+      if (error.response) {
+        // Le backend renvoie { message: "Inscription non terminée" }
+        setErrorBack(error.response.data.message);
+      } else {
+        setErrorBack("Une erreur réseau est survenue.");
+      }
     }
   };
 
@@ -78,7 +84,7 @@ const Login = ({ setToken, setSub, setFirstName }) => {
         </div>
         <h1>Connectez-vous à votre espace personnel</h1>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email :</label>
           <input
             type="email"
             placeholder="Votre email"
@@ -91,7 +97,7 @@ const Login = ({ setToken, setSub, setFirstName }) => {
           />
         </div>
         <div>
-          <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password">Mot de passe :</label>
           <input
             type="password"
             name="password"
@@ -106,6 +112,7 @@ const Login = ({ setToken, setSub, setFirstName }) => {
         <div>
           <Button type="button" action={login} text="Se connecter" />
         </div>
+        <div className={styles["error-message"]}>{errorBack}</div>
         <Link to="/signup">Créer mon compte</Link>
       </div>
     </div>

@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .content {
@@ -13,6 +14,7 @@
   border-radius: 5px;
   background-color: #f1f0f0;
   padding: 30px;
+  width: 600px;
 }
 
 .login div {
@@ -31,7 +33,6 @@
   border: 0px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  margin-bottom: 20px;
 }
 
 .login label {
@@ -75,4 +76,26 @@ button:hover {
 .login input:focus {
   outline: none;
   border: 2px solid #a8c6cc;
+}
+
+@media (max-width: 576px) {
+  h1 {
+    text-align: center;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .login .button-choice {
+    width: 100%;
+  }
+
+  .login input {
+    width: 100%;
+  }
+
+  .content > div {
+    width: 100%;
+  }
 }

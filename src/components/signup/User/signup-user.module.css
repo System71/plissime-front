@@ -1,9 +1,27 @@
-.signup-user div {
+.signup-user {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.step0,
+.step1,
+.step2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.step0 div,
+.step1 div,
+.step2 div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
 }
 
 .signup-user label {
@@ -33,12 +51,38 @@
 }
 
 .error-message-back {
+  display: block;
+  max-width: 400px;
   color: red;
   font-size: small;
+}
+
+.resume-message {
+  display: flex;
+  color: red;
+  font-size: small;
+  white-space: pre-line;
+  text-align: left;
+  width: 100%;
 }
 
 .signup-user .buttons {
   display: flex;
   flex-direction: row;
   align-self: flex-end;
+  justify-self: flex-end;
+}
+
+@media (max-width: 576px) {
+  .signup-user div {
+    width: 100%;
+  }
+
+  .signup-user .buttons {
+    width: auto;
+  }
+
+  .signup-user input {
+    width: 100%;
+  }
 }

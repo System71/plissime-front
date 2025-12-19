@@ -4,9 +4,9 @@ import { useState } from "react";
 import Button from "../../Button/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { createLogger } from "vite";
+import Cookies from "js-cookie";
 
-const SignupUser = ({ setToken }) => {
+const SignupUser = ({ setToken, token }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -21,6 +21,7 @@ const SignupUser = ({ setToken }) => {
   const [errors, setErrors] = useState({});
   const [errorBack, setErrorBack] = useState("");
   const [step, setStep] = useState(0);
+  const [resumeMessage, setResumeMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -97,17 +98,30 @@ const SignupUser = ({ setToken }) => {
           signupStep: step,
           email: email,
           password: password,
-          token: token,
         }
       );
-      console.log("coucou");
-      console.log("response=", response.data);
-      setToken(response.data.token);
-
+      if (response.data.newUser) {
+        const user = response.data.newUser;
+        setToken(user.token);
+        Cookies.set("plissimeToken", user.token);
+      }
+      if (response.data.userToSearch) {
+        const user = response.data.userToSearch;
+        setToken(user.token);
+        Cookies.set("plissimeToken", user.token);
+        setResumeMessage(
+          "Nous sommes heureux de vous revoir.\n Vous pouvez désormais finaliser votre inscription!"
+        );
+        if (user.name) setName(user.name);
+        if (user.firstName) setFirstName(user.firstName);
+        if (user.address) setAddress(user.address);
+        if (user.zip) setZip(user.zip);
+        if (user.city) setCity(user.city);
+        if (user.phone) setPhone(user.phone);
+      }
       setStep(step + 1);
     } catch (error) {
-      console.log("error=", error);
-      // setErrorBack(error.response.data.message);
+      setErrorBack(error.response.data.message);
     }
   };
 
@@ -132,10 +146,13 @@ const SignupUser = ({ setToken }) => {
           activity: activity,
           siret: siret,
           certification: certification,
+          token: token,
         }
       );
+      setStep(step + 1);
 
       if (step === 2) {
+        localStorage.setItem("role", "coach");
         navigate("/");
       }
     } catch (error) {
@@ -187,6 +204,11 @@ const SignupUser = ({ setToken }) => {
       )}
       {step === 1 && (
         <div className={styles["step1"]}>
+          {resumeMessage && (
+            <div>
+              <p className={styles["resume-message"]}>{resumeMessage}</p>
+            </div>
+          )}
           <div>
             <label htmlFor="name">Nom :</label>
             <input
@@ -304,6 +326,7 @@ const SignupUser = ({ setToken }) => {
             <p className={styles["error-message"]}>{errors.siret}</p>
           </div>
           <div>
+            <label htmlFor="certfification">Certification :</label>
             <input
               type="text"
               name="certification"
@@ -322,7 +345,7 @@ const SignupUser = ({ setToken }) => {
         {step != 2 && <Button type="button" text="Suivant" action={nextStep} />}
 
         {step === 2 && (
-          <Button type="button" text="Créer mon compte" action={signupUser} />
+          <Button type="button" text="Créer mon compte" action={majUser} />
         )}
       </div>
       <div>

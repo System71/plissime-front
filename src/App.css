@@ -6,6 +6,7 @@ body {
 
 .app {
   position: relative;
+  width: 100vw;
 }
 
 .app-layout {
@@ -58,5 +59,11 @@ textarea {
 
   .content {
     margin-top: 30px;
+    width: 100%;
+  }
+
+  .logo-big {
+    text-align: center;
+    width: 100%;
   }
 }
