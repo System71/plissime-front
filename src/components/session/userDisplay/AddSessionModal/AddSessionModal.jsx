@@ -272,7 +272,6 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                 <DatePicker
                   selected={end}
                   onChange={(date) => {
-                    setStart(date);
                     setEnd(date);
                   }}
                   showTimeSelect
