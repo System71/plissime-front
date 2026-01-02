@@ -47,6 +47,8 @@ import {
   faBars,
   faXmark,
   faFilePdf,
+  faCircleChevronRight,
+  faCircleChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./layout/Layout";
 import MyPrograms from "./pages/MyPrograms/MyPrograms";
@@ -74,7 +76,9 @@ library.add(
   faCheck,
   faBars,
   faXmark,
-  faFilePdf
+  faFilePdf,
+  faCircleChevronRight,
+  faCircleChevronLeft
 );
 
 function App() {

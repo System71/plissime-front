@@ -1,0 +1,85 @@
+.admin-settings {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.admin-settings input,
+.admin-settings textarea,
+.admin-settings select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.admin-settings input:focus,
+.admin-settings textarea:focus,
+.admin-settings select:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
+}
+
+.admin-settings input[readonly],
+.admin-settings textarea[readonly],
+.admin-settings select[readonly] {
+  background-color: #efefef;
+  border-color: #bfbfbf;
+  color: #555;
+}
+
+@media (max-width: 576px) {
+  .item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .comment {
+    gap: 2px;
+  }
+
+  .admin-settings input {
+    width: 100%;
+  }
+
+  .phone,
+  .city {
+    flex: 0 0 120px;
+  }
+}

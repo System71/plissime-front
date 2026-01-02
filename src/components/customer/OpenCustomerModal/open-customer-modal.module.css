@@ -26,27 +26,6 @@
   padding: 30px;
 }
 
-/* .container div:last-child {
-  margin: 0;
-} */
-
-.container input,
-.container textarea,
-.container select {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.container input:focus,
-.container textarea:focus,
-.container select:focus {
-  outline: none;
-  border: 2px solid #a8c6cc;
-}
-
 .container .open-session-modal-buttons {
   display: flex;
   flex-direction: row;
@@ -86,54 +65,42 @@
   border-radius: 0;
 }
 
-.container .item {
+.container .arrows {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.arrows .left {
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  flex: 1;
+  margin-right: auto;
+  cursor: pointer;
 }
 
-.container label {
-  font-weight: 600;
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.container .line {
+.arrows .right {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 15px;
-  gap: 15px;
-}
-
-.container .comment {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  width: 100%;
-  margin-bottom: 15px;
-  gap: 10px;
-}
-
-.admin-settings,
-.sport-settings {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.container input[readonly],
-.container textarea[readonly],
-.container select[readonly] {
-  background-color: #efefef;
-  border-color: #bfbfbf;
-  color: #555;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  cursor: pointer;
 }
 
 @media (max-width: 576px) {
+  .container {
+    padding: 10px;
+    margin-top: 90px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .content .button-choice {
+    width: 100%;
+  }
 }

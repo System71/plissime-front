@@ -38,6 +38,11 @@
   width: 100%;
 }
 
+.addCustomerModalContent .email-check {
+  display: flex;
+  gap: 15px;
+}
+
 .addCustomerModalContainer input {
   padding: 10px;
   border-radius: 5px;
@@ -80,4 +85,16 @@
 
 .customer-infos > p {
   margin-bottom: 10px;
+}
+
+@media (max-width: 576px) {
+  .addCustomerModalContainer {
+    padding: 10px;
+    margin-top: 90px;
+  }
+
+  .addCustomerModalContent {
+    width: 100%;
+    padding: 10px;
+  }
 }
