@@ -39,7 +39,7 @@ const UserUpcomingSessions = ({
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (
-        <div className="user-session-item-list">
+        <div className="session-item-list">
           {data.map((session, index) => {
             return (
               <SessionItemMin

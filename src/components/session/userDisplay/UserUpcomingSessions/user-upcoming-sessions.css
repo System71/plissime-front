@@ -25,3 +25,10 @@
   width: 100%;
   border: 1px solid grey;
 }
+
+.session-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
