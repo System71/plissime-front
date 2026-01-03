@@ -12,6 +12,7 @@ const AddCustomerModal = ({
   token,
   setAddCustomerDisplay,
   setActiveCustomersList,
+  setRefreshCustomers,
 }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -100,6 +101,7 @@ const AddCustomerModal = ({
         }
       );
       updateActiveCustomersList(setActiveCustomersList, token);
+      setRefreshCustomers((prev) => !prev);
       setAddCustomerDisplay(false);
     } catch (error) {
       setErrorBack(error.response.data.message);
@@ -120,6 +122,7 @@ const AddCustomerModal = ({
         }
       );
       updateActiveCustomersList(setActiveCustomersList, token);
+      setRefreshCustomers((prev) => !prev);
       setAddCustomerDisplay(false);
     } catch (error) {
       setErrorBack(error.response.data.message);

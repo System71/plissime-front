@@ -9,7 +9,12 @@ import CustomerPayments from "../CustomerPayments/CustomerPayments";
 import CustomerSportInfos from "../CustomerSportInfos/CustomerSportInfos";
 import CustomerSessions from "../CustomerSessions/CustomerSessions";
 
-const OpenCustomerModal = ({ token, setOpenCustomerDisplay, id }) => {
+const OpenCustomerModal = ({
+  token,
+  setOpenCustomerDisplay,
+  id,
+  setRefreshCustomers,
+}) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -50,6 +55,7 @@ const OpenCustomerModal = ({ token, setOpenCustomerDisplay, id }) => {
           },
         }
       );
+      setRefreshCustomers((prev) => !prev);
     } catch (error) {
       console.error("Erreur lors de la MAJ client :", error);
     }

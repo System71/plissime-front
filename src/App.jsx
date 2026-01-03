@@ -98,6 +98,7 @@ function App() {
   const [sub, setSub] = useState("");
   const [firstName, setFirstName] = useState("");
   const [stripeId, setStripeId] = useState("");
+  const [refreshCustomers, setRefreshCustomers] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -186,6 +187,7 @@ function App() {
                   setActiveCustomersList={setActiveCustomersList}
                   inactiveCustomersList={inactiveCustomersList}
                   setInactiveCustomersList={setInactiveCustomersList}
+                  refreshCustomers={refreshCustomers}
                 />
               }
             ></Route>
@@ -244,6 +246,7 @@ function App() {
             token={token}
             setAddCustomerDisplay={setAddCustomerDisplay}
             setCustomersList={setActiveCustomersList}
+            setRefreshCustomers={setRefreshCustomers}
           />
         )}
         {openSessionDisplay && (
@@ -259,6 +262,7 @@ function App() {
             token={token}
             setOpenCustomerDisplay={setOpenCustomerDisplay}
             id={customerID}
+            setRefreshCustomers={setRefreshCustomers}
           />
         )}
       </Router>

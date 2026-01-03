@@ -22,20 +22,29 @@ const Customers = ({
   setActiveCustomersList,
   inactiveCustomersList,
   setInactiveCustomersList,
+  refreshCustomers,
 }) => {
   const [searchCustomer, setSearchCustomer] = useState("");
   const [choice, setChoice] = useState("active");
 
   useEffect(() => {
-    if (token) {
-      updateActiveCustomersList(setActiveCustomersList, token, searchCustomer);
-      updateInactiveCustomersList(
+    if (!token) return;
+
+    const fetchCustomers = async () => {
+      await updateActiveCustomersList(
+        setActiveCustomersList,
+        token,
+        searchCustomer
+      );
+      await updateInactiveCustomersList(
         setInactiveCustomersList,
         token,
         searchCustomer
       );
-    }
-  }, [token, searchCustomer, addCustomerDisplay, openCustomerDisplay]);
+    };
+
+    fetchCustomers();
+  }, [token, searchCustomer, refreshCustomers]);
 
   return (
     <div className={styles["customers"]}>
