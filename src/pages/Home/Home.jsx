@@ -1,16 +1,14 @@
 /* eslint-disable react/prop-types */
 import styles from "./home.module.css";
-import CustomerUpcomingSessions from "../../components/session/customerDisplay/CustomerUpcomingSessions/CustomerUpcomingSessions.jsx";
 import MonthSales from "../../components/sales/MonthSales/MonthSales.jsx";
 import YearSales from "../../components/sales/YearSales/YearSales.jsx";
 import UpcomingSales from "../../components/sales/UpcomingSales/UpcomingSales.jsx";
 import DaySessions from "../../components/session/userDisplay/DaySessions/DaySessions.jsx";
 import UserUpcomingSessions from "../../components/session/userDisplay/UserUpcomingSessions/UserUpcomingSessions.jsx";
-import SessionsToPaid from "../../components/session/customerDisplay/SessionsToPaid/SessionsToPaid.jsx";
-import SessionsPaid from "../../components/session/customerDisplay/SessionsPaid/SessionsPaid.jsx";
 import NewCustomer from "../../components/customer/NewCustomer/NewCustomer.jsx";
 import SalesGraph from "../../components/session/userDisplay/SalesGraph/SalesGraph.jsx";
 import Tasks from "../../components/session/userDisplay/Tasks/Tasks.jsx";
+import CustomerHome from "./CustomerHome/CustomerHome.jsx";
 
 const Home = ({
   token,
@@ -70,25 +68,7 @@ const Home = ({
           </div>
         </div>
       )}
-      {role === "customer" && (
-        <div className={styles["dashboard"]}>
-          <div className={styles["first-line"]}>
-            <div className={styles["dashboard-item"]}>
-              <CustomerUpcomingSessions token={token} />
-            </div>
-          </div>
-          <div className={styles["second-line"]}>
-            <div className={styles["dashboard-item"]}>
-              <SessionsToPaid token={token} />
-            </div>
-          </div>
-          <div className={styles["third-line"]}>
-            <div className={styles["dashboard-item"]}>
-              <SessionsPaid token={token} />
-            </div>
-          </div>
-        </div>
-      )}
+      {role === "customer" && <CustomerHome token={token} />}
     </>
   );
 };

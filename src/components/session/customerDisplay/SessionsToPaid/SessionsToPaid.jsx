@@ -2,7 +2,7 @@
 import "./sessions-to-paid.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import CustomerSessionItem from "../CustomerSessionItem/CustomerSessionItem";
+import CustomerSessionItemMin from "../CustomerSessionItemMin/CustomerSessionItemMin";
 
 const SessionsToPaid = ({
   token,
@@ -40,23 +40,21 @@ const SessionsToPaid = ({
         <p>En chargement</p>
       ) : data[0] ? (
         <div className="customer-session-item-list">
-          {data.map((session) => {
+          {data.map((session, index) => {
             return (
-              <CustomerSessionItem
+              <CustomerSessionItemMin
                 setSessionID={setSessionID}
                 openSessionDisplay={openSessionDisplay}
                 setOpenSessionDisplay={setOpenSessionDisplay}
                 id={session._id}
                 title={session.title}
-                name={session.name}
-                firstName={session.firstName}
+                name={session.coach.name}
                 date={session.start}
-                content={session.content}
                 price={session.price}
                 state={session.state}
-                coachId={session.coach._id}
-                token={token}
+                coachId={session.coach}
                 key={String(session._id)}
+                index={index}
               />
             );
           })}

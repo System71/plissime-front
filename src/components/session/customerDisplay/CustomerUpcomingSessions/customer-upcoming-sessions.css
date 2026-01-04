@@ -1,9 +1,10 @@
 .customer-upcoming-sessions-container {
   display: flex;
-  width: 90%;
+  padding: 10px;
   flex-direction: column;
   overflow: hidden;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .customer-upcoming-sessions-container h2,
@@ -20,8 +21,9 @@
 
 .customer-session-item-list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 15px;
+  width: 100%;
 }

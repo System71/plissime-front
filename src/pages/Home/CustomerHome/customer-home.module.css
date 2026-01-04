@@ -1,0 +1,61 @@
+.customerHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.dashboard-item {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  border: 1px rgb(129, 129, 129) solid;
+  border-radius: 20px;
+}
+
+.first-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  height: 250px;
+}
+
+.second-line {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  height: 250px;
+}
+
+.first-line > div,
+.second-line > div {
+  flex: 1;
+  max-width: 530px;
+}
+
+.dashboard-item h2 {
+  margin-top: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.message {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 576px) {
+  .first-line,
+  .second-line {
+    flex-direction: column;
+  }
+
+  .dashboard-item {
+    min-height: 200px;
+  }
+}
