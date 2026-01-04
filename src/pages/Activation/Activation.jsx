@@ -164,6 +164,7 @@ const Activation = ({ token, setToken }) => {
         {
           email: email,
           name: name,
+          password: password,
           firstName: firstName,
           address: address,
           zip: zip,

@@ -3,6 +3,7 @@ import "./customer-upcoming-sessions.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import CustomerSessionItem from "../CustomerSessionItem/CustomerSessionItem";
+import SessionItemMin from "../../userDisplay/SessionItemMin/SessionItemMin";
 
 const CustomerUpcomingSessions = ({
   token,
@@ -41,19 +42,30 @@ const CustomerUpcomingSessions = ({
         <p>En chargement</p>
       ) : data[0] ? (
         <div className="customer-session-item-list">
-          {data.map((session) => {
+          {data.map((session, index) => {
             return (
-              <CustomerSessionItem
-              setSessionID={setSessionID}
-              openSessionDisplay={openSessionDisplay}
-              setOpenSessionDisplay={setOpenSessionDisplay}
-              id={session._id}
-              title={session.title}
-              name={session.name}
-              firstName={session.firstName}
-              date={session.start}
-              content={session.content}
-              key={String(session._id)}
+              // <CustomerSessionItem
+              //   setSessionID={setSessionID}
+              //   openSessionDisplay={openSessionDisplay}
+              //   setOpenSessionDisplay={setOpenSessionDisplay}
+              //   id={session._id}
+              //   title={session.title}
+              //   name={session.name}
+              //   firstName={session.firstName}
+              //   date={session.start}
+              //   content={session.content}
+              //   key={String(session._id)}
+              // />
+              <SessionItemMin
+                setSessionID={setSessionID}
+                openSessionDisplay={openSessionDisplay}
+                setOpenSessionDisplay={setOpenSessionDisplay}
+                id={session._id}
+                title={session.title}
+                name={session.customer.name}
+                date={session.start}
+                key={String(session._id)}
+                index={index}
               />
             );
           })}
