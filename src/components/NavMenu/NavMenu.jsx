@@ -47,17 +47,18 @@ const NavMenu = ({ setToken, setSessionsList, setCustomersList, role }) => {
           </div>
         </div>
         <div className={styles["barre"]}></div>
-        <div className={styles["disconnect"]}></div>
-        <Button
-          text="Déconnexion"
-          action={() => {
-            Cookies.remove("plissimeToken");
-            setToken("");
-            setSessionsList([]);
-            setCustomersList([]);
-            navigate("/");
-          }}
-        />
+        <div className={styles["disconnect"]}>
+          <Button
+            text="Déconnexion"
+            action={() => {
+              Cookies.remove("plissimeToken");
+              setToken("");
+              setSessionsList([]);
+              setCustomersList([]);
+              navigate("/");
+            }}
+          />
+        </div>
       </nav>
     );
   } else if (role === "customer") {
@@ -90,16 +91,18 @@ const NavMenu = ({ setToken, setSessionsList, setCustomersList, role }) => {
           </div>
         </div>
         <div className={styles["barre"]}></div>
-        <Button
-          text="Déconnexion"
-          action={() => {
-            Cookies.remove("plissimeToken");
-            setToken("");
-            setSessionsList([]);
-            setCustomersList([]);
-            navigate("/");
-          }}
-        />
+        <div className={styles["disconnect"]}>
+          <Button
+            text="Déconnexion"
+            action={() => {
+              Cookies.remove("plissimeToken");
+              setToken("");
+              setSessionsList([]);
+              setCustomersList([]);
+              navigate("/");
+            }}
+          />
+        </div>
       </nav>
     );
   }

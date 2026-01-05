@@ -15,7 +15,6 @@ const Coachs = ({ token }) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
             },
           }
         );
@@ -33,11 +32,11 @@ const Coachs = ({ token }) => {
       <div className="coach-item-list">
         {myCoachs.map((coach) => (
           <CoachItem
-            name={coach.name}
-            firstName={coach.firstName}
-            phone={coach.phone}
-            email={coach.email}
-            key={coach._id}
+            name={coach.id.name}
+            firstName={coach.id.firstName}
+            phone={coach.id.phone}
+            email={coach.id.email}
+            key={coach.id._id}
           />
         ))}
       </div>
