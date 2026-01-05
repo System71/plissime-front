@@ -19,7 +19,7 @@ const CoachItem = ({ name, firstName, phone, email }) => {
             color="#E67E22"
             size="xs"
           />
-          <p>0{phone}</p>
+          <p>{phone}</p>
         </div>
         <div className="coach-info">
           <FontAwesomeIcon
