@@ -140,7 +140,9 @@ function App() {
           ></Route>
           <Route
             path="/signup"
-            element={<Signup setToken={setToken} token={token} />}
+            element={
+              <Signup setToken={setToken} token={token} setRole={setRole} />
+            }
           ></Route>
           <Route
             path="/activation/:tokenparam"

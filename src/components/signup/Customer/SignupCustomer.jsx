@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const SignupCustomer = ({ setToken, token }) => {
+const SignupCustomer = ({ setToken, token, setRole }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -23,62 +23,64 @@ const SignupCustomer = ({ setToken, token }) => {
 
   const navigate = useNavigate();
 
-  // const validateCustomerForm = () => {
-  //   const newErrors = {};
+  const validateCustomerForm = () => {
+    const newErrors = {};
 
-  //   if (!email) {
-  //     newErrors.email = "L'email est requis.";
-  //   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-  //     newErrors.email = "Format d'email invalide.";
-  //   }
+    if (step === 0) {
+      if (!email) {
+        newErrors.email = "L'email est requis.";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        newErrors.email = "Format d'email invalide.";
+      }
 
-  //   if (!password || password.length < 6) {
-  //     newErrors.password =
-  //       "Le mot de passe doit contenir au moins 6 caractères.";
-  //   }
+      if (!password || password.length < 6) {
+        newErrors.password =
+          "Le mot de passe doit contenir au moins 6 caractères.";
+      }
+    } else if (step === 1) {
+      if (!name) {
+        newErrors.name = "Le nom est requis.";
+      }
 
-  //   if (!name) {
-  //     newErrors.name = "Le nom est requis.";
-  //   }
+      if (!firstName) {
+        newErrors.firstName = "Le prénom est requis.";
+      }
 
-  //   if (!firstName) {
-  //     newErrors.firstName = "Le prénom est requis.";
-  //   }
+      if (!address) {
+        newErrors.address = "L'adresse est requise.";
+      }
 
-  //   if (!address) {
-  //     newErrors.address = "L'adresse est requise.";
-  //   }
+      if (!zip) {
+        newErrors.zip = "Le code postal est requis.";
+      } else if (zip.length != 5) {
+        newErrors.zip = "Le code postal doit comporter 5 chiffres.";
+      }
 
-  //   if (!zip) {
-  //     newErrors.zip = "Le code postal est requis.";
-  //   } else if (zip.length != 5) {
-  //     newErrors.zip = "Le code postal doit comporter 5 chiffres.";
-  //   }
+      if (!city) {
+        newErrors.city = "La ville est requise.";
+      }
 
-  //   if (!city) {
-  //     newErrors.city = "La ville est requise.";
-  //   }
+      if (!phone) {
+        newErrors.phone = "Le numéro de téléphone est requis.";
+      } else if (!/^\d{10}$/.test(phone)) {
+        newErrors.phone =
+          "Le numéro de téléphone ne doit comporter exactement 10 chiffres.";
+      }
 
-  //   if (!phone) {
-  //     newErrors.phone = "Le numéro de téléphone est requis.";
-  //   } else if (!/^\d{10}$/.test(phone)) {
-  //     newErrors.phone =
-  //       "Le numéro de téléphone ne doit comporter exactement 10 chiffres.";
-  //   }
+      if (!activity) {
+        newErrors.activity = "L'activité est requise.";
+      }
+    }
 
-  //   if (!activity) {
-  //     newErrors.activity = "L'activité est requise.";
-  //   }
-
-  //   return newErrors;
-  // };
+    return newErrors;
+  };
 
   const signupNewCustomer = async () => {
-    // const validationErrors = validateUserForm();
-    // if (Object.keys(validationErrors).length > 0) {
-    //   setErrors(validationErrors);
-    //   return;
-    // }
+    const validationErrors = validateCustomerForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -115,11 +117,11 @@ const SignupCustomer = ({ setToken, token }) => {
   };
 
   const majCustomer = async () => {
-    // const validationErrors = validateUserForm();
-    // if (Object.keys(validationErrors).length > 0) {
-    //   setErrors(validationErrors);
-    //   return;
-    // }
+    const validationErrors = validateCustomerForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     try {
       const response = await axios.put(
@@ -140,6 +142,7 @@ const SignupCustomer = ({ setToken, token }) => {
 
       if (step === 1) {
         localStorage.setItem("role", "customer");
+        setRole("customer");
         navigate("/");
       }
     } catch (error) {

@@ -43,6 +43,7 @@ const Login = ({ setToken, setSub, setFirstName, setRole }) => {
         localStorage.setItem("role", "customer");
         setRole("customer");
         setToken(response.data.token);
+        setFirstName(response.data.firstName);
         Cookies.set("plissimeToken", response.data.token);
       }
       navigate("/");

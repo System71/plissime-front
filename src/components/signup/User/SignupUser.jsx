@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const SignupUser = ({ setToken, token }) => {
+const SignupUser = ({ setToken, token, setRole }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -25,71 +25,73 @@ const SignupUser = ({ setToken, token }) => {
 
   const navigate = useNavigate();
 
-  // const validateUserForm = () => {
-  //   const newErrors = {};
+  const validateUserForm = () => {
+    const newErrors = {};
 
-  //   if (!email) {
-  //     newErrors.email = "L'email est requis.";
-  //   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-  //     newErrors.email = "Format d'email invalide.";
-  //   }
+    if (step === 0) {
+      if (!email) {
+        newErrors.email = "L'email est requis.";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        newErrors.email = "Format d'email invalide.";
+      }
 
-  //   if (!password || password.length < 6) {
-  //     newErrors.password =
-  //       "Le mot de passe doit contenir au moins 6 caractères.";
-  //   }
+      if (!password || password.length < 6) {
+        newErrors.password =
+          "Le mot de passe doit contenir au moins 6 caractères.";
+      }
+    } else if (step === 1) {
+      if (!name) {
+        newErrors.name = "Le nom est requis.";
+      }
 
-  //   if (!name) {
-  //     newErrors.name = "Le nom est requis.";
-  //   }
+      if (!firstName) {
+        newErrors.firstName = "Le prénom est requis.";
+      }
 
-  //   if (!firstName) {
-  //     newErrors.firstName = "Le prénom est requis.";
-  //   }
+      if (!address) {
+        newErrors.address = "L'adresse est requise.";
+      }
 
-  //   if (!address) {
-  //     newErrors.address = "L'adresse est requise.";
-  //   }
+      if (!zip) {
+        newErrors.zip = "Le code postal est requis.";
+      } else if (zip.length != 5) {
+        newErrors.zip = "Le code postal doit comporter 5 chiffres.";
+      }
 
-  //   if (!zip) {
-  //     newErrors.zip = "Le code postal est requis.";
-  //   } else if (zip.length != 5) {
-  //     newErrors.zip = "Le code postal doit comporter 5 chiffres.";
-  //   }
+      if (!city) {
+        newErrors.city = "La ville est requise.";
+      }
 
-  //   if (!city) {
-  //     newErrors.city = "La ville est requise.";
-  //   }
+      if (!phone) {
+        newErrors.phone = "Le numéro de téléphone est requis.";
+      } else if (!/^\d{10}$/.test(phone)) {
+        newErrors.phone =
+          "Le numéro de téléphone ne doit comporter exactement 10 chiffres.";
+      }
+    } else if (step === 2) {
+      if (!activity) {
+        newErrors.activity = "L'activité est requise.";
+      }
 
-  //   if (!phone) {
-  //     newErrors.phone = "Le numéro de téléphone est requis.";
-  //   } else if (!/^\d{10}$/.test(phone)) {
-  //     newErrors.phone =
-  //       "Le numéro de téléphone ne doit comporter exactement 10 chiffres.";
-  //   }
+      if (!siret) {
+        newErrors.siret = "Le numéro de SIRET est requis.";
+      } else if (!/^\d+$/.test(siret)) {
+        newErrors.siret =
+          "Le numéro de SIRET ne doit comporter que des chiffres.";
+      } else if (siret.length != 14) {
+        newErrors.siret = "Le numéro de SIRET doit comporter 14 caractères.";
+      }
+    }
 
-  //   if (!activity) {
-  //     newErrors.activity = "L'activité est requise.";
-  //   }
-
-  //   if (!siret) {
-  //     newErrors.siret = "Le numéro de SIRET est requis.";
-  //   } else if (!/^\d+$/.test(siret)) {
-  //     newErrors.siret =
-  //       "Le numéro de SIRET ne doit comporter que des chiffres.";
-  //   } else if (siret.length != 14) {
-  //     newErrors.siret = "Le numéro de SIRET doit comporter 14 caractères.";
-  //   }
-
-  //   return newErrors;
-  // };
+    return newErrors;
+  };
 
   const signupNewUser = async () => {
-    // const validationErrors = validateUserForm();
-    // if (Object.keys(validationErrors).length > 0) {
-    //   setErrors(validationErrors);
-    //   return;
-    // }
+    const validationErrors = validateUserForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -126,11 +128,11 @@ const SignupUser = ({ setToken, token }) => {
   };
 
   const majUser = async () => {
-    // const validationErrors = validateUserForm();
-    // if (Object.keys(validationErrors).length > 0) {
-    //   setErrors(validationErrors);
-    //   return;
-    // }
+    const validationErrors = validateUserForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     try {
       const response = await axios.put(
@@ -153,6 +155,7 @@ const SignupUser = ({ setToken, token }) => {
 
       if (step === 2) {
         localStorage.setItem("role", "coach");
+        setRole("coach");
         navigate("/");
       }
     } catch (error) {
