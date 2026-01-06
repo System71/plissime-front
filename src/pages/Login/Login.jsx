@@ -86,31 +86,35 @@ const Login = ({ setToken, setSub, setFirstName, setRole }) => {
           </button>
         </div>
         <h1>Connectez-vous à votre espace personnel</h1>
-        <div>
-          <label htmlFor="email">Email :</label>
-          <input
-            type="email"
-            placeholder="Votre email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
+        <div className={styles["line"]}>
+          <div className={styles["item"]}>
+            <label htmlFor="email">Email :</label>
+            <input
+              type="email"
+              placeholder="Votre email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="password">Mot de passe :</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Votre mot de passe"
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
+        <div className={styles["line"]}>
+          <div className={styles["item"]}>
+            <label htmlFor="password">Mot de passe :</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Votre mot de passe"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+            />
+          </div>
         </div>
         <div>
           <Button type="button" action={login} text="Se connecter" />

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import styles from "./signup-customer.module.css";
 import { useState } from "react";
@@ -162,33 +163,37 @@ const SignupCustomer = ({ setToken, token, setRole }) => {
     <div className={styles["signup-customer"]}>
       {step === 0 && (
         <div className={styles["step0"]}>
-          <div>
-            <label htmlFor="email">Email :</label>
-            <input
-              type="email"
-              placeholder="Votre email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.email}</p>
+          <div className={styles["line"]}>
+            <div className={styles["item"]}>
+              <label htmlFor="email">Email :</label>
+              <input
+                type="email"
+                placeholder="Votre email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.email}</p>
+            </div>
           </div>
-          <div>
-            <label htmlFor="password">Mot de passe :</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Votre mot de passe"
-              value={password}
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.password}</p>
+          <div className={styles["line"]}>
+            <div className={styles["item"]}>
+              <label htmlFor="password">Mot de passe :</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Votre mot de passe"
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.password}</p>
+            </div>
           </div>
         </div>
       )}
@@ -199,103 +204,111 @@ const SignupCustomer = ({ setToken, token, setRole }) => {
               <p className={styles["resume-message"]}>{resumeMessage}</p>
             </div>
           )}
-          <div>
-            <label htmlFor="name">Nom :</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Votre nom"
-              value={name}
-              onChange={(event) => {
-                setName(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.name}</p>
+          <div className={styles["line"]}>
+            <div className={styles["item"]}>
+              <label htmlFor="name">Nom :</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Votre nom"
+                value={name}
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.name}</p>
+            </div>
+            <div className={styles["item"]}>
+              <label htmlFor="firstName">Prénom :</label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                placeholder="Votre prénom"
+                value={firstName}
+                onChange={(event) => {
+                  setFirstName(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.firstName}</p>
+            </div>
           </div>
-          <div>
-            <label htmlFor="firstName">Prénom :</label>
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              placeholder="Votre prénom"
-              value={firstName}
-              onChange={(event) => {
-                setFirstName(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.firstName}</p>
+          <div className={styles["line"]}>
+            <div className={styles["item"]}>
+              <label htmlFor="address">Adresse :</label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                placeholder="Votre adresse"
+                value={address}
+                onChange={(event) => {
+                  setAddress(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.address}</p>
+            </div>
           </div>
-          <div>
-            <label htmlFor="address">Adresse :</label>
-            <input
-              type="text"
-              name="address"
-              id="address"
-              placeholder="Votre adresse"
-              value={address}
-              onChange={(event) => {
-                setAddress(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.address}</p>
+          <div className={styles["line"]}>
+            <div className={styles["item"]}>
+              <label htmlFor="zip">Code postal :</label>
+              <input
+                type="text"
+                name="zip"
+                id="zip"
+                placeholder="Votre code postal"
+                value={zip}
+                onChange={(event) => {
+                  setZip(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.zip}</p>
+            </div>
+            <div className={styles["item"]}>
+              <label htmlFor="city">Ville :</label>
+              <input
+                type="city"
+                name="city"
+                id="city"
+                placeholder="Votre ville"
+                value={city}
+                onChange={(event) => {
+                  setCity(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.city}</p>
+            </div>
           </div>
-          <div>
-            <label htmlFor="zip">Code postal :</label>
-            <input
-              type="text"
-              name="zip"
-              id="zip"
-              placeholder="Votre code postal"
-              value={zip}
-              onChange={(event) => {
-                setZip(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.zip}</p>
-          </div>
-          <div>
-            <label htmlFor="city">Ville :</label>
-            <input
-              type="city"
-              name="city"
-              id="city"
-              placeholder="Votre ville"
-              value={city}
-              onChange={(event) => {
-                setCity(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.city}</p>
-          </div>
-          <div>
-            <label htmlFor="phone">Téléphone :</label>
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              placeholder="Votre numéro de téléphone"
-              value={phone}
-              onChange={(event) => {
-                setPhone(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.phone}</p>
-          </div>
-          <div>
-            <label htmlFor="activity">Profession :</label>
-            <input
-              type="text"
-              name="activity"
-              id="activity"
-              placeholder="Votre profession"
-              value={activity}
-              onChange={(event) => {
-                setActivity(event.target.value);
-              }}
-            />
-            <p className={styles["error-message"]}>{errors.activity}</p>
+          <div className={styles["line"]}>
+            <div className={styles["item"]}>
+              <label htmlFor="phone">Téléphone :</label>
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                placeholder="Votre numéro de téléphone"
+                value={phone}
+                onChange={(event) => {
+                  setPhone(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.phone}</p>
+            </div>
+            <div className={styles["item"]}>
+              <label htmlFor="activity">Profession :</label>
+              <input
+                type="text"
+                name="activity"
+                id="activity"
+                placeholder="Votre profession"
+                value={activity}
+                onChange={(event) => {
+                  setActivity(event.target.value);
+                }}
+              />
+              <p className={styles["error-message"]}>{errors.activity}</p>
+            </div>
           </div>
         </div>
       )}

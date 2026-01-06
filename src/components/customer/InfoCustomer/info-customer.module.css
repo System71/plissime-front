@@ -14,7 +14,7 @@
   gap: 15px;
 }
 
-label {
+.admin-settings label {
   font-weight: 600;
   flex: 0 0 auto;
   white-space: nowrap;

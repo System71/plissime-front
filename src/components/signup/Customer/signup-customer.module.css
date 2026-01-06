@@ -1,39 +1,47 @@
 .signup-customer {
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
 
 .step0,
-.step1 {
+.step1,
+.step2 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
 }
 
-.step0 div,
-.step1 div {
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 400px;
+  gap: 5px;
+}
+
+.item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 400px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 1;
+  width: 100%;
 }
 
 .signup-customer label {
   font-weight: 600;
-  align-self: flex-start;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-bottom: 5px;
 }
 
 .signup-customer input {
-  width: 400px;
-  margin-top: 10px;
-  border: 0;
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  height: 40px;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
 }
 
 .signup-customer input:focus {
@@ -45,7 +53,8 @@
   color: red;
   font-size: small;
   align-self: flex-start;
-  margin-top: 5px;
+  height: 20px;
+  margin-top: 2px;
 }
 
 .error-message-back {
@@ -53,6 +62,7 @@
   max-width: 400px;
   color: red;
   font-size: small;
+  margin-top: 10px;
 }
 
 .resume-message {

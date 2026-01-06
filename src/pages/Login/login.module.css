@@ -6,6 +6,11 @@
   padding: 20px;
 }
 
+.login h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -17,12 +22,23 @@
   width: 600px;
 }
 
-.login div {
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 400px;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 1;
+  width: 100%;
 }
 
 .login button {
@@ -33,12 +49,14 @@
   border: 0px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
+  margin-bottom: 20px;
 }
 
 .login label {
   font-weight: 600;
-  align-self: flex-start;
-  margin-bottom: 10px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-bottom: 5px;
 }
 
 .button-choice button {
