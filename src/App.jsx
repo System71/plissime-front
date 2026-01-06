@@ -101,6 +101,8 @@ function App() {
   const [refreshCustomers, setRefreshCustomers] = useState(true);
 
   useEffect(() => {
+    if (!token) return;
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -153,6 +155,10 @@ function App() {
                 setSessionsList={setSessionsList}
                 setCustomersList={setActiveCustomersList}
                 role={role}
+                setRole={setRole}
+                setFirstName={setFirstName}
+                setStripeId={setStripeId}
+                setSub={setSub}
               />
             }
           >
@@ -228,7 +234,7 @@ function App() {
             <Route path="/mycoachs" element={<Coachs token={token} />}></Route>
             <Route
               path="/myprograms"
-              element={<MyPrograms token={token} />}
+              element={<MyPrograms token={token} role={role} />}
             ></Route>
             <Route path="/help" element={<Help token={token} />}></Route>
             <Route path="/stripe" element={<Stripe />}></Route>

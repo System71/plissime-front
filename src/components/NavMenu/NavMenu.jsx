@@ -6,7 +6,16 @@ import Button from "../Button/Button";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 
-const NavMenu = ({ setToken, setSessionsList, setCustomersList, role }) => {
+const NavMenu = ({
+  setToken,
+  setSessionsList,
+  setCustomersList,
+  role,
+  setRole,
+  setFirstName,
+  setStripeId,
+  setSub,
+}) => {
   const navigate = useNavigate();
 
   if (role === "coach") {
@@ -52,7 +61,12 @@ const NavMenu = ({ setToken, setSessionsList, setCustomersList, role }) => {
             text="Déconnexion"
             action={() => {
               Cookies.remove("plissimeToken");
+              localStorage.removeItem("role");
               setToken("");
+              setRole(null);
+              setSub("");
+              setFirstName("");
+              setStripeId("");
               setSessionsList([]);
               setCustomersList([]);
               navigate("/");
@@ -96,7 +110,10 @@ const NavMenu = ({ setToken, setSessionsList, setCustomersList, role }) => {
             text="Déconnexion"
             action={() => {
               Cookies.remove("plissimeToken");
+              localStorage.removeItem("role");
               setToken("");
+              setRole(null);
+              setFirstName("");
               setSessionsList([]);
               setCustomersList([]);
               navigate("/");

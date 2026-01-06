@@ -9,6 +9,10 @@ const Layout = ({
   setSessionsList,
   setCustomersList,
   role,
+  setRole,
+  setFirstName,
+  setStripeId,
+  setSub,
 }) => {
   return (
     <div className="app-layout">
@@ -18,6 +22,10 @@ const Layout = ({
           setSessionsList={setSessionsList}
           setCustomersList={setCustomersList}
           role={role}
+          setRole={setRole}
+          setFirstName={setFirstName}
+          setStripeId={setStripeId}
+          setSub={setSub}
         />
       )}
       {token && <BurgerMenu />}

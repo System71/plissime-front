@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from "./program-item.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ProgramItem = ({ title, duration, notes, nbCustomer, onClick }) => {
+const ProgramItem = ({ title, duration, nbCustomer, onClick }) => {
   return (
     <div className={styles["program-item"]} onClick={onClick}>
       <div className={styles["title"]}>

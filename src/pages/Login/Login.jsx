@@ -7,7 +7,7 @@ import logo from "../../assets/logo.jpg";
 import Cookies from "js-cookie";
 import Button from "../../components/Button/Button";
 
-const Login = ({ setToken, setSub, setFirstName }) => {
+const Login = ({ setToken, setSub, setFirstName, setRole }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isCoach, setIsCoach] = useState(true);
@@ -27,6 +27,7 @@ const Login = ({ setToken, setSub, setFirstName }) => {
           }
         );
         localStorage.setItem("role", "coach");
+        setRole("coach");
         setToken(response.data.token);
         setFirstName(response.data.firstName);
         if (response.data.sub == "active") setSub(true);
@@ -40,6 +41,7 @@ const Login = ({ setToken, setSub, setFirstName }) => {
           }
         );
         localStorage.setItem("role", "customer");
+        setRole("customer");
         setToken(response.data.token);
         Cookies.set("plissimeToken", response.data.token);
       }

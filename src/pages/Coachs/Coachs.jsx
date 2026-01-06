@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./coachs.css";
+import styles from "./coachs.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CoachItem from "../../components/coach/coachItem/CoachItem";
@@ -27,9 +27,9 @@ const Coachs = ({ token }) => {
   }, [token]);
 
   return (
-    <>
+    <div className={styles.coachs}>
       <h1>Mes coachs</h1>
-      <div className="coach-item-list">
+      <div className={styles["coach-item-list"]}>
         {myCoachs.map((coach) => (
           <CoachItem
             name={coach.id.name}
@@ -40,7 +40,7 @@ const Coachs = ({ token }) => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

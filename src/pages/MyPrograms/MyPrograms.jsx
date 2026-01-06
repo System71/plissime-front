@@ -5,7 +5,7 @@ import axios from "axios";
 import ProgramItem from "../../components/program/ProgramItem/ProgramItem";
 import ProgramSpecifications from "../../components/program/ProgramSpecifications/ProgramSpecifications";
 
-const MyPrograms = ({ token }) => {
+const MyPrograms = ({ token, role }) => {
   const [programs, setPrograms] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedProgram, setSelectedProgram] = useState(null);
@@ -31,8 +31,11 @@ const MyPrograms = ({ token }) => {
   }, [token]);
 
   return (
-    <div>
-      <h1>Mes Programmes</h1>
+    <div className={styles.myPrograms}>
+      <div className={styles["message"]}>
+        <p>Vous trouvez ici vos programmes que vous suivez.</p>
+      </div>
+      <h1>Mes Programmes :</h1>
       {isLoading ? (
         <p>En chargement</p>
       ) : selectedProgram ? (
@@ -51,6 +54,7 @@ const MyPrograms = ({ token }) => {
               title={program.title}
               duration={program.duration}
               notes={program.notes}
+              role={role}
               onClick={() => {
                 setSelectedProgram(program);
               }}
