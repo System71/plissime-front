@@ -4,12 +4,6 @@
   justify-content: center;
 }
 
-.session-paid-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
 .payments button {
   height: 40px;
   font-weight: 600;

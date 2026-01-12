@@ -1,0 +1,52 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  border: 1px solid rgb(206, 204, 204);
+  padding: 20px;
+  height: 30px;
+  align-items: center;
+  border-radius: 10px;
+  gap: 20px;
+}
+
+.name {
+  flex: 2;
+  font-weight: bold;
+}
+
+.title {
+  flex: 2;
+}
+
+.price {
+  color: #e67e22;
+  flex: 1;
+}
+
+.session {
+  flex: 2;
+  font-weight: bold;
+}
+
+@media (max-width: 576px) {
+  .content {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .title,
+  .view {
+    display: none;
+  }
+
+  .date,
+  .name,
+  .price {
+    flex-grow: 0;
+  }
+
+  .first-name {
+    display: none;
+  }
+}

@@ -1,4 +1,4 @@
-.addProgram {
+.addCustomerSubsription {
   margin-bottom: 60px;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.addProgram p {
+.addCustomerSubsription p {
   margin-bottom: -50px;
   border: none;
   font-size: medium;
@@ -34,10 +34,9 @@
   position: absolute;
 }
 
-.programList {
+.customerSubscriptionList {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 20px;
 }
 

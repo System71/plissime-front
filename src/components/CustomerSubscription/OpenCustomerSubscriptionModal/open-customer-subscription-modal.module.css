@@ -1,0 +1,106 @@
+.container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  align-items: center;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  max-height: 800px;
+  width: 60%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: lightgrey;
+  border: 3px solid grey;
+  border-radius: 20px;
+  gap: 15px;
+  padding: 30px;
+}
+
+.container .open-session-modal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.content button {
+  height: 50px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+}
+
+.content .button-choice button {
+  border: none;
+}
+
+.content .button-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 400px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  margin-bottom: 15px;
+}
+
+.button-choice > button {
+  flex: 1;
+  margin: 0;
+  border-radius: 0;
+}
+
+.container .arrows {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.arrows .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.arrows .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+    margin-top: 90px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .content .button-choice {
+    width: 100%;
+  }
+}

@@ -39,17 +39,17 @@ const Programmes = ({ token, sub }) => {
       <>
         <p className={styles["message"]}>Créez vos programmes simplement.</p>
         {!creation && (
-          <div className={styles["addProgram"]}>
+          <div
+            className={styles["addProgram"]}
+            onClick={() => {
+              setSelectedProgram(null);
+              setCreation(true);
+            }}
+          >
             <p>Créer un nouveau programme</p>
             <div className={styles["arrow-circle"]}>
               <img className={styles["arrow"]} src={arrow} alt="arrow" />
-              <div
-                className={styles["plus-container"]}
-                onClick={() => {
-                  setSelectedProgram(null);
-                  setCreation(true);
-                }}
-              >
+              <div className={styles["plus-container"]}>
                 <img className={styles["circle"]} src={circle} alt="circle" />
                 <FontAwesomeIcon
                   className={styles["plus-circle"]}

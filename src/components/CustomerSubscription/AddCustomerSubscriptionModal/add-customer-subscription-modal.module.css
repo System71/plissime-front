@@ -1,0 +1,156 @@
+.addCustomerSubscriptionModalContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  align-items: center;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.addCustomerSubscriptionModalContainer label {
+  font-weight: 600;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.addCustomerSubscriptionModalContent {
+  width: 60%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+  border: 3px solid grey;
+  border-radius: 20px;
+  gap: 15px;
+  padding: 45px;
+}
+
+.customer-subscription-infos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.customer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+}
+
+.customers-list {
+  display: flex;
+  width: max-content;
+  max-width: 400px;
+  position: absolute;
+  top: 40px;
+  background-color: beige;
+}
+
+.customers-list ul {
+  width: 100%;
+}
+
+.customers-list li {
+  padding: 15px;
+  margin: -100;
+}
+
+.customers-list li:hover {
+  background-color: #a8c6cc;
+}
+
+.addCustomerSubscriptionModalContent .email-check {
+  display: flex;
+  gap: 15px;
+}
+
+.addCustomerSubscriptionModalContainer input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  flex: 1;
+  min-width: 0;
+}
+
+.addCustomerSubscriptionModalContainer input:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
+}
+
+.addCustomerSubscriptionModalContainer input[readonly] {
+  background-color: #efefef;
+  border-color: #bfbfbf;
+  color: #555;
+}
+
+.addCustomerSubscriptionModalContainer .add-customer-session-modal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.error-message {
+  color: red;
+  font-size: small;
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+.error-message-back {
+  color: red;
+  font-size: small;
+}
+
+.email-check {
+  display: flex;
+  flex-direction: column;
+}
+
+.email-check div {
+  align-self: flex-end;
+}
+
+.customer-infos > p {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 576px) {
+  .addCustomerSubscriptionModalContainer {
+    padding: 10px;
+    margin-top: 90px;
+  }
+
+  .addCustomerSubscriptionModalContent {
+    width: 100%;
+    padding: 10px;
+  }
+}

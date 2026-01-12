@@ -23,6 +23,8 @@ import AddCustomerModal from "./components/customer/AddCustomerModal/AddCustomer
 import OpenCustomerModal from "./components/customer/OpenCustomerModal/OpenCustomerModal";
 import AddSessionModal from "./components/session/userDisplay/AddSessionModal/AddSessionModal";
 import OpenSessionModal from "./components/session/userDisplay/OpenSessionModal/OpenSessionModal";
+import AddCustomerSubscriptionModal from "./components/CustomerSubscription/AddCustomerSubscriptionModal/AddCustomerSubscriptionModal";
+// import OpenCustomerSubscriptionModal from "./components/CustomerSubscription/OpenCustomerSubscriptionModal/OpenCustomerSubscriptionModal";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUser,
@@ -85,10 +87,15 @@ function App() {
   const [token, setToken] = useState(Cookies.get("plissimeToken") || "");
   const [sessionID, setSessionID] = useState("");
   const [customerID, setCustomerID] = useState("");
+  const [subscriptionID, setSubscriptionID] = useState("");
   const [addSessionDisplay, setAddSessionDisplay] = useState(false);
   const [openSessionDisplay, setOpenSessionDisplay] = useState(false);
   const [addCustomerDisplay, setAddCustomerDisplay] = useState(false);
   const [openCustomerDisplay, setOpenCustomerDisplay] = useState(false);
+  const [addCustomerSubscriptionDisplay, setAddCustomerSubscriptionDisplay] =
+    useState(false);
+  const [openCustomerSubscriptionDisplay, setOpenCustomerSubscriptionDisplay] =
+    useState(false);
   const [sessionsList, setSessionsList] = useState([]);
   const [activeCustomersList, setActiveCustomersList] = useState([]);
   const [inactiveCustomersList, setInactiveCustomersList] = useState([]);
@@ -99,6 +106,8 @@ function App() {
   const [firstName, setFirstName] = useState("");
   const [stripeId, setStripeId] = useState("");
   const [refreshCustomers, setRefreshCustomers] = useState(true);
+  const [refreshCustomerSubscription, setRefreshCustomerSubscription] =
+    useState(true);
 
   useEffect(() => {
     if (!token) return;
@@ -221,7 +230,19 @@ function App() {
             ></Route>
             <Route
               path="/payments"
-              element={<Payments token={token} sub={sub} />}
+              element={
+                <Payments
+                  token={token}
+                  sub={sub}
+                  setAddCustomerSubscriptionDisplay={
+                    setAddCustomerSubscriptionDisplay
+                  }
+                  setOpenCustomerSubscriptionDisplay={
+                    setOpenCustomerSubscriptionDisplay
+                  }
+                  refreshCustomerSubscription={refreshCustomerSubscription}
+                />
+              }
             ></Route>
             <Route
               path="/user/settings"
@@ -257,6 +278,15 @@ function App() {
             setRefreshCustomers={setRefreshCustomers}
           />
         )}
+        {addCustomerSubscriptionDisplay && (
+          <AddCustomerSubscriptionModal
+            token={token}
+            setAddCustomerSubscriptionDisplay={
+              setAddCustomerSubscriptionDisplay
+            }
+            setRefreshCustomerSubscription={setRefreshCustomerSubscription}
+          />
+        )}
         {openSessionDisplay && (
           <OpenSessionModal
             token={token}
@@ -273,6 +303,9 @@ function App() {
             setRefreshCustomers={setRefreshCustomers}
           />
         )}
+        {/* {openCustomerSubscriptionDisplay && (
+          <OpenCustomerSubscriptionModal token={token} id={subscriptionID} />
+        )} */}
       </Router>
     </div>
   );
