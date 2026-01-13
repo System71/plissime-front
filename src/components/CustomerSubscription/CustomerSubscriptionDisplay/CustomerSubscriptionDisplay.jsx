@@ -62,7 +62,6 @@ const CustomerSubscriptionDisplay = ({
       <div className={styles.customerSubscriptionList}>
         {customerSubscriptions.map((sub) => (
           <CustomerSubscriptionItem
-            statut={sub.statut}
             title={sub.title}
             name={sub.customer.name}
             firstName={sub.customer.firstName}

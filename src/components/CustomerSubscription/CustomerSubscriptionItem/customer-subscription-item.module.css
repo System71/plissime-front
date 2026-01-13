@@ -13,7 +13,7 @@
 
 .name {
   flex: 2;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .title {
@@ -26,8 +26,12 @@
 }
 
 .session {
-  flex: 2;
-  font-weight: bold;
+  flex: 1;
+  font-weight: 600;
+}
+
+.statut {
+  font-weight: 600;
 }
 
 @media (max-width: 576px) {
@@ -37,13 +41,14 @@
   }
 
   .title,
-  .view {
+  .view,
+  .date,
+  .price {
     display: none;
   }
 
-  .date,
   .name,
-  .price {
+  .session {
     flex-grow: 0;
   }
 

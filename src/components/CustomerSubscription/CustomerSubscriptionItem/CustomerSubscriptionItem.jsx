@@ -3,7 +3,6 @@ import styles from "./customer-subscription-item.module.css";
 import { format } from "date-fns";
 
 const CustomerSubscriptionItem = ({
-  statut,
   title,
   name,
   firstName,
@@ -36,6 +35,13 @@ const CustomerSubscriptionItem = ({
       </div>
       <div className={styles["session"]}>
         {sessionUsed} / {sessionInitial} sessions
+      </div>
+      <div className={styles.statut}>
+        {isPaid ? (
+          <p style={{ color: "green" }}>Payé</p>
+        ) : (
+          <p style={{ color: "red" }}>Non Payé</p>
+        )}
       </div>
       <div className={styles["view"]}>Voir</div>
     </div>

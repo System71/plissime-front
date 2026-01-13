@@ -5,7 +5,6 @@ import axios from "axios";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../Button/Button";
-import { createLogger } from "vite";
 
 const OpenCustomerModal = ({
   token,
@@ -31,11 +30,9 @@ const OpenCustomerModal = ({
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log("response=", response.data);
         setName(response.data.customer.name);
         setFirstName(response.data.customer.firstName);
         const formatedDate = format(response.data.date, "dd/LL/yyyy");
-        console.log("date=", formatedDate);
         setDate(formatedDate);
         setTitle(response.data.title);
         setSessionPrice(response.data.sessionPrice);
@@ -156,7 +153,7 @@ const OpenCustomerModal = ({
                 <div className={styles.item}>
                   <label htmlFor="date">Date :</label>
                   <input
-                    type="date"
+                    type="text"
                     name="date"
                     id="date"
                     placeholder="Date"
