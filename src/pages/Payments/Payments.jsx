@@ -12,6 +12,7 @@ const Payments = ({
   setAddCustomerSubscriptionDisplay,
   setOpenCustomerSubscriptionDisplay,
   refreshCustomerSubscription,
+  setSubscriptionID,
 }) => {
   const [choice, setChoice] = useState("payable");
 
@@ -56,6 +57,7 @@ const Payments = ({
               setOpenCustomerSubscriptionDisplay
             }
             refreshCustomerSubscription={refreshCustomerSubscription}
+            setSubscriptionID={setSubscriptionID}
           />
         )}
       </div>

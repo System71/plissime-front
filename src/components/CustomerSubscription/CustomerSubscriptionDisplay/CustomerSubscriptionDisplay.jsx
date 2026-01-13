@@ -11,6 +11,7 @@ const CustomerSubscriptionDisplay = ({
   setAddCustomerSubscriptionDisplay,
   setOpenCustomerSubscriptionDisplay,
   refreshCustomerSubscription,
+  setSubscriptionID,
 }) => {
   const [customerSubscriptions, setCustomerSubscription] = useState([]);
 
@@ -27,7 +28,6 @@ const CustomerSubscriptionDisplay = ({
               "Content-Type": "multipart/form-data",
             }
           );
-          console.log("subscriptions=", response.data);
           setCustomerSubscription(response.data);
         } catch (error) {
           console.log(error.response);
@@ -71,7 +71,12 @@ const CustomerSubscriptionDisplay = ({
             sessionUsed={sub.sessionUsed}
             sessionInitial={sub.sessionInitial}
             isPaid={sub.isPaid}
+            id={sub._id}
             key={sub._id}
+            setOpenCustomerSubscriptionDisplay={
+              setOpenCustomerSubscriptionDisplay
+            }
+            setSubscriptionID={setSubscriptionID}
           />
         ))}
       </div>

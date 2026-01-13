@@ -4,96 +4,47 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import InfoCustomer from "../InfoCustomer/InfoCustomer";
-import CustomerPayments from "../CustomerPayments/CustomerPayments";
-import CustomerSportInfos from "../CustomerSportInfos/CustomerSportInfos";
-import CustomerSessions from "../CustomerSessions/CustomerSessions";
+import Button from "../../Button/Button";
+import { createLogger } from "vite";
 
 const OpenCustomerModal = ({
   token,
-  setOpenCustomerDisplay,
+  setOpenCustomerSubscriptionDisplay,
   id,
-  setRefreshCustomers,
 }) => {
-  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [address, setAddress] = useState("");
-  const [zip, setZip] = useState("");
-  const [city, setCity] = useState("");
-  const [phone, setPhone] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [activity, setActivity] = useState("");
-  const [weight, setWeight] = useState("");
-  const [size, setSize] = useState("");
-  const [workingTime, setWorkingTime] = useState("");
-  const [availibility, setAvailibility] = useState("");
-  const [sportBackground, setSportBackground] = useState("");
-  const [healthProblem, setHealthProblem] = useState("");
-  const [goals, setGoals] = useState("");
+  const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [isActive, setIsActive] = useState(true);
-  const [comment, setComment] = useState("");
+  const [sessionPrice, setSessionPrice] = useState("");
+  const [sessionUsed, setSessionUsed] = useState("");
+  const [sessionInitial, setSessionInitial] = useState("");
+  const [isPaid, setIsPaid] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [choice, setChoice] = useState("admin");
-  const [adminChoice, setAdminChoice] = useState("left");
-  const [sportChoice, setSportChoice] = useState("left");
-
-  const modifyCustomer = async () => {
-    try {
-      const response = await axios.put(
-        import.meta.env.VITE_API_URL + `/mycustomer/informations`,
-        {
-          email: email,
-          date: date,
-          isActive: isActive,
-          comment: comment,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setRefreshCustomers((prev) => !prev);
-    } catch (error) {
-      console.error("Erreur lors de la MAJ client :", error);
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          import.meta.env.VITE_API_URL + `/find/customer/${id}`,
+          import.meta.env.VITE_API_URL + `/subscription/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-
-        setEmail(response.data.customerToFind.email || "");
-        setName(response.data.customerToFind.name || "");
-        setFirstName(response.data.customerToFind.firstName || "");
-        setAddress(response.data.customerToFind.address || "");
-        setZip(response.data.customerToFind.zip || "");
-        setCity(response.data.customerToFind.city || "");
-        setPhone(response.data.customerToFind.phone || "");
-        setBirthday(response.data.customerToFind.birthday || "");
-        setActivity(response.data.customerToFind.activity || "");
-        setWeight(response.data.customerToFind.weight || "");
-        setSize(response.data.customerToFind.size || "");
-        setWorkingTime(response.data.customerToFind.workingTime || "");
-        setAvailibility(response.data.customerToFind.availibility || "");
-        setSportBackground(response.data.customerToFind.sportBackground || "");
-        setHealthProblem(response.data.customerToFind.healthProblem || "");
-        setGoals(response.data.customerToFind.goals || "");
-        setComment(response.data.coachInfo.comment);
-        setIsActive(response.data.coachInfo.isActive);
-        const formatedDate = format(response.data.coachInfo.date, "dd/LL/yyyy");
+        console.log("response=", response.data);
+        setName(response.data.customer.name);
+        setFirstName(response.data.customer.firstName);
+        const formatedDate = format(response.data.date, "dd/LL/yyyy");
+        console.log("date=", formatedDate);
         setDate(formatedDate);
+        setTitle(response.data.title);
+        setSessionPrice(response.data.sessionPrice);
+        setSessionInitial(response.data.sessionInitial);
+        setSessionUsed(response.data.sessionUsed);
+        setIsPaid(response.data.isPaid);
         setIsLoading(false);
       } catch (error) {
-        console.error("Erreur lors de la recherche de clients :", error);
+        console.error("Erreur chargement abonnement :", error);
       }
     };
     fetchData();
@@ -113,139 +64,126 @@ const OpenCustomerModal = ({
             event.stopPropagation();
           }}
         >
-          <div className={styles["button-choice"]}>
-            <button
-              type="button"
-              className="admin-button"
-              onClick={() => {
-                setChoice("admin");
-                setAdminChoice("left");
-              }}
-              style={{ backgroundColor: choice == "admin" && "#a8c6cc" }}
-            >
-              Informations personnelles
-            </button>
-            <button
-              type="button"
-              className="sport-button"
-              onClick={() => {
-                setChoice("sport");
-                setSportChoice("left");
-              }}
-              style={{ backgroundColor: choice == "sport" && "#a8c6cc" }}
-            >
-              Profil sportif
-            </button>
+          <h1>Détail abonnement</h1>
+          <div className={styles["customer-subscription-infos"]}>
+            <div className={styles["session-admin"]}>
+              <div className={styles.customer}>
+                <div className={styles.line}>
+                  <div className={`${styles["item"]}`}>
+                    <label htmlFor="customer">Nom :</label>
+                    <input
+                      type="text"
+                      placeholder="Client"
+                      name="name"
+                      id="name"
+                      value={name}
+                      readOnly
+                    />
+                  </div>
+                  <div className={styles.item}>
+                    <label htmlFor="firstName">Prénomm :</label>
+                    <input
+                      type="text"
+                      placeholder="Prénom du client"
+                      name="firstName"
+                      id="firstName"
+                      value={firstName}
+                      readOnly
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className={`${styles.item} ${styles.line}`}>
+                <label htmlFor="title">Nom de l'abonnement :</label>
+                <input
+                  type="text"
+                  placeholder="Intitulé de l'abonnement"
+                  name="title"
+                  id="title"
+                  value={title}
+                  readOnly
+                />
+              </div>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="sessionInitial">Nombre sessions :</label>
+                  <input
+                    type="number"
+                    name="sessionInitial"
+                    id="sessionInitial"
+                    placeholder="Nombre sessions"
+                    value={sessionInitial}
+                    readOnly
+                  />
+                </div>
+                <div className={styles.item}>
+                  <label htmlFor="sessionInitial">Sessions utilisées :</label>
+                  <input
+                    type="number"
+                    name="sessionUsed"
+                    id="sessionUsed"
+                    placeholder="Nombre sessions"
+                    value={sessionUsed}
+                    readOnly
+                  />
+                </div>
+              </div>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="sessionPrice">Prix / session :</label>
+                  <input
+                    type="number"
+                    name="sessionPrice"
+                    id="sessionPrice"
+                    placeholder="Prix session"
+                    value={sessionPrice}
+                    readOnly
+                  />
+                </div>
+                <div className={styles.item}>
+                  <label htmlFor="totalPrice">Montant total :</label>
+                  <input
+                    type="number"
+                    name="totalPrice"
+                    id="totalPrice"
+                    placeholder="Montant total"
+                    value={sessionPrice * sessionInitial}
+                    readOnly
+                  />
+                </div>
+              </div>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="date">Date :</label>
+                  <input
+                    type="date"
+                    name="date"
+                    id="date"
+                    placeholder="Date"
+                    value={date}
+                    readOnly
+                  />
+                </div>
+                <div className={styles.item}>
+                  <label htmlFor="isPaid">Statut :</label>
+                  <input
+                    type="text"
+                    name="isPaid"
+                    id="isPaid"
+                    placeholder="Prix session"
+                    value={isPaid ? "Payé" : "Non payé"}
+                    readOnly
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-          {choice === "admin" && (
-            <div className={styles["arrows"]}>
-              {adminChoice === "right" && (
-                <div
-                  className={styles["left"]}
-                  onClick={() => setAdminChoice("left")}
-                >
-                  <FontAwesomeIcon
-                    icon="circle-chevron-left"
-                    color="#E67E22"
-                    size="xl"
-                  />
-                  <p>Informations</p>
-                </div>
-              )}
-              {adminChoice === "left" && (
-                <div
-                  className={styles["right"]}
-                  onClick={() => setAdminChoice("right")}
-                >
-                  <p>Paiements en attente</p>
-                  <FontAwesomeIcon
-                    icon="circle-chevron-right"
-                    color="#E67E22"
-                    size="xl"
-                  />
-                </div>
-              )}
-            </div>
-          )}
-          {choice === "sport" && (
-            <div className={styles["arrows"]}>
-              {sportChoice === "right" && (
-                <div
-                  className={styles["left"]}
-                  onClick={() => setSportChoice("left")}
-                >
-                  <FontAwesomeIcon
-                    icon="circle-chevron-left"
-                    color="#E67E22"
-                    size="xl"
-                  />
-                  <p>Informations</p>
-                </div>
-              )}
-              {sportChoice === "left" && (
-                <div
-                  className={styles["right"]}
-                  onClick={() => setSportChoice("right")}
-                >
-                  <p>Sessions à venir</p>
-                  <FontAwesomeIcon
-                    icon="circle-chevron-right"
-                    color="#E67E22"
-                    size="xl"
-                  />
-                </div>
-              )}
-            </div>
-          )}
-          {choice === "admin" && adminChoice === "left" && (
-            <InfoCustomer
-              email={email}
-              name={name}
-              firstName={firstName}
-              address={address}
-              zip={zip}
-              city={city}
-              phone={phone}
-              activity={activity}
-              date={date}
-              isActive={isActive}
-              setIsActive={setIsActive}
-              comment={comment}
-              setComment={setComment}
-            />
-          )}
-          {choice === "admin" && adminChoice === "right" && (
-            <CustomerPayments token={token} id={id} />
-          )}
-          {choice === "sport" && sportChoice === "left" && (
-            <CustomerSportInfos
-              weight={weight}
-              size={size}
-              birthday={birthday}
-              workingTime={workingTime}
-              availibility={availibility}
-              sportBackground={sportBackground}
-              healthProblem={healthProblem}
-              goals={goals}
-            />
-          )}
-          {choice === "sport" && sportChoice === "right" && (
-            <CustomerSessions token={token} id={id} />
-          )}
-
-          <div className={styles["open-session-modal-buttons"]}>
-            <button type="button" onClick={() => setOpenCustomerDisplay(false)}>
-              Fermer
-            </button>
-            <button
+          <div className={styles["open-customer-subscription-modal-buttons"]}>
+            <Button
               type="button"
-              onClick={() => {
-                modifyCustomer();
-                setOpenCustomerDisplay(false);
-              }}
-            >
-              Enregistrer et fermer
-            </button>
+              action={() => setOpenCustomerSubscriptionDisplay(false)}
+              text="Fermer"
+            />
           </div>
         </div>
       )}

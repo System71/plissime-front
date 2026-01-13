@@ -5,8 +5,6 @@ import styles from "./add-customer-subscription-modal.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../Button/Button";
-import { updateActiveCustomersList } from "../../../../utils/updateData";
-// import CustomerItem from "../CustomerItem/CustomerItem";
 
 const AddCustomerSubscriptionModal = ({
   token,
@@ -217,7 +215,7 @@ const AddCustomerSubscriptionModal = ({
                   type="number"
                   name="totalPrice"
                   id="totalPrice"
-                  placeholder="Prix de la session"
+                  placeholder="Montant total"
                   value={totalPrice}
                   readOnly
                 />
@@ -226,18 +224,18 @@ const AddCustomerSubscriptionModal = ({
             </div>
           </div>
           <p className={styles["error-message-back"]}>{errorBack}</p>
-          <div className={styles["add-customer-session-modal-buttons"]}>
-            <Button
-              type="button"
-              action={() => setAddCustomerSubscriptionDisplay(false)}
-              text="Annuler"
-            />
-            <Button
-              type="button"
-              action={() => addCustomerSubscription()}
-              text="Ajouter mon abonnement!"
-            />
-          </div>
+        </div>
+        <div className={styles["add-customer-subscription-modal-buttons"]}>
+          <Button
+            type="button"
+            action={() => setAddCustomerSubscriptionDisplay(false)}
+            text="Annuler"
+          />
+          <Button
+            type="button"
+            action={() => addCustomerSubscription()}
+            text="Ajouter mon abonnement!"
+          />
         </div>
       </div>
     </div>

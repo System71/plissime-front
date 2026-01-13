@@ -111,7 +111,8 @@
   color: #555;
 }
 
-.addCustomerSubscriptionModalContainer .add-customer-session-modal-buttons {
+.addCustomerSubscriptionModalContainer
+  .add-customer-subscription-modal-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

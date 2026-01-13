@@ -24,7 +24,7 @@ import OpenCustomerModal from "./components/customer/OpenCustomerModal/OpenCusto
 import AddSessionModal from "./components/session/userDisplay/AddSessionModal/AddSessionModal";
 import OpenSessionModal from "./components/session/userDisplay/OpenSessionModal/OpenSessionModal";
 import AddCustomerSubscriptionModal from "./components/CustomerSubscription/AddCustomerSubscriptionModal/AddCustomerSubscriptionModal";
-// import OpenCustomerSubscriptionModal from "./components/CustomerSubscription/OpenCustomerSubscriptionModal/OpenCustomerSubscriptionModal";
+import OpenCustomerSubscriptionModal from "./components/CustomerSubscription/OpenCustomerSubscriptionModal/OpenCustomerSubscriptionModal";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUser,
@@ -241,6 +241,7 @@ function App() {
                     setOpenCustomerSubscriptionDisplay
                   }
                   refreshCustomerSubscription={refreshCustomerSubscription}
+                  setSubscriptionID={setSubscriptionID}
                 />
               }
             ></Route>
@@ -303,9 +304,15 @@ function App() {
             setRefreshCustomers={setRefreshCustomers}
           />
         )}
-        {/* {openCustomerSubscriptionDisplay && (
-          <OpenCustomerSubscriptionModal token={token} id={subscriptionID} />
-        )} */}
+        {openCustomerSubscriptionDisplay && (
+          <OpenCustomerSubscriptionModal
+            token={token}
+            id={subscriptionID}
+            setOpenCustomerSubscriptionDisplay={
+              setOpenCustomerSubscriptionDisplay
+            }
+          />
+        )}
       </Router>
     </div>
   );

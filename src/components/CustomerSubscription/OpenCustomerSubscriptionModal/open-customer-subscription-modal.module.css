@@ -11,82 +11,114 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.container label {
+  font-weight: 600;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
 .content {
-  max-height: 800px;
   width: 60%;
-  max-width: 700px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background-color: lightgrey;
   border: 3px solid grey;
   border-radius: 20px;
   gap: 15px;
-  padding: 30px;
+  padding: 45px;
 }
 
-.container .open-session-modal-buttons {
+.customer-subscription-infos {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
 }
 
-.content button {
-  height: 50px;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  border: 0px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-}
-
-.content .button-choice button {
-  border: none;
-}
-
-.content .button-choice {
+.line {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  overflow: hidden;
-  width: 400px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
+  width: 100%;
   margin-bottom: 15px;
+  gap: 15px;
 }
 
-.button-choice > button {
-  flex: 1;
-  margin: 0;
-  border-radius: 0;
-}
-
-.container .arrows {
+.item {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.customer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+}
+
+.content .email-check {
+  display: flex;
+  gap: 15px;
+}
+
+.container input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  flex: 1;
+  min-width: 0;
+}
+
+.container input:focus {
+  outline: none;
+  border: 2px solid #a8c6cc;
+}
+
+.container input[readonly] {
+  background-color: #efefef;
+  border-color: #bfbfbf;
+  color: #555;
+}
+
+.container .open-customer-subscription-modal-buttons {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-.arrows .left {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  margin-right: auto;
-  cursor: pointer;
+.error-message {
+  color: red;
+  font-size: small;
+  align-self: flex-start;
+  margin-top: 5px;
 }
 
-.arrows .right {
+.error-message-back {
+  color: red;
+  font-size: small;
+}
+
+.email-check {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  margin-left: auto;
-  cursor: pointer;
+  flex-direction: column;
+}
+
+.email-check div {
+  align-self: flex-end;
+}
+
+.customer-infos > p {
+  margin-bottom: 10px;
 }
 
 @media (max-width: 576px) {
@@ -98,9 +130,5 @@
   .content {
     width: 100%;
     padding: 10px;
-  }
-
-  .content .button-choice {
-    width: 100%;
   }
 }

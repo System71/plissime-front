@@ -12,11 +12,20 @@ const CustomerSubscriptionItem = ({
   sessionUsed,
   sessionInitial,
   isPaid,
+  id,
+  setOpenCustomerSubscriptionDisplay,
+  setSubscriptionID,
 }) => {
   const formatedDate = format(date, "dd/LL/yyyy");
 
   return (
-    <div className={styles["content"]}>
+    <div
+      className={styles["content"]}
+      onClick={() => {
+        setOpenCustomerSubscriptionDisplay(true);
+        setSubscriptionID(id);
+      }}
+    >
       <div className={styles["date"]}>{formatedDate}</div>
       <div className={styles["name"]}>
         {name} <span className={styles["first-name"]}>{firstName}</span>
