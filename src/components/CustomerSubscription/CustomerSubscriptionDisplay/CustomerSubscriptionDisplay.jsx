@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from "./customer-subscription-display.module.css";
 import arrow from "../../../assets/arrow_button.png";
 import circle from "../../../assets/circle.png";
