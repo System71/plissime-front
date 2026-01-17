@@ -55,6 +55,7 @@ const SessionsToPaid = ({
                 coachId={session.coach}
                 key={String(session._id)}
                 index={index}
+                token={token}
               />
             );
           })}
