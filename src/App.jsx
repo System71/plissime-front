@@ -51,7 +51,9 @@ import {
   faFilePdf,
   faCircleChevronRight,
   faCircleChevronLeft,
+  faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck as faCircleCheckRegular } from "@fortawesome/free-regular-svg-icons";
 import Layout from "./layout/Layout";
 import MyPrograms from "./pages/MyPrograms/MyPrograms";
 import Activation from "./pages/Activation/Activation";
@@ -80,7 +82,9 @@ library.add(
   faXmark,
   faFilePdf,
   faCircleChevronRight,
-  faCircleChevronLeft
+  faCircleChevronLeft,
+  faCircleCheck,
+  faCircleCheckRegular,
 );
 
 function App() {
@@ -120,7 +124,7 @@ function App() {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setSub(response.data.sub);
         setFirstName(response.data.firstName);
