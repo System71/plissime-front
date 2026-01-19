@@ -6,7 +6,6 @@ import { useState } from "react";
 
 const AnnualSubscription = ({ token }) => {
   const [promoCode, setPromoCode] = useState("");
-  const [promoCodeId, setPromoCodeId] = useState("");
 
   const subscribe = async () => {
     try {
@@ -20,21 +19,6 @@ const AnnualSubscription = ({ token }) => {
         },
       );
       window.location.href = response.data.url;
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
-  const checkPromo = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/check-promo/${promoCode}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
     } catch (error) {
       console.log(error.response);
     }
@@ -106,29 +90,20 @@ const AnnualSubscription = ({ token }) => {
             <p>Version mobile</p>
           </div>
         </div>
-        <div className={styles["payment"]} onClick={() => subscribe()}>
-          Procéder au paiement
-        </div>
-        <div className={styles.promo}>
-          <input
-            type="text"
-            placeholder="Votre code promo"
-            value={promoCode}
-            onChange={(event) => {
-              setPromoCode(event.target.value);
-            }}
-          />
-          <FontAwesomeIcon
-            icon={["far", "circle-check"]}
-            color="#ff0000"
-            size="xl"
-            onClick={() => checkPromo()}
-          />
-          <FontAwesomeIcon
-            icon={["fas", "circle-check"]}
-            color="#04a304"
-            size="xl"
-          />
+        <div className={styles.payment}>
+          <div className={styles.paymentButton} onClick={() => subscribe()}>
+            Procéder au paiement
+          </div>
+          <div className={styles.promo}>
+            <input
+              type="text"
+              placeholder="Votre code promo"
+              value={promoCode}
+              onChange={(event) => {
+                setPromoCode(event.target.value);
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
