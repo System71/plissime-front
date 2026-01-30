@@ -11,7 +11,7 @@ const MonthlySubscription = ({ token }) => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/subscription/checkout/mensual`,
-        {},
+        { codePromo: promoCode },
         {
           headers: {
             Authorization: `Bearer ${token}`,
