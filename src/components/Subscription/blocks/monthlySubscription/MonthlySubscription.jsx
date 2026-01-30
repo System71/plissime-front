@@ -2,8 +2,11 @@
 import styles from "./monthly-subscription.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { useState } from "react";
 
 const MonthlySubscription = ({ token }) => {
+  const [promoCode, setPromoCode] = useState("");
+
   const subscribe = async () => {
     try {
       const response = await axios.post(
@@ -13,7 +16,7 @@ const MonthlySubscription = ({ token }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       window.location.href = response.data.url;
     } catch (error) {
@@ -87,8 +90,20 @@ const MonthlySubscription = ({ token }) => {
             <p>Version mobile</p>
           </div>
         </div>
-        <div className={styles["payment"]} onClick={() => subscribe()}>
-          Procéder au paiement
+        <div className={styles.payment}>
+          <div className={styles.paymentButton} onClick={() => subscribe()}>
+            Procéder au paiement
+          </div>
+          <div className={styles.promo}>
+            <input
+              type="text"
+              placeholder="Votre code promo"
+              value={promoCode}
+              onChange={(event) => {
+                setPromoCode(event.target.value);
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
