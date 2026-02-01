@@ -12,15 +12,40 @@
   align-items: center;
   border-radius: 5px;
   background-color: rgb(241, 240, 240);
+  width: 700px;
   padding: 30px;
 }
 
-.activation div {
+.admin-settings,
+.sport-settings {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15 px;
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+}
+
+.itemInfo {
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
 .activation button {
@@ -51,6 +76,7 @@
   width: 400px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
+  margin-bottom: 20px;
 }
 
 .button-choice > button {
@@ -61,16 +87,18 @@
 
 .activation label {
   font-weight: 600;
-  align-self: flex-start;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-bottom: 5px;
 }
 
 .activation input {
-  width: 400px;
-  margin-top: 10px;
-  border: 0;
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  height: 40px;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
 }
 
 .activation textarea {
@@ -90,10 +118,19 @@
   color: red;
   font-size: small;
   align-self: flex-start;
-  margin-top: 5px;
+  height: 20px;
+  margin-top: 2px;
 }
 
 .error-message-back {
   color: red;
   font-size: small;
+}
+
+.activation .buttons {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-self: flex-end;
+  width: 400px;
 }

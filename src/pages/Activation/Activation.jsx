@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import Cookies from "js-cookie";
+import Button from "../../components/button/Button";
 
 const Activation = ({ token, setToken }) => {
   const { tokenparam } = useParams();
@@ -48,7 +49,7 @@ const Activation = ({ token, setToken }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         if (response.data.isActive) {
           setIsActive(response.data.isActive);
@@ -56,7 +57,7 @@ const Activation = ({ token, setToken }) => {
           if (response.data.birthday) {
             const birthdayFormatted = format(
               response.data.birthday,
-              "yyyy-MM-dd"
+              "yyyy-MM-dd",
             );
             setBirthday(birthdayFormatted || "");
           }
@@ -184,7 +185,7 @@ const Activation = ({ token, setToken }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       navigate("/");
     } catch (error) {
@@ -220,258 +221,292 @@ const Activation = ({ token, setToken }) => {
           </div>
           {choice === "admin" && (
             <div className={styles["admin-settings"]}>
-              <div>
-                <label htmlFor="name">Nom</label>
-                <input
-                  type="text"
-                  placeholder={name}
-                  name="name"
-                  id="name"
-                  value={name}
-                  readOnly
-                />
-                <p className={styles["error-message"]}>{errors.name}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="name">Nom :</label>
+                    <input
+                      type="text"
+                      placeholder={name}
+                      name="name"
+                      id="name"
+                      value={name}
+                      readOnly
+                    />
+                  </div>
+                  <p className={styles["error-message"]}>{errors.name}</p>
+                </div>
+                <div className={styles.item}>
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="firstName">Prénom :</label>
+                    <input
+                      type="text"
+                      placeholder={firstName}
+                      name="firstName"
+                      id="firstName"
+                      value={firstName}
+                      readOnly
+                    />
+                  </div>
+                  <p className={styles["error-message"]}>{errors.firstName}</p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="firstName">Prénom</label>
-                <input
-                  type="text"
-                  placeholder={firstName}
-                  name="firstName"
-                  id="firstName"
-                  value={firstName}
-                  readOnly
-                />
-                <p className={styles["error-message"]}>{errors.firstName}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="email">Email :</label>
+                  <input
+                    type="email"
+                    placeholder={email}
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.email}</p>
+                </div>
+                <div className={styles.item}>
+                  <label htmlFor="password">Mot de passe :</label>
+                  <input
+                    type="password"
+                    placeholder={password}
+                    name="password"
+                    id="passwrod"
+                    value={password}
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.password}</p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  placeholder={email}
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.email}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="address">Adresse :</label>
+                  <input
+                    type="text"
+                    placeholder="Votre adresse"
+                    name="address"
+                    id="address"
+                    value={address}
+                    onChange={(event) => {
+                      setAddress(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.address}</p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="password">Mot de passe</label>
-                <input
-                  type="password"
-                  placeholder={password}
-                  name="password"
-                  id="passwrod"
-                  value={password}
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.password}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="zip">Code postal :</label>
+                  <input
+                    type="text"
+                    placeholder="Votre code postal"
+                    name="zip"
+                    id="zip"
+                    value={zip}
+                    onChange={(event) => {
+                      setZip(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.zip}</p>
+                </div>
+                <div className={styles.item}>
+                  <label htmlFor="city">Ville :</label>
+                  <input
+                    type="text"
+                    placeholder="Votre ville"
+                    name="city"
+                    id="city"
+                    value={city}
+                    onChange={(event) => {
+                      setCity(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.city}</p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="address">Adresse</label>
-                <input
-                  type="text"
-                  placeholder={address}
-                  name="address"
-                  id="address"
-                  value={address}
-                  onChange={(event) => {
-                    setAddress(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.address}</p>
-              </div>
-              <div>
-                <label htmlFor="zip">Code postal</label>
-                <input
-                  type="text"
-                  placeholder={zip}
-                  name="zip"
-                  id="zip"
-                  value={zip}
-                  onChange={(event) => {
-                    setZip(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.zip}</p>
-              </div>
-              <div>
-                <label htmlFor="city">Ville</label>
-                <input
-                  type="text"
-                  placeholder={city}
-                  name="city"
-                  id="city"
-                  value={city}
-                  onChange={(event) => {
-                    setCity(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.city}</p>
-              </div>
-              <div>
-                <label htmlFor="phone">Téléphone</label>
-                <input
-                  type="tel"
-                  placeholder={phone}
-                  name="phone"
-                  id="phone"
-                  value={phone}
-                  onChange={(event) => {
-                    setPhone(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.phone}</p>
-              </div>
-              <div>
-                <label htmlFor="activity">Profession</label>
-                <input
-                  type="text"
-                  placeholder={activity}
-                  name="activity"
-                  id="activity"
-                  value={activity}
-                  onChange={(event) => {
-                    setActivity(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.activity}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="phone">Téléphone :</label>
+                  <input
+                    type="tel"
+                    placeholder="Votre numéro de téléphone"
+                    name="phone"
+                    id="phone"
+                    value={phone}
+                    onChange={(event) => {
+                      setPhone(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.phone}</p>
+                </div>
+                <div className={styles.item}>
+                  <label htmlFor="activity">Profession :</label>
+                  <input
+                    type="text"
+                    placeholder="Votre profession"
+                    name="activity"
+                    id="activity"
+                    value={activity}
+                    onChange={(event) => {
+                      setActivity(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.activity}</p>
+                </div>
               </div>
             </div>
           )}
           {choice === "sport" && (
             <div className={styles["sport-settings"]}>
-              <div>
-                <label htmlFor="birthday">Date de naissance</label>
-                <input
-                  type="date"
-                  placeholder={birthday}
-                  name="birthday"
-                  id="birthday"
-                  value={birthday}
-                  onChange={(event) => {
-                    setBirthday(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.birthday}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="weight">Poids :</label>
+                  <input
+                    type="number"
+                    placeholder={weight}
+                    name="weight"
+                    id="weight"
+                    value={weight}
+                    onChange={(event) => {
+                      setWeight(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.weight}</p>
+                </div>
+                <div className={styles.item}>
+                  <label htmlFor="size">Taille :</label>
+                  <input
+                    type="number"
+                    placeholder={size}
+                    name="size"
+                    id="size"
+                    value={size}
+                    onChange={(event) => {
+                      setSize(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.size}</p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="weight">Poids</label>
-                <input
-                  type="number"
-                  placeholder={weight}
-                  name="weight"
-                  id="weight"
-                  value={weight}
-                  onChange={(event) => {
-                    setWeight(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.weight}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="birthday">Date de naissance :</label>
+                  <input
+                    type="date"
+                    placeholder={birthday}
+                    name="birthday"
+                    id="birthday"
+                    value={birthday}
+                    onChange={(event) => {
+                      setBirthday(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.birthday}</p>
+                </div>
+                <div className={styles.item}>
+                  <label htmlFor="workingTime">
+                    Temps de travail sportif :
+                  </label>
+                  <input
+                    type="number"
+                    placeholder={workingTime}
+                    name="workingTime"
+                    id="workingTime"
+                    value={workingTime}
+                    onChange={(event) => {
+                      setWorkingTime(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>
+                    {errors.workingTime}
+                  </p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="size">Taille</label>
-                <input
-                  type="number"
-                  placeholder={size}
-                  name="size"
-                  id="size"
-                  value={size}
-                  onChange={(event) => {
-                    setSize(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.size}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="availibility">Disponibilités :</label>
+                  <input
+                    type="text"
+                    placeholder={availibility}
+                    name="availibility"
+                    id="availibility"
+                    value={availibility}
+                    onChange={(event) => {
+                      setAvailibility(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>
+                    {errors.availibility}
+                  </p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="workingTime">Temps de travail sportif</label>
-                <input
-                  type="number"
-                  placeholder={workingTime}
-                  name="workingTime"
-                  id="workingTime"
-                  value={workingTime}
-                  onChange={(event) => {
-                    setWorkingTime(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.workingTime}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="sportBackground">
+                    Votre passé de sportif :
+                  </label>
+                  <textarea
+                    name="sportBackground"
+                    id="sportBackground"
+                    placeholder={sportBackground}
+                    value={sportBackground}
+                    rows="10"
+                    onChange={(event) => {
+                      setSportBackground(event.target.value);
+                    }}
+                  ></textarea>
+                  <p className={styles["error-message"]}>
+                    {errors.sportBackground}
+                  </p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="availibility">Disponibilités</label>
-                <input
-                  type="text"
-                  placeholder={availibility}
-                  name="availibility"
-                  id="availibility"
-                  value={availibility}
-                  onChange={(event) => {
-                    setAvailibility(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.availibility}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="healthProblem">Problèmes de santé :</label>
+                  <input
+                    type="text"
+                    placeholder={healthProblem}
+                    name="healthProblem"
+                    id="healthProblem"
+                    value={healthProblem}
+                    onChange={(event) => {
+                      setHealthProblem(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>
+                    {errors.healthProblem}
+                  </p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="sportBackground">Votre passé de sportif</label>
-                <textarea
-                  name="sportBackground"
-                  id="sportBackground"
-                  placeholder={sportBackground}
-                  value={sportBackground}
-                  rows="10"
-                  onChange={(event) => {
-                    setSportBackground(event.target.value);
-                  }}
-                ></textarea>
-                <p className={styles["error-message"]}>
-                  {errors.sportBackground}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="healthProblem">Problèmes de santé</label>
-                <input
-                  type="text"
-                  placeholder={healthProblem}
-                  name="healthProblem"
-                  id="healthProblem"
-                  value={healthProblem}
-                  onChange={(event) => {
-                    setHealthProblem(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>
-                  {errors.healthProblem}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="goals">Objectif(s) sportif(s)</label>
-                <input
-                  type="text"
-                  placeholder={goals}
-                  name="goals"
-                  id="goals"
-                  value={goals}
-                  onChange={(event) => {
-                    setGoals(event.target.value);
-                  }}
-                />
-                <p className={styles["error-message"]}>{errors.goals}</p>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <label htmlFor="goals">Objectif(s) sportif(s) :</label>
+                  <input
+                    type="text"
+                    placeholder={goals}
+                    name="goals"
+                    id="goals"
+                    value={goals}
+                    onChange={(event) => {
+                      setGoals(event.target.value);
+                    }}
+                  />
+                  <p className={styles["error-message"]}>{errors.goals}</p>
+                </div>
               </div>
             </div>
           )}
-          <div>
-            <button
-              onClick={() => {
-                choice === "admin" ? setChoice("sport") : activateCustomer();
-              }}
-            >
-              Enregistrer mes informations
-            </button>
+          <div className={styles["buttons"]}>
+            <Button
+              type="button"
+              text="Enregistrer mes informations"
+              // action={() =>
+              //   choice == "admin" ? setChoice("sport") : activateCustomer()
+              // }
+            />
           </div>
         </div>
       )}
