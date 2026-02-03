@@ -100,12 +100,18 @@ const Activation = ({ token, setToken }) => {
       }
       if (!name) {
         newErrors.name = "Le nom est requis.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(name)) {
+        newErrors.name = "Au moins un caractère est non autorisé.";
       }
       if (!firstName) {
         newErrors.firstName = "Le prénom est requis.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(firstName)) {
+        newErrors.firstName = "Au moins un caractère est non autorisé.";
       }
       if (!address) {
         newErrors.address = "L'adresse est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ0-9' ,.-]+$/.test(address)) {
+        newErrors.address = "Au moins un caractère est non autorisé.";
       }
       if (!zip) {
         newErrors.zip = "Le code postal est requis.";
@@ -114,6 +120,8 @@ const Activation = ({ token, setToken }) => {
       }
       if (!city) {
         newErrors.city = "La ville est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(city)) {
+        newErrors.city = "Au moins un caractère est non autorisé.";
       }
       if (!phone) {
         newErrors.phone = "Le numéro de téléphone est requis.";
@@ -123,6 +131,8 @@ const Activation = ({ token, setToken }) => {
       }
       if (!activity) {
         newErrors.activity = "L'activité est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(activity)) {
+        newErrors.activity = "Au moins un caractère est non autorisé.";
       }
     } else if (choice == "sport") {
       if (!birthday) {
@@ -130,25 +140,39 @@ const Activation = ({ token, setToken }) => {
       }
       if (!weight) {
         newErrors.weight = "Le poids est requis.";
+      } else if (weight < 30 || weight > 300) {
+        newErrors.weight = "La valeur doit être entre 30 et 300.";
       }
       if (!size) {
         newErrors.size = "La taille est requise.";
+      } else if (size < 100 || size > 250) {
+        newErrors.size = "La valeur doit être entre 100 et 250.";
       }
       if (!workingTime) {
         newErrors.workingTime = "Le temps de travil sportif est requis.";
+      } else if (workingTime < 1 || workingTime > 40) {
+        newErrors.workingTime = "La valeur doit être entre 1 et 40.";
       }
       if (!availibility) {
         newErrors.availibility = "Les disponibilités sont requises.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(availibility)) {
+        newErrors.availibility = "Au moins un caractère est non autorisé.";
       }
       if (!sportBackground) {
         newErrors.sportBackground = "Votre passé de sportif est requis.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(sportBackground)) {
+        newErrors.sportBackground = "Au moins un caractère est non autorisé.";
       }
       if (!healthProblem) {
         newErrors.healthProblem =
           "Champ requis. Si pas de problème indiquer RAS.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(healthProblem)) {
+        newErrors.healthProblem = "Au moins un caractère est non autorisé.";
       }
       if (!goals) {
         newErrors.goals = "Vos objectifs sont requis.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(goals)) {
+        newErrors.goals = "Au moins un caractère est non autorisé.";
       }
     }
 
@@ -199,7 +223,7 @@ const Activation = ({ token, setToken }) => {
 
   return (
     <div className={styles["activation"]}>
-      <img src={logo} alt="Logo PLISSIME" className="logo-big" />
+      <img src={logo} alt="Logo PLISSIME" className={styles.logo} />
       {isActive ? (
         <p>Ce compte a déjà été activé.</p>
       ) : (
@@ -233,6 +257,9 @@ const Activation = ({ token, setToken }) => {
                       name="name"
                       id="name"
                       value={name}
+                      onChange={(event) => {
+                        setName(event.target.value);
+                      }}
                     />
                   </div>
                   <p className={styles["error-message"]}>{errors.name}</p>
@@ -246,6 +273,9 @@ const Activation = ({ token, setToken }) => {
                       name="firstName"
                       id="firstName"
                       value={firstName}
+                      onChange={(event) => {
+                        setFirstName(event.target.value);
+                      }}
                     />
                   </div>
                   <p className={styles["error-message"]}>{errors.firstName}</p>
@@ -378,40 +408,6 @@ const Activation = ({ token, setToken }) => {
               <div className={styles.line}>
                 <div className={styles.item}>
                   <div className={styles.itemInfo}>
-                    <label htmlFor="weight">Poids :</label>
-                    <input
-                      type="number"
-                      placeholder={weight}
-                      name="weight"
-                      id="weight"
-                      value={weight}
-                      onChange={(event) => {
-                        setWeight(event.target.value);
-                      }}
-                    />
-                  </div>
-                  <p className={styles["error-message"]}>{errors.weight}</p>
-                </div>
-                <div className={styles.item}>
-                  <div className={styles.itemInfo}>
-                    <label htmlFor="size">Taille :</label>
-                    <input
-                      type="number"
-                      placeholder={size}
-                      name="size"
-                      id="size"
-                      value={size}
-                      onChange={(event) => {
-                        setSize(event.target.value);
-                      }}
-                    />
-                  </div>
-                  <p className={styles["error-message"]}>{errors.size}</p>
-                </div>
-              </div>
-              <div className={styles.line}>
-                <div className={styles.item}>
-                  <div className={styles.itemInfo}>
                     <label htmlFor="birthday">Date de naissance :</label>
                     <input
                       type="date"
@@ -428,6 +424,46 @@ const Activation = ({ token, setToken }) => {
                 </div>
                 <div className={styles.item}>
                   <div className={styles.itemInfo}>
+                    <label htmlFor="weight">Poids :</label>
+                    <input
+                      type="number"
+                      placeholder={weight}
+                      name="weight"
+                      id="weight"
+                      min="30"
+                      max="300"
+                      value={weight}
+                      onChange={(event) => {
+                        setWeight(event.target.value);
+                      }}
+                    />
+                    <p>kg</p>
+                  </div>
+                  <p className={styles["error-message"]}>{errors.weight}</p>
+                </div>
+                <div className={styles.item}>
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="size">Taille :</label>
+                    <input
+                      type="number"
+                      placeholder={size}
+                      name="size"
+                      id="size"
+                      min="100"
+                      max="250"
+                      value={size}
+                      onChange={(event) => {
+                        setSize(event.target.value);
+                      }}
+                    />
+                    <p>cm</p>
+                  </div>
+                  <p className={styles["error-message"]}>{errors.size}</p>
+                </div>
+              </div>
+              <div className={styles.line}>
+                <div className={styles.item}>
+                  <div className={styles.itemInfo}>
                     <label htmlFor="workingTime">
                       Temps de travail sportif :
                     </label>
@@ -436,6 +472,8 @@ const Activation = ({ token, setToken }) => {
                       placeholder={workingTime}
                       name="workingTime"
                       id="workingTime"
+                      min="1"
+                      max="40"
                       value={workingTime}
                       onChange={(event) => {
                         setWorkingTime(event.target.value);
@@ -478,7 +516,7 @@ const Activation = ({ token, setToken }) => {
                       id="sportBackground"
                       placeholder={sportBackground}
                       value={sportBackground}
-                      rows="10"
+                      rows="7"
                       onChange={(event) => {
                         setSportBackground(event.target.value);
                       }}
