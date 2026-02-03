@@ -28,7 +28,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 15 px;
+  gap: 15px;
   width: 100%;
 }
 
@@ -48,26 +48,21 @@
   width: 100%;
 }
 
-.activation button {
+.button-choice button {
   height: 40px;
   font-weight: bold;
   text-align: center;
   padding: 10px;
   border: 0px;
   border-radius: 5px;
-  border: 1px solid #a8c6cc;
   margin-bottom: 20px;
 }
 
-.activation button:hover {
-  background-color: #e67e22;
-}
-
-.activation .button-choice button {
+.button-choice .button-choice button {
   border: none;
 }
 
-.activation .button-choice {
+.button-choice {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -102,7 +97,7 @@
 }
 
 .activation textarea {
-  width: 400px;
+  width: 100%;
   margin-top: 10px;
   border: 0;
   border-radius: 5px;
@@ -118,7 +113,7 @@
   color: red;
   font-size: small;
   align-self: flex-start;
-  height: 20px;
+  min-height: 20px;
   margin-top: 2px;
 }
 
@@ -127,10 +122,17 @@
   font-size: small;
 }
 
-.activation .buttons {
+.buttons {
   display: flex;
   flex-direction: row;
   align-self: flex-end;
-  justify-self: flex-end;
-  width: 400px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }

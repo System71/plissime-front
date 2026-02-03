@@ -88,65 +88,68 @@ const Activation = ({ token, setToken }) => {
   const validateCustomerForm = () => {
     const newErrors = {};
 
-    if (!email) {
-      newErrors.email = "L'email est requis.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = "Format d'email invalide.";
-    }
-    if (!password || password.length < 6) {
-      newErrors.password =
-        "Le mot de passe doit contenir au moins 6 caractères.";
-    }
-    if (!name) {
-      newErrors.name = "Le nom est requis.";
-    }
-    if (!firstName) {
-      newErrors.firstName = "Le prénom est requis.";
-    }
-    if (!address) {
-      newErrors.address = "L'adresse est requise.";
-    }
-    if (!zip) {
-      newErrors.zip = "Le code postal est requis.";
-    } else if (zip.length != 5) {
-      newErrors.zip = "Le code postal doit comporter 5 chiffres.";
-    }
-    if (!city) {
-      newErrors.city = "La ville est requise.";
-    }
-    if (!phone) {
-      newErrors.phone = "Le numéro de téléphone est requis.";
-    } else if (!/^\d+$/.test(phone)) {
-      newErrors.phone =
-        "Le numéro de téléphone ne doit comporter que des chiffres.";
-    }
-    if (!activity) {
-      newErrors.activity = "L'activité est requise.";
-    }
-    if (!birthday) {
-      newErrors.birthday = "Votre date de naissance est requise.";
-    }
-    if (!weight) {
-      newErrors.weight = "Le poids est requis.";
-    }
-    if (!size) {
-      newErrors.size = "La taille est requise.";
-    }
-    if (!workingTime) {
-      newErrors.workingTime = "Le temps de travil sportif est requis.";
-    }
-    if (!availibility) {
-      newErrors.availibility = "Les disponibilités sont requises.";
-    }
-    if (!sportBackground) {
-      newErrors.sportBackground = "Votre passé de sportif est requis.";
-    }
-    if (!healthProblem) {
-      newErrors.healthProblem =
-        "Champ requis. Si pas de problème indiquer RAS.";
-    }
-    if (!goals) {
-      newErrors.goals = "Vos objectifs sont requis.";
+    if (choice == "admin") {
+      if (!email) {
+        newErrors.email = "L'email est requis.";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        newErrors.email = "Format d'email invalide.";
+      }
+      if (!password || password.length < 6) {
+        newErrors.password =
+          "Le mot de passe doit contenir au moins 6 caractères.";
+      }
+      if (!name) {
+        newErrors.name = "Le nom est requis.";
+      }
+      if (!firstName) {
+        newErrors.firstName = "Le prénom est requis.";
+      }
+      if (!address) {
+        newErrors.address = "L'adresse est requise.";
+      }
+      if (!zip) {
+        newErrors.zip = "Le code postal est requis.";
+      } else if (zip.length != 5) {
+        newErrors.zip = "Le code postal doit comporter 5 chiffres.";
+      }
+      if (!city) {
+        newErrors.city = "La ville est requise.";
+      }
+      if (!phone) {
+        newErrors.phone = "Le numéro de téléphone est requis.";
+      } else if (!/^\d+$/.test(phone)) {
+        newErrors.phone =
+          "Le numéro de téléphone ne doit comporter que des chiffres.";
+      }
+      if (!activity) {
+        newErrors.activity = "L'activité est requise.";
+      }
+    } else if (choice == "sport") {
+      if (!birthday) {
+        newErrors.birthday = "Votre date de naissance est requise.";
+      }
+      if (!weight) {
+        newErrors.weight = "Le poids est requis.";
+      }
+      if (!size) {
+        newErrors.size = "La taille est requise.";
+      }
+      if (!workingTime) {
+        newErrors.workingTime = "Le temps de travil sportif est requis.";
+      }
+      if (!availibility) {
+        newErrors.availibility = "Les disponibilités sont requises.";
+      }
+      if (!sportBackground) {
+        newErrors.sportBackground = "Votre passé de sportif est requis.";
+      }
+      if (!healthProblem) {
+        newErrors.healthProblem =
+          "Champ requis. Si pas de problème indiquer RAS.";
+      }
+      if (!goals) {
+        newErrors.goals = "Vos objectifs sont requis.";
+      }
     }
 
     return newErrors;
@@ -213,7 +216,6 @@ const Activation = ({ token, setToken }) => {
             <button
               type="button"
               className="sport-button"
-              onClick={() => setChoice("sport")}
               style={{ backgroundColor: choice == "sport" && "#a8c6cc" }}
             >
               Profil sportif
@@ -231,7 +233,6 @@ const Activation = ({ token, setToken }) => {
                       name="name"
                       id="name"
                       value={name}
-                      readOnly
                     />
                   </div>
                   <p className={styles["error-message"]}>{errors.name}</p>
@@ -245,7 +246,6 @@ const Activation = ({ token, setToken }) => {
                       name="firstName"
                       id="firstName"
                       value={firstName}
-                      readOnly
                     />
                   </div>
                   <p className={styles["error-message"]}>{errors.firstName}</p>
@@ -253,107 +253,121 @@ const Activation = ({ token, setToken }) => {
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="email">Email :</label>
-                  <input
-                    type="email"
-                    placeholder={email}
-                    name="email"
-                    id="email"
-                    value={email}
-                    onChange={(event) => {
-                      setEmail(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="email">Email :</label>
+                    <input
+                      type="email"
+                      placeholder={email}
+                      name="email"
+                      id="email"
+                      value={email}
+                      onChange={(event) => {
+                        setEmail(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.email}</p>
                 </div>
                 <div className={styles.item}>
-                  <label htmlFor="password">Mot de passe :</label>
-                  <input
-                    type="password"
-                    placeholder={password}
-                    name="password"
-                    id="passwrod"
-                    value={password}
-                    onChange={(event) => {
-                      setPassword(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="password">Mot de passe :</label>
+                    <input
+                      type="password"
+                      placeholder={password}
+                      name="password"
+                      id="passwrod"
+                      value={password}
+                      onChange={(event) => {
+                        setPassword(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.password}</p>
                 </div>
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="address">Adresse :</label>
-                  <input
-                    type="text"
-                    placeholder="Votre adresse"
-                    name="address"
-                    id="address"
-                    value={address}
-                    onChange={(event) => {
-                      setAddress(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="address">Adresse :</label>
+                    <input
+                      type="text"
+                      placeholder="Votre adresse"
+                      name="address"
+                      id="address"
+                      value={address}
+                      onChange={(event) => {
+                        setAddress(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.address}</p>
                 </div>
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="zip">Code postal :</label>
-                  <input
-                    type="text"
-                    placeholder="Votre code postal"
-                    name="zip"
-                    id="zip"
-                    value={zip}
-                    onChange={(event) => {
-                      setZip(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="zip">Code postal :</label>
+                    <input
+                      type="text"
+                      placeholder="Votre code postal"
+                      name="zip"
+                      id="zip"
+                      value={zip}
+                      onChange={(event) => {
+                        setZip(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.zip}</p>
                 </div>
                 <div className={styles.item}>
-                  <label htmlFor="city">Ville :</label>
-                  <input
-                    type="text"
-                    placeholder="Votre ville"
-                    name="city"
-                    id="city"
-                    value={city}
-                    onChange={(event) => {
-                      setCity(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="city">Ville :</label>
+                    <input
+                      type="text"
+                      placeholder="Votre ville"
+                      name="city"
+                      id="city"
+                      value={city}
+                      onChange={(event) => {
+                        setCity(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.city}</p>
                 </div>
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="phone">Téléphone :</label>
-                  <input
-                    type="tel"
-                    placeholder="Votre numéro de téléphone"
-                    name="phone"
-                    id="phone"
-                    value={phone}
-                    onChange={(event) => {
-                      setPhone(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="phone">Téléphone :</label>
+                    <input
+                      type="tel"
+                      placeholder="Votre numéro de téléphone"
+                      name="phone"
+                      id="phone"
+                      value={phone}
+                      onChange={(event) => {
+                        setPhone(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.phone}</p>
                 </div>
                 <div className={styles.item}>
-                  <label htmlFor="activity">Profession :</label>
-                  <input
-                    type="text"
-                    placeholder="Votre profession"
-                    name="activity"
-                    id="activity"
-                    value={activity}
-                    onChange={(event) => {
-                      setActivity(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="activity">Profession :</label>
+                    <input
+                      type="text"
+                      placeholder="Votre profession"
+                      name="activity"
+                      id="activity"
+                      value={activity}
+                      onChange={(event) => {
+                        setActivity(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.activity}</p>
                 </div>
               </div>
@@ -363,63 +377,71 @@ const Activation = ({ token, setToken }) => {
             <div className={styles["sport-settings"]}>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="weight">Poids :</label>
-                  <input
-                    type="number"
-                    placeholder={weight}
-                    name="weight"
-                    id="weight"
-                    value={weight}
-                    onChange={(event) => {
-                      setWeight(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="weight">Poids :</label>
+                    <input
+                      type="number"
+                      placeholder={weight}
+                      name="weight"
+                      id="weight"
+                      value={weight}
+                      onChange={(event) => {
+                        setWeight(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.weight}</p>
                 </div>
                 <div className={styles.item}>
-                  <label htmlFor="size">Taille :</label>
-                  <input
-                    type="number"
-                    placeholder={size}
-                    name="size"
-                    id="size"
-                    value={size}
-                    onChange={(event) => {
-                      setSize(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="size">Taille :</label>
+                    <input
+                      type="number"
+                      placeholder={size}
+                      name="size"
+                      id="size"
+                      value={size}
+                      onChange={(event) => {
+                        setSize(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.size}</p>
                 </div>
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="birthday">Date de naissance :</label>
-                  <input
-                    type="date"
-                    placeholder={birthday}
-                    name="birthday"
-                    id="birthday"
-                    value={birthday}
-                    onChange={(event) => {
-                      setBirthday(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="birthday">Date de naissance :</label>
+                    <input
+                      type="date"
+                      placeholder={birthday}
+                      name="birthday"
+                      id="birthday"
+                      value={birthday}
+                      onChange={(event) => {
+                        setBirthday(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.birthday}</p>
                 </div>
                 <div className={styles.item}>
-                  <label htmlFor="workingTime">
-                    Temps de travail sportif :
-                  </label>
-                  <input
-                    type="number"
-                    placeholder={workingTime}
-                    name="workingTime"
-                    id="workingTime"
-                    value={workingTime}
-                    onChange={(event) => {
-                      setWorkingTime(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="workingTime">
+                      Temps de travail sportif :
+                    </label>
+                    <input
+                      type="number"
+                      placeholder={workingTime}
+                      name="workingTime"
+                      id="workingTime"
+                      value={workingTime}
+                      onChange={(event) => {
+                        setWorkingTime(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>
                     {errors.workingTime}
                   </p>
@@ -427,17 +449,19 @@ const Activation = ({ token, setToken }) => {
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="availibility">Disponibilités :</label>
-                  <input
-                    type="text"
-                    placeholder={availibility}
-                    name="availibility"
-                    id="availibility"
-                    value={availibility}
-                    onChange={(event) => {
-                      setAvailibility(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="availibility">Disponibilités :</label>
+                    <input
+                      type="text"
+                      placeholder={availibility}
+                      name="availibility"
+                      id="availibility"
+                      value={availibility}
+                      onChange={(event) => {
+                        setAvailibility(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>
                     {errors.availibility}
                   </p>
@@ -445,19 +469,21 @@ const Activation = ({ token, setToken }) => {
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="sportBackground">
-                    Votre passé de sportif :
-                  </label>
-                  <textarea
-                    name="sportBackground"
-                    id="sportBackground"
-                    placeholder={sportBackground}
-                    value={sportBackground}
-                    rows="10"
-                    onChange={(event) => {
-                      setSportBackground(event.target.value);
-                    }}
-                  ></textarea>
+                  <div className={styles.comment}>
+                    <label htmlFor="sportBackground">
+                      Votre passé de sportif :
+                    </label>
+                    <textarea
+                      name="sportBackground"
+                      id="sportBackground"
+                      placeholder={sportBackground}
+                      value={sportBackground}
+                      rows="10"
+                      onChange={(event) => {
+                        setSportBackground(event.target.value);
+                      }}
+                    ></textarea>
+                  </div>
                   <p className={styles["error-message"]}>
                     {errors.sportBackground}
                   </p>
@@ -465,17 +491,19 @@ const Activation = ({ token, setToken }) => {
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="healthProblem">Problèmes de santé :</label>
-                  <input
-                    type="text"
-                    placeholder={healthProblem}
-                    name="healthProblem"
-                    id="healthProblem"
-                    value={healthProblem}
-                    onChange={(event) => {
-                      setHealthProblem(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="healthProblem">Problèmes de santé :</label>
+                    <input
+                      type="text"
+                      placeholder={healthProblem}
+                      name="healthProblem"
+                      id="healthProblem"
+                      value={healthProblem}
+                      onChange={(event) => {
+                        setHealthProblem(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>
                     {errors.healthProblem}
                   </p>
@@ -483,30 +511,54 @@ const Activation = ({ token, setToken }) => {
               </div>
               <div className={styles.line}>
                 <div className={styles.item}>
-                  <label htmlFor="goals">Objectif(s) sportif(s) :</label>
-                  <input
-                    type="text"
-                    placeholder={goals}
-                    name="goals"
-                    id="goals"
-                    value={goals}
-                    onChange={(event) => {
-                      setGoals(event.target.value);
-                    }}
-                  />
+                  <div className={styles.itemInfo}>
+                    <label htmlFor="goals">Objectif(s) sportif(s) :</label>
+                    <input
+                      type="text"
+                      placeholder={goals}
+                      name="goals"
+                      id="goals"
+                      value={goals}
+                      onChange={(event) => {
+                        setGoals(event.target.value);
+                      }}
+                    />
+                  </div>
                   <p className={styles["error-message"]}>{errors.goals}</p>
                 </div>
               </div>
             </div>
           )}
           <div className={styles["buttons"]}>
-            <Button
-              type="button"
-              text="Enregistrer mes informations"
-              // action={() =>
-              //   choice == "admin" ? setChoice("sport") : activateCustomer()
-              // }
-            />
+            {choice == "admin" && (
+              <Button
+                type="button"
+                text="Suivant"
+                action={() => {
+                  const validationErrors = validateCustomerForm();
+                  if (Object.keys(validationErrors).length > 0) {
+                    setErrors(validationErrors);
+                    return;
+                  }
+                  setErrors({});
+                  setChoice("sport");
+                }}
+              />
+            )}
+            {choice == "sport" && (
+              <Button
+                type="button"
+                text="Terminer"
+                action={() => {
+                  const validationErrors = validateCustomerForm();
+                  if (Object.keys(validationErrors).length > 0) {
+                    setErrors(validationErrors);
+                    return;
+                  }
+                  activateCustomer();
+                }}
+              />
+            )}
           </div>
         </div>
       )}
