@@ -125,9 +125,9 @@ const Activation = ({ token, setToken }) => {
       }
       if (!phone) {
         newErrors.phone = "Le numéro de téléphone est requis.";
-      } else if (!/^\d+$/.test(phone)) {
+      } else if (!/^\d{10}$/.test(phone)) {
         newErrors.phone =
-          "Le numéro de téléphone ne doit comporter que des chiffres.";
+          "Le numéro de téléphone ne doit comporter exactement 10 chiffres.";
       }
       if (!activity) {
         newErrors.activity = "L'activité est requise.";

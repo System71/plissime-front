@@ -23,7 +23,7 @@ const Signup = ({ setToken, token, setRole }) => {
                 setIsCoach(!isCoach);
                 setIsCustomer(!isCustomer);
               }}
-              style={{ backgroundColor: isCoach && "#e67e22" }}
+              style={{ backgroundColor: isCoach && "#a8c6cc" }}
             >
               Coach
             </button>
@@ -34,7 +34,7 @@ const Signup = ({ setToken, token, setRole }) => {
                 setIsCustomer(!isCustomer);
                 setIsCoach(!isCoach);
               }}
-              style={{ backgroundColor: isCustomer && "#e67e22" }}
+              style={{ backgroundColor: isCustomer && "#a8c6cc" }}
             >
               Client
             </button>

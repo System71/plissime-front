@@ -35,7 +35,6 @@ const SignupUser = ({ setToken, token, setRole }) => {
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         newErrors.email = "Format d'email invalide.";
       }
-
       if (!password || password.length < 6) {
         newErrors.password =
           "Le mot de passe doit contenir au moins 6 caractères.";
@@ -43,26 +42,29 @@ const SignupUser = ({ setToken, token, setRole }) => {
     } else if (step === 1) {
       if (!name) {
         newErrors.name = "Le nom est requis.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(name)) {
+        newErrors.name = "Au moins un caractère est non autorisé.";
       }
-
       if (!firstName) {
         newErrors.firstName = "Le prénom est requis.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(firstName)) {
+        newErrors.firstName = "Au moins un caractère est non autorisé.";
       }
-
       if (!address) {
         newErrors.address = "L'adresse est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ0-9' ,.-]+$/.test(address)) {
+        newErrors.address = "Au moins un caractère est non autorisé.";
       }
-
       if (!zip) {
         newErrors.zip = "Le code postal est requis.";
       } else if (zip.length != 5) {
         newErrors.zip = "Le code postal doit comporter 5 chiffres.";
       }
-
       if (!city) {
         newErrors.city = "La ville est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(city)) {
+        newErrors.city = "Au moins un caractère est non autorisé.";
       }
-
       if (!phone) {
         newErrors.phone = "Le numéro de téléphone est requis.";
       } else if (!/^\d{10}$/.test(phone)) {
@@ -72,8 +74,9 @@ const SignupUser = ({ setToken, token, setRole }) => {
     } else if (step === 2) {
       if (!activity) {
         newErrors.activity = "L'activité est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(activity)) {
+        newErrors.activity = "Au moins un caractère est non autorisé.";
       }
-
       if (!siret) {
         newErrors.siret = "Le numéro de SIRET est requis.";
       } else if (!/^\d+$/.test(siret)) {
@@ -101,7 +104,7 @@ const SignupUser = ({ setToken, token, setRole }) => {
           signupStep: step,
           email: email,
           password: password,
-        }
+        },
       );
       if (response.data.newUser) {
         const user = response.data.newUser;
@@ -113,7 +116,7 @@ const SignupUser = ({ setToken, token, setRole }) => {
         setToken(user.token);
         Cookies.set("plissimeToken", user.token);
         setResumeMessage(
-          "Nous sommes heureux de vous revoir.\n Vous pouvez désormais finaliser votre inscription!"
+          "Nous sommes heureux de vous revoir.\n Vous pouvez désormais finaliser votre inscription!",
         );
         if (user.name) setName(user.name);
         if (user.firstName) setFirstName(user.firstName);
@@ -150,7 +153,7 @@ const SignupUser = ({ setToken, token, setRole }) => {
           siret: siret,
           certification: certification,
           token: token,
-        }
+        },
       );
       setStep(step + 1);
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const UserInfos = ({ token }) => {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [address, setAddress] = useState("");
@@ -28,7 +29,7 @@ const UserInfos = ({ token }) => {
               Authorization: `Bearer ${token}`,
               "Content-Type": "multipart/form-data",
             },
-          }
+          },
         );
         setEmail(response.data.email);
         setName(response.data.name);
@@ -56,40 +57,46 @@ const UserInfos = ({ token }) => {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = "Format d'email invalide.";
     }
-
+    if (!password || password.length < 6) {
+      newErrors.password =
+        "Le mot de passe doit contenir au moins 6 caractères.";
+    }
     if (!name) {
       newErrors.name = "Le nom est requis.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(name)) {
+      newErrors.name = "Au moins un caractère est non autorisé.";
     }
-
     if (!firstName) {
       newErrors.firstName = "Le prénom est requis.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(firstName)) {
+      newErrors.firstName = "Au moins un caractère est non autorisé.";
     }
-
     if (!address) {
       newErrors.address = "L'adresse est requise.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ0-9' ,.-]+$/.test(address)) {
+      newErrors.address = "Au moins un caractère est non autorisé.";
     }
-
     if (!zip) {
       newErrors.zip = "Le code postal est requis.";
     } else if (zip.length != 5) {
       newErrors.zip = "Le code postal doit comporter 5 chiffres.";
     }
-
     if (!city) {
       newErrors.city = "La ville est requise.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(city)) {
+      newErrors.city = "Au moins un caractère est non autorisé.";
     }
-
     if (!phone) {
       newErrors.phone = "Le numéro de téléphone est requis.";
-    } else if (!/^\d+$/.test(phone)) {
+    } else if (!/^\d{10}$/.test(phone)) {
       newErrors.phone =
-        "Le numéro de téléphone ne doit comporter que des chiffres.";
+        "Le numéro de téléphone ne doit comporter exactement 10 chiffres.";
     }
-
     if (!activity) {
       newErrors.activity = "L'activité est requise.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(activity)) {
+      newErrors.activity = "Au moins un caractère est non autorisé.";
     }
-
     if (!siret) {
       newErrors.siret = "Le numéro de SIRET est requis.";
     } else if (!/^\d+$/.test(siret)) {
@@ -128,7 +135,7 @@ const UserInfos = ({ token }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
     } catch (error) {
       setErrorBack(error.response.data.message);
@@ -145,7 +152,7 @@ const UserInfos = ({ token }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       // 2. Récupérer l'URL envoyée par ton backend
       const { url } = response.data;
@@ -159,166 +166,200 @@ const UserInfos = ({ token }) => {
 
   return (
     <>
-      <h1>SETTINGS</h1>
       <div className={styles["user-settings"]}>
         {isLoading ? (
           <p>En chargement</p>
         ) : (
           <div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                placeholder="Votre email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.email}</p>
+            <div className={styles.line}>
+              <div className={styles.item}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="email">Email :</label>
+                  <input
+                    type="email"
+                    placeholder="Votre email"
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.email}</p>
+              </div>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="password">Mot de passe :</label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Votre mot de passe"
+                    value={password}
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.password}</p>
+              </div>
             </div>
-            <div>
-              <label htmlFor="name">Nom</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Votre nom"
-                value={name}
-                readOnly
-                onChange={(event) => {
-                  setName(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.name}</p>
+            <div className={styles.line}>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="name">Nom :</label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Votre nom"
+                    value={name}
+                    readOnly
+                    onChange={(event) => {
+                      setName(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.name}</p>
+              </div>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="firstName">Prénom :</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    placeholder="Votre prénom"
+                    value={firstName}
+                    readOnly
+                    onChange={(event) => {
+                      setFirstName(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.firstName}</p>
+              </div>
             </div>
-            <div>
-              <label htmlFor="firstName">Prénom</label>
-              <input
-                type="text"
-                name="firstName"
-                id="firstName"
-                placeholder="Votre prénom"
-                value={firstName}
-                readOnly
-                onChange={(event) => {
-                  setFirstName(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.firstName}</p>
+            <div className={styles.line}>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="address">Adresse :</label>
+                  <input
+                    type="text"
+                    name="address"
+                    id="address"
+                    placeholder="Votre adresse"
+                    value={address}
+                    onChange={(event) => {
+                      setAddress(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.address}</p>
+              </div>
             </div>
-            <div>
-              <label htmlFor="address">Adresse</label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                placeholder="Votre adresse"
-                value={address}
-                onChange={(event) => {
-                  setAddress(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.address}</p>
+            <div className={styles.line}>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="zip">Code postal :</label>
+                  <input
+                    type="text"
+                    name="zip"
+                    id="zip"
+                    placeholder="Votre code postal"
+                    value={zip}
+                    onChange={(event) => {
+                      setZip(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.zip}</p>
+              </div>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="city">Ville :</label>
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="Votre ville"
+                    value={city}
+                    onChange={(event) => {
+                      setCity(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.city}</p>
+              </div>
             </div>
-            <div>
-              <label htmlFor="zip">Code postal</label>
-              <input
-                type="text"
-                name="zip"
-                id="zip"
-                placeholder="Votre code postal"
-                value={zip}
-                onChange={(event) => {
-                  setZip(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.zip}</p>
+            <div className={styles.line}>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="phone">Téléphone :</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    placeholder="Votre numéro de téléphone"
+                    value={phone}
+                    onChange={(event) => {
+                      setPhone(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.phone}</p>
+              </div>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="activity">Activité :</label>
+                  <input
+                    type="text"
+                    name="activity"
+                    id="activity"
+                    placeholder="Votre activité"
+                    value={activity}
+                    onChange={(event) => {
+                      setActivity(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.activity}</p>
+              </div>
             </div>
-            <div>
-              <label htmlFor="city">Ville</label>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                placeholder="Votre ville"
-                value={city}
-                onChange={(event) => {
-                  setCity(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.city}</p>
-            </div>
-            <div>
-              <label htmlFor="phone">Téléphone</label>
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                placeholder="Votre numéro de téléphone"
-                value={phone}
-                onChange={(event) => {
-                  setPhone(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.phone}</p>
-            </div>
-            <div>
-              <label htmlFor="activity">Activité</label>
-              <input
-                type="text"
-                name="activity"
-                id="activity"
-                placeholder="Votre activité"
-                value={activity}
-                onChange={(event) => {
-                  setActivity(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.activity}</p>
-            </div>
-            <div>
-              <label htmlFor="siret">SIRET</label>
-              <input
-                type="number"
-                name="siret"
-                id="siret"
-                placeholder="Votre SIRET"
-                value={siret}
-                onChange={(event) => {
-                  setSiret(event.target.value);
-                }}
-              />
+            <div className={styles.line}></div>
+            <div className={styles["item"]}>
+              <div className={styles.itemInfo}>
+                <label htmlFor="siret">SIRET :</label>
+                <input
+                  type="number"
+                  name="siret"
+                  id="siret"
+                  placeholder="Votre SIRET"
+                  value={siret}
+                  onChange={(event) => {
+                    setSiret(event.target.value);
+                  }}
+                />
+              </div>
               <p className={styles["error-message"]}>{errors.siret}</p>
             </div>
-            <div>
-              <label htmlFor="certification">Certification</label>
-              <input
-                type="text"
-                name="certification"
-                id="certification"
-                placeholder="Votre numéro de certification"
-                value={certification}
-                onChange={(event) => {
-                  setCertification(event.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="activity">Activité</label>
-              <input
-                type="text"
-                name="activity"
-                id="activity"
-                placeholder="Votre activité"
-                value={activity}
-                onChange={(event) => {
-                  setActivity(event.target.value);
-                }}
-              />
-              <p className={styles["error-message"]}>{errors.activity}</p>
+            <div className={styles.line}>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="certification">Certification :</label>
+                  <input
+                    type="text"
+                    name="certification"
+                    id="certification"
+                    placeholder="Votre numéro de certification"
+                    value={certification}
+                    onChange={(event) => {
+                      setCertification(event.target.value);
+                    }}
+                  />
+                </div>
+              </div>
             </div>
             <div>
               <label>Connexion STRIPE</label>

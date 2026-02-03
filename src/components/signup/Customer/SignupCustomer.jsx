@@ -41,35 +41,39 @@ const SignupCustomer = ({ setToken, token, setRole }) => {
     } else if (step === 1) {
       if (!name) {
         newErrors.name = "Le nom est requis.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(name)) {
+        newErrors.name = "Au moins un caractère est non autorisé.";
       }
-
       if (!firstName) {
         newErrors.firstName = "Le prénom est requis.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(firstName)) {
+        newErrors.firstName = "Au moins un caractère est non autorisé.";
       }
-
       if (!address) {
         newErrors.address = "L'adresse est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ0-9' ,.-]+$/.test(address)) {
+        newErrors.address = "Au moins un caractère est non autorisé.";
       }
-
       if (!zip) {
         newErrors.zip = "Le code postal est requis.";
       } else if (zip.length != 5) {
         newErrors.zip = "Le code postal doit comporter 5 chiffres.";
       }
-
       if (!city) {
         newErrors.city = "La ville est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(city)) {
+        newErrors.city = "Au moins un caractère est non autorisé.";
       }
-
       if (!phone) {
         newErrors.phone = "Le numéro de téléphone est requis.";
       } else if (!/^\d{10}$/.test(phone)) {
         newErrors.phone =
           "Le numéro de téléphone ne doit comporter exactement 10 chiffres.";
       }
-
       if (!activity) {
         newErrors.activity = "L'activité est requise.";
+      } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(activity)) {
+        newErrors.activity = "Au moins un caractère est non autorisé.";
       }
     }
 
@@ -90,7 +94,7 @@ const SignupCustomer = ({ setToken, token, setRole }) => {
           signupStep: step,
           email: email,
           password: password,
-        }
+        },
       );
       if (response.data.newCustomer) {
         const customer = response.data.newCustomer;
@@ -102,7 +106,7 @@ const SignupCustomer = ({ setToken, token, setRole }) => {
         setToken(customer.token);
         Cookies.set("plissimeToken", customer.token);
         setResumeMessage(
-          "Nous sommes heureux de vous revoir.\n Vous pouvez désormais finaliser votre inscription!"
+          "Nous sommes heureux de vous revoir.\n Vous pouvez désormais finaliser votre inscription!",
         );
         if (customer.name) setName(customer.name);
         if (customer.firstName) setFirstName(customer.firstName);
@@ -137,7 +141,7 @@ const SignupCustomer = ({ setToken, token, setRole }) => {
           phone: phone,
           activity: activity,
           token: token,
-        }
+        },
       );
       setStep(step + 1);
 

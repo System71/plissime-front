@@ -53,7 +53,7 @@
   color: red;
   font-size: small;
   align-self: flex-start;
-  height: 20px;
+  min-height: 20px;
   margin-top: 2px;
 }
 

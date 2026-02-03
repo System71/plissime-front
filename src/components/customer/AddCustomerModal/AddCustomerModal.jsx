@@ -33,15 +33,16 @@ const AddCustomerModal = ({
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = "Format d'email invalide.";
     }
-
     if (!name) {
       newErrors.name = "Le nom est requis.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(name)) {
+      newErrors.name = "Au moins un caractère est non autorisé.";
     }
-
     if (!firstName) {
       newErrors.firstName = "Le prénom est requis.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(firstName)) {
+      newErrors.firstName = "Au moins un caractère est non autorisé.";
     }
-
     if (!phone) {
       newErrors.phone = "Le numéro de téléphone est requis.";
     } else if (!/^\d{10}$/.test(phone)) {
@@ -60,7 +61,7 @@ const AddCustomerModal = ({
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       if (response.data) {
         setName(response.data.name);
@@ -98,7 +99,7 @@ const AddCustomerModal = ({
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       updateActiveCustomersList(setActiveCustomersList, token);
       setRefreshCustomers((prev) => !prev);
@@ -119,7 +120,7 @@ const AddCustomerModal = ({
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       updateActiveCustomersList(setActiveCustomersList, token);
       setRefreshCustomers((prev) => !prev);
