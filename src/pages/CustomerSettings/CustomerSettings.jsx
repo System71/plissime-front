@@ -201,8 +201,8 @@ const CustomerSettings = ({ token }) => {
 
   return (
     <>
-      <h1>Mes informations</h1>
       <div className={styles["customer-settings"]}>
+        <h1>Mes informations</h1>
         {isLoading ? (
           <p>En chargement</p>
         ) : (

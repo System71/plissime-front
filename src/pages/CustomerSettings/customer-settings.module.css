@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.customer-settings h1 {
+  align-self: flex-start;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -47,17 +51,6 @@
   gap: 10px;
 }
 
-.customer-settings button {
-  height: 50px;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  border: 0px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-  margin-bottom: 20px;
-}
-
 .customer-settings label {
   font-weight: 600;
   flex: 0 0 auto;
@@ -69,27 +62,6 @@
   flex: 0 0 auto;
   white-space: nowrap;
   margin-left: -5px;
-}
-
-.customer-settings .button-choice button {
-  border: none;
-}
-
-.customer-settings .button-choice {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 400px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-}
-
-.button-choice > button {
-  flex: 1;
-  margin: 0;
-  border-radius: 0;
 }
 
 .customer-settings button:hover {
@@ -118,7 +90,19 @@
   border: 2px solid #a8c6cc;
 }
 
+.customer-settings button {
+  height: 50px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  margin-bottom: 20px;
+}
+
 .customer-settings .button-choice {
+  width: 400px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -127,7 +111,7 @@
   border-radius: 5px;
   border: 1px solid #a8c6cc;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   align-self: center;
 }
 
@@ -164,4 +148,49 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+}
+
+@media (max-width: 576px) {
+  .customer-settings {
+    justify-content: flex-start;
+    height: 100%;
+    padding: 10px;
+  }
+
+  .customer-settings h1 {
+    align-self: center;
+  }
+
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+
+  .customer-settings .button-choice {
+    width: auto;
+  }
+
+  .activation input {
+    width: 100%;
+  }
+
+  .item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .itemInfo {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .itemInfo > p {
+    display: none;
+  }
+
+  .comment {
+    gap: 2px;
+  }
 }
