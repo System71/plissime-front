@@ -253,7 +253,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="name">Nom :</label>
                     <input
                       type="text"
-                      placeholder={name}
+                      placeholder="Votre nom"
                       name="name"
                       id="name"
                       value={name}
@@ -269,7 +269,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="firstName">Prénom :</label>
                     <input
                       type="text"
-                      placeholder={firstName}
+                      placeholder="Votre prénom"
                       name="firstName"
                       id="firstName"
                       value={firstName}
@@ -287,7 +287,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="email">Email :</label>
                     <input
                       type="email"
-                      placeholder={email}
+                      placeholder="Votre email"
                       name="email"
                       id="email"
                       value={email}
@@ -303,7 +303,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="password">Mot de passe :</label>
                     <input
                       type="password"
-                      placeholder={password}
+                      placeholder="Votre mot de passe"
                       name="password"
                       id="passwrod"
                       value={password}
@@ -427,7 +427,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="weight">Poids :</label>
                     <input
                       type="number"
-                      placeholder={weight}
+                      placeholder="Votre poids"
                       name="weight"
                       id="weight"
                       min="30"
@@ -446,7 +446,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="size">Taille :</label>
                     <input
                       type="number"
-                      placeholder={size}
+                      placeholder="Votre taille"
                       name="size"
                       id="size"
                       min="100"
@@ -465,11 +465,11 @@ const Activation = ({ token, setToken }) => {
                 <div className={styles.item}>
                   <div className={styles.itemInfo}>
                     <label htmlFor="workingTime">
-                      Temps de travail sportif :
+                      Temps de travail sportif (en heures) :
                     </label>
                     <input
                       type="number"
-                      placeholder={workingTime}
+                      placeholder="Nombre d'heure de sport par semaine"
                       name="workingTime"
                       id="workingTime"
                       min="1"
@@ -491,7 +491,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="availibility">Disponibilités :</label>
                     <input
                       type="text"
-                      placeholder={availibility}
+                      placeholder="Vos disponibilités"
                       name="availibility"
                       id="availibility"
                       value={availibility}
@@ -514,7 +514,7 @@ const Activation = ({ token, setToken }) => {
                     <textarea
                       name="sportBackground"
                       id="sportBackground"
-                      placeholder={sportBackground}
+                      placeholder="Décrivez votre passé sportif"
                       value={sportBackground}
                       rows="7"
                       onChange={(event) => {
@@ -533,7 +533,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="healthProblem">Problèmes de santé :</label>
                     <input
                       type="text"
-                      placeholder={healthProblem}
+                      placeholder="Vos problèmes de santé éventuels"
                       name="healthProblem"
                       id="healthProblem"
                       value={healthProblem}
@@ -553,7 +553,7 @@ const Activation = ({ token, setToken }) => {
                     <label htmlFor="goals">Objectif(s) sportif(s) :</label>
                     <input
                       type="text"
-                      placeholder={goals}
+                      placeholder="Vos objectifs sportifs"
                       name="goals"
                       id="goals"
                       value={goals}
