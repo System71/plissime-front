@@ -41,7 +41,7 @@
   border: 0;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  height: 40px;
+  padding: 10px;
 }
 
 .user-infos input:focus {
@@ -66,4 +66,39 @@
   display: flex;
   width: 100%;
   justify-content: flex-end;
+}
+
+@media (max-width: 576px) {
+  .user-infos {
+    height: 100%;
+    padding: 10px;
+  }
+
+  .user-infos .button-choice {
+    width: auto;
+  }
+
+  .user-infos input {
+    width: 100%;
+  }
+
+  .item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .itemInfo {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .itemInfo > p {
+    display: none;
+  }
+
+  .comment {
+    gap: 2px;
+  }
 }
