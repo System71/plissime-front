@@ -1,4 +1,4 @@
-.user-settings {
+.user-infos {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,56 +32,19 @@
   gap: 10px;
 }
 
-.user-settings .button-choice button {
-  height: 50px;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  border: 0px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-  margin-bottom: 20px;
-}
-
-.user-settings label {
+.user-infos label {
   font-weight: 600;
 }
 
-.user-settings .button-choice button {
-  border: none;
-}
-
-.user-settings .button-choice {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 400px;
-  border-radius: 5px;
-  border: 1px solid #a8c6cc;
-}
-
-.user-settings .button-choice > button {
-  flex: 1;
-  margin: 0;
-  border-radius: 0;
-}
-
-.user-settings button:hover {
-  background-color: #e67e22;
-}
-
-.user-settings input {
+.user-infos input {
   width: 100%;
-  margin-top: 10px;
   border: 0;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
   height: 40px;
 }
 
-.user-settings input:focus {
+.user-infos input:focus {
   outline: none;
   border: 2px solid #a8c6cc;
 }
@@ -97,4 +60,10 @@
 .error-message-back {
   color: red;
   font-size: small;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }

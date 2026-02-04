@@ -109,6 +109,7 @@ function App() {
   const [sub, setSub] = useState("");
   const [firstName, setFirstName] = useState("");
   const [stripeId, setStripeId] = useState("");
+  const [stripeConnected, setStripeConnected] = useState("");
   const [refreshCustomers, setRefreshCustomers] = useState(true);
   const [refreshCustomerSubscription, setRefreshCustomerSubscription] =
     useState(true);
@@ -129,6 +130,7 @@ function App() {
         setSub(response.data.sub);
         setFirstName(response.data.firstName);
         setStripeId(response.data.stripeId);
+        setStripeConnected(response.data.stripeConnected);
       } catch (error) {
         console.log(error.response);
       }
@@ -252,7 +254,12 @@ function App() {
             <Route
               path="/user/settings"
               element={
-                <UserSettings token={token} sub={sub} stripeId={stripeId} />
+                <UserSettings
+                  token={token}
+                  sub={sub}
+                  stripeId={stripeId}
+                  stripeConnected={stripeConnected}
+                />
               }
             ></Route>
             <Route

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import Cookies from "js-cookie";
-import Button from "../../components/button/Button";
+import Button from "../../components/Button/Button";
 
 const Activation = ({ token, setToken }) => {
   const { tokenparam } = useParams();

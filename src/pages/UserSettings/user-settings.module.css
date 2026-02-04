@@ -12,7 +12,7 @@
   padding: 10px;
 }
 
-.button-choice {
+.user-settings .button-choice {
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -2,8 +2,10 @@
 import styles from "./user-infos.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Button from "../Button/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const UserInfos = ({ token }) => {
+const UserInfos = ({ token, stripeId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -27,7 +29,6 @@ const UserInfos = ({ token }) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
             },
           },
         );
@@ -121,6 +122,7 @@ const UserInfos = ({ token }) => {
         import.meta.env.VITE_API_URL + `/user/informations`,
         {
           email: email,
+          password: password,
           name: name,
           firstName: firstName,
           address: address,
@@ -166,7 +168,7 @@ const UserInfos = ({ token }) => {
 
   return (
     <>
-      <div className={styles["user-settings"]}>
+      <div className={styles["user-infos"]}>
         {isLoading ? (
           <p>En chargement</p>
         ) : (
@@ -327,24 +329,23 @@ const UserInfos = ({ token }) => {
                 <p className={styles["error-message"]}>{errors.activity}</p>
               </div>
             </div>
-            <div className={styles.line}></div>
-            <div className={styles["item"]}>
-              <div className={styles.itemInfo}>
-                <label htmlFor="siret">SIRET :</label>
-                <input
-                  type="number"
-                  name="siret"
-                  id="siret"
-                  placeholder="Votre SIRET"
-                  value={siret}
-                  onChange={(event) => {
-                    setSiret(event.target.value);
-                  }}
-                />
-              </div>
-              <p className={styles["error-message"]}>{errors.siret}</p>
-            </div>
             <div className={styles.line}>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label htmlFor="siret">SIRET :</label>
+                  <input
+                    type="number"
+                    name="siret"
+                    id="siret"
+                    placeholder="Votre SIRET"
+                    value={siret}
+                    onChange={(event) => {
+                      setSiret(event.target.value);
+                    }}
+                  />
+                </div>
+                <p className={styles["error-message"]}>{errors.siret}</p>
+              </div>
               <div className={styles["item"]}>
                 <div className={styles.itemInfo}>
                   <label htmlFor="certification">Certification :</label>
@@ -361,14 +362,29 @@ const UserInfos = ({ token }) => {
                 </div>
               </div>
             </div>
-            <div>
-              <label>Connexion STRIPE</label>
-              <button type="button" onClick={createStripeAccount}>
-                CONNEXION STRIPE
-              </button>
+            <div className={styles.line}>
+              <div className={styles["item"]}>
+                <div className={styles.itemInfo}>
+                  <label>Connexion STRIPE :</label>
+                  {stripeId ? (
+                    <FontAwesomeIcon icon="check" color="#009f3aff" size="xl" />
+                  ) : (
+                    <Button
+                      type="button"
+                      action={createStripeAccount}
+                      text="Activer mon Stripe"
+                    />
+                  )}
+                </div>
+                <p className={styles["error-message"]}>{errors.siret}</p>
+              </div>
             </div>
-            <div>
-              <button onClick={modifyUser}>Modifier mes informations</button>
+            <div className={styles.buttons}>
+              <Button
+                type="button"
+                action={modifyUser}
+                text="Modifier mes informations"
+              />
               <p className={styles["error-message-back"]}>{errorBack}</p>
             </div>
           </div>
