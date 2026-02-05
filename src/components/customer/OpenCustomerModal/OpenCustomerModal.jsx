@@ -8,6 +8,7 @@ import InfoCustomer from "../InfoCustomer/InfoCustomer";
 import CustomerPayments from "../CustomerPayments/CustomerPayments";
 import CustomerSportInfos from "../CustomerSportInfos/CustomerSportInfos";
 import CustomerSessions from "../CustomerSessions/CustomerSessions";
+import Button from "../../button/Button";
 
 const OpenCustomerModal = ({
   token,
@@ -53,7 +54,7 @@ const OpenCustomerModal = ({
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       setRefreshCustomers((prev) => !prev);
     } catch (error) {
@@ -68,7 +69,7 @@ const OpenCustomerModal = ({
           import.meta.env.VITE_API_URL + `/find/customer/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
 
         setEmail(response.data.customerToFind.email || "");
@@ -232,20 +233,20 @@ const OpenCustomerModal = ({
           {choice === "sport" && sportChoice === "right" && (
             <CustomerSessions token={token} id={id} />
           )}
-
           <div className={styles["open-session-modal-buttons"]}>
-            <button type="button" onClick={() => setOpenCustomerDisplay(false)}>
-              Fermer
-            </button>
-            <button
+            <Button
               type="button"
-              onClick={() => {
+              action={() => setOpenCustomerDisplay(false)}
+              text="Fermer"
+            />
+            <Button
+              type="button"
+              action={() => {
                 modifyCustomer();
                 setOpenCustomerDisplay(false);
               }}
-            >
-              Enregistrer et fermer
-            </button>
+              text="Enregistrer et fermer"
+            />
           </div>
         </div>
       )}
