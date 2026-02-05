@@ -8,15 +8,21 @@ import frLocale from "@fullcalendar/core/locales/fr";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import calendarLogo from "../../assets/google-calendar.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import arrow from "../../assets/arrow_button.png";
+import circle from "../../assets/circle.png";
 
 const Calendar = ({
   token,
   openSessionDisplay,
   setOpenSessionDisplay,
   setSessionID,
+  addSessionDisplay,
+  setAddSessionDisplay,
 }) => {
   const [events, setEvents] = useState([]);
   const [googleLinked, setGoogleLinked] = useState(null);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +35,9 @@ const Calendar = ({
             },
           },
         );
+
         setGoogleLinked(response.data.linked);
+        setEmail(response.data.email);
         if (response.data.linked) {
           const response = await axios.get(
             `${import.meta.env.VITE_API_URL}/events`,
@@ -82,20 +90,46 @@ const Calendar = ({
           />
         </div>
       ) : (
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView="timeGridWeek"
-          events={events}
-          selectable={true}
-          eventClick={(info) => {
-            if (info.event.extendedProps.source == "local") {
-              setOpenSessionDisplay(!openSessionDisplay);
-              setSessionID(info.event.id);
-            }
-          }}
-          locales={[frLocale]}
-          locale="fr"
-        />
+        <div>
+          <p>
+            Vous êtes connectés sur votre agenda :
+            <span className={styles.email}> {email}</span>
+          </p>
+          <div
+            className={styles["addSessions"]}
+            onClick={() => {
+              setAddSessionDisplay(!addSessionDisplay);
+            }}
+          >
+            <p>Ajouter une session</p>
+            <div className={styles["arrow-circle"]}>
+              <img className={styles["arrow"]} src={arrow} alt="arrow" />
+              <div className={styles["plus-container"]}>
+                <img className={styles["circle"]} src={circle} alt="circle" />
+                <FontAwesomeIcon
+                  className={styles["plus-circle"]}
+                  icon="plus-circle"
+                  color="#E67E22"
+                  size="4x"
+                />
+              </div>
+            </div>
+          </div>
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="timeGridWeek"
+            events={events}
+            selectable={true}
+            eventClick={(info) => {
+              if (info.event.extendedProps.source == "local") {
+                setOpenSessionDisplay(!openSessionDisplay);
+                setSessionID(info.event.id);
+              }
+            }}
+            locales={[frLocale]}
+            locale="fr"
+          />
+        </div>
       )}
     </div>
   );

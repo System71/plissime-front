@@ -45,6 +45,8 @@ const Planning = ({
             openSessionDisplay={openSessionDisplay}
             setOpenSessionDisplay={setOpenSessionDisplay}
             setSessionID={setSessionID}
+            addSessionDisplay={addSessionDisplay}
+            setAddSessionDisplay={setAddSessionDisplay}
           />
         ) : (
           <Sessions
