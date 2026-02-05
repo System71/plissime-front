@@ -39,8 +39,8 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
     }
     if (!title) {
       newErrors.title = "Le nom de la session est requis.";
-    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ0-9' ,.-]+$/.test(address)) {
-      newErrors.address = "Au moins un caractère est non autorisé.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ0-9' ,.-]+$/.test(title)) {
+      newErrors.title = "Au moins un caractère est non autorisé.";
     }
     if (!start) {
       newErrors.start = "La date et l'horaire de démarrage sont requis.";
@@ -382,34 +382,40 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
               <div className={styles["program"]}>
                 <div className={styles.line}>
                   <div className={styles.item}>
-                    <label htmlFor="program">Programme :</label>
-                    <input
-                      type="text"
-                      placeholder="Nom du programme"
-                      name="program"
-                      id="program"
-                      value={searchProgram}
-                      onChange={(event) => {
-                        setSearchProgram(event.target.value);
-                        setProgram(null);
-                      }}
-                    />
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="program">Programme :</label>
+                      <input
+                        type="text"
+                        placeholder="Nom du programme"
+                        name="program"
+                        id="program"
+                        value={searchProgram}
+                        onChange={(event) => {
+                          setSearchProgram(event.target.value);
+                          setProgram(null);
+                        }}
+                      />
+                    </div>
+                    <p className={styles["error-message"]}></p>
                   </div>
                   <div className={styles.item}>
-                    <label htmlFor="session">Session :</label>
-                    <select
-                      name="session"
-                      id="session"
-                      onChange={handleChangeSession}
-                    >
-                      <option value="">Choisir une session</option>
-                      {program &&
-                        program.sessions.map((session, index) => (
-                          <option value={index + 1} key={session._id}>
-                            Session {index + 1}
-                          </option>
-                        ))}
-                    </select>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="session">Session :</label>
+                      <select
+                        name="session"
+                        id="session"
+                        onChange={handleChangeSession}
+                      >
+                        <option value="">Choisir</option>
+                        {program &&
+                          program.sessions.map((session, index) => (
+                            <option value={index + 1} key={session._id}>
+                              Session {index + 1}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                    <p className={styles["error-message"]}></p>
                   </div>
                 </div>
                 {programsListIsVisible && (
