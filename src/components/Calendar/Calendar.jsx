@@ -7,6 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import frLocale from "@fullcalendar/core/locales/fr";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import calendarLogo from "../../assets/google-calendar.png";
 
 const Calendar = ({
   token,
@@ -26,7 +27,7 @@ const Calendar = ({
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setGoogleLinked(response.data.linked);
         if (response.data.linked) {
@@ -36,7 +37,7 @@ const Calendar = ({
               headers: {
                 Authorization: `Bearer ${token}`,
               },
-            }
+            },
           );
           setEvents(response.data);
         }
@@ -55,7 +56,7 @@ const Calendar = ({
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       const { url } = await response.data;
       window.location.href = url; // redirection vers Google
@@ -71,11 +72,14 @@ const Calendar = ({
   return (
     <div className={styles["calendar"]}>
       {!googleLinked ? (
-        <div style={{ padding: "1rem" }}>
-          <p>Ton compte Google n’est pas encore lié.</p>
-          <button onClick={handleConnectGoogle}>
-            Connecter mon Google Calendar
-          </button>
+        <div className={styles.connect}>
+          <p>Connectez votre agenda avec Google Agenda : </p>
+          <img
+            src={calendarLogo}
+            alt="Logo Google Calendar"
+            className={styles.logoCalendar}
+            onClick={handleConnectGoogle}
+          />
         </div>
       ) : (
         <FullCalendar

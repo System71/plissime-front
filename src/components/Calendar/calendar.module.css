@@ -1,3 +1,13 @@
 .calendar {
   width: 100%;
 }
+
+.connect {
+  display: flex;
+  align-items: center;
+}
+
+.logoCalendar {
+  height: 30px;
+  cursor: pointer;
+}
