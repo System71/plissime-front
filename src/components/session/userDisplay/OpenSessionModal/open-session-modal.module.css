@@ -14,8 +14,8 @@
 
 .container label {
   font-weight: 600;
-  align-self: flex-start;
-  margin-bottom: 10px;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .content {
@@ -28,50 +28,83 @@
   background-color: lightgrey;
   border: 3px solid grey;
   border-radius: 20px;
-}
-
-.container form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: lightgrey;
   gap: 15px;
-  width: 85%;
   padding: 30px;
 }
 
-.container form div {
+.sessions-infos {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 100%;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.itemInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  flex: 1;
 }
 
 .container input,
 .container textarea,
 .container select {
   padding: 10px;
-  border: 1px grey solid;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.itemInfo :global(.react-datepicker-wrapper) {
+  flex: 1;
   width: 100%;
 }
 
-.container .open-session-modal-buttons {
+.itemInfo :global(.react-datepicker__input-container) {
+  width: 100%;
+}
+
+.itemInfo :global(.react-datepicker__input-container input) {
+  width: 100%;
+}
+
+.buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
+  margin-top: 40px;
 }
 
-.content button {
-  height: 40px;
+.button-choice button {
+  height: 50px;
   font-weight: 600;
   text-align: center;
   padding: 10px;
   border: 0px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  margin-bottom: 20px;
 }
 
 .content .button-choice {
@@ -83,8 +116,7 @@
   width: 75%;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
-  margin-top: 40px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   align-self: center;
 }
 
@@ -105,9 +137,8 @@ button:hover {
 .session-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: inherit;
+  width: 100%;
+  gap: 25px;
 }
 
 .modal-overlay {
@@ -136,4 +167,12 @@ button:hover {
   justify-content: flex-end;
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+.error-message {
+  color: red;
+  font-size: small;
+  align-self: flex-start;
+  margin-top: 5px;
+  min-height: 20px;
 }

@@ -1,6 +1,5 @@
 .addSessionModalContainer {
   position: absolute;
-  position: absolute;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -29,7 +28,7 @@
   border: 3px solid grey;
   border-radius: 20px;
   gap: 15px;
-  padding: 45px;
+  padding: 30px;
 }
 
 .sessions-infos {
@@ -113,13 +112,6 @@
   border: 2px solid #a8c6cc;
 }
 
-/* .program {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
-
 .customers-list,
 .programs-list {
   display: flex;
@@ -146,15 +138,15 @@
   background-color: #a8c6cc;
 }
 
-.addSessionModalContainer .add-session-modal-buttons {
+.buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-.addSessionModalContent button {
-  height: 40px;
+.button-choice button {
+  height: 50px;
   font-weight: 600;
   text-align: center;
   padding: 10px;

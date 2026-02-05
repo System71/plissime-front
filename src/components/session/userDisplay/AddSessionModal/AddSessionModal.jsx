@@ -458,7 +458,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
           )}
           <p className={styles["error-message-back"]}>{errorBack}</p>
         </div>
-        <div className={styles["add-session-modal-buttons"]}>
+        <div className={styles.buttons}>
           <Button
             type="button"
             action={() => setAddSessionDisplay(false)}
