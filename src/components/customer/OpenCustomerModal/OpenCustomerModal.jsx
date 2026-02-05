@@ -8,7 +8,7 @@ import InfoCustomer from "../InfoCustomer/InfoCustomer";
 import CustomerPayments from "../CustomerPayments/CustomerPayments";
 import CustomerSportInfos from "../CustomerSportInfos/CustomerSportInfos";
 import CustomerSessions from "../CustomerSessions/CustomerSessions";
-import Button from "../../button/Button";
+import Button from "../../Button/Button";
 
 const OpenCustomerModal = ({
   token,
