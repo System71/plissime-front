@@ -34,7 +34,7 @@ const OpenSessionModal = ({
           import.meta.env.VITE_API_URL + `/session/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
-          },
+          }
         );
 
         setName(response.data.customer.name);
@@ -73,7 +73,7 @@ const OpenSessionModal = ({
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       updateSessionsList(setSessionsList, token);
       setOpenSessionDisplay(false);
@@ -283,7 +283,11 @@ const OpenSessionModal = ({
                 action={() => setOpenSessionDisplay(false)}
                 text="Fermer"
               />
-              <Button type="submit" text="Modifier ma session!" />
+              <Button
+                type="submit"
+                text="Modifier ma session!"
+                action={modifySession}
+              />
             </div>
           </div>
         )}
