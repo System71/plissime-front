@@ -26,6 +26,7 @@ const OpenSessionModal = ({
   const [program, setProgram] = useState("");
   const [choice, setChoice] = useState("admin");
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +35,7 @@ const OpenSessionModal = ({
           import.meta.env.VITE_API_URL + `/session/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
 
         setName(response.data.customer.name);
@@ -73,9 +74,28 @@ const OpenSessionModal = ({
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       updateSessionsList(setSessionsList, token);
+      setOpenSessionDisplay(false);
+    } catch (error) {
+      console.log("error=", error.response.data);
+    }
+  };
+
+  const removeSession = async (event) => {
+    try {
+      event.preventDefault();
+      const response = await axios.delete(
+        import.meta.env.VITE_API_URL + `/session/delete/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      updateSessionsList(setSessionsList, token);
+      setShowRemoveModal(false);
       setOpenSessionDisplay(false);
     } catch (error) {
       console.log("error=", error.response.data);
@@ -284,6 +304,11 @@ const OpenSessionModal = ({
                 text="Fermer"
               />
               <Button
+                type="button"
+                action={() => setShowRemoveModal(true)}
+                text="Supprimer session"
+              />
+              <Button
                 type="submit"
                 text="Modifier ma session!"
                 action={modifySession}
@@ -317,6 +342,30 @@ const OpenSessionModal = ({
                   type="button"
                   action={confirmPaymentState}
                 />
+              </div>
+            </div>
+          </div>
+        )}
+        {showRemoveModal && (
+          <div
+            className={styles["modal-overlay"]}
+            onClick={() => setShowRemoveModal(false)}
+          >
+            <div
+              className={styles["modal-content"]}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2>Suppression de la session</h2>
+              <p>
+                Merci de confirmer votre volonté de supprimer cette session.
+              </p>
+              <div className={styles["modal-buttons"]}>
+                <Button
+                  text="Annuler"
+                  type="button"
+                  action={() => setShowRemoveModal(false)}
+                />
+                <Button text="Confirmer" type="button" action={removeSession} />
               </div>
             </div>
           </div>
