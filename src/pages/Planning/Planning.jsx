@@ -21,45 +21,14 @@ const Planning = ({
   if (sub) {
     return (
       <div className={styles["planning-sessions"]}>
-        <div className={styles["button-choice"]}>
-          <button
-            type="button"
-            className="planning-button"
-            onClick={() => setChoice("planning")}
-            style={{ backgroundColor: choice == "planning" && "#a8c6cc" }}
-          >
-            Planning
-          </button>
-          <button
-            type="button"
-            className="sessions-button"
-            onClick={() => setChoice("sessions")}
-            style={{ backgroundColor: choice == "sessions" && "#a8c6cc" }}
-          >
-            Sessions
-          </button>
-        </div>
-        {choice == "planning" ? (
-          <Calendar
-            token={token}
-            openSessionDisplay={openSessionDisplay}
-            setOpenSessionDisplay={setOpenSessionDisplay}
-            setSessionID={setSessionID}
-            addSessionDisplay={addSessionDisplay}
-            setAddSessionDisplay={setAddSessionDisplay}
-          />
-        ) : (
-          <Sessions
-            token={token}
-            addSessionDisplay={addSessionDisplay}
-            setAddSessionDisplay={setAddSessionDisplay}
-            openSessionDisplay={openSessionDisplay}
-            setOpenSessionDisplay={setOpenSessionDisplay}
-            setSessionID={setSessionID}
-            sessionsList={sessionsList}
-            setSessionsList={setSessionsList}
-          />
-        )}
+        <Calendar
+          token={token}
+          openSessionDisplay={openSessionDisplay}
+          setOpenSessionDisplay={setOpenSessionDisplay}
+          setSessionID={setSessionID}
+          addSessionDisplay={addSessionDisplay}
+          setAddSessionDisplay={setAddSessionDisplay}
+        />
       </div>
     );
   } else {

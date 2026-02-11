@@ -54,7 +54,7 @@ const Calendar = ({
       }
     };
     fetchData();
-  }, [token]);
+  }, [token, addSessionDisplay, openSessionDisplay]);
 
   const handleConnectGoogle = async () => {
     try {
