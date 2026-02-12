@@ -4,7 +4,7 @@ import logo from "../../assets/logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../Button/Button";
 import Cookies from "js-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const NavMenu = ({
   setToken,
@@ -21,39 +21,81 @@ const NavMenu = ({
   if (role === "coach") {
     return (
       <nav>
-        <Link to="/">
+        <NavLink to="/">
           <img src={logo} alt="logo-plissime" className={styles["logo-nav"]} />
-        </Link>
+        </NavLink>
         <div className={styles["barre"]}></div>
         <div className={styles["menu"]}>
-          <div className={styles["nav-item"]}>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
-            <Link to="/">Pilotage</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Pilotage</p>
+          </NavLink>
+          <NavLink
+            to="/customers"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
-            <Link to="/customers">Clients</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Clients</p>
+          </NavLink>
+          <NavLink
+            to="/planning"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="calendar-days" color="#E67E22" size="xl" />
-            <Link to="/planning">Agenda</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Agenda</p>
+          </NavLink>
+          <NavLink
+            to="/programmes"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="square-binary" color="#E67E22" size="xl" />
-            <Link to="/programmes">Programmes</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Programmes</p>
+          </NavLink>
+          <NavLink
+            to="/payments"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="euro-sign" color="#E67E22" size="xl" />
-            <Link to="/payments">Paiements</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Paiements</p>
+          </NavLink>
+          <NavLink
+            to="/user/settings"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
-            <Link to="/user/settings">Paramètres</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Paramètres</p>
+          </NavLink>
+          <NavLink
+            to="/help"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
-            <Link to="/help">Aide</Link>
-          </div>
+            <p>Aide</p>
+          </NavLink>
         </div>
         <div className={styles["barre"]}></div>
         <div className={styles["disconnect"]}>
@@ -78,31 +120,61 @@ const NavMenu = ({
   } else if (role === "customer") {
     return (
       <nav>
-        <Link to="/">
+        <NavLink to="/">
           <img src={logo} alt="logo-plissime" className={styles["logo-nav"]} />
-        </Link>
+        </NavLink>
         <div className={styles["barre"]}></div>
         <div className={styles["menu"]}>
-          <div className={styles["nav-item"]}>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
-            <Link to="/">Accueil</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Accueil</p>
+          </NavLink>
+          <NavLink
+            to="/mycoachs"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
-            <Link to="/mycoachs">Mes coachs</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Mes coachs</p>
+          </NavLink>
+          <NavLink
+            to="/myprograms"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="square-binary" color="#E67E22" size="xl" />
-            <Link to="/myprograms">Mes programmes</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Mes programmes</p>
+          </NavLink>
+          <NavLink
+            to="/customer/settings"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
-            <Link to="/customer/settings">Mes informations</Link>
-          </div>
-          <div className={styles["nav-item"]}>
+            <p>Mes informations</p>
+          </NavLink>
+          <NavLink
+            to="/help"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+            end
+          >
             <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
-            <Link to="/help">Aide</Link>
-          </div>
+            <p>Aide</p>
+          </NavLink>
         </div>
         <div className={styles["barre"]}></div>
         <div className={styles["disconnect"]}>
