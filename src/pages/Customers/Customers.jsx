@@ -34,12 +34,12 @@ const Customers = ({
       await updateActiveCustomersList(
         setActiveCustomersList,
         token,
-        searchCustomer
+        searchCustomer,
       );
       await updateInactiveCustomersList(
         setInactiveCustomersList,
         token,
-        searchCustomer
+        searchCustomer,
       );
     };
 
@@ -72,9 +72,12 @@ const Customers = ({
       <div className={styles["button-choice"]}>
         <button
           type="button"
-          className="customer-button"
           onClick={() => setChoice("active")}
-          style={{ backgroundColor: choice == "active" && "#a8c6cc" }}
+          className={choice === "active" ? "active" : ""}
+          // style={{
+          //   backgroundColor: choice == "active" && "#E67E22",
+          //   color: choice == "active" ? "#ffffff" : "#E67E22",
+          // }}
         >
           Clients actifs
         </button>
@@ -82,7 +85,10 @@ const Customers = ({
           type="button"
           className="customer-button"
           onClick={() => setChoice("inactive")}
-          style={{ backgroundColor: choice == "inactive" && "#a8c6cc" }}
+          style={{
+            backgroundColor: choice == "inactive" && "#E67E22",
+            color: choice == "inactive" ? "#ffffff" : "#E67E22",
+          }}
         >
           Clients inactifs
         </button>

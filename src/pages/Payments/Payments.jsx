@@ -26,21 +26,21 @@ const Payments = ({
           <button
             type="button"
             onClick={() => setChoice("payable")}
-            style={{ backgroundColor: choice == "payable" && "#a8c6cc" }}
+            className={`button-choice ${choice === "payable" ? "active" : ""}`}
           >
             En attente
           </button>
           <button
             type="button"
             onClick={() => setChoice("paid")}
-            style={{ backgroundColor: choice == "paid" && "#a8c6cc" }}
+            className={choice === "paid" ? "active" : ""}
           >
             Encaissés
           </button>
           <button
             type="button"
             onClick={() => setChoice("subscription")}
-            style={{ backgroundColor: choice == "subscription" && "#a8c6cc" }}
+            className={choice === "subscription" ? "active" : ""}
           >
             Abonnements
           </button>

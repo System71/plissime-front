@@ -66,13 +66,6 @@
   margin-right: 10px;
 }
 
-.customers button {
-  height: 40px;
-  font-weight: 600;
-  text-align: center;
-  padding: 10px;
-}
-
 .button-choice {
   display: flex;
   flex-direction: row;
@@ -82,23 +75,31 @@
   height: 40px;
   width: 400px;
   border-radius: 5px;
-  border: 1px solid #a8c6cc;
+  border: 1px solid #e67e22;
   margin-bottom: 40px;
   align-self: center;
 }
 
 .button-choice button {
-  border: none;
-}
-
-.button-choice > button {
+  height: 40px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
   flex: 1;
   margin: 0;
   border-radius: 0;
+  border: none;
+  color: #e67e22;
+}
+
+button.active {
+  background-color: #e67e22;
+  color: white;
 }
 
 button:hover {
   background-color: #e67e22;
+  color: white;
 }
 
 @media (max-width: 576px) {
