@@ -26,21 +26,21 @@ const Payments = ({
           <button
             type="button"
             onClick={() => setChoice("payable")}
-            className={`button-choice ${choice === "payable" ? "active" : ""}`}
+            className={`button-choice ${choice === "payable" ? styles.active : ""}`}
           >
             En attente
           </button>
           <button
             type="button"
             onClick={() => setChoice("paid")}
-            className={choice === "paid" ? "active" : ""}
+            className={choice === "paid" ? styles.active : ""}
           >
             Encaissés
           </button>
           <button
             type="button"
             onClick={() => setChoice("subscription")}
-            className={choice === "subscription" ? "active" : ""}
+            className={choice === "subscription" ? styles.active : ""}
           >
             Abonnements
           </button>

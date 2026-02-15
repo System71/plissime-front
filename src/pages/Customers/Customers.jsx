@@ -73,22 +73,14 @@ const Customers = ({
         <button
           type="button"
           onClick={() => setChoice("active")}
-          className={choice === "active" ? "active" : ""}
-          // style={{
-          //   backgroundColor: choice == "active" && "#E67E22",
-          //   color: choice == "active" ? "#ffffff" : "#E67E22",
-          // }}
+          className={choice === "active" ? styles.active : ""}
         >
           Clients actifs
         </button>
         <button
           type="button"
-          className="customer-button"
           onClick={() => setChoice("inactive")}
-          style={{
-            backgroundColor: choice == "inactive" && "#E67E22",
-            color: choice == "inactive" ? "#ffffff" : "#E67E22",
-          }}
+          className={choice === "inactive" ? styles.active : ""}
         >
           Clients inactifs
         </button>

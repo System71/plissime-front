@@ -38,6 +38,6 @@
   border-radius: 0;
 }
 
-button:hover {
+.button-choice button:hover {
   background-color: #e67e22;
 }
