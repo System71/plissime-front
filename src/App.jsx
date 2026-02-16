@@ -86,6 +86,9 @@ library.add(
   faCircleCheck,
   faCircleCheckRegular,
 );
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import useSocket from "../utils/useSocket";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("plissimeToken") || "");
@@ -138,8 +141,11 @@ function App() {
     fetchData();
   }, [token]);
 
+  useSocket(token);
+
   return (
     <div className="app">
+      <ToastContainer />
       <Router>
         <Routes>
           <Route
