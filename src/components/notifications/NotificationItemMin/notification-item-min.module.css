@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 0.05fr auto 1fr auto auto;
+  padding: 10px;
+  flex: 1;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  gap: 10px;
+}
+
+.button {
+  cursor: pointer;
+}

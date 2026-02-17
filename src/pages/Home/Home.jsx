@@ -7,8 +7,8 @@ import DaySessions from "../../components/session/userDisplay/DaySessions/DaySes
 import UserUpcomingSessions from "../../components/session/userDisplay/UserUpcomingSessions/UserUpcomingSessions.jsx";
 import NewCustomer from "../../components/customer/NewCustomer/NewCustomer.jsx";
 import SalesGraph from "../../components/session/userDisplay/SalesGraph/SalesGraph.jsx";
-import Tasks from "../../components/session/userDisplay/Tasks/Tasks.jsx";
 import CustomerHome from "./CustomerHome/CustomerHome.jsx";
+import Notifications from "../../components/notifications/Notifications/Notifications.jsx";
 
 const Home = ({
   token,
@@ -60,7 +60,7 @@ const Home = ({
           </div>
           <div className={styles["third-line"]}>
             <div className={styles["dashboard-item"]}>
-              <Tasks token={token} />
+              <Notifications token={token} />
             </div>
             <div className={styles["item-graph"]}>
               <SalesGraph token={token} />

@@ -52,6 +52,7 @@ import {
   faCircleChevronRight,
   faCircleChevronLeft,
   faCircleCheck,
+  faArrowUpRightDots,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck as faCircleCheckRegular } from "@fortawesome/free-regular-svg-icons";
 import Layout from "./layout/Layout";
@@ -85,6 +86,7 @@ library.add(
   faCircleChevronLeft,
   faCircleCheck,
   faCircleCheckRegular,
+  faArrowUpRightDots,
 );
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
