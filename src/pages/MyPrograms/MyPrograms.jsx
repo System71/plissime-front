@@ -2,8 +2,8 @@
 import styles from "./my-programs.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ProgramItem from "../../components/program/ProgramItem/ProgramItem";
 import ProgramSpecifications from "../../components/program/ProgramSpecifications/ProgramSpecifications";
+import ProgramItemCustomer from "../../components/program/ProgramItemCustomer/ProgramItemCustomer";
 
 const MyPrograms = ({ token, role }) => {
   const [programs, setPrograms] = useState();
@@ -19,9 +19,10 @@ const MyPrograms = ({ token, role }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setPrograms(response.data);
+        console.log("programmes=", response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.response);
@@ -47,14 +48,14 @@ const MyPrograms = ({ token, role }) => {
           />
         </div>
       ) : (
-        <div>
+        <div className={styles.programList}>
           {programs.map((program) => (
-            <ProgramItem
+            <ProgramItemCustomer
               key={program._id}
               title={program.title}
               duration={program.duration}
+              progress={program.customers[0].progress}
               notes={program.notes}
-              role={role}
               onClick={() => {
                 setSelectedProgram(program);
               }}

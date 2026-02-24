@@ -5,3 +5,11 @@
 .myPrograms h1 {
   margin-bottom: 30px;
 }
+
+.programList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}

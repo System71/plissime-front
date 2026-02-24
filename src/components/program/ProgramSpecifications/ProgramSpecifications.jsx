@@ -28,7 +28,7 @@ const ProgramSpecifications = ({
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setProgress(response.data.progress);
         if (response.data.progress >= 1) {
@@ -40,7 +40,7 @@ const ProgramSpecifications = ({
         setStart(formatedStartDate);
         const formatedLastUpdateDate = format(
           response.data.lastUpdate,
-          "dd/LL/yyyy"
+          "dd/LL/yyyy",
         );
         setLastUpdate(formatedLastUpdateDate);
       } catch (error) {
@@ -61,7 +61,7 @@ const ProgramSpecifications = ({
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       setSelectedProgram(response.data);
     } catch (error) {
@@ -81,7 +81,7 @@ const ProgramSpecifications = ({
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setSelectedProgram(response.data);
       } catch (error) {
@@ -92,11 +92,11 @@ const ProgramSpecifications = ({
 
   //add select fields for sessions
   const options = [];
-  for (let i = 0; i < selectedProgram.sessions.length; i++) {
+  for (let i = 0; i < progress + 1; i++) {
     options.push(
       <option key={i} value={i + 1}>
         Session {i + 1}
-      </option>
+      </option>,
     );
   }
 
