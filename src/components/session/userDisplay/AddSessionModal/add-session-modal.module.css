@@ -1,4 +1,4 @@
-.addSessionModalContainer {
+.container {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -11,13 +11,13 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.addSessionModalContainer label {
+.container label {
   font-weight: 600;
   flex: 0 0 auto;
   white-space: nowrap;
 }
 
-.addSessionModalContent {
+.content {
   width: 60%;
   max-width: 600px;
   display: flex;
@@ -66,7 +66,7 @@
   flex: 1;
 }
 
-.content {
+.sessionContent {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -84,9 +84,9 @@
   flex: 1;
 }
 
-.addSessionModalContainer input,
-.addSessionModalContainer textarea,
-.addSessionModalContainer select {
+.container input,
+.container textarea,
+.container select {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
@@ -106,9 +106,9 @@
 .item :global(.react-datepicker__input-container input) {
   width: 100%;
 }
-.addSessionModalContainer input:focus,
-.addSessionModalContainer textarea:focus,
-.addSessionModalContainer select:focus {
+.container input:focus,
+.container textarea:focus,
+.container select:focus {
   outline: none;
   border: 2px solid #a8c6cc;
 }
@@ -156,7 +156,7 @@
   border: 1px solid #a8c6cc;
 }
 
-.addSessionModalContent .button-choice {
+.content .button-choice {
   display: flex;
   flex-direction: row;
   justify-content: center;

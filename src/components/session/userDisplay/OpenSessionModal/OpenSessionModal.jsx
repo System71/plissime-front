@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./open-session-modal.module.css";
@@ -7,6 +9,7 @@ import Button from "../../../Button/Button";
 import { updateSessionsList } from "../../../../../utils/updateData";
 import DatePicker from "react-datepicker";
 import { fr } from "date-fns/locale";
+import ExerciseList from "../../../program/ExerciseList/ExerciseList";
 
 const OpenSessionModal = ({
   token,
@@ -24,10 +27,40 @@ const OpenSessionModal = ({
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
   const [program, setProgram] = useState("");
+  const [programSession, setProgramSession] = useState(null);
   const [choice, setChoice] = useState("admin");
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [errorBack, setErrorBack] = useState("");
 
+  const validateSessionForm = () => {
+    const newErrors = {};
+
+    if (!title) {
+      newErrors.title = "Le nom de la session est requis.";
+    } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ0-9' ,.-]+$/.test(title)) {
+      newErrors.title = "Au moins un caractère est non autorisé.";
+    }
+    if (!start) {
+      newErrors.start = "La date et l'horaire de démarrage sont requis.";
+    }
+    if (!end) {
+      newErrors.end = "La date et l'horaire de démarrage sont requis.";
+    }
+    if (start > end) {
+      newErrors.start =
+        "La date de démarrage doit etre antérieure à celle de fin.";
+      newErrors.end =
+        "La date de démarrage doit etre postérieure à celle de démarrage.";
+    }
+    if (!price) {
+      newErrors.price = "Le prix de la session est requis.";
+    }
+    return newErrors;
+  };
+
+  //Load session
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,7 +70,7 @@ const OpenSessionModal = ({
             headers: { Authorization: `Bearer ${token}` },
           },
         );
-
+        console.log("session=", response.data);
         setName(response.data.customer.name);
         setFirstName(response.data.customer.firstName);
         setTitle(response.data.title);
@@ -47,6 +80,7 @@ const OpenSessionModal = ({
         setContent(response.data.content);
         setPrice(response.data.price);
         setProgram(response.data.program);
+        setProgramSession(response.data.programSession);
         setIsLoading(false);
       } catch (error) {
         console.error("Erreur lors de la recherche de clients :", error);
@@ -55,6 +89,7 @@ const OpenSessionModal = ({
     fetchData();
   }, [id, token]);
 
+  //Modify session
   const modifySession = async (event) => {
     try {
       event.preventDefault();
@@ -72,17 +107,17 @@ const OpenSessionModal = ({
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
           },
         },
       );
       updateSessionsList(setSessionsList, token);
       setOpenSessionDisplay(false);
     } catch (error) {
-      console.log("error=", error.response.data);
+      setErrorBack(error.response.data.message);
     }
   };
 
+  //Remove session
   const removeSession = async (event) => {
     try {
       event.preventDefault();
@@ -123,11 +158,11 @@ const OpenSessionModal = ({
 
   return (
     <div
-      className={styles["container"]}
+      className={styles.container}
       onClick={() => setOpenSessionDisplay(false)}
     >
       <div
-        className={styles["content"]}
+        className={styles.content}
         onClick={(event) => event.stopPropagation()}
       >
         <div className={styles["button-choice"]}>
@@ -156,164 +191,195 @@ const OpenSessionModal = ({
             {choice == "admin" && (
               <div className={styles["session-admin"]}>
                 <div className={styles.line}>
-                  <div className={styles.itemInfo}>
-                    <label htmlFor="name">Nom :</label>
-                    <input
-                      type="text"
-                      placeholder={name}
-                      name="name"
-                      id="name"
-                      value={name}
-                      readOnly
-                    />
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="name">Nom :</label>
+                      <input
+                        type="text"
+                        placeholder={name}
+                        name="name"
+                        id="name"
+                        value={name}
+                        readOnly
+                      />
+                    </div>
+                    <p className={styles["error-message"]}></p>
                   </div>
-                  <div className={styles.itemInfo}>
-                    <label htmlFor="firstName">Prénom :</label>
-                    <input
-                      type="text"
-                      placeholder={firstName}
-                      name="firstName"
-                      id="firstName"
-                      value={firstName}
-                      readOnly
-                    />
-                  </div>
-                </div>
-                <div className={styles.line}>
-                  <div className={styles.itemInfo}>
-                    <label htmlFor="title">Nom de la session :</label>
-                    <input
-                      type="text"
-                      placeholder={title}
-                      name="title"
-                      id="title"
-                      value={title}
-                      onChange={(event) => {
-                        setTitle(event.target.value);
-                      }}
-                    />
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="firstName">Prénom :</label>
+                      <input
+                        type="text"
+                        placeholder={firstName}
+                        name="firstName"
+                        id="firstName"
+                        value={firstName}
+                        readOnly
+                      />
+                    </div>
+                    <p className={styles["error-message"]}></p>
                   </div>
                 </div>
                 <div className={styles.line}>
-                  <div className={styles.itemInfo}>
-                    <label htmlFor="start">Début :</label>
-                    <DatePicker
-                      selected={start}
-                      onChange={(date) => {
-                        setStart(date);
-                        setEnd(date);
-                      }}
-                      showTimeSelect
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      dateFormat="dd/MM/yyyy HH:mm"
-                      placeholderText="Début de la session"
-                      shouldCloseOnSelect={true}
-                      timeCaption="Heure"
-                      locale={fr}
-                      className="custom_input"
-                      portalId="react-datepicker-portal"
-                    />
-                  </div>
-                  <div className={styles.itemInfo}>
-                    <label htmlFor="end">Fin :</label>
-                    <DatePicker
-                      selected={end}
-                      onChange={(date) => {
-                        setStart(date);
-                        setEnd(date);
-                      }}
-                      showTimeSelect
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      dateFormat="dd/MM/yyyy HH:mm"
-                      placeholderText="Fin de la session"
-                      shouldCloseOnSelect={true}
-                      timeCaption="Heure"
-                      locale={fr}
-                      className="custom_input"
-                      portalId="react-datepicker-portal"
-                    />
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="title">Nom de la session :</label>
+                      <input
+                        type="text"
+                        placeholder={title}
+                        name="title"
+                        id="title"
+                        value={title}
+                        onChange={(event) => {
+                          setTitle(event.target.value);
+                        }}
+                      />
+                    </div>
+                    <p className={styles["error-message"]}>{errors.title}</p>
                   </div>
                 </div>
                 <div className={styles.line}>
-                  <div className={styles.itemInfo}>
-                    <label htmlFor="price">Prix :</label>
-                    <input
-                      type="number"
-                      name="price"
-                      id="price"
-                      placeholder={price}
-                      value={price}
-                      onChange={(event) => {
-                        setPrice(event.target.value);
-                      }}
-                    />
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="start">Début :</label>
+                      <DatePicker
+                        selected={start}
+                        onChange={(date) => {
+                          setStart(date);
+                          setEnd(date);
+                        }}
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={15}
+                        dateFormat="dd/MM/yyyy HH:mm"
+                        placeholderText="Début de la session"
+                        shouldCloseOnSelect={true}
+                        timeCaption="Heure"
+                        locale={fr}
+                        className="custom_input"
+                        portalId="react-datepicker-portal"
+                      />
+                    </div>
+                    <p className={styles["error-message"]}>{errors.start}</p>
                   </div>
-                  <div className={styles.itemInfo}>
-                    <label htmlFor="state">Statut :</label>
-                    <select
-                      name="state"
-                      id="state"
-                      value={state}
-                      onChange={handleChange}
-                    >
-                      <option value="Confirmée">Confirmée</option>
-                      <option value="Annulée">Annulée</option>
-                      <option value="À payer">À payer</option>
-                      <option value="Payée">Payée</option>
-                    </select>
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="end">Fin :</label>
+                      <DatePicker
+                        selected={end}
+                        onChange={(date) => {
+                          setStart(date);
+                          setEnd(date);
+                        }}
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={15}
+                        dateFormat="dd/MM/yyyy HH:mm"
+                        placeholderText="Fin de la session"
+                        shouldCloseOnSelect={true}
+                        timeCaption="Heure"
+                        locale={fr}
+                        className="custom_input"
+                        portalId="react-datepicker-portal"
+                      />
+                    </div>
+                    <p className={styles["error-message"]}>{errors.end}</p>
+                  </div>
+                </div>
+                <div className={styles.line}>
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="price">Prix :</label>
+                      <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        placeholder={price}
+                        value={price}
+                        onChange={(event) => {
+                          setPrice(event.target.value);
+                        }}
+                      />
+                    </div>
+                    <p className={styles["error-message"]}>{errors.price}</p>
+                  </div>
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="state">Statut :</label>
+                      <select
+                        name="state"
+                        id="state"
+                        value={state}
+                        onChange={handleChange}
+                      >
+                        <option value="Confirmée">Confirmée</option>
+                        <option value="Annulée">Annulée</option>
+                        <option value="À payer">À payer</option>
+                        <option value="Payée">Payée</option>
+                      </select>
+                    </div>
+                    <p className={styles["error-message"]}></p>
                   </div>
                 </div>
               </div>
             )}
             {choice == "content" && (
               <div className={styles["session-content"]}>
-                <div>
-                  <label htmlFor="">Programme :</label>
-                  <input
-                    type="text"
-                    placeholder={program}
-                    name="program"
-                    id="program"
-                    value={program}
-                    onChange={(event) => {
-                      setProgram(event.target.value);
-                    }}
-                  />
+                <div className={styles.line}>
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="">Programme :</label>
+                      <input
+                        type="text"
+                        placeholder={program.title}
+                        name="program"
+                        id="program"
+                        value={program.title}
+                        readOnly
+                      />
+                    </div>
+                    <p className={styles["error-message"]}></p>
+                  </div>
+                  <div className={styles.item}>
+                    <div className={styles.itemInfo}>
+                      <label htmlFor="">Session :</label>
+                      <input
+                        type="text"
+                        placeholder={programSession}
+                        name="programSession"
+                        id="programSession"
+                        value={programSession}
+                        readOnly
+                      />
+                    </div>
+                    <p className={styles["error-message"]}></p>
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="content">Contenu :</label>
-                  <textarea
-                    rows="20"
-                    name="content"
-                    id="content"
-                    placeholder={content}
-                    value={content}
-                    onChange={(event) => {
-                      setContent(event.target.value);
-                    }}
-                  ></textarea>
+                <div className={styles.line}>
+                  {programSession ? (
+                    <ExerciseList
+                      token={token}
+                      programId={program._id}
+                      sessionId={programSession}
+                    />
+                  ) : (
+                    <div className={styles.sessionContent}>
+                      <label htmlFor="content">Contenu :</label>
+                      <textarea
+                        rows="20"
+                        name="content"
+                        id="content"
+                        placeholder={content}
+                        value={content}
+                        onChange={(event) => {
+                          setContent(event.target.value);
+                        }}
+                      ></textarea>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
-            <div className={styles.buttons}>
-              <Button
-                type="button"
-                action={() => setOpenSessionDisplay(false)}
-                text="Fermer"
-              />
-              <Button
-                type="button"
-                action={() => setShowRemoveModal(true)}
-                text="Supprimer session"
-              />
-              <Button
-                type="submit"
-                text="Modifier ma session!"
-                action={modifySession}
-              />
-            </div>
           </div>
         )}
         {showConfirmModal && (
@@ -370,6 +436,23 @@ const OpenSessionModal = ({
             </div>
           </div>
         )}
+        <div className={styles.buttons}>
+          <Button
+            type="button"
+            action={() => setOpenSessionDisplay(false)}
+            text="Fermer"
+          />
+          <Button
+            type="button"
+            action={() => setShowRemoveModal(true)}
+            text="Supprimer session"
+          />
+          <Button
+            type="submit"
+            text="Modifier ma session!"
+            action={modifySession}
+          />
+        </div>
       </div>
     </div>
   );

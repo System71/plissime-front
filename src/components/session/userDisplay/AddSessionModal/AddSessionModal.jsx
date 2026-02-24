@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./add-session-modal.module.css";
@@ -7,6 +8,7 @@ import Button from "../../../Button/Button";
 import { updateSessionsList } from "../../../../../utils/updateData";
 import DatePicker from "react-datepicker";
 import { fr } from "date-fns/locale";
+import ExerciseList from "../../../program/ExerciseList/ExerciseList";
 
 const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [customersListIsVisible, setCustomersListIsVisible] = useState(true);
@@ -26,7 +28,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [subscription, setSubscription] = useState(false);
   const [program, setProgram] = useState(null);
   //Session of program
-  const [session, setSession] = useState(null);
+  const [programSession, setProgramSession] = useState(0);
   const [choice, setChoice] = useState("admin");
   const [errors, setErrors] = useState({});
   const [errorBack, setErrorBack] = useState("");
@@ -128,6 +130,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
           price: price,
           program: program,
           customer: customerId,
+          programSession: programSession,
         },
         {
           headers: {
@@ -147,7 +150,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
     setState(event.target.value);
   };
   const handleChangeSession = (event) => {
-    setSession(event.target.value);
+    setProgramSession(event.target.value);
   };
 
   const findSubscription = async (id) => {
@@ -172,11 +175,11 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
 
   return (
     <div
-      className={styles["addSessionModalContainer"]}
+      className={styles.container}
       onClick={() => setAddSessionDisplay(false)}
     >
       <div
-        className={styles["addSessionModalContent"]}
+        className={styles.content}
         onClick={(event) => event.stopPropagation()}
       >
         <div className={styles["button-choice"]}>
@@ -440,19 +443,27 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                 )}
               </div>
               <div className={styles.line}>
-                <div className={styles.content}>
-                  <label htmlFor="content">Contenu :</label>
-                  <textarea
-                    rows="20"
-                    name="content"
-                    id="content"
-                    placeholder="Contenu de la session"
-                    value={content}
-                    onChange={(event) => {
-                      setContent(event.target.value);
-                    }}
-                  ></textarea>
-                </div>
+                {programSession ? (
+                  <ExerciseList
+                    token={token}
+                    programId={program._id}
+                    sessionId={programSession}
+                  />
+                ) : (
+                  <div className={styles.sessionContent}>
+                    <label htmlFor="content">Contenu :</label>
+                    <textarea
+                      rows="20"
+                      name="content"
+                      id="content"
+                      placeholder="Contenu de la session"
+                      value={content}
+                      onChange={(event) => {
+                        setContent(event.target.value);
+                      }}
+                    ></textarea>
+                  </div>
+                )}
               </div>
             </div>
           )}

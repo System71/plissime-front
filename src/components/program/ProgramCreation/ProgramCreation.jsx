@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import styles from "./program-creation.module.css";
@@ -59,7 +60,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setProgramId(response.data._id);
       } else {
@@ -75,7 +76,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
       }
     } catch (error) {
@@ -91,7 +92,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       setCreation(false);
     } catch (error) {
@@ -109,7 +110,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       setSelectedSessionId(response.data.sessions.length);
       setNumberSessions(response.data.sessions.length);
@@ -128,7 +129,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       setNumberSessions(response.data.sessions.length);
       setDuration(response.data.sessions.length);
@@ -148,7 +149,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
     options.push(
       <option key={i} value={i + 1}>
         Session {i + 1}
-      </option>
+      </option>,
     );
   }
 
@@ -156,7 +157,7 @@ const ProgramCreation = ({ token, setCreation, program }) => {
     setSelectedCustomerId(event.target.value);
     if (event.target.value) {
       const customer = customers.find(
-        (customer) => customer.informations._id === event.target.value
+        (customer) => customer.informations._id === event.target.value,
       );
       setSelectedCustomer(customer);
       setProgress(customer.progress);
@@ -195,18 +196,6 @@ const ProgramCreation = ({ token, setCreation, program }) => {
                 }}
               />
             </div>
-            {/* <div className={styles["item"]}>
-              <label htmlFor="duration">Nombre de séances :</label>
-              <input
-                type="Number"
-                name="duration"
-                id="duration"
-                value={duration}
-                onChange={(event) => {
-                  setDuration(event.target.value);
-                }}
-              />
-            </div> */}
             <div className={styles["item"]}>
               <label htmlFor="notes">Notes personnelles :</label>
               <textarea

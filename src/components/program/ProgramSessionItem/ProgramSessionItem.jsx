@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import styles from "./program-session-item.module.css";
 import { useState, useEffect } from "react";
@@ -22,9 +23,8 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
             },
-          }
+          },
         );
         setExercises(response.data.exercises);
       } catch (error) {
@@ -49,7 +49,7 @@ const ProgramSessionItem = ({ token, programId, sessionId }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       setRefreshData((prev) => !prev);
     } catch (error) {

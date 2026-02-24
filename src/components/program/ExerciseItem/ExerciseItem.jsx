@@ -75,10 +75,12 @@ const ExerciseItem = ({
           </div>
         </div>
       </div>
-      <div className={styles["buttons"]}>
-        <Button type="button" text="Modifier" action={modifyExercise} />
-        <Button type="button" text="Supprimer" action={deleteExercise} />
-      </div>
+      {modifyExercise && deleteExercise && (
+        <div className={styles["buttons"]}>
+          <Button type="button" text="Modifier" action={modifyExercise} />
+          <Button type="button" text="Supprimer" action={deleteExercise} />
+        </div>
+      )}
     </div>
   );
 };

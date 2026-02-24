@@ -30,6 +30,7 @@
   border-radius: 20px;
   gap: 15px;
   padding: 30px;
+  z-index: 999;
 }
 
 .sessions-infos {
@@ -66,6 +67,14 @@
   flex: 1;
 }
 
+.sessionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
 .container input,
 .container textarea,
 .container select {
@@ -94,7 +103,6 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  margin-top: 40px;
 }
 
 .button-choice button {
@@ -138,7 +146,6 @@ button:hover {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 25px;
 }
 
 .modal-overlay {
