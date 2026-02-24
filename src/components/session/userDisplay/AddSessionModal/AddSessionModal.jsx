@@ -27,8 +27,9 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [price, setPrice] = useState();
   const [subscription, setSubscription] = useState(false);
   const [program, setProgram] = useState(null);
+  const [programProgess, setProgramProgress] = useState(0);
   //Session of program
-  const [programSession, setProgramSession] = useState(0);
+  const [programSession, setProgramSession] = useState(-1);
   const [choice, setChoice] = useState("admin");
   const [errors, setErrors] = useState({});
   const [errorBack, setErrorBack] = useState("");
@@ -93,7 +94,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
       const fetchPrograms = async () => {
         try {
           const response = await axios.get(
-            import.meta.env.VITE_API_URL + `/programs`,
+            import.meta.env.VITE_API_URL + `/programs/customer/${customerId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -396,6 +397,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                         onChange={(event) => {
                           setSearchProgram(event.target.value);
                           setProgram(null);
+                          setProgramSession(-1);
                         }}
                       />
                     </div>
@@ -404,19 +406,13 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                   <div className={styles.item}>
                     <div className={styles.itemInfo}>
                       <label htmlFor="session">Session :</label>
-                      <select
-                        name="session"
-                        id="session"
-                        onChange={handleChangeSession}
-                      >
-                        <option value="">Choisir</option>
-                        {program &&
-                          program.sessions.map((session, index) => (
-                            <option value={index + 1} key={session._id}>
-                              Session {index + 1}
-                            </option>
-                          ))}
-                      </select>
+                      <input
+                        type="number"
+                        placeholder="Numéro Session"
+                        name="programSession"
+                        id="programSession"
+                        value={programSession + 1}
+                      />
                     </div>
                     <p className={styles["error-message"]}></p>
                   </div>
@@ -432,6 +428,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                               setSearchProgram(program.title);
                               setProgramsListIsVisible(false);
                               setProgram(program);
+                              setProgramSession(program.customers[0].progress);
                             }}
                           >
                             {program.title}
@@ -443,11 +440,11 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                 )}
               </div>
               <div className={styles.line}>
-                {programSession ? (
+                {programSession != -1 ? (
                   <ExerciseList
                     token={token}
                     programId={program._id}
-                    sessionId={programSession}
+                    sessionId={programSession + 1}
                   />
                 ) : (
                   <div className={styles.sessionContent}>
