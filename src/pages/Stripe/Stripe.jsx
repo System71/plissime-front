@@ -23,7 +23,6 @@ const Stripe = () => {
 
   useEffect(() => {
     const createPaymentIntent = async () => {
-      console.log("token=", token);
       try {
         const response = await axios.post(
           import.meta.env.VITE_API_URL + `/create-payment-intent`,
@@ -32,7 +31,7 @@ const Stripe = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setClientSecret(response.data.clientSecret);
       } catch (error) {

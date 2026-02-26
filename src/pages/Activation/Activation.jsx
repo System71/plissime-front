@@ -216,7 +216,6 @@ const Activation = ({ token, setToken }) => {
       );
       navigate("/");
     } catch (error) {
-      console.log(error.response.data);
       setErrorBack(error.response.data.message);
     }
   };

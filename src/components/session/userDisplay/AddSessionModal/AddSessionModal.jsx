@@ -150,9 +150,6 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const handleChangeState = (event) => {
     setState(event.target.value);
   };
-  const handleChangeSession = (event) => {
-    setProgramSession(event.target.value);
-  };
 
   const findSubscription = async (id) => {
     try {
@@ -411,7 +408,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                         placeholder="Numéro Session"
                         name="programSession"
                         id="programSession"
-                        value={programSession + 1}
+                        value={programSession}
                       />
                     </div>
                     <p className={styles["error-message"]}></p>
@@ -428,7 +425,9 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                               setSearchProgram(program.title);
                               setProgramsListIsVisible(false);
                               setProgram(program);
-                              setProgramSession(program.customers[0].progress);
+                              setProgramSession(
+                                program.customers[0].progress + 1,
+                              );
                             }}
                           >
                             {program.title}
@@ -444,7 +443,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                   <ExerciseList
                     token={token}
                     programId={program._id}
-                    sessionId={programSession + 1}
+                    sessionId={programSession}
                   />
                 ) : (
                   <div className={styles.sessionContent}>

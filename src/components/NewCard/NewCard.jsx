@@ -8,8 +8,6 @@ import {
 const NewCard = () => {
   const stripe = useStripe();
   const elements = useElements();
-  console.log("stripe:", stripe);
-  console.log("elements:", elements);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

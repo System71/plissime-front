@@ -22,7 +22,6 @@ const NotificationItemMin = ({
   }
 
   const isRead = async () => {
-    console.log("gooooo");
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_API_URL}/notification/read/${id}`,

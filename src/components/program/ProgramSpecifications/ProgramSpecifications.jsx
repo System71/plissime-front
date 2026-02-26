@@ -5,17 +5,23 @@ import SessionSpecifications from "../SessionSpecifications/SessionSpecification
 import axios from "axios";
 import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "../../Button/Button";
 
 const ProgramSpecifications = ({
   token,
   setSelectedProgram,
   selectedProgram,
+  setRefresh,
 }) => {
   const [choice, setChoice] = useState("infos");
-  const [selectedSessionId, setSelectedSessionId] = useState(1);
+  const [selectedSessionId, setSelectedSessionId] = useState(0);
   const [progress, setProgress] = useState();
+  const [lastSessionFinished, setLastSessionUpdated] = useState();
   const [lastUpdate, setLastUpdate] = useState();
   const [start, setStart] = useState();
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [currentSessionId, setCurrentSessionId] = useState(null);
+  const [report, setReport] = useState("");
 
   useEffect(() => {
     const fetchCustomerData = async () => {
@@ -31,10 +37,10 @@ const ProgramSpecifications = ({
           },
         );
         setProgress(response.data.progress);
+        setLastSessionUpdated(response.data.lastSessionFinished);
+        setCurrentSessionId(response.data.currentSession);
         if (response.data.progress >= 1) {
           setSelectedSessionId(response.data.progress);
-        } else {
-          setSelectedSessionId(1);
         }
         const formatedStartDate = format(response.data.start, "dd/LL/yyyy");
         setStart(formatedStartDate);
@@ -56,7 +62,7 @@ const ProgramSpecifications = ({
         `${import.meta.env.VITE_API_URL}/program/${
           selectedProgram._id
         }/progress/${selectedSessionId}`,
-        {},
+        { report: report },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -64,38 +70,40 @@ const ProgramSpecifications = ({
         },
       );
       setSelectedProgram(response.data);
+      setRefresh((prev) => !prev);
     } catch (error) {
       console.log(error.response);
     }
   };
 
-  const sessionIsUndone = async () => {
-    if (selectedSessionId === progress) {
-      try {
-        const response = await axios.put(
-          `${import.meta.env.VITE_API_URL}/program/${
-            selectedProgram._id
-          }/progress/undone/${selectedSessionId}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        setSelectedProgram(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    }
-  };
+  // const sessionIsUndone = async () => {
+  //   if (selectedSessionId === progress) {
+  //     try {
+  //       const response = await axios.put(
+  //         `${import.meta.env.VITE_API_URL}/program/${
+  //           selectedProgram._id
+  //         }/progress/undone/${selectedSessionId}`,
+  //         {},
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         },
+  //       );
+  //       setSelectedProgram(response.data);
+  //       setRefresh((prev) => !prev);
+  //     } catch (error) {
+  //       console.log(error.response);
+  //     }
+  //   }
+  // };
 
   //add select fields for sessions
   const options = [];
-  for (let i = 0; i < progress + 1; i++) {
+  for (let i = 0; i < progress; i++) {
     options.push(
       <option key={i} value={i + 1}>
-        Session {i + 1}
+        Entrainement {i + 1}
       </option>,
     );
   }
@@ -134,10 +142,10 @@ const ProgramSpecifications = ({
         </div>
         <div>
           <FontAwesomeIcon icon="arrow-trend-up" color="#E67E22" />
-          {progress ? (
-            <p>Avancement : Session {progress} </p>
+          {lastSessionFinished ? (
+            <p>Avancement : Entrainement {lastSessionFinished}</p>
           ) : (
-            <p>Aucune session terminée pour le moment</p>
+            <p>Aucun entrainement terminé pour le moment</p>
           )}
         </div>
         <div>
@@ -187,35 +195,77 @@ const ProgramSpecifications = ({
         )}
         {choice === "content" && (
           <div className={styles["program-sessions"]}>
-            <div className={styles["sessions-list"]}>
-              <div className={styles["session-selector"]}>
-                <select
-                  value={selectedSessionId}
-                  onChange={(e) => setSelectedSessionId(e.target.value)}
-                >
-                  {options}
-                </select>
-                {progress >= selectedSessionId ? (
-                  <button
-                    type="button"
-                    className={styles["button-done"]}
-                    onClick={() => sessionIsUndone()}
+            {selectedSessionId ? (
+              <div className={styles["sessions-list"]}>
+                <div className={styles["session-selector"]}>
+                  <select
+                    value={selectedSessionId}
+                    onChange={(e) => setSelectedSessionId(e.target.value)}
                   >
-                    Session effectuée
-                  </button>
-                ) : (
-                  <button type="button" onClick={() => sessionIsDone()}>
-                    Marquer comme effectuée
-                  </button>
+                    {options}
+                  </select>
+                  {lastSessionFinished >= selectedSessionId ? (
+                    <button
+                      type="button"
+                      className={styles["button-done"]}
+                      onClick={null}
+                    >
+                      Session effectuée
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmationModal(true)}
+                    >
+                      Marquer comme effectuée
+                    </button>
+                  )}
+                </div>
+                {selectedSessionId && (
+                  <SessionSpecifications
+                    token={token}
+                    programId={selectedProgram._id}
+                    sessionId={selectedSessionId}
+                  />
                 )}
               </div>
-              {selectedSessionId && (
-                <SessionSpecifications
-                  token={token}
-                  programId={selectedProgram._id}
-                  sessionId={selectedSessionId}
+            ) : (
+              <p>Aucun entrainement disponible actuellement</p>
+            )}
+          </div>
+        )}
+        {showConfirmationModal && (
+          <div
+            className={styles["modal-overlay"]}
+            onClick={() => setShowConfirmationModal(false)}
+          >
+            <div
+              className={styles["modal-content"]}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2>Votre entrainement s'est bien passé ?</h2>
+              <p>
+                Vous êtes sur le point de marquer cet entrainement comme
+                effectué.
+              </p>
+              <p>
+                Si c'est bien le cas merci d'indiquer votre ressenti ci-dessous
+                :
+              </p>
+              <textarea
+                name="report"
+                id="report"
+                rows="10"
+                placeholder="Votre ressenti sur cet entrainement"
+              ></textarea>
+              <div className={styles["modal-buttons"]}>
+                <Button
+                  text="Annuler"
+                  type="button"
+                  action={() => setShowConfirmationModal(false)}
                 />
-              )}
+                <Button text="Confirmer" type="button" action={null} />
+              </div>
             </div>
           </div>
         )}

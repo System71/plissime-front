@@ -20,7 +20,6 @@ const Notifications = ({ token }) => {
             },
           },
         );
-        console.log(response.data);
         setNotifications(response.data);
         setIsLoading(false);
       } catch (error) {

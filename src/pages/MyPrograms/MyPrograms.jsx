@@ -9,6 +9,7 @@ const MyPrograms = ({ token, role }) => {
   const [programs, setPrograms] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedProgram, setSelectedProgram] = useState(null);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -22,14 +23,13 @@ const MyPrograms = ({ token, role }) => {
           },
         );
         setPrograms(response.data);
-        console.log("programmes=", response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.response);
       }
     };
     fetchPrograms();
-  }, [token]);
+  }, [token, refresh]);
 
   return (
     <div className={styles.myPrograms}>
@@ -45,6 +45,7 @@ const MyPrograms = ({ token, role }) => {
             token={token}
             setSelectedProgram={setSelectedProgram}
             selectedProgram={selectedProgram}
+            setRefresh={setRefresh}
           />
         </div>
       ) : (
@@ -55,6 +56,7 @@ const MyPrograms = ({ token, role }) => {
               title={program.title}
               duration={program.duration}
               progress={program.customers[0].progress}
+              lastSessionFinished={program.customers[0].lastSessionFinished}
               notes={program.notes}
               onClick={() => {
                 setSelectedProgram(program);

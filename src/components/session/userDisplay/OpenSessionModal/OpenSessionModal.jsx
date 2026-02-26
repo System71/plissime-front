@@ -70,7 +70,6 @@ const OpenSessionModal = ({
             headers: { Authorization: `Bearer ${token}` },
           },
         );
-        console.log("session=", response.data);
         setName(response.data.customer.name);
         setFirstName(response.data.customer.firstName);
         setTitle(response.data.title);
