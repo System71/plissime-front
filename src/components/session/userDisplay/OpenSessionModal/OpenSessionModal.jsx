@@ -26,7 +26,7 @@ const OpenSessionModal = ({
   const [state, setState] = useState("scheduled");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
-  const [program, setProgram] = useState("");
+  const [program, setProgram] = useState(null);
   const [programSession, setProgramSession] = useState(null);
   const [choice, setChoice] = useState("admin");
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -324,38 +324,40 @@ const OpenSessionModal = ({
             )}
             {choice == "content" && (
               <div className={styles["session-content"]}>
-                <div className={styles.line}>
-                  <div className={styles.item}>
-                    <div className={styles.itemInfo}>
-                      <label htmlFor="">Programme :</label>
-                      <input
-                        type="text"
-                        placeholder={program.title}
-                        name="program"
-                        id="program"
-                        value={program.title}
-                        readOnly
-                      />
+                {program && (
+                  <div className={styles.line}>
+                    <div className={styles.item}>
+                      <div className={styles.itemInfo}>
+                        <label htmlFor="">Programme :</label>
+                        <input
+                          type="text"
+                          placeholder={program.title}
+                          name="program"
+                          id="program"
+                          value={program.title}
+                          readOnly
+                        />
+                      </div>
+                      <p className={styles["error-message"]}></p>
                     </div>
-                    <p className={styles["error-message"]}></p>
-                  </div>
-                  <div className={styles.item}>
-                    <div className={styles.itemInfo}>
-                      <label htmlFor="">Session :</label>
-                      <input
-                        type="text"
-                        placeholder={programSession}
-                        name="programSession"
-                        id="programSession"
-                        value={programSession}
-                        readOnly
-                      />
+                    <div className={styles.item}>
+                      <div className={styles.itemInfo}>
+                        <label htmlFor="">Session :</label>
+                        <input
+                          type="text"
+                          placeholder={programSession}
+                          name="programSession"
+                          id="programSession"
+                          value={programSession}
+                          readOnly
+                        />
+                      </div>
+                      <p className={styles["error-message"]}></p>
                     </div>
-                    <p className={styles["error-message"]}></p>
                   </div>
-                </div>
+                )}
                 <div className={styles.line}>
-                  {programSession ? (
+                  {program && programSession ? (
                     <ExerciseList
                       token={token}
                       programId={program._id}

@@ -130,6 +130,23 @@ const Calendar = ({
                 setSessionID(info.event.id);
               }
             }}
+            eventContent={(arg) => (
+              <div
+                style={{
+                  margin: "2px", // espace extérieur entre les events
+                  padding: "2px 4px", // padding intérieur pour le texte
+                  backgroundColor: arg.event.backgroundColor,
+                  border: `1px solid ${arg.event.borderColor}`,
+                  borderRadius: "4px",
+                  boxSizing: "border-box",
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {arg.event.title}
+              </div>
+            )}
             locales={[frLocale]}
             locale="fr"
           />

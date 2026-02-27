@@ -57,7 +57,7 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
       newErrors.end =
         "La date de démarrage doit etre postérieure à celle de démarrage.";
     }
-    if (!price) {
+    if (!subscription && !price) {
       newErrors.price = "Le prix de la session est requis.";
     }
     return newErrors;
@@ -400,19 +400,21 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
                     </div>
                     <p className={styles["error-message"]}></p>
                   </div>
-                  <div className={styles.item}>
-                    <div className={styles.itemInfo}>
-                      <label htmlFor="session">Session :</label>
-                      <input
-                        type="number"
-                        placeholder="Numéro Session"
-                        name="programSession"
-                        id="programSession"
-                        value={programSession}
-                      />
+                  {program && (
+                    <div className={styles.item}>
+                      <div className={styles.itemInfo}>
+                        <label htmlFor="session">Session :</label>
+                        <input
+                          type="number"
+                          placeholder="Numéro Session"
+                          name="programSession"
+                          id="programSession"
+                          value={programSession}
+                        />
+                      </div>
+                      <p className={styles["error-message"]}></p>
                     </div>
-                    <p className={styles["error-message"]}></p>
-                  </div>
+                  )}
                 </div>
                 {programsListIsVisible && (
                   <div className={styles["programs-list"]}>
