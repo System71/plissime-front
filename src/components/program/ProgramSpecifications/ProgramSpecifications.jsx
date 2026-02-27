@@ -71,32 +71,11 @@ const ProgramSpecifications = ({
       );
       setSelectedProgram(response.data);
       setRefresh((prev) => !prev);
+      setShowConfirmationModal(false);
     } catch (error) {
       console.log(error.response);
     }
   };
-
-  // const sessionIsUndone = async () => {
-  //   if (selectedSessionId === progress) {
-  //     try {
-  //       const response = await axios.put(
-  //         `${import.meta.env.VITE_API_URL}/program/${
-  //           selectedProgram._id
-  //         }/progress/undone/${selectedSessionId}`,
-  //         {},
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         },
-  //       );
-  //       setSelectedProgram(response.data);
-  //       setRefresh((prev) => !prev);
-  //     } catch (error) {
-  //       console.log(error.response);
-  //     }
-  //   }
-  // };
 
   //add select fields for sessions
   const options = [];
