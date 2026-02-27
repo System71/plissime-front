@@ -52,3 +52,98 @@
 .plus-circle {
   position: absolute;
 }
+
+/* MODIF FULL CALENDAR */
+
+:global(.fc-toolbar) {
+  background-color: #a8c6cc;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+:global(.fc-today-button.fc-button.fc-button-primary) {
+  height: 40px;
+  font-size: 16px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  text-align: center;
+  color: black;
+  background-color: rgb(241, 240, 240);
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  opacity: 1;
+}
+
+:global(.fc-today-button.fc-button.fc-button-primary:hover) {
+  background-color: #e67e22;
+  color: white;
+}
+
+:global(.fc-prev-button.fc-button.fc-button-primary) {
+  height: 40px;
+  font-size: 16px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  text-align: center;
+  color: black;
+  background-color: rgb(241, 240, 240);
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  opacity: 1;
+}
+
+:global(.fc-prev-button.fc-button.fc-button-primary:hover) {
+  background-color: #e67e22;
+  color: white;
+}
+
+:global(.fc-next-button.fc-button.fc-button-primary) {
+  height: 40px;
+  font-size: 16px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  text-align: center;
+  color: black;
+  background-color: rgb(241, 240, 240);
+  border: 0px;
+  border-radius: 5px;
+  border: 1px solid #a8c6cc;
+  opacity: 1;
+}
+
+:global(.fc-next-button.fc-button.fc-button-primary:hover) {
+  background-color: #e67e22;
+  color: white;
+}
+
+:global(.fc-timegrid-axis) {
+  background-color: rgb(241, 240, 240);
+}
+
+:global(.fc-day-today) {
+  background-color: #e67e22; /* couleur souhaitée pour le jour actuel */
+}
+
+:global(.fc-scrollgrid-sync-inner) {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  overflow: hidden;
+  background-color: rgb(241, 240, 240);
+}
+
+:global(.fc-timeGridWeek-view.fc-view.fc-timegrid) {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px #a8c6cc solid;
+}
+
+:global(.fc-event-main) {
+  padding: 2px; /* espace intérieur */
+  border-radius: 4px; /* pour que le padding paraisse */
+  box-sizing: border-box; /* important pour inclure le padding */
+}

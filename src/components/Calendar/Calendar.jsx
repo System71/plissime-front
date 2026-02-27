@@ -120,6 +120,10 @@ const Calendar = ({
             initialView="timeGridWeek"
             events={events}
             selectable={true}
+            allDaySlot={false}
+            slotMinTime="06:00:00" // début de la plage visible
+            slotMaxTime="22:00:00" // fin de la plage visible
+            height="auto" // <-- auto adapte la hauteur au contenu
             eventClick={(info) => {
               if (info.event.extendedProps.source == "local") {
                 setOpenSessionDisplay(!openSessionDisplay);
