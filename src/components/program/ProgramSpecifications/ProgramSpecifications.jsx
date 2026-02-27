@@ -249,7 +249,7 @@ const ProgramSpecifications = ({
                 effectué.
               </p>
               <p>
-                Si c'est bien le cas merci d'indiquer votre ressenti ci-dessous
+                Si c'est bien le cas, merci d'indiquer votre ressenti ci-dessous
                 :
               </p>
               <textarea
@@ -257,6 +257,10 @@ const ProgramSpecifications = ({
                 id="report"
                 rows="10"
                 placeholder="Votre ressenti sur cet entrainement"
+                value={report}
+                onChange={(event) => {
+                  setReport(event.target.value);
+                }}
               ></textarea>
               <div className={styles["modal-buttons"]}>
                 <Button
@@ -264,7 +268,11 @@ const ProgramSpecifications = ({
                   type="button"
                   action={() => setShowConfirmationModal(false)}
                 />
-                <Button text="Confirmer" type="button" action={null} />
+                <Button
+                  text="Confirmer"
+                  type="button"
+                  action={() => sessionIsDone()}
+                />
               </div>
             </div>
           </div>
