@@ -29,7 +29,7 @@ const CustomerItem = ({
           import.meta.env.VITE_API_URL + `/sessions/next/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
         if (response.data) {
           const startDate = parseISO(response.data.start); // Convertit la chaîne ISO en objet Date
