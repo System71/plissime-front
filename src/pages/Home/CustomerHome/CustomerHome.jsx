@@ -3,6 +3,7 @@ import styles from "./customer-home.module.css";
 import CustomerUpcomingSessions from "../../../components/session/customerDisplay/CustomerUpcomingSessions/CustomerUpcomingSessions";
 import SessionsToPaid from "../../../components/session/customerDisplay/SessionsToPaid/SessionsToPaid";
 import SessionsPaid from "../../../components/session/customerDisplay/SessionsPaid/SessionsPaid";
+import Notifications from "../../../components/notifications/Notifications/Notifications.jsx";
 
 const CustomerHome = ({ token }) => {
   return (
@@ -18,6 +19,9 @@ const CustomerHome = ({ token }) => {
       <div className={styles["second-line"]}>
         <div className={styles["dashboard-item"]}>
           <SessionsPaid token={token} />
+        </div>
+        <div className={styles["dashboard-item"]}>
+          <Notifications token={token} />
         </div>
       </div>
     </div>
