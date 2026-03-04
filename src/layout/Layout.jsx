@@ -28,7 +28,18 @@ const Layout = ({
           setSub={setSub}
         />
       )}
-      {token && <BurgerMenu />}
+      {token && (
+        <BurgerMenu
+          setToken={setToken}
+          setSessionsList={setSessionsList}
+          setCustomersList={setCustomersList}
+          role={role}
+          setRole={setRole}
+          setFirstName={setFirstName}
+          setStripeId={setStripeId}
+          setSub={setSub}
+        />
+      )}
       <div className="content">
         <Outlet />
       </div>

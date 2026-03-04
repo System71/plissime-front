@@ -27,7 +27,6 @@ const AddSessionModal = ({ token, setAddSessionDisplay, setSessionsList }) => {
   const [price, setPrice] = useState();
   const [subscription, setSubscription] = useState(false);
   const [program, setProgram] = useState(null);
-  const [programProgess, setProgramProgress] = useState(0);
   //Session of program
   const [programSession, setProgramSession] = useState(-1);
   const [choice, setChoice] = useState("admin");
