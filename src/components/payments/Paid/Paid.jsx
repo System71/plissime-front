@@ -37,7 +37,9 @@ const Paid = ({ token, setOpenSessionDisplay, setSessionID }) => {
           title={session.title}
           name={session.customer.name}
           firstName={session.customer.firstName}
-          date={session.start}
+          sessionDate={session.start}
+          paymentDate={session.payment.date}
+          paymentType={session.payment.type}
           price={session.price}
           key={session._id}
           setOpenSessionDisplay={setOpenSessionDisplay}
