@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SessionItemPayment from "../../session/userDisplay/SesssionItemPayment/SessionItemPayment";
 
-const ToPaid = ({ token }) => {
+const ToPaid = ({ token, setOpenSessionDisplay, setSessionID }) => {
   const [sessionsToPaid, setSessionsToPaid] = useState([]);
 
   useEffect(() => {
@@ -18,9 +18,10 @@ const ToPaid = ({ token }) => {
                 Authorization: `Bearer ${token}`,
               },
               "Content-Type": "multipart/form-data",
-            }
+            },
           );
           setSessionsToPaid(response.data);
+          console.log(response.data);
         } catch (error) {
           console.log(error.response);
         }
@@ -33,12 +34,15 @@ const ToPaid = ({ token }) => {
     <div className={styles["sessions-to-paid"]}>
       {sessionsToPaid.map((session) => (
         <SessionItemPayment
+          id={session._id}
           title={session.title}
           name={session.customer.name}
           firstName={session.customer.firstName}
           date={session.start}
           price={session.price}
           key={session._id}
+          setOpenSessionDisplay={setOpenSessionDisplay}
+          setSessionID={setSessionID}
         />
       ))}
     </div>

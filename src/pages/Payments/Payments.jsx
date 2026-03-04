@@ -13,6 +13,8 @@ const Payments = ({
   setOpenCustomerSubscriptionDisplay,
   refreshCustomerSubscription,
   setSubscriptionID,
+  setOpenSessionDisplay,
+  setSessionID,
 }) => {
   const [choice, setChoice] = useState("payable");
 
@@ -45,8 +47,20 @@ const Payments = ({
             Abonnements
           </button>
         </div>
-        {choice == "payable" && <ToPaid token={token} />}
-        {choice == "paid" && <Paid token={token} />}
+        {choice == "payable" && (
+          <ToPaid
+            token={token}
+            setOpenSessionDisplay={setOpenSessionDisplay}
+            setSessionID={setSessionID}
+          />
+        )}
+        {choice == "paid" && (
+          <Paid
+            token={token}
+            setOpenSessionDisplay={setOpenSessionDisplay}
+            setSessionID={setSessionID}
+          />
+        )}
         {choice == "subscription" && (
           <CustomerSubscription
             token={token}

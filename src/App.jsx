@@ -256,6 +256,8 @@ function App() {
                   }
                   refreshCustomerSubscription={refreshCustomerSubscription}
                   setSubscriptionID={setSubscriptionID}
+                  setOpenSessionDisplay={setOpenSessionDisplay}
+                  setSessionID={setSessionID}
                 />
               }
             ></Route>

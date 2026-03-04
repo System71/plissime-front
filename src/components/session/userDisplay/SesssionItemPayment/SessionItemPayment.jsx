@@ -2,11 +2,26 @@
 import styles from "./session-item-payment.module.css";
 import { format } from "date-fns";
 
-const SessionItemPayment = ({ title, name, firstName, date, price }) => {
+const SessionItemPayment = ({
+  title,
+  name,
+  firstName,
+  date,
+  price,
+  id,
+  setOpenSessionDisplay,
+  setSessionID,
+}) => {
   const formatedDate = format(date, "dd/LL/yyyy");
 
   return (
-    <div className={styles["content"]}>
+    <div
+      className={styles["content"]}
+      onClick={() => {
+        setSessionID(id);
+        setOpenSessionDisplay((prev) => !prev);
+      }}
+    >
       <div className={styles["date"]}>{formatedDate}</div>
       <div className={styles["name"]}>
         {name} <span className={styles["first-name"]}>{firstName}</span>
