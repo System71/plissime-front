@@ -33,7 +33,12 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
+            <FontAwesomeIcon
+              icon="chart-line"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+            />
             <p>Pilotage</p>
           </NavLink>
           <NavLink
@@ -43,7 +48,7 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
+            <FontAwesomeIcon icon="user" color="#E67E22" size="xl" fixedWidth />
             <p>Clients</p>
           </NavLink>
           <NavLink
@@ -53,7 +58,12 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="calendar-days" color="#E67E22" size="xl" />
+            <FontAwesomeIcon
+              icon="calendar-days"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+            />
             <p>Agenda</p>
           </NavLink>
           <NavLink
@@ -63,7 +73,12 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="square-binary" color="#E67E22" size="xl" />
+            <FontAwesomeIcon
+              icon="square-binary"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+            />
             <p>Programmes</p>
           </NavLink>
           <NavLink
@@ -73,7 +88,12 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="euro-sign" color="#E67E22" size="xl" />
+            <FontAwesomeIcon
+              icon="euro-sign"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+            />
             <p>Paiements</p>
           </NavLink>
           <NavLink
@@ -83,7 +103,7 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
+            <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" fixedWidth />
             <p>Paramètres</p>
           </NavLink>
           <NavLink
@@ -93,7 +113,12 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
+            <FontAwesomeIcon
+              icon="question"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+            />
             <p>Aide</p>
           </NavLink>
         </div>
@@ -132,7 +157,12 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="chart-line" color="#E67E22" size="xl" />
+            <FontAwesomeIcon
+              icon="chart-line"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+            />
             <p>Accueil</p>
           </NavLink>
           <NavLink
@@ -142,7 +172,7 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="user" color="#E67E22" size="xl" />
+            <FontAwesomeIcon icon="user" color="#E67E22" size="xl" fixedWidth />
             <p>Mes coachs</p>
           </NavLink>
           <NavLink
@@ -152,7 +182,12 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="square-binary" color="#E67E22" size="xl" />
+            <FontAwesomeIcon
+              icon="square-binary"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+            />
             <p>Mes programmes</p>
           </NavLink>
           <NavLink
@@ -162,7 +197,7 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" />
+            <FontAwesomeIcon icon="gear" color="#E67E22" size="xl" fixedWidth />
             <p>Mes informations</p>
           </NavLink>
           <NavLink
@@ -172,7 +207,12 @@ const NavMenu = ({
             }
             end
           >
-            <FontAwesomeIcon icon="question" color="#E67E22" size="xl" />
+            <FontAwesomeIcon
+              icon="question"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+            />
             <p>Aide</p>
           </NavLink>
         </div>
