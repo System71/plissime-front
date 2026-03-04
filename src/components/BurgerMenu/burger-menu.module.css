@@ -49,6 +49,7 @@
   margin-left: 25px;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   gap: 15px;
   flex-direction: row;
   /* border: 1px red solid; */
