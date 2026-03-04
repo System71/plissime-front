@@ -11,6 +11,11 @@
   cursor: pointer;
 }
 
+.content:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
 .name {
   flex: 2;
   font-weight: 600;
