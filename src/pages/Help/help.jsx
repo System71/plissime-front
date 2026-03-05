@@ -35,16 +35,16 @@ const Help = ({ token }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles["message"]}>
+      <div className={styles.message}>
         <p>
           Vous avec besoin d'aide ou vous avez une question à nous poser, c'est
           par ici que ca se passse.
         </p>
       </div>
-      <div className={styles["content"]}>
+      <div className={styles.content}>
         <p>Vos coordonnées :</p>
-        <div className={styles["identity"]}>
-          <div className={styles["form-item"]}>
+        <div className={styles.identity}>
+          <div className={styles.formItem}>
             <label htmlFor="customer">Nom :</label>
             <input
               type="text"
@@ -57,7 +57,7 @@ const Help = ({ token }) => {
               }}
             />
           </div>
-          <div className={styles["form-item"]}>
+          <div className={styles.formItem}>
             <label htmlFor="firstName">Prénom :</label>
             <input
               type="text"
@@ -71,7 +71,7 @@ const Help = ({ token }) => {
             />
           </div>
         </div>
-        <div className={styles["form-item"]}>
+        <div className={styles.formItem}>
           <label htmlFor="customer">Email :</label>
           <input
             type="email"

@@ -22,7 +22,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 const SalesGraph = ({ token }) => {
@@ -37,7 +37,7 @@ const SalesGraph = ({ token }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
 
         const data = response.data;
@@ -114,7 +114,7 @@ const SalesGraph = ({ token }) => {
 
   return (
     <div className={styles["sales-graph-container"]}>
-      <h2>CHIFFRE D'AFFAIRE</h2>
+      <h2>CHIFFRE D'AFFAIRES</h2>
       <div>
         <Bar data={chartData} options={options} />
       </div>

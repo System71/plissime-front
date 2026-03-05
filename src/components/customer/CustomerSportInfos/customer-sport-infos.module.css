@@ -14,11 +14,10 @@
   gap: 15px;
 }
 
-label {
+.sport-settings label {
   font-weight: 600;
-  flex: 0 0 auto;
+  flex: 1;
   white-space: nowrap;
-  overflow: hidden;
   width: 100%;
   text-overflow: ellipsis;
 }
@@ -50,6 +49,7 @@ label {
   border-radius: 5px;
   border: 1px solid #a8c6cc;
   flex: 1 1 auto;
+  min-width: 250px;
 }
 
 .sport-settings input:focus,

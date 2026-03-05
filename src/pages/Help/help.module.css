@@ -8,24 +8,21 @@
   display: flex;
   flex-direction: column;
   width: 90%;
+  max-width: 600px;
   gap: 20px;
-  height: 100%;
-  border: 1px red solid;
 }
 
 .identity {
-  display: flex;
-  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
   gap: 20px;
-  align-items: center;
+  justify-content: start;
 }
 
-.form-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+.formItem {
+  display: grid;
+  grid-template-columns: 80px 1fr;
   align-items: center;
-  border: 1px green solid;
   gap: 20px;
 }
 
@@ -41,14 +38,16 @@
   padding: 10px;
   border: 1px grey solid;
   border-radius: 10px;
-  min-width: 0;
+  width: 100%;
+  max-width: 250px;
+}
+
+.container textarea {
+  max-width: none;
 }
 
 .container label {
   font-weight: 600;
-  vertical-align: middle;
-  border: 1px blue solid;
-  flex: 1;
 }
 
 .message {
@@ -56,29 +55,21 @@
 }
 
 @media (max-width: 576px) {
-  .helpme-container {
+  .container {
     justify-content: center;
     align-items: center;
   }
 
   .identity {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
-  .form-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
+  .formItem {
+    grid-template-columns: 1fr;
   }
 
   .message {
     margin-bottom: 30px;
-  }
-
-  input {
-    flex-grow: 1;
   }
 
   .helpme-button {
