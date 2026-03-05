@@ -1,11 +1,12 @@
 .program-item {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr auto;
-  width: 95%;
+  width: 100%;
   gap: 10px;
   padding: 10px 15px;
   border: 1px solid lightgray;
   border-radius: 20px;
+  flex: 1;
 }
 
 .program-item:hover {
@@ -50,7 +51,7 @@
   .program-item {
     display: grid;
     grid-template-columns: auto;
-    width: 95%;
+    width: 100%;
     gap: 10px;
     padding: 10px 15px;
     border: 1px solid lightgray;

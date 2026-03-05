@@ -138,7 +138,7 @@ const ProgramSpecifications = ({
           <>
             <div className={styles["program-infos"]}>
               <div>
-                <label htmlFor="title">Nom du programme</label>
+                <label htmlFor="title">Nom du programme :</label>
                 <input
                   type="text"
                   placeholder="Mon programme"
@@ -149,7 +149,7 @@ const ProgramSpecifications = ({
                 />
               </div>
               <div>
-                <label htmlFor="duration">Durée (Nombre de séances)</label>
+                <label htmlFor="duration">Durée (Nombre de séances) :</label>
                 <input
                   type="Number"
                   name="duration"
@@ -159,7 +159,7 @@ const ProgramSpecifications = ({
                 />
               </div>
               <div>
-                <label htmlFor="notes">Notes personnelles</label>
+                <label htmlFor="notes">Notes personnelles :</label>
                 <textarea
                   name="notes"
                   id="notes"
@@ -186,18 +186,17 @@ const ProgramSpecifications = ({
                   {lastSessionFinished >= selectedSessionId ? (
                     <button
                       type="button"
-                      className={styles["button-done"]}
+                      className={styles["buttonDone"]}
                       onClick={null}
                     >
-                      Session effectuée
+                      Effectuée
                     </button>
                   ) : (
-                    <button
+                    <Button
+                      text="Effectuée"
                       type="button"
-                      onClick={() => setShowConfirmationModal(true)}
-                    >
-                      Marquer comme effectuée
-                    </button>
+                      action={() => setShowConfirmationModal(true)}
+                    />
                   )}
                 </div>
                 {selectedSessionId && (

@@ -15,6 +15,13 @@
   width: 100%;
 }
 
+.program-infos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
 .program-infos div {
   display: flex;
   flex-direction: column;
@@ -25,15 +32,17 @@
 
 .container button {
   height: 40px;
-  font-weight: bold;
+  font-size: 16px;
+  font-family: "Montserrat";
+  font-weight: 600;
   text-align: center;
-  padding: 10px;
+  background-color: rgb(241, 240, 240);
   border: 0px;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
 }
 
-.container .button-done {
+.container .buttonDone {
   background-color: #e67e22;
 }
 
@@ -43,7 +52,8 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
   margin-bottom: 20px;
@@ -77,7 +87,8 @@
 }
 
 .container input {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   margin-top: 10px;
   border: 0;
   border-radius: 5px;
@@ -86,7 +97,9 @@
 }
 
 .container select {
-  width: 400px;
+  font-family: "Montserrat";
+  max-width: 400px;
+  width: 100%;
   border: 0;
   border-radius: 5px;
   border: 1px solid #a8c6cc;
@@ -94,7 +107,8 @@
 }
 
 .container textarea {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   margin-top: 10px;
   border: 0;
   border-radius: 5px;
@@ -214,4 +228,14 @@
   width: 100%;
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+@media (max-width: 576px) {
+  .program-infos {
+    width: 100%;
+  }
+
+  .program-infos div {
+    width: 100%;
+  }
 }
