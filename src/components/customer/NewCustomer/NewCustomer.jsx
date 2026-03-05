@@ -15,7 +15,7 @@ const NewCustomer = ({ token }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setNewCustomersMonth(response.data.newCustomersMonth);
         setDiffPrevMonth(response.data.diffPrevMonth);
@@ -28,7 +28,7 @@ const NewCustomer = ({ token }) => {
 
   return (
     <div className={styles["container"]}>
-      <div className={styles["title"]}>NOUVEAUX CLIENTS</div>
+      <div className={styles["title"]}>Nouveaux clients</div>
       <div className={styles["content"]}>
         <p className={styles["value"]}>{newCustomersMonth}</p>
         <p>

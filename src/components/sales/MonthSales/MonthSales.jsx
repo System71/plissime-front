@@ -17,7 +17,7 @@ const MonthSales = ({ token }) => {
               Authorization: `Bearer ${token}`,
               "Content-Type": "multipart/form-data",
             },
-          }
+          },
         );
         setMonthSales(response.data.monthSales);
         setDiffPrevMonth(response.data.diffPrevMonth);
@@ -30,7 +30,7 @@ const MonthSales = ({ token }) => {
 
   return (
     <div className={styles["container"]}>
-      <div className={styles["title"]}>CA MOIS EN COURS</div>
+      <div className={styles["title"]}>CA du mois</div>
       <div className={styles["content"]}>
         <p className={styles["value"]}>{monthSales} €</p>
         <p>

@@ -114,7 +114,7 @@ const SalesGraph = ({ token }) => {
 
   return (
     <div className={styles["sales-graph-container"]}>
-      <h2>CHIFFRE D'AFFAIRES</h2>
+      <h2>Chiffre d'affaires</h2>
       <div>
         <Bar data={chartData} options={options} />
       </div>

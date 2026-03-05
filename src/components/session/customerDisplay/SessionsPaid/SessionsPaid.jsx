@@ -23,7 +23,7 @@ const SessionsPaid = ({
               Authorization: `Bearer ${token}`,
               "Content-Type": "multipart/form-data",
             },
-          }
+          },
         );
         setData(response.data);
         setIsLoading(false);
@@ -36,7 +36,7 @@ const SessionsPaid = ({
 
   return (
     <div className="customer-upcoming-sessions-container">
-      <h2>SESSIONS RÉGLÉE</h2>
+      <h2>Sessions réglées</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (

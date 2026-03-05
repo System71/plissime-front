@@ -17,7 +17,7 @@ const UpcomingSales = ({ token }) => {
               Authorization: `Bearer ${token}`,
               "Content-Type": "multipart/form-data",
             },
-          }
+          },
         );
         setUpcomingSales(response.data.upcomingSales);
         setPaymentsToCome(response.data.paymentsToCome);
@@ -30,7 +30,7 @@ const UpcomingSales = ({ token }) => {
 
   return (
     <div className={styles["container"]}>
-      <div className={styles["title"]}>CA A VENIR</div>
+      <div className={styles["title"]}>CA à venir</div>
       <div className={styles["content"]}>
         <p className={styles["value"]}>{upcomingSales} €</p>
         <p>

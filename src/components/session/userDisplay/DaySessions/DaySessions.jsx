@@ -35,7 +35,7 @@ const DaySessions = ({
 
   return (
     <div className={styles["container"]}>
-      <h2>SESSIONS DU JOUR</h2>
+      <h2>Sessions du jour</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (

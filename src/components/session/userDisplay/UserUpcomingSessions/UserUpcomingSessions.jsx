@@ -22,7 +22,7 @@ const UserUpcomingSessions = ({
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setData(response.data);
         setIsLoading(false);
@@ -35,7 +35,7 @@ const UserUpcomingSessions = ({
 
   return (
     <div className="user-upcoming-sessions-container">
-      <h2>SESSIONS À VENIR</h2>
+      <h2>Sessions à venir</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (

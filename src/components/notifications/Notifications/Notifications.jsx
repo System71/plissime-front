@@ -31,7 +31,7 @@ const Notifications = ({ token }) => {
 
   return (
     <div className={styles.container}>
-      <h2>NOTIFICATIONS</h2>
+      <h2>Notifications</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : notifications[0] ? (

@@ -18,7 +18,7 @@ const YearSales = ({ token }) => {
               Authorization: `Bearer ${token}`,
               "Content-Type": "multipart/form-data",
             },
-          }
+          },
         );
         setYearSales(response.data.yearSales);
         setDiffPrevYear(response.data.diffPrevYear);
@@ -31,7 +31,7 @@ const YearSales = ({ token }) => {
 
   return (
     <div className={styles["container"]}>
-      <div className={styles["title"]}>CA ANNEE EN COURS</div>
+      <div className={styles["title"]}>Total CA 2026</div>
       <div className={styles["content"]}>
         <p className={styles["value"]}>{yearSales} €</p>
         <p>

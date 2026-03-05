@@ -22,7 +22,7 @@ const SessionsToPaid = ({
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setData(response.data);
         setIsLoading(false);
@@ -35,7 +35,7 @@ const SessionsToPaid = ({
 
   return (
     <div className="customer-upcoming-sessions-container">
-      <h2>SESSIONS À RÉGLER</h2>
+      <h2>Sessions à régler</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (

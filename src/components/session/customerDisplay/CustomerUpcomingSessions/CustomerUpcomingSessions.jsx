@@ -23,7 +23,7 @@ const CustomerUpcomingSessions = ({
               Authorization: `Bearer ${token}`,
               "Content-Type": "multipart/form-data",
             },
-          }
+          },
         );
         setData(response.data);
         setIsLoading(false);
@@ -36,7 +36,7 @@ const CustomerUpcomingSessions = ({
 
   return (
     <div className="customer-upcoming-sessions-container">
-      <h2>SESSIONS À VENIR</h2>
+      <h2>Sessions à venir</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (
