@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 40px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-.dashboard-item {
+.dashboardItem {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -17,31 +17,30 @@
   border-radius: 20px;
 }
 
-.first-line {
+.firstLine {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   height: 250px;
 }
 
-.second-line {
+.secondLine {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
   height: 250px;
 }
 
-.first-line > div,
-.second-line > div {
+.firstLine > div,
+.secondLine > div {
   flex: 1;
-  max-width: 530px;
 }
 
 .dashboard-item h2 {
   margin-top: 20px;
 }
 
-h1 {
+.customerHome h1 {
   margin-bottom: 20px;
 }
 
@@ -50,12 +49,13 @@ h1 {
 }
 
 @media (max-width: 576px) {
-  .first-line,
-  .second-line {
+  .firstLine,
+  .secondLine {
     flex-direction: column;
+    height: auto;
   }
 
-  .dashboard-item {
+  .dashboardItem {
     min-height: 200px;
   }
 }

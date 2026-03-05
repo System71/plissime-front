@@ -7,20 +7,20 @@ import Notifications from "../../../components/notifications/Notifications/Notif
 
 const CustomerHome = ({ token }) => {
   return (
-    <div className={styles["customerHome"]}>
-      <div className={styles["first-line"]}>
-        <div className={styles["dashboard-item"]}>
+    <div className={styles.customerHome}>
+      <div className={styles.firstLine}>
+        <div className={styles["dashboardItem"]}>
           <CustomerUpcomingSessions token={token} />
         </div>
-        <div className={styles["dashboard-item"]}>
+        <div className={styles["dashboardItem"]}>
           <SessionsToPaid token={token} />
         </div>
       </div>
-      <div className={styles["second-line"]}>
-        <div className={styles["dashboard-item"]}>
+      <div className={styles.secondLine}>
+        <div className={styles["dashboardItem"]}>
           <SessionsPaid token={token} />
         </div>
-        <div className={styles["dashboard-item"]}>
+        <div className={styles["dashboardItem"]}>
           <Notifications token={token} />
         </div>
       </div>
