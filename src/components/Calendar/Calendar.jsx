@@ -101,7 +101,7 @@ const Calendar = ({
               setAddSessionDisplay(!addSessionDisplay);
             }}
           >
-            <p>Ajouter une session</p>
+            <p className={styles.textAdd}>Ajouter une session</p>
             <div className={styles["arrow-circle"]}>
               <img className={styles["arrow"]} src={arrow} alt="arrow" />
               <div className={styles["plus-container"]}>

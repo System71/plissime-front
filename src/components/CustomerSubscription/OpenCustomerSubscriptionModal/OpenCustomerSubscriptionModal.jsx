@@ -28,7 +28,7 @@ const OpenCustomerModal = ({
           import.meta.env.VITE_API_URL + `/subscription/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
         setName(response.data.customer.name);
         setFirstName(response.data.customer.firstName);
@@ -78,7 +78,7 @@ const OpenCustomerModal = ({
                     />
                   </div>
                   <div className={styles.item}>
-                    <label htmlFor="firstName">Prénomm :</label>
+                    <label htmlFor="firstName">Prénom :</label>
                     <input
                       type="text"
                       placeholder="Prénom du client"

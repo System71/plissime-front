@@ -201,3 +201,25 @@
   color: red;
   font-size: small;
 }
+
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+    margin-top: 90px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .itemInfo {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .content input {
+    width: 100%;
+  }
+}

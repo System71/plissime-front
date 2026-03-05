@@ -32,10 +32,6 @@
   }
 }
 
-/* .logoCalendar:hover {
-  transform: scale(1.08);
-} */
-
 .email {
   font-weight: 600;
 }
@@ -169,4 +165,21 @@
 :global(.fc-event-main) {
   padding: 2px 4px; /* espace intérieur autour du texte */
   box-sizing: border-box;
+}
+
+@media (max-width: 576px) {
+  .addSessions {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .arrow-circle {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-left: 80px;
+    gap: 70px;
+  }
 }

@@ -54,6 +54,7 @@
   align-items: center;
   flex: 1;
   min-width: 0;
+  gap: 5px;
 }
 
 .customer {
@@ -130,5 +131,15 @@
   .content {
     width: 100%;
     padding: 10px;
+  }
+
+  .item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .content input {
+    width: 100%;
   }
 }
