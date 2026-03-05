@@ -26,7 +26,7 @@ const Help = ({ token }) => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
     } catch (error) {
       console.log("error=", error.response.data);
@@ -34,7 +34,7 @@ const Help = ({ token }) => {
   };
 
   return (
-    <div className={styles["helpme-container"]}>
+    <div className={styles.container}>
       <div className={styles["message"]}>
         <p>
           Vous avec besoin d'aide ou vous avez une question à nous poser, c'est
@@ -70,19 +70,19 @@ const Help = ({ token }) => {
               }}
             />
           </div>
-          <div className={styles["form-item"]}>
-            <label htmlFor="customer">Email :</label>
-            <input
-              type="email"
-              placeholder="Votre email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-          </div>
+        </div>
+        <div className={styles["form-item"]}>
+          <label htmlFor="customer">Email :</label>
+          <input
+            type="email"
+            placeholder="Votre email"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
         </div>
         <div className={styles["your-message"]}>
           <p>Votre message :</p>

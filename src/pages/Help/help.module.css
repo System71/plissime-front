@@ -1,33 +1,7 @@
-.helpme-container {
+.container {
   display: flex;
   flex-direction: column;
-}
-
-.form-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.your-message {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.helpme-container input,
-.helpme-container textarea,
-.helpme-container select {
-  padding: 10px;
-  border: 1px grey solid;
-  border-radius: 10px;
-  min-width: 250px;
-}
-
-.helpme-container label {
-  font-weight: 600;
-  vertical-align: middle;
+  width: 100%;
 }
 
 .content {
@@ -36,14 +10,45 @@
   width: 90%;
   gap: 20px;
   height: 100%;
+  border: 1px red solid;
 }
 
 .identity {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   gap: 20px;
   align-items: center;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px green solid;
+  gap: 20px;
+}
+
+.your-message {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container input,
+.container textarea,
+.container select {
+  padding: 10px;
+  border: 1px grey solid;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+.container label {
+  font-weight: 600;
+  vertical-align: middle;
+  border: 1px blue solid;
+  flex: 1;
 }
 
 .message {
