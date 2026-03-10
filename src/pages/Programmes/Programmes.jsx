@@ -8,6 +8,7 @@ import ProgramCreation from "../../components/program/ProgramCreation/ProgramCre
 import axios from "axios";
 import ProgramItem from "../../components/program/ProgramItem/ProgramItem";
 import Unregistered from "../../components/Unregistered/Unregistered";
+import programPreview from "../../assets/program_preview.png";
 
 const Programmes = ({ token, sub }) => {
   const [creation, setCreation] = useState(false);
@@ -24,7 +25,7 @@ const Programmes = ({ token, sub }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setPrograms(response.data);
       } catch (error) {
@@ -87,7 +88,16 @@ const Programmes = ({ token, sub }) => {
       </>
     );
   } else {
-    return <Unregistered />;
+    return (
+      <div className={styles.preview}>
+        <Unregistered />
+        <img
+          src={programPreview}
+          alt="program preview"
+          className={styles.imgPreview}
+        />
+      </div>
+    );
   }
 };
 

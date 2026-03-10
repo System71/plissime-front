@@ -5,6 +5,7 @@ import styles from "./payments.module.css";
 import { useState } from "react";
 import Unregistered from "../../components/Unregistered/Unregistered";
 import CustomerSubscription from "../../components/CustomerSubscription/CustomerSubscriptionDisplay/CustomerSubscriptionDisplay";
+import paymentPreview from "../../assets/payment_preview.png";
 
 const Payments = ({
   token,
@@ -77,7 +78,16 @@ const Payments = ({
       </div>
     );
   } else {
-    return <Unregistered />;
+    return (
+      <div className={styles.preview}>
+        <Unregistered />
+        <img
+          src={paymentPreview}
+          alt="payment preview"
+          className={styles.imgPreview}
+        />
+      </div>
+    );
   }
 };
 
