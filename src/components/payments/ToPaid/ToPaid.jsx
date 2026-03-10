@@ -38,7 +38,7 @@ const ToPaid = ({ token, setOpenSessionDisplay, setSessionID }) => {
           title={session.title}
           name={session.customer.name}
           firstName={session.customer.firstName}
-          date={session.start}
+          sessionDate={session.start}
           price={session.price}
           key={session._id}
           setOpenSessionDisplay={setOpenSessionDisplay}

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./customer-upcoming-sessions.css";
+import styles from "./customer-upcoming-sessions.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import CustomerSessionItemMin from "../CustomerSessionItemMin/CustomerSessionItemMin";
@@ -35,12 +35,12 @@ const CustomerUpcomingSessions = ({
   }, [token]);
 
   return (
-    <div className="customer-upcoming-sessions-container">
+    <div className={styles.container}>
       <h2>Sessions à venir</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (
-        <div className="customer-session-item-list">
+        <div className={styles.content}>
           {data.map((session, index) => {
             return (
               <CustomerSessionItemMin

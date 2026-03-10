@@ -1,4 +1,4 @@
-.customer-upcoming-sessions-container {
+.container {
   display: flex;
   padding: 10px;
   flex-direction: column;
@@ -7,19 +7,19 @@
   width: 100%;
 }
 
-.customer-upcoming-sessions-container h2,
-.customer-upcoming-sessions-container > p {
+.container h2,
+.container > p {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.customer-upcoming-sessions-container > p {
+.container > p {
   font-size: medium;
   font-weight: bold;
   color: #e67e22;
 }
 
-.customer-session-item-list {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: center;

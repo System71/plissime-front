@@ -11,7 +11,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 const Stripe = () => {
   const [clientSecret, setClientSecret] = useState("");
   const location = useLocation();
-  const { amount, coachId, sessionId, token } = location.state;
+  const { amount, coachId, subscriptionId, sessionId, token } = location.state;
 
   // Fonction pour formater le montant en euros
   const formatAmount = (amount) => {
@@ -24,28 +24,42 @@ const Stripe = () => {
   useEffect(() => {
     const createPaymentIntent = async () => {
       try {
-        const response = await axios.post(
-          import.meta.env.VITE_API_URL + `/create-payment-intent`,
-          { coachId, amount: amount * 100, sessionId }, // en centimes
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+        if (sessionId) {
+          const response = await axios.post(
+            import.meta.env.VITE_API_URL + `/session/create-payment-intent`,
+            { coachId, amount: amount * 100, sessionId }, // en centimes
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             },
-          },
-        );
-        setClientSecret(response.data.clientSecret);
+          );
+          setClientSecret(response.data.clientSecret);
+        } else if (subscriptionId) {
+          const response = await axios.post(
+            import.meta.env.VITE_API_URL +
+              `/subscription/create-payment-intent`,
+            { coachId, amount: amount * 100, subscriptionId }, // en centimes
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          );
+          setClientSecret(response.data.clientSecret);
+        }
       } catch (error) {
         console.error("Erreur création PaymentIntent:", error);
       }
     };
 
     createPaymentIntent();
-  }, [coachId, amount, sessionId]);
+  }, [coachId, amount, sessionId, subscriptionId]);
 
   const options = { clientSecret };
 
   return (
-    <div style={{ maxWidth: "500px", margin: "0 auto", padding: "20px" }}>
+    <div style={{ width: "500px", margin: "0 auto", padding: "20px" }}>
       <h2>Payer votre séance</h2>
 
       {/* Récapitulatif du paiement */}
@@ -69,7 +83,8 @@ const Stripe = () => {
             marginBottom: "10px",
           }}
         >
-          <span>Session de coaching</span>
+          {subscriptionId && <span>Abonnement coaching</span>}
+          {sessionId && <span>Session de coaching</span>}
           <span>{formatAmount(amount)}</span>
         </div>
 

@@ -16,35 +16,67 @@ const SessionItemPayment = ({
   setOpenSessionDisplay,
   setSessionID,
 }) => {
-  const formatedPaymentDate = format(paymentDate, "dd/LL/yyyy");
-  const formatedSessionDate = format(sessionDate, "dd/LL/yyyy");
+  if (paymentDate) {
+    const formatedPaymentDate = format(paymentDate, "dd/LL/yyyy");
+    const formatedSessionDate = format(sessionDate, "dd/LL/yyyy");
 
-  return (
-    <div
-      className={styles["content"]}
-      onClick={() => {
-        setSessionID(id);
-        setOpenSessionDisplay((prev) => !prev);
-      }}
-    >
-      <div className={styles["date"]}>{formatedPaymentDate}</div>
-      <div className={styles["name"]}>
-        {name} <span className={styles["first-name"]}>{firstName}</span>
+    return (
+      <div
+        className={styles.containerPaid}
+        onClick={() => {
+          setSessionID(id);
+          setOpenSessionDisplay((prev) => !prev);
+        }}
+      >
+        <div className={styles["date"]}>{formatedPaymentDate}</div>
+        <div className={styles["name"]}>
+          {name} <span className={styles["first-name"]}>{firstName}</span>
+        </div>
+        <div className={styles["title"]}>
+          {title} du {formatedSessionDate}
+        </div>
+        <div className={styles["price"]}>
+          <p>{price}€</p>
+          {paymentType == "card" ? (
+            <img
+              src={card}
+              alt="logo-plissime"
+              className={styles.paymentIcon}
+            />
+          ) : (
+            <img
+              src={cash}
+              alt="logo-plissime"
+              className={styles.paymentIcon}
+            />
+          )}
+        </div>
+        <div className={styles["view"]}>Voir</div>
       </div>
-      <div className={styles["title"]}>
-        {title} du {formatedSessionDate}
+    );
+  } else {
+    const formatedSessionDate = format(sessionDate, "dd/LL/yyyy");
+
+    return (
+      <div
+        className={styles.container}
+        onClick={() => {
+          setSessionID(id);
+          setOpenSessionDisplay((prev) => !prev);
+        }}
+      >
+        <div className={styles["date"]}>{formatedSessionDate}</div>
+        <div className={styles["name"]}>
+          {name} <span className={styles["first-name"]}>{firstName}</span>
+        </div>
+        <div className={styles["title"]}>{title}</div>
+        <div className={styles["price"]}>
+          <p>{price}€</p>
+        </div>
+        <div className={styles["view"]}>Voir</div>
       </div>
-      <div className={styles["price"]}>
-        <p>{price}€</p>
-        {paymentType == "card" ? (
-          <img src={card} alt="logo-plissime" className={styles.paymentIcon} />
-        ) : (
-          <img src={cash} alt="logo-plissime" className={styles.paymentIcon} />
-        )}
-      </div>
-      <div className={styles["view"]}>Voir</div>
-    </div>
-  );
+    );
+  }
 };
 
 export default SessionItemPayment;

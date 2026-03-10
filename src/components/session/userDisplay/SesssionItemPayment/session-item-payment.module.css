@@ -1,6 +1,7 @@
-.content {
-  display: flex;
-  flex-direction: row;
+.containerPaid {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 0.5fr auto;
+  align-content: center;
   border: 1px solid rgb(206, 204, 204);
   padding: 20px;
   height: 30px;
@@ -8,7 +9,19 @@
   border-radius: 10px;
 }
 
-.content:hover {
+.container {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 0.5fr auto;
+  align-content: center;
+  border: 1px solid rgb(206, 204, 204);
+  padding: 20px;
+  height: 30px;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.containerPaid:hover,
+.container:hover {
   transform: translateY(-5px);
   cursor: pointer;
 }
@@ -20,10 +33,16 @@
 .name {
   flex: 3;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .title {
   flex: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .price {
@@ -44,7 +63,7 @@
 }
 
 @media (max-width: 576px) {
-  .content {
+  .containerPaid {
     justify-content: space-between;
     width: 100%;
   }

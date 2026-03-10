@@ -52,7 +52,7 @@ const AddCustomerSubscriptionModal = ({
               `/mycustomers/active?name=${searchCustomer}`,
             {
               headers: { Authorization: `Bearer ${token}` },
-            }
+            },
           );
           setCustomersList(response.data);
           setCustomersListIsVisible(true);
@@ -88,7 +88,7 @@ const AddCustomerSubscriptionModal = ({
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       setRefreshCustomerSubscription((prev) => !prev);
       setAddCustomerSubscriptionDisplay(false);
@@ -112,7 +112,7 @@ const AddCustomerSubscriptionModal = ({
             <div className={styles.customer}>
               <div className={styles.line}>
                 <div className={`${styles["item"]}`}>
-                  <label htmlFor="customer">Nom :</label>
+                  <label htmlFor="customer">Nom : </label>
                   <input
                     type="text"
                     placeholder="Client"
@@ -127,7 +127,7 @@ const AddCustomerSubscriptionModal = ({
                   />
                 </div>
                 <div className={styles.item}>
-                  <label htmlFor="firstName">Prénom :</label>
+                  <label htmlFor="firstName">Prénom : </label>
                   <input
                     type="text"
                     placeholder="Prénom du client"
@@ -162,7 +162,7 @@ const AddCustomerSubscriptionModal = ({
               {/* <p className={styles["error-message"]}>{errors.customer}</p> */}
             </div>
             <div className={`${styles.item} ${styles.line}`}>
-              <label htmlFor="title">Nom de l'abonnement :</label>
+              <label htmlFor="title">Nom de l'abonnement : </label>
               <input
                 type="text"
                 placeholder="Intitulé de l'abonnement"
@@ -176,7 +176,7 @@ const AddCustomerSubscriptionModal = ({
             </div>
             <div className={styles.line}>
               <div className={styles.item}>
-                <label htmlFor="sessionInitial">Nombre sessions :</label>
+                <label htmlFor="sessionInitial">Nombre sessions : </label>
                 <input
                   type="number"
                   name="sessionInitial"
@@ -191,7 +191,7 @@ const AddCustomerSubscriptionModal = ({
                 <p className={styles["error-message"]}>{errors.price}</p>
               </div>
               <div className={styles.item}>
-                <label htmlFor="sessionPrice">Prix / session :</label>
+                <label htmlFor="sessionPrice">Prix / session : </label>
                 <input
                   type="number"
                   name="sessionPrice"

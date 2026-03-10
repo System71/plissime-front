@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.container h2,
+.container > p {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.container > p {
+  font-size: medium;
+  font-weight: bold;
+  color: #e67e22;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}

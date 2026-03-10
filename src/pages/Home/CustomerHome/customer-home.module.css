@@ -17,23 +17,16 @@
   border-radius: 20px;
 }
 
-.firstLine {
+.line {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   height: 250px;
 }
 
-.secondLine {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  height: 250px;
-}
-
-.firstLine > div,
-.secondLine > div {
+.line > div {
   flex: 1;
+  max-width: calc(50% - 10px);
 }
 
 .dashboard-item h2 {
@@ -49,8 +42,7 @@
 }
 
 @media (max-width: 576px) {
-  .firstLine,
-  .secondLine {
+  .line {
     flex-direction: column;
     height: auto;
   }

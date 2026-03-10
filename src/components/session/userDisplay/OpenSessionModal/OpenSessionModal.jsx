@@ -26,6 +26,7 @@ const OpenSessionModal = ({
   const [state, setState] = useState("scheduled");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("");
+  const [subscription, setSubscription] = useState(false);
   const [program, setProgram] = useState(null);
   const [programSession, setProgramSession] = useState(null);
   const [choice, setChoice] = useState("admin");
@@ -54,7 +55,7 @@ const OpenSessionModal = ({
       newErrors.end =
         "La date de démarrage doit etre postérieure à celle de démarrage.";
     }
-    if (!price) {
+    if (!subscription && !price) {
       newErrors.price = "Le prix de la session est requis.";
     }
     return newErrors;
@@ -78,6 +79,7 @@ const OpenSessionModal = ({
         setState(response.data.state);
         setContent(response.data.content);
         setPrice(response.data.price);
+        setSubscription(response.data.subscription);
         setProgram(response.data.program);
         setProgramSession(response.data.programSession);
         setIsLoading(false);
@@ -144,6 +146,25 @@ const OpenSessionModal = ({
       setState(newValue);
     }
   };
+
+  const commonOptions = [
+    { value: "Confirmée", label: "Confirmée" },
+    { value: "Annulée", label: "Annulée" },
+  ];
+
+  const subscriptionOptions = [
+    { value: "Payée avec abonnement", label: "Payée avec abonnement" },
+  ];
+
+  const normalOptions = [
+    { value: "À payer", label: "À payer" },
+    { value: "Payée", label: "Payée" },
+  ];
+
+  const options = [
+    ...commonOptions,
+    ...(subscription ? subscriptionOptions : normalOptions),
+  ];
 
   const confirmPaymentState = () => {
     setState("Payée");
@@ -286,22 +307,39 @@ const OpenSessionModal = ({
                   </div>
                 </div>
                 <div className={styles.line}>
-                  <div className={styles.item}>
-                    <div className={styles.itemInfo}>
-                      <label htmlFor="price">Prix :</label>
-                      <input
-                        type="number"
-                        name="price"
-                        id="price"
-                        placeholder={price}
-                        value={price}
-                        onChange={(event) => {
-                          setPrice(event.target.value);
-                        }}
-                      />
+                  {subscription ? (
+                    <div className={styles.item}>
+                      <div className={styles.itemInfo}>
+                        <label htmlFor="price">Prix :</label>
+                        <input
+                          type="text"
+                          name="price"
+                          id="price"
+                          placeholder="Abonnement en cours"
+                          value={price}
+                          readOnly
+                        />
+                      </div>
+                      <p className={styles["error-message"]}>{errors.price}</p>
                     </div>
-                    <p className={styles["error-message"]}>{errors.price}</p>
-                  </div>
+                  ) : (
+                    <div className={styles.item}>
+                      <div className={styles.itemInfo}>
+                        <label htmlFor="price">Prix :</label>
+                        <input
+                          type="number"
+                          name="price"
+                          id="price"
+                          placeholder="Prix de la session"
+                          value={price}
+                          onChange={(event) => {
+                            setPrice(event.target.value);
+                          }}
+                        />
+                      </div>
+                      <p className={styles["error-message"]}>{errors.price}</p>
+                    </div>
+                  )}
                   <div className={styles.item}>
                     <div className={styles.itemInfo}>
                       <label htmlFor="state">Statut :</label>
@@ -311,10 +349,11 @@ const OpenSessionModal = ({
                         value={state}
                         onChange={handleChange}
                       >
-                        <option value="Confirmée">Confirmée</option>
-                        <option value="Annulée">Annulée</option>
-                        <option value="À payer">À payer</option>
-                        <option value="Payée">Payée</option>
+                        {options.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                     <p className={styles["error-message"]}></p>
