@@ -144,7 +144,10 @@ const Calendar = ({
                   textOverflow: "ellipsis",
                 }}
               >
-                {arg.event.title}
+                <div style={{ fontWeight: "600" }}>
+                  {arg.event.extendedProps?.name}
+                </div>
+                <div>{arg.event.title}</div>{" "}
               </div>
             )}
             locales={[frLocale]}
