@@ -34,12 +34,12 @@ const DaySessions = ({
   }, [token]);
 
   return (
-    <div className={styles["container"]}>
+    <div className={styles.container}>
       <h2>Sessions du jour</h2>
       {isLoading ? (
         <p>En chargement</p>
       ) : data[0] ? (
-        <div className={styles["session-item-list"]}>
+        <div className={styles.content}>
           {data.map((session, index) => {
             return (
               <SessionItemMin
