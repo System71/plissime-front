@@ -232,8 +232,6 @@ function App() {
                   openSessionDisplay={openSessionDisplay}
                   setOpenSessionDisplay={setOpenSessionDisplay}
                   setSessionID={setSessionID}
-                  sessionsList={sessionsList}
-                  setSessionsList={setSessionsList}
                   sub={sub}
                 />
               }

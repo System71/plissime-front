@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from "./customer-subscription-item-dashboard.module.css";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";

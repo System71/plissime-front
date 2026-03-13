@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import styles from "./planning.module.css";
 import Calendar from "../../components/Calendar/Calendar";
-import { useState } from "react";
-import Sessions from "../Sessions/Sessions";
 import Unregistered from "../../components/Unregistered/Unregistered";
+import planningPreview from "../../assets/planning_preview.png";
 
 const Planning = ({
   token,
@@ -12,12 +11,8 @@ const Planning = ({
   openSessionDisplay,
   setOpenSessionDisplay,
   setSessionID,
-  sessionsList,
-  setSessionsList,
   sub,
 }) => {
-  const [choice, setChoice] = useState("planning");
-
   if (sub) {
     return (
       <div className={styles["planning-sessions"]}>
@@ -32,7 +27,16 @@ const Planning = ({
       </div>
     );
   } else {
-    return <Unregistered />;
+    return (
+      <div className={styles.preview}>
+        <Unregistered />
+        <img
+          src={planningPreview}
+          alt="planning preview"
+          className={styles.imgPreview}
+        />
+      </div>
+    );
   }
 };
 
