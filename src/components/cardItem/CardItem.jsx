@@ -5,12 +5,14 @@ import NewCard from "../NewCard/NewCard";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Button from "../Button/Button";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const CardItem = ({ paymentMethod, stripeId, token }) => {
   const [clientSecret, setClientSecret] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [displayForm, setDisplayForm] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +26,7 @@ const CardItem = ({ paymentMethod, stripeId, token }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setClientSecret(response.data.clientSecret);
         setIsLoading(false);
@@ -39,7 +41,7 @@ const CardItem = ({ paymentMethod, stripeId, token }) => {
     return <p>En chargement</p>;
   } else {
     return (
-      <>
+      <div className={styles.container}>
         <div className={styles["card-item"]}>
           <p className={styles["card"]}>{paymentMethod.type}</p>
           <p>XXXX XXXX XXXX {paymentMethod.numbers}</p>
@@ -51,12 +53,19 @@ const CardItem = ({ paymentMethod, stripeId, token }) => {
             / {paymentMethod.exp_year}
           </p>
         </div>
-        <div className={styles["changeCard"]}>
-          <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <NewCard />
-          </Elements>
-        </div>
-      </>
+        <Button
+          type="button"
+          text="Modifier"
+          action={() => setDisplayForm(!displayForm)}
+        />
+        {displayForm && (
+          <div className={styles["changeCard"]}>
+            <Elements stripe={stripePromise} options={{ clientSecret }}>
+              <NewCard />
+            </Elements>
+          </div>
+        )}
+      </div>
     );
   }
 };

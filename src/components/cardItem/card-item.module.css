@@ -1,3 +1,8 @@
+.container > button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .card-item {
   display: grid;
   grid-template-columns: 120px 1fr 1fr 80px;
@@ -11,7 +16,4 @@
 
 .card {
   font-weight: 600;
-}
-
-.changeCard {
 }

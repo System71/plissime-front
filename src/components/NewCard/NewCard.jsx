@@ -4,6 +4,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import Button from "../Button/Button";
 
 const NewCard = () => {
   const stripe = useStripe();
@@ -25,9 +26,9 @@ const NewCard = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.cardForm}>
       <PaymentElement />
-      <button>Mettre à jour</button>
+      <Button type="submit" text="Mettre à jour"></Button>
     </form>
   );
 };
