@@ -23,6 +23,7 @@ const Calendar = ({
   const [events, setEvents] = useState([]);
   const [googleLinked, setGoogleLinked] = useState(null);
   const [email, setEmail] = useState("");
+  const [reconnect, setReconnect] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,11 +51,13 @@ const Calendar = ({
           setEvents(response.data);
         }
       } catch (error) {
-        console.log("erreur", error.response);
+        if (error.response.data.reconnectGoogle) {
+          setReconnect(!reconnect);
+        }
       }
     };
     fetchData();
-  }, [token, addSessionDisplay, openSessionDisplay]);
+  }, [token, addSessionDisplay, openSessionDisplay, reconnect]);
 
   const handleConnectGoogle = async () => {
     try {

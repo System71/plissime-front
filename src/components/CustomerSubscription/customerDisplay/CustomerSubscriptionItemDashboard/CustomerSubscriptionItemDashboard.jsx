@@ -18,8 +18,6 @@ const CustomerSubscriptionItemDashboard = ({ token, sub }) => {
     });
   };
 
-  console.log("isPaid=", sub.isPaid);
-
   if (!sub.isPaid) {
     return (
       <div className={styles.containerToPaid}>
