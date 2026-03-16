@@ -1,7 +1,11 @@
 .payments {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.content {
+  height: 100%;
 }
 
 .payments button {

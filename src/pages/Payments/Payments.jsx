@@ -48,33 +48,35 @@ const Payments = ({
             Abonnements
           </button>
         </div>
-        {choice == "payable" && (
-          <ToPaid
-            token={token}
-            setOpenSessionDisplay={setOpenSessionDisplay}
-            setSessionID={setSessionID}
-          />
-        )}
-        {choice == "paid" && (
-          <Paid
-            token={token}
-            setOpenSessionDisplay={setOpenSessionDisplay}
-            setSessionID={setSessionID}
-          />
-        )}
-        {choice == "subscription" && (
-          <CustomerSubscription
-            token={token}
-            setAddCustomerSubscriptionDisplay={
-              setAddCustomerSubscriptionDisplay
-            }
-            setOpenCustomerSubscriptionDisplay={
-              setOpenCustomerSubscriptionDisplay
-            }
-            refreshCustomerSubscription={refreshCustomerSubscription}
-            setSubscriptionID={setSubscriptionID}
-          />
-        )}
+        <div className={styles.content}>
+          {choice == "payable" && (
+            <ToPaid
+              token={token}
+              setOpenSessionDisplay={setOpenSessionDisplay}
+              setSessionID={setSessionID}
+            />
+          )}
+          {choice == "paid" && (
+            <Paid
+              token={token}
+              setOpenSessionDisplay={setOpenSessionDisplay}
+              setSessionID={setSessionID}
+            />
+          )}
+          {choice == "subscription" && (
+            <CustomerSubscription
+              token={token}
+              setAddCustomerSubscriptionDisplay={
+                setAddCustomerSubscriptionDisplay
+              }
+              setOpenCustomerSubscriptionDisplay={
+                setOpenCustomerSubscriptionDisplay
+              }
+              refreshCustomerSubscription={refreshCustomerSubscription}
+              setSubscriptionID={setSubscriptionID}
+            />
+          )}
+        </div>
       </div>
     );
   } else {
