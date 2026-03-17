@@ -29,13 +29,13 @@ const UpcomingSales = ({ token }) => {
   }, [token]);
 
   return (
-    <div className={styles["container"]}>
-      <div className={styles["title"]}>CA à venir</div>
-      <div className={styles["content"]}>
-        <p className={styles["value"]}>{upcomingSales} €</p>
-        <p>
-          <span style={{ color: "green" }}>{paymentsToCome}</span> paiements en
-          attente
+    <div className={styles.container}>
+      <div className={styles.title}>CA à venir</div>
+      <div className={styles.content}>
+        <p className={styles.value}>{upcomingSales} €</p>
+        <p className={styles.progress}>
+          <span style={{ color: "green" }}>{paymentsToCome}</span>{" "}
+          <p>paiements en attente</p>
         </p>
       </div>
     </div>

@@ -30,16 +30,16 @@ const YearSales = ({ token }) => {
   }, [token]);
 
   return (
-    <div className={styles["container"]}>
-      <div className={styles["title"]}>Total CA 2026</div>
-      <div className={styles["content"]}>
-        <p className={styles["value"]}>{yearSales} €</p>
-        <p>
+    <div className={styles.container}>
+      <div className={styles.title}>Total CA 2026</div>
+      <div className={styles.content}>
+        <p className={styles.value}>{yearSales} €</p>
+        <p className={styles.progress}>
           <span style={{ color: diffPrevYear >= 0 ? "green" : "red" }}>
             {diffPrevYear >= 0 && "+"}
             {diffPrevYear}%
-          </span>{" "}
-          de l'année dernière
+          </span>
+          <p>de l'année dernière</p>
         </p>
       </div>
     </div>

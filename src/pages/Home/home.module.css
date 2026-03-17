@@ -27,7 +27,7 @@
 }
 
 .third-line {
-  height: 350px;
+  min-height: 350px;
 }
 
 .first-line,
@@ -57,14 +57,24 @@ h1 {
 }
 
 @media (max-width: 576px) {
-  .first-line,
   .second-line,
   .third-line {
     flex-direction: column;
   }
 
+  .first-line {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 0;
+  }
+
+  .first-line > div {
+    flex: 0 0 calc(50% - 10px);
+  }
+
   .dashboard-item {
     min-height: 200px;
+    min-height: 0;
   }
 
   .item-graph {

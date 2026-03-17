@@ -29,16 +29,16 @@ const MonthSales = ({ token }) => {
   }, [token]);
 
   return (
-    <div className={styles["container"]}>
-      <div className={styles["title"]}>CA du mois</div>
-      <div className={styles["content"]}>
-        <p className={styles["value"]}>{monthSales} €</p>
-        <p>
+    <div className={styles.container}>
+      <div className={styles.title}>CA du mois</div>
+      <div className={styles.content}>
+        <p className={styles.value}>{monthSales} €</p>
+        <p className={styles.progress}>
           <span style={{ color: diffPrevMonth >= 0 ? "green" : "red" }}>
             {diffPrevMonth >= 0 && "+"}
             {diffPrevMonth}%
-          </span>{" "}
-          du mois dernier
+          </span>
+          <p>du mois dernier</p>
         </p>
       </div>
     </div>

@@ -24,3 +24,29 @@
   font-weight: bold;
   color: #e67e22;
 }
+
+.progress {
+  display: flex;
+  gap: 5px;
+}
+
+@media (max-width: 576px) {
+  .container {
+    justify-content: space-between;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .content {
+    gap: 10px;
+  }
+
+  .content p {
+    text-align: center;
+  }
+
+  .progress {
+    flex-direction: column;
+    font-size: small;
+  }
+}
