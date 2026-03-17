@@ -73,7 +73,8 @@ h1 {
     flex: 0 0 calc(50% - 10px);
   }
 
-  .second-line > div {
+  .second-line > div,
+  .third-line > div {
     flex: auto;
   }
 
