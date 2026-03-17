@@ -24,6 +24,12 @@
   flex-direction: column;
   gap: 15px;
   width: 100%;
-  max-height: 200px;
+  height: 200px;
   overflow-y: auto;
+}
+
+@media (max-width: 576px) {
+  .content {
+    height: 150px;
+  }
 }

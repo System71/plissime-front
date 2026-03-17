@@ -60,6 +60,7 @@ h1 {
   .second-line,
   .third-line {
     flex-direction: column;
+    min-height: 0;
   }
 
   .first-line {
@@ -72,8 +73,11 @@ h1 {
     flex: 0 0 calc(50% - 10px);
   }
 
+  .second-line > div {
+    flex: auto;
+  }
+
   .dashboard-item {
-    min-height: 200px;
     min-height: 0;
   }
 
