@@ -4,6 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import listPlugin from "@fullcalendar/list";
 import frLocale from "@fullcalendar/core/locales/fr";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -70,7 +71,7 @@ const Calendar = ({
         },
       );
       const { url } = await response.data;
-      window.location.href = url; // redirection vers Google
+      window.location.href = url;
     } catch (error) {
       console.log(error.response);
     }
@@ -118,44 +119,104 @@ const Calendar = ({
               </div>
             </div>
           </div>
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="timeGridWeek"
-            events={events}
-            selectable={true}
-            allDaySlot={false}
-            slotMinTime="06:00:00" // début de la plage visible
-            slotMaxTime="22:00:00" // fin de la plage visible
-            height="auto" // <-- auto adapte la hauteur au contenu
-            eventClick={(info) => {
-              if (info.event.extendedProps.source == "local") {
-                setOpenSessionDisplay(!openSessionDisplay);
-                setSessionID(info.event.id);
-              }
-            }}
-            eventContent={(arg) => (
-              <div
-                style={{
-                  margin: "2px", // espace extérieur entre les events
-                  padding: "2px 4px", // padding intérieur pour le texte
-                  backgroundColor: arg.event.backgroundColor,
-                  border: `1px solid ${arg.event.borderColor}`,
-                  borderRadius: "4px",
-                  boxSizing: "border-box",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                <div style={{ fontWeight: "600" }}>
-                  {arg.event.extendedProps?.name}
+          <div className={styles.desktopCalendar}>
+            <FullCalendar
+              plugins={[
+                dayGridPlugin,
+                timeGridPlugin,
+                interactionPlugin,
+                listPlugin,
+              ]}
+              initialView={"timeGridWeek"}
+              events={events}
+              selectable={true}
+              allDaySlot={false}
+              slotMinTime={"06:00:00"}
+              slotMaxTime={"22:00:00"}
+              height="auto" // <-- auto adapte la hauteur au contenu
+              headerToolbar={{
+                left: "title",
+                right: "prev,today,next",
+              }}
+              eventClick={(info) => {
+                if (info.event.extendedProps.source == "local") {
+                  setOpenSessionDisplay(!openSessionDisplay);
+                  setSessionID(info.event.id);
+                }
+              }}
+              eventContent={(arg) => (
+                <div
+                  style={{
+                    margin: "2px", // espace extérieur entre les events
+                    padding: "2px 4px", // padding intérieur pour le texte
+                    backgroundColor: arg.event.backgroundColor,
+                    border: `1px solid ${arg.event.borderColor}`,
+                    borderRadius: "4px",
+                    boxSizing: "border-box",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  <div style={{ fontWeight: "600" }}>
+                    {arg.event.extendedProps?.name}
+                  </div>
+                  <div>{arg.event.title}</div>{" "}
                 </div>
-                <div>{arg.event.title}</div>{" "}
-              </div>
-            )}
-            locales={[frLocale]}
-            locale="fr"
-          />
+              )}
+              locales={[frLocale]}
+              locale="fr"
+            />
+          </div>
+          <div className={styles.mobileCalendar}>
+            <FullCalendar
+              plugins={[
+                dayGridPlugin,
+                timeGridPlugin,
+                interactionPlugin,
+                listPlugin,
+              ]}
+              initialView={"timeGridDay"}
+              events={events}
+              selectable={true}
+              allDaySlot={false}
+              slotMinTime={"06:00:00"}
+              slotMaxTime={"22:00:00"}
+              height="auto" // <-- auto adapte la hauteur au contenu
+              headerToolbar={{
+                left: "title",
+                right: "prev,today,next",
+              }}
+              eventClick={(info) => {
+                if (info.event.extendedProps.source == "local") {
+                  setOpenSessionDisplay(!openSessionDisplay);
+                  setSessionID(info.event.id);
+                }
+              }}
+              eventContent={(arg) => (
+                <div
+                  style={{
+                    margin: "2px", // espace extérieur entre les events
+                    padding: "2px 4px", // padding intérieur pour le texte
+                    backgroundColor: arg.event.backgroundColor,
+                    border: `1px solid ${arg.event.borderColor}`,
+                    borderRadius: "4px",
+                    boxSizing: "border-box",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  <div style={{ fontWeight: "600" }}>
+                    {arg.event.extendedProps?.name}
+                  </div>
+                  <div>{arg.event.title}</div>{" "}
+                </div>
+              )}
+              locales={[frLocale]}
+              locale="fr"
+            />
+          </div>
         </div>
       )}
     </div>

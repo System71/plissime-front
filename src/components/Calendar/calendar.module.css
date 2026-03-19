@@ -73,6 +73,14 @@
   position: absolute;
 }
 
+.desktopCalendar {
+  display: block;
+}
+
+.mobileCalendar {
+  display: none;
+}
+
 /* MODIF FULL CALENDAR */
 
 :global(.fc-toolbar) {
@@ -181,5 +189,37 @@
     margin-top: 30px;
     margin-left: 80px;
     gap: 70px;
+  }
+
+  .desktopCalendar {
+    display: none;
+  }
+
+  .mobileCalendar {
+    display: block;
+  }
+
+  :global(.fc-toolbar) {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #a8c6cc;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  :global(.fc .fc-toolbar-title) {
+    font-size: 16px;
+  }
+
+  :global(.fc-scrollgrid-sync-inner) {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    background-color: rgb(241, 240, 240);
   }
 }
