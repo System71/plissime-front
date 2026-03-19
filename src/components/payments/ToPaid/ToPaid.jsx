@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SessionItemPayment from "../../session/userDisplay/SesssionItemPayment/SessionItemPayment";
 
-const ToPaid = ({ token, setOpenSessionDisplay, setSessionID }) => {
+const ToPaid = ({
+  token,
+  setOpenSessionDisplay,
+  setSessionID,
+  refreshSessions,
+}) => {
   const [sessionsToPaid, setSessionsToPaid] = useState([]);
 
   useEffect(() => {
@@ -28,7 +33,7 @@ const ToPaid = ({ token, setOpenSessionDisplay, setSessionID }) => {
       };
       fetchSessionsPaid();
     }
-  }, [token]);
+  }, [token, refreshSessions]);
 
   return (
     <div className={styles["sessions-to-paid"]}>

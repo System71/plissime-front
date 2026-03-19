@@ -10,7 +10,7 @@ const SessionItemPayment = ({
   firstName,
   sessionDate,
   paymentDate,
-  paymentType,
+  paymentMethod,
   price,
   id,
   setOpenSessionDisplay,
@@ -37,7 +37,7 @@ const SessionItemPayment = ({
         </div>
         <div className={styles["price"]}>
           <p>{price}€</p>
-          {paymentType == "card" ? (
+          {paymentMethod == "card" ? (
             <img
               src={card}
               alt="logo-plissime"

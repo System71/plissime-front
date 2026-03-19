@@ -116,6 +116,7 @@ function App() {
   const [stripeId, setStripeId] = useState("");
   const [stripeConnected, setStripeConnected] = useState("");
   const [refreshCustomers, setRefreshCustomers] = useState(true);
+  const [refreshSessions, setRefreshSessions] = useState(true);
   const [refreshCustomerSubscription, setRefreshCustomerSubscription] =
     useState(true);
 
@@ -252,6 +253,7 @@ function App() {
                   setOpenCustomerSubscriptionDisplay={
                     setOpenCustomerSubscriptionDisplay
                   }
+                  refreshSessions={refreshSessions}
                   refreshCustomerSubscription={refreshCustomerSubscription}
                   setSubscriptionID={setSubscriptionID}
                   setOpenSessionDisplay={setOpenSessionDisplay}
@@ -313,6 +315,7 @@ function App() {
             setOpenSessionDisplay={setOpenSessionDisplay}
             id={sessionID}
             setSessionsList={setSessionsList}
+            setRefreshSessions={setRefreshSessions}
           />
         )}
         {openCustomerDisplay && (

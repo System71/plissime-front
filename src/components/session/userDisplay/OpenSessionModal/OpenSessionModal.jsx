@@ -16,6 +16,7 @@ const OpenSessionModal = ({
   setOpenSessionDisplay,
   id,
   setSessionsList,
+  setRefreshSessions,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
@@ -112,6 +113,7 @@ const OpenSessionModal = ({
         },
       );
       updateSessionsList(setSessionsList, token);
+      setRefreshSessions((prev) => !prev);
       setOpenSessionDisplay(false);
     } catch (error) {
       setErrorBack(error.response.data.message);

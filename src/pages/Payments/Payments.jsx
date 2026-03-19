@@ -12,6 +12,7 @@ const Payments = ({
   sub,
   setAddCustomerSubscriptionDisplay,
   setOpenCustomerSubscriptionDisplay,
+  refreshSessions,
   refreshCustomerSubscription,
   setSubscriptionID,
   setOpenSessionDisplay,
@@ -54,6 +55,7 @@ const Payments = ({
               token={token}
               setOpenSessionDisplay={setOpenSessionDisplay}
               setSessionID={setSessionID}
+              refreshSessions={refreshSessions}
             />
           )}
           {choice == "paid" && (
@@ -61,6 +63,7 @@ const Payments = ({
               token={token}
               setOpenSessionDisplay={setOpenSessionDisplay}
               setSessionID={setSessionID}
+              refreshSessions={refreshSessions}
             />
           )}
           {choice == "subscription" && (
