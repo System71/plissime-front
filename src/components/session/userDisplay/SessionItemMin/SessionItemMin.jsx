@@ -18,8 +18,8 @@ const SessionItemMin = ({
 
   return (
     <div className={styles["container"]} key={index}>
-      <p>{name}</p>
-      <p className={styles.hiddenMobile}>{title}</p>
+      <p className={styles.name}>{name}</p>
+      <p className={`${styles.hiddenMobile} ${styles.title}`}>{title}</p>
       <p style={{ fontWeight: 600 }}>
         {formatedDate} à {heure}
       </p>
@@ -30,7 +30,7 @@ const SessionItemMin = ({
           setSessionID(id);
         }}
       >
-        {/* <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" /> */}
+        <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
       </div>
     </div>
   );
