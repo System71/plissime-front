@@ -46,6 +46,27 @@ textarea {
   font-family: inherit;
 }
 
+/*APPLE FORMAT*/
+
+/* Désactiver le highlight bleu au tap */
+button,
+a {
+  -webkit-tap-highlight-color: transparent; /* iOS tap color */
+  -webkit-touch-callout: none; /* désactive le menu contextuel au long press */
+}
+
+/* Désactiver le style par défaut pour les liens */
+a {
+  color: inherit; /* prendre la couleur parent */
+  text-decoration: none;
+}
+
+/* Optionnel : enlever outline sur focus (mais attention accessibilité) */
+button:focus,
+a:focus {
+  outline: none;
+}
+
 @media (max-width: 1399px) {
   .app-layout {
     width: 100%;
