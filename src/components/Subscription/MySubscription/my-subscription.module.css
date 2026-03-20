@@ -7,7 +7,7 @@
   gap: 15px;
 }
 
-.subscription-block {
+.subscriptionBlock {
   display: flex;
   height: 100%;
   width: 375px;
@@ -17,6 +17,11 @@
   border-radius: 10px;
   padding: 30px;
   gap: 25px;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -46,6 +51,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 100%;
 }
 
 .my-subscription h2 {
@@ -57,4 +63,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+@media (max-width: 576px) {
+  .hiddenMobile {
+    display: none;
+  }
 }

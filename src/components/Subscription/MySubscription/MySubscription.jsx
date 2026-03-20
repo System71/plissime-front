@@ -21,7 +21,7 @@ const MySubscription = ({ token, stripeId }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setInvoices(response.data);
         setIsLoading(false);
@@ -42,7 +42,7 @@ const MySubscription = ({ token, stripeId }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setPaymentMethod(response.data);
       } catch (error) {
@@ -79,7 +79,7 @@ const MySubscription = ({ token, stripeId }) => {
             </div>
           </div>
         </div>
-        <div className={styles["subscription-block"]}>
+        <div className={`${styles.subscriptionBlock} ${styles.hiddenMobile}`}>
           <div className={styles["title"]}>Premium</div>
           <div className={styles["item-list"]}>
             <div className={styles["item"]}>

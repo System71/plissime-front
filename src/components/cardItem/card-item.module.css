@@ -5,7 +5,7 @@
 
 .card-item {
   display: grid;
-  grid-template-columns: 120px 1fr 1fr 80px;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 15px;
   border: 1px lightgray solid;

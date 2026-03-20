@@ -1,13 +1,19 @@
-.invoices-item {
+.invoicesItemDesktop {
   display: grid;
-  grid-template-columns: 120px 1fr 120px 40px;
+  grid-template-columns: 100px 1fr auto auto;
   align-items: center;
   gap: 15px;
   border: 1px lightgray solid;
   border-radius: 20px;
-  padding: 5px;
+  padding: 10px;
 }
 
 .date {
   font-weight: 600;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
