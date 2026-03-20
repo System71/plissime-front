@@ -39,10 +39,17 @@ const NotificationItemMin = ({
   };
 
   return (
-    <div className={styles["container"]} key={index}>
+    <div className={styles.container} key={index}>
       <div>{icon}</div>
-      <p style={{ fontWeight: 600 }}>{formatedDate}</p>
-      <p>{message}</p>
+      <div className={styles.content}>
+        <p className={styles.date}>{formatedDate}</p>
+        <div className={styles.messageWrapper}>
+          <div className={styles.messageText}>
+            <span>{message}</span>
+            <span>{message}</span>
+          </div>
+        </div>
+      </div>
       <div className={styles.button}>
         <FontAwesomeIcon icon="magnifying-glass" color="#E67E22" />
       </div>

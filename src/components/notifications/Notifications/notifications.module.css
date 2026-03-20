@@ -25,11 +25,11 @@
   gap: 15px;
   width: 100%;
   overflow-y: auto;
-  height: 250px;
+  height: 260px;
 }
 
 @media (max-width: 576px) {
   .content {
-    height: 220px;
+    height: 240px;
   }
 }
