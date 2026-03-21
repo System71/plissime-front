@@ -15,14 +15,7 @@
   background-color: rgb(241, 240, 240);
   padding: 30px;
   width: 600px;
-}
-
-.signup-content > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .signup button {
@@ -58,6 +51,14 @@
 
 .signup button:hover {
   background-color: #e67e22;
+}
+
+.message {
+  display: flex;
+  width: 400px;
+  justify-content: center;
+  color: red;
+  font-weight: 600;
 }
 
 @media (max-width: 576px) {

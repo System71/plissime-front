@@ -6,6 +6,7 @@ import Button from "../../Button/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 const SignupCustomer = ({ setToken, token, setRole }) => {
   const [email, setEmail] = useState("");
@@ -198,6 +199,15 @@ const SignupCustomer = ({ setToken, token, setRole }) => {
               />
               <p className={styles["error-message"]}>{errors.password}</p>
             </div>
+          </div>
+          <div className={styles.line}>
+            <p className={styles.conf}>
+              En continuant, vous acceptez notre{" "}
+              <Link to="https://www.plissime.fr/politique-de-confidentialite">
+                politique de confidentialité
+              </Link>{" "}
+              applicable au traitement de vos données personnelles.
+            </p>
           </div>
         </div>
       )}

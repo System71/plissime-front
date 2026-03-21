@@ -81,6 +81,16 @@
   justify-self: flex-end;
 }
 
+.conf {
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.conf a {
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 576px) {
   .signup-customer div {
     width: 100%;

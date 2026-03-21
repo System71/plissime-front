@@ -15,6 +15,9 @@ const Signup = ({ setToken, token, setRole }) => {
       <div className={styles["signup"]}>
         <img src={logo} alt="Logo PLISSIME" className="logo-big" />
         <div className={styles["signup-content"]}>
+          <div className={styles.message}>
+            <p>Rejoignez Plissime en quelques clics !</p>
+          </div>
           <div className={styles["button-choice"]}>
             <button
               type="button"
