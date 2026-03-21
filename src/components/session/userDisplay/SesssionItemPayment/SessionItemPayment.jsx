@@ -59,7 +59,7 @@ const SessionItemPayment = ({
 
     return (
       <div
-        className={styles.container}
+        className={styles.containerToPaid}
         onClick={() => {
           setSessionID(id);
           setOpenSessionDisplay((prev) => !prev);

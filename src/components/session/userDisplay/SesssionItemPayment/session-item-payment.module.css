@@ -10,7 +10,7 @@
   gap: 10px;
 }
 
-.container {
+.containerToPaid {
   display: grid;
   grid-template-columns: 100px 1fr 1fr 0.5fr auto;
   align-content: center;
@@ -23,7 +23,7 @@
 }
 
 .containerPaid:hover,
-.container:hover {
+.containerToPaid:hover {
   transform: translateY(-5px);
   cursor: pointer;
 }
@@ -49,6 +49,7 @@
 
 .price {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   color: #e67e22;
   flex: 2;
@@ -65,8 +66,9 @@
 }
 
 @media (max-width: 576px) {
-  .containerPaid {
-    justify-content: space-between;
+  .containerPaid,
+  .containerToPaid {
+    grid-template-columns: 100px 1fr 0.5fr;
     width: 100%;
   }
 
