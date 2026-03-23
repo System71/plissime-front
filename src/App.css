@@ -68,6 +68,8 @@ a:focus {
 }
 
 button {
+  appearance: none;
+  -webkit-appearance: none;
   color: inherit;
 }
 
