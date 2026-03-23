@@ -67,6 +67,10 @@ a:focus {
   outline: none;
 }
 
+button {
+  color: inherit;
+}
+
 @media (max-width: 1399px) {
   .app-layout {
     width: 100%;
