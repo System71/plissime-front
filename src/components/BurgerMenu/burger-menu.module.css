@@ -1,4 +1,4 @@
-.burger-menu {
+.burgerMenu {
   position: relative;
   z-index: 9999; /* Facultatif, utile si ton burger est caché sous d'autres éléments */
   display: flex;
@@ -44,23 +44,29 @@
   z-index: 9998;
 }
 
-.nav-item {
-  margin-left: 25px;
+.navItem {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
   flex-direction: row;
-  width: 100%;
-  margin-left: 100px;
+  margin-left: 50px;
+  align-self: flex-start;
 }
 
 nav a {
   font-size: 18px;
 }
 
+.active {
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
 @media (min-width: 576px) {
-  .burger-menu {
+  .burgerMenu {
     display: none;
   }
 }
