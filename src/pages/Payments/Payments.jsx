@@ -6,6 +6,8 @@ import { useState } from "react";
 import Unregistered from "../../components/Unregistered/Unregistered";
 import CustomerSubscription from "../../components/CustomerSubscription/CustomerSubscriptionDisplay/CustomerSubscriptionDisplay";
 import paymentPreview from "../../assets/payment_preview.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "../../components/Button/Button";
 
 const Payments = ({
   token,
@@ -19,11 +21,18 @@ const Payments = ({
   setSessionID,
 }) => {
   const [choice, setChoice] = useState("payable");
+  const [frequency, setFrequency] = useState("year");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(currentPage);
+
+  const handleChangeFrequency = (event) => {
+    setFrequency(event.target.value);
+  };
 
   if (sub) {
     return (
-      <div className={styles["payments"]}>
-        <div className={styles["message"]}>
+      <div className={styles.container}>
+        <div className={styles.message}>
           <p>Gérez vos paiements et abonnements en 1 clic</p>
         </div>
         <div className={styles["button-choice"]}>
@@ -48,6 +57,39 @@ const Payments = ({
           >
             Abonnements
           </button>
+        </div>
+        <div className={styles.filter}>
+          <select
+            name="frequency"
+            id="frequency"
+            onChange={handleChangeFrequency}
+          >
+            <option value="year">Année en cours</option>
+            <option value="year">Mois en cours</option>
+          </select>
+          <div className={styles.paginationContainer}>
+            <FontAwesomeIcon
+              icon="circle-chevron-left"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+            />
+            <input
+              name="currentPage"
+              id="currentPage"
+              value={currentPage}
+              onChange={(event) => setCurrentPage(event.target.value)}
+            />
+            <p> / {totalPage}</p>
+            <FontAwesomeIcon
+              icon="circle-chevron-right"
+              color="#E67E22"
+              size="xl"
+              fixedWidth
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+            />
+          </div>
         </div>
         <div className={styles.content}>
           {choice == "payable" && (
